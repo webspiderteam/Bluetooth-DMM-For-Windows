@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30309.148
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GattServicesLibrary", "..\GattServicesLibrary\GattServicesLibrary\GattServicesLibrary.csproj", "{644F40AD-EABB-4570-B9B7-E3F8DDAA80F3}"
 EndProject
@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SortedObservableCollection"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortedObservableCollection", "..\SortedObservableCollection\SortedObservableCollection\SortedObservableCollection.csproj", "{BE79FC52-6041-4913-B0D4-66C100944904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothLEExplorer", "BluetoothLEExplorer\BluetoothLEExplorer.csproj", "{AD1CBE3C-A68A-4E02-8001-E02B815560EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluetooth DMM For Windows", "BluetoothLEExplorer\Bluetooth DMM For Windows.csproj", "{AD1CBE3C-A68A-4E02-8001-E02B815560EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothLEExplorerUnitTests", "BluetoothLEExplorerUnitTests\BluetoothLEExplorerUnitTests.csproj", "{6F503DF9-71C9-4340-90BB-D9AA14ADB686}"
 EndProject

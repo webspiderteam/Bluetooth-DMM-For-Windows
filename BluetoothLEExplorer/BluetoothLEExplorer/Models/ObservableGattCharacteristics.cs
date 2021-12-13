@@ -735,6 +735,7 @@ namespace BluetoothLEExplorer.Models
             CryptographicBuffer.CopyToByteArray(rawData, out data);
             if (data!=null)
                 {
+
                 try
                 {
                     var message = "";

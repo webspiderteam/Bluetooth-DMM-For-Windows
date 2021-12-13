@@ -9,12 +9,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BluetoothLEExplorer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Bluetooth DMM for Windows")]
+[assembly: AssemblyDescription("Bluetooth DMM for Windows is an application for Bluetooth Dmm Multimeter devices to connect and get datas over Gatt. Project is builded over BluetootLE Explorer for connection ability and changed for Dmm devices to reading characteristic values by decoding. Application is not made for any financial think. Just for Personal NEEDS .")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("BluetoothLEExplorer")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("WebSpiderTeam")]
+[assembly: AssemblyProduct("Bluetooth DMM for Windows")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
