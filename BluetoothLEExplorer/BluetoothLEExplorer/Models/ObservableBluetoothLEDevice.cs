@@ -47,7 +47,7 @@ namespace BluetoothLEExplorer.Models
                 // If they're equal
                 if(a.RSSI == b.RSSI)
                 {
-                    return 0;
+                    return a.BluetoothAddressAsString.CompareTo(b.BluetoothAddressAsString);
                 }
 
                 // RSSI == 0 means we don't know it. Always make that the end.
