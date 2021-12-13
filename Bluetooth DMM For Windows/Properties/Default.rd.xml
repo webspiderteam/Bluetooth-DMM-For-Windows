@@ -1,0 +1,31 @@
+<!--
+    Bu dosya .NET Native tarafından kullanılan Çalışma Zamanı Yönergeleri içeriyor. Buradaki
+    varsayılan değerler çoğu geliştirici için uygundur. Bununla birlikte, .NET Native iyileştiricisinin
+    davranışını değiştirmek için bu parametreleri değiştirebilirsiniz.
+
+    Çalışma Zamanı Yönergeleri'ne ilişkin belgeler için bkz. https://go.microsoft.com/fwlink/?LinkID=391919
+
+    App1.MyClass ve tüm genel/özel üyelerine yönelik yansımayı tam olarak etkinleştirmek için
+    <Type Name="App1.MyClass" Dynamic="Required All"/>
+
+    System.Int32 üzerinde AppClass<T> öğesinin özel örneğinin dinamik olarak oluşturulmasını etkinleştirmek için
+    <TypeInstantiation Name="App1.AppClass" Arguments="System.Int32" Activate="Required Public" />
+
+    Namespace yönergesini kullanarak yansıma ilkesini belirli bir ad alanındaki tüm türlere uygulama
+    <Namespace Name="DataClasses.ViewModels" Serialize="All" />
+-->
+
+<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+  <Application>
+    <!--
+      Name="*Application*" değerine sahip Assembly öğesi, uygulama paketindeki tüm bütünleştirilmiş kodlar
+      için geçerlidir. Yıldız işaretleri joker karakter değildir.
+    -->
+    <Assembly Name="*Application*" Dynamic="Required All" />
+    
+    
+    <!-- Uygulamanıza özgü çalışma zamanı yönergelerini buraya ekleyin. -->
+
+
+  </Application>
+</Directives>

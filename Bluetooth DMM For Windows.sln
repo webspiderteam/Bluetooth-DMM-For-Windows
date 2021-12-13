@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluetooth DMM For Windows", "Bluetooth DMM For Windows\Bluetooth DMM For Windows.csproj", "{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|ARM.ActiveCfg = Debug|ARM
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|ARM.Build.0 = Debug|ARM
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|ARM.Deploy.0 = Debug|ARM
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|ARM64.Build.0 = Debug|ARM64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|x64.ActiveCfg = Debug|x64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|x64.Build.0 = Debug|x64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|x64.Deploy.0 = Debug|x64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|x86.ActiveCfg = Debug|x86
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|x86.Build.0 = Debug|x86
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Debug|x86.Deploy.0 = Debug|x86
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|ARM.ActiveCfg = Release|ARM
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|ARM.Build.0 = Release|ARM
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|ARM.Deploy.0 = Release|ARM
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|ARM64.ActiveCfg = Release|ARM64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|ARM64.Build.0 = Release|ARM64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|ARM64.Deploy.0 = Release|ARM64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|x64.ActiveCfg = Release|x64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|x64.Build.0 = Release|x64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|x64.Deploy.0 = Release|x64
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|x86.ActiveCfg = Release|x86
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|x86.Build.0 = Release|x86
+		{23B21A85-CAF6-4A56-90DD-34AA86AE7CD3}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AD55DC3-D202-43D0-B9F2-D54D2E539DBF}
+	EndGlobalSection
+EndGlobal
