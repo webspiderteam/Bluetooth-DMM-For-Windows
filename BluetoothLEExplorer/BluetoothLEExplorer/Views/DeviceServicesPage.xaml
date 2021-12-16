@@ -27,7 +27,6 @@
                 <Visibility>Visible</Visibility>
             </converters:ValueWhenConverter.Otherwise>
         </converters:ValueWhenConverter>
-
         <converters:ValueWhenConverter x:Key="VisibleWhenTrueConverter">
             <converters:ValueWhenConverter.When>
                 <x:Boolean>True</x:Boolean>
@@ -39,7 +38,6 @@
                 <Visibility>Collapsed</Visibility>
             </converters:ValueWhenConverter.Otherwise>
         </converters:ValueWhenConverter>
-
         <converters:ValueWhenConverter x:Key="VisibleWhenFalseConverter">
             <converters:ValueWhenConverter.When>
                 <x:Boolean>False</x:Boolean>
@@ -51,6 +49,7 @@
                 <Visibility>Collapsed</Visibility>
             </converters:ValueWhenConverter.Otherwise>
         </converters:ValueWhenConverter>
+        <local:ActiveWhenFalseConverter x:Key="IsActiveWhenFalseConverter"/>
         <local:ForegroundColorConverter x:Key="ForegroundColorConverter"/>
         <local:BackgroundColorConverter x:Key="BackgroundColorConverter"/>
         <myconverters:StringFormatConverter x:Key="StringFormatConverter" />
@@ -69,7 +68,7 @@
                 <EasingDoubleKeyFrame KeyTime="00:00:00.7000000" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        
+
     </Page.Resources>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -80,14 +79,22 @@
                         <VisualTransition.GeneratedEasingFunction>
                             <BackEase EasingMode="EaseInOut"/>
                         </VisualTransition.GeneratedEasingFunction>
-                        <Storyboard>
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
                                 <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1"/>
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualTransition>
                 </VisualStateGroup.Transitions>
+                <VisualState x:Name="VisualState">
+                    <VisualState.StateTriggers>
+
+                        <StateTrigger IsActive="{Binding Device.IsConnected, Converter={StaticResource IsActiveWhenFalseConverter}}"/>
+
+                    </VisualState.StateTriggers>
+                </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
@@ -115,7 +122,7 @@
                 <Border Background="{x:Bind Converter={StaticResource BackgroundColorConverter}, Path=ViewModel.Device.IsConnected}" Width="350" HorizontalAlignment="Left">
                     <TextBlock HorizontalAlignment="Left" Width="320" Visibility="Collapsed"><Run Text="Device Connected:" /><Run Text=" "/><Run Text="{x:Bind Mode=OneWay, Path=ViewModel.Device.IsConnected}" /></TextBlock>
                 </Border>
-                <Button x:Name="RefreshButton" Click="{x:Bind Path=ViewModel.Refresh}" Content="ReConnect" Visibility="{Binding Device.IsConnected, Converter={StaticResource VisibleWhenFalseConverter}, Mode=OneWay}"/>
+                <Button x:Name="RefreshButton" Click="{x:Bind Path=ViewModel.Refresh}" Content="ReConnect" Visibility="Collapsed"/>
                 <Button x:Name="StartTransactionButton" Margin="0,5" Click="{x:Bind Path=ViewModel.StartTransaction}" Visibility="Collapsed" Content="Start Transaction"/>
                 <Button x:Name="CommitTransactionButton" Margin="0,5" Click="{x:Bind Path=ViewModel.CommitTransaction}" Visibility="Collapsed" Content="Commit Transaction"/>
             </StackPanel>
@@ -156,11 +163,12 @@
                     <TextBlock HorizontalAlignment="Left" Height="63" Margin="350,16,0,0" TextWrapping="Wrap" Text="Auto Range" Visibility="{Binding MyGattCDataAutoRange, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="421" FontSize="48" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
                     <TextBlock HorizontalAlignment="Left" Height="262" Margin="231,16,0,0" TextWrapping="NoWrap" Text="{Binding MyGattCData, Mode=OneWay}" Foreground="{Binding MyGattCDataHold, Converter={StaticResource ForegroundColorConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="652" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
                     <TextBlock HorizontalAlignment="Left" Height="73" Margin="838,286,0,0" TextWrapping="Wrap" Text="TRUE RMS" Visibility="{Binding MyGattCDataTrue_RMS, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
-                    <TextBlock HorizontalAlignment="Left" Height="73" Margin="0,191,0,0" TextWrapping="NoWrap" Text="{Binding MyGattCDataACDC, Mode=OneWay}" VerticalAlignment="Top" Width="139" FontSize="48" FontWeight="Bold" TextAlignment="Right"/>
+                    <TextBlock HorizontalAlignment="Left" Height="93" Margin="0,175,0,0" TextWrapping="NoWrap" Text="{Binding MyGattCDataACDC, Mode=OneWay}" VerticalAlignment="Top" Width="139" FontSize="60" FontWeight="Bold" TextAlignment="Right"/>
                     <TextBlock HorizontalAlignment="Left" Height="73" Margin="219,244,0,0" TextWrapping="Wrap" Text="MIN" Visibility="{Binding MyGattCDataMin, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
                     <TextBlock HorizontalAlignment="Left" Height="73" Margin="207,28,0,0" TextWrapping="Wrap" Text="MAX" Visibility="{Binding MyGattCDataMax, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
                     <Image Margin="425,0,543,279" Source="/Assets/Diode.png" Visibility="{Binding MyGattCDataDiode, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" Stretch="Fill" Width="80" Height="80" RenderTransformOrigin="0.63,-1.494"/>
                     <Image Margin="525,0,447,279" Source="/Assets/Continuity.png" Visibility="{Binding MyGattCDataContinuity, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" Stretch="Fill" Width="80" Height="80"/>
+                    <Image x:Name="image" Margin="65,90,0,0" Source="/Assets/bluetooth.png" Visibility="{Binding MyGattCData, Converter={StaticResource VisibleWhenBlankConverter}, Mode=OneWay}" Stretch="Fill" Width="70" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Height="87" Margin="961,159,0,0" TextWrapping="Wrap" Text="{Binding MyGattCDataSymbol, Mode=OneWay}" VerticalAlignment="Top" Width="171" FontSize="72" FontWeight="Bold"/>
                 </Grid>
             </Viewbox>
