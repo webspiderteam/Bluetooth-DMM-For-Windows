@@ -753,11 +753,11 @@ namespace BluetoothLEExplorer.Models
                         digit2 = Convert.ToString((outputd2 ^ 115), 2).PadLeft(8, '0'); //115  00100000 L
                         var digit3 = newValue.Substring(32, 3) + newValue.Substring(44, 4);
                         int outputd3 = Convert.ToInt32(digit3, 2);
-                        digit3 = Convert.ToString((outputd3 ^ 64), 2).PadLeft(8, '0');//64
+                        digit3 = Convert.ToString((outputd3 ^ 64), 2).PadLeft(8, '0');//64 01000000
                         var digit4 = newValue.Substring(24, 3) + newValue.Substring(36, 4);
                         int outputd4 = Convert.ToInt32(digit4, 2);
-                        digit4 = Convert.ToString((outputd4 ^ 51), 2).PadLeft(8, '0');//51
-                        Debug.WriteLine(String.Format("NewVal {0}", message));
+                        digit4 = Convert.ToString((outputd4 ^ 51), 2).PadLeft(8, '0');//51 00110011
+                        Debug.WriteLine(String.Format("NewVal {0} at {1}", newValue, DateTime.Now.ToString()));
                         oldMessage = newValue;
 
                         GattSampleContext.Context.MyGattCDataHold = newValue.Substring(59, 1).Equals("0");
