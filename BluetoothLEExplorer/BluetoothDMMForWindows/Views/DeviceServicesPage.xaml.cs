@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using System.Diagnostics;
 
 namespace BluetoothLEExplorer.Views
 {
@@ -21,6 +21,12 @@ namespace BluetoothLEExplorer.Views
     /// </summary>
     public sealed partial class DeviceServicesPage : Page
     {
+        private WindowSizeChangedEventHandler onResizeHandler;
+        Windows.Storage.ApplicationDataContainer localSettings =
+    Windows.Storage.ApplicationData.Current.LocalSettings;
+        Windows.Storage.StorageFolder localFolder =
+            Windows.Storage.ApplicationData.Current.LocalFolder;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceServicesPage" /> class.
         /// </summary>
@@ -50,14 +56,49 @@ namespace BluetoothLEExplorer.Views
             viewtb.TitleBar.ButtonInactiveForegroundColor = Colors.Black;
             
             var coreTitleBar = Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar;
-            // TODO: Store and resize window
             coreTitleBar.ExtendViewIntoTitleBar = true;
             InitializeComponent();
-            
-            viewtb.SetPreferredMinSize(new Size { Width = 220, Height = 60 });
-            NavigationCacheMode = NavigationCacheMode.Disabled;
-        }
 
+            HeightOfWin = Convert.ToDouble(localSettings.Values["Height"]);
+            WidthOfWin = Convert.ToDouble(localSettings.Values["Width"]);
+            Debug.WriteLine(HeightOfWin.ToString() + "x" + WidthOfWin.ToString());
+            viewtb.SetPreferredMinSize(new Size { Width = 220, Height = 60 }); //536x694
+            if (HeightOfWin !=0 && WidthOfWin !=0)
+            {
+                viewtb.TryResizeView(new Size { Width = WidthOfWin, Height = HeightOfWin });
+            }
+            else
+            {
+                viewtb.TryResizeView(new Size { Width = 300, Height = 80});
+            }
+            
+            NavigationCacheMode = NavigationCacheMode.Disabled;
+            //OnResize();
+            //Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize(o, e));
+            
+        }
+        private double HeightOfWin;
+        private double WidthOfWin;
+        /// <summary>
+        /// Respond to window resizing
+        /// </summary>
+
+        #region Handling when page size changes - Page_SizeChanged(sender, e) 
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e) 
+        { 
+            
+            HeightOfWin=e.NewSize.Height; 
+            WidthOfWin=e.NewSize.Width;
+            localSettings.Values["Height"] = HeightOfWin;
+            localSettings.Values["Width"] = WidthOfWin;
+        }
+        #endregion
+
+        private void Page_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Debug.WriteLine("UnLoaded");
+        }
 
         /// <summary>
         /// Updates the view model with the just selected characteristic
