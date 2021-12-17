@@ -137,6 +137,7 @@ namespace BluetoothLEExplorer.Models
         /// Source for <see cref="IsConnected"/>
         /// </summary>
         private bool isConnected;
+        private bool wasconnected=false;
 
         /// <summary>
         /// Gets or sets a value indicating whether this device is connected
@@ -669,6 +670,7 @@ namespace BluetoothLEExplorer.Models
                 }
 
                 succeeded = true;
+                wasconnected = true;
             }
             else if (result.Status == GattCommunicationStatus.ProtocolError)
             {
@@ -682,10 +684,17 @@ namespace BluetoothLEExplorer.Models
             {
                 ErrorText = debugMsg + "GetGattServiceAsync Error: Unreachable";
                 System.Diagnostics.Debug.WriteLine(ErrorText);
-                Connect();
-                //string msg = "D1evice unreachable";
-                //var messageDialog = new MessageDialog(msg, "Connection failures");
-                //await messageDialog.ShowAsync();
+                if (wasconnected)
+                {
+                    Connect();
+                } 
+                else
+                {
+                    string msg = "Device unreachable";
+                    var messageDialog = new MessageDialog(msg, "Connection failures");
+                    await messageDialog.ShowAsync();
+
+                }
             }
 
             return succeeded;

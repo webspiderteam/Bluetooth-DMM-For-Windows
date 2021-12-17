@@ -50,7 +50,7 @@ namespace BluetoothLEExplorer.Views
             viewtb.TitleBar.ButtonInactiveForegroundColor = Colors.Black;
             
             var coreTitleBar = Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar;
-
+            // TODO: Store and resize window
             coreTitleBar.ExtendViewIntoTitleBar = true;
             InitializeComponent();
             
