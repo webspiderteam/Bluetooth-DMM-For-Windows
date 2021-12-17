@@ -70,7 +70,7 @@
         </Storyboard>
 
     </Page.Resources>
-
+    
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">

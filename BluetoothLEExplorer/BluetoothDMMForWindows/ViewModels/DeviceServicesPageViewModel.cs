@@ -284,7 +284,7 @@ namespace BluetoothLEExplorer.ViewModels
         /// </summary>
         public async void Refresh()
         {
-            Views.Busy.SetBusy(true, "Reconnectin to " + Device.Name);
+            Views.Busy.SetBusy(true, "Reconnecting to " + Device.Name);
 
             await Device.Connect();
 
@@ -300,10 +300,7 @@ namespace BluetoothLEExplorer.ViewModels
             else if (e.PropertyName !=null)
             {
                 this.RaisePropertyChanged(e.PropertyName);
-                //if (e.PropertyName =="IsConnected")
-                //{
-                //    Device.Connect();
-                //}
+
             }
         }
     }

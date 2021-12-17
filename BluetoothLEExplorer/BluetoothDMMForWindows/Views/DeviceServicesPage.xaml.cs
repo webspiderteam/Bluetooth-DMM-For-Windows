@@ -45,15 +45,16 @@ namespace BluetoothLEExplorer.Views
 
             viewtb.TitleBar.ButtonPressedBackgroundColor = Colors.Blue;
             viewtb.TitleBar.ButtonPressedForegroundColor = Colors.White;
-
-            viewtb.TitleBar.ButtonInactiveBackgroundColor = Colors.DarkGray;
-            viewtb.TitleBar.ButtonInactiveForegroundColor = Colors.Transparent;
+            
+            viewtb.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            viewtb.TitleBar.ButtonInactiveForegroundColor = Colors.Black;
+            
             var coreTitleBar = Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar;
 
             coreTitleBar.ExtendViewIntoTitleBar = true;
             InitializeComponent();
-            var view = ApplicationView.GetForCurrentView();
-            view.SetPreferredMinSize(new Size { Width = 220, Height = 60 });
+            
+            viewtb.SetPreferredMinSize(new Size { Width = 220, Height = 60 });
             NavigationCacheMode = NavigationCacheMode.Disabled;
         }
 
