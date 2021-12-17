@@ -4,7 +4,9 @@
 //----------------------------------------------------------------------------------------------
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
+using Windows.Foundation;
 
 namespace BluetoothLEExplorer.Views
 {
@@ -19,9 +21,12 @@ namespace BluetoothLEExplorer.Views
         /// <param name="splashScreen"></param>
         public Splash(SplashScreen splashScreen)
         {
+            var viewtb = ApplicationView.GetForCurrentView();
+            viewtb.TryResizeView(new Size { Width = 694, Height = 536 });//536x694
             InitializeComponent();
             Window.Current.SizeChanged += (s, e) => Resize(splashScreen);
             Resize(splashScreen);
+
         }
 
         /// <summary>

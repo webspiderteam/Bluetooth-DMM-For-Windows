@@ -4,6 +4,8 @@
 //----------------------------------------------------------------------------------------------
 using Template10.Controls;
 using Template10.Services.NavigationService;
+using Windows.Foundation;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 
 namespace BluetoothLEExplorer.Views
@@ -29,7 +31,10 @@ namespace BluetoothLEExplorer.Views
         public Shell()
         {
             Instance = this;
+            var viewtb = ApplicationView.GetForCurrentView();
+            viewtb.TryResizeView(new Size { Width = 694, Height = 536 });//536x694
             InitializeComponent();
+
         }
 
         /// <summary>

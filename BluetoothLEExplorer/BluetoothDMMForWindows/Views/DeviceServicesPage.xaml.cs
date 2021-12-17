@@ -62,14 +62,14 @@ namespace BluetoothLEExplorer.Views
             HeightOfWin = Convert.ToDouble(localSettings.Values["Height"]);
             WidthOfWin = Convert.ToDouble(localSettings.Values["Width"]);
             Debug.WriteLine(HeightOfWin.ToString() + "x" + WidthOfWin.ToString());
-            viewtb.SetPreferredMinSize(new Size { Width = 220, Height = 60 }); //536x694
+            viewtb.SetPreferredMinSize(new Size { Width = 220, Height = 60 }); 
             if (HeightOfWin !=0 && WidthOfWin !=0)
             {
                 viewtb.TryResizeView(new Size { Width = WidthOfWin, Height = HeightOfWin });
             }
             else
             {
-                viewtb.TryResizeView(new Size { Width = 300, Height = 80});
+                viewtb.TryResizeView(new Size { Width = 300, Height = 80});//536x694
             }
             
             NavigationCacheMode = NavigationCacheMode.Disabled;
