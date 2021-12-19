@@ -1,33 +1,99 @@
-# Universal Windows Platform
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-# Build a Universal Windows Platform project using Visual Studio.
-# Add steps that test and distribute an app, save build artifacts, and more:
-# https://aka.ms/yaml
+resources:
 
-trigger:
-- master
-
-pool:
-  vmImage: 'windows-latest'
+- repo: self
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'x86|x64|ARM'
-  buildConfiguration: 'Release'
-  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+ major: 1
+ minor: 0
+ patch: $[counter('versioncounter', 0)]
+
+queue:
+
+  name: Cloud VM
+
+  demands: 
+
+  - msbuild
+
+  - visualstudio
+
+  - vstest
+
+name: $(TeamProject)_$(SourceBranchName)_$(major).$(minor).$(patch)
 
 steps:
-- task: NuGetToolInstaller@1
+
+- task: NuGetToolInstaller@0
+
+  displayName: 'Use NuGet 4.4.1'
+
+  inputs:
+
+    versionSpec: 4.4.1
+
+
+
+
 
 - task: NuGetCommand@2
+
+  displayName: 'NuGet restore **\*.sln'
+
   inputs:
-    restoreSolution: '$(solution)'
+
+    restoreSolution: Bluetooth DMM for Windows.sln
+
+
+
+
 
 - task: VSBuild@1
+
+  displayName: 'Build Bluetooth DMM for Windows x86'
+
   inputs:
-    platform: 'x86'
-    solution: '$(solution)'
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+
+    solution: Bluetooth DMM for Windows.sln
+
+
+
+    platform: x86
+
+
+
+    configuration: Release
+
+
+
+    clean: true
+
+
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build Bluetooth DMM for Windows x64'
+
+  inputs:
+
+    solution: Bluetooth DMM for Windows.sln
+
+
+
+    platform: x64
+
+
+
+    configuration: Release
+
+
+
+    clean: true
+
+
+
+
+
+
+
