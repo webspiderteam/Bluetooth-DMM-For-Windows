@@ -729,91 +729,101 @@ namespace BluetoothLEExplorer.Models
         /// </summary>
         /// <param name="buffer">The raw input buffer</param>
        private string oldMessage = "";
-        private void SetValue(IBuffer buffer)
+        private async void SetValue(IBuffer buffer)
         {
             rawData = buffer;
             CryptographicBuffer.CopyToByteArray(rawData, out data);
             if (data!=null)
-                {
-
-                try
-                {
-                    var message = "";
-                    var newValue = "";
-                    foreach (var binaryval in data)
-                        newValue += Convert.ToString(binaryval, 2).PadLeft(8, '0');
-                    //GattSampleContext.Context.MyGattCData = binaryvalstr;
-
-                    
-                    if (oldMessage != newValue || oldMessage == "")
-                    {
-                        var digit1 = "0" + newValue.Substring(48, 3) + newValue.Substring(60, 4);// 00010001 " "
-                        var digit2 = "0" + newValue.Substring(40, 3) + newValue.Substring(52, 4);
-                        int outputd2 = Convert.ToInt32(digit2, 2);
-                        digit2 = Convert.ToString((outputd2 ^ 115), 2).PadLeft(8, '0'); //115  00100000 L
-                        var digit3 = newValue.Substring(32, 3) + newValue.Substring(44, 4);
-                        int outputd3 = Convert.ToInt32(digit3, 2);
-                        digit3 = Convert.ToString((outputd3 ^ 64), 2).PadLeft(8, '0');//64 01000000
-                        var digit4 = newValue.Substring(24, 3) + newValue.Substring(36, 4);
-                        int outputd4 = Convert.ToInt32(digit4, 2);
-                        digit4 = Convert.ToString((outputd4 ^ 51), 2).PadLeft(8, '0');//51 00110011
-                        Debug.WriteLine(String.Format("NewVal {0} at {1}", newValue, DateTime.Now.ToString()));
-                        oldMessage = newValue;
-
-                        GattSampleContext.Context.MyGattCDataHold = newValue.Substring(59, 1).Equals("0");
-                        GattSampleContext.Context.MyGattCDataACDC = (newValue.Substring(30, 1).Equals("1") ? "Δ " : String.Empty) +
-                           (newValue.Substring(68, 1).Equals("1") ? "AC " : String.Empty) +
-                           (newValue.Substring(73, 1).Equals("1") ? "DC " : String.Empty);
-                        if (newValue== "0001101110000100011100001011000110001100101000100001011101110110011001101010101000111011")
-                        {
-                            message =  "AUTO";
-                            GattSampleContext.Context.MyGattCData = message;
-                        }
-                        else
-                        {
-                            GattSampleContext.Context.MyGattCData = (newValue.Substring(27, 1).Equals("0") ? "-" : String.Empty) +
-                                                      Parsedigit(digit4).ToString() + (newValue.Substring(35, 1).Equals("1") ? "." : String.Empty) +
-                                                      Parsedigit(digit3).ToString() + (newValue.Substring(43, 1).Equals("1") ? "." : String.Empty) +
-                                                      Parsedigit(digit2).ToString() + (newValue.Substring(51, 1).Equals("0") ? "." : String.Empty) +
-                                                      Parsedigit(digit1).ToString() + " ";
-                        }
-                        
-                        GattSampleContext.Context.MyGattCDataSymbol = (newValue.Substring(57, 1).Equals("0") ? "°C" : String.Empty) +
-                          (newValue.Substring(58, 1).Equals("0") ? "°F" : String.Empty) +
-                          (newValue.Substring(74, 1).Equals("0") ? "m" : String.Empty) +
-                          (newValue.Substring(75, 1).Equals("1") ? "V" : String.Empty) +
-                          (newValue.Substring(64, 1).Equals("1") ? "n" : String.Empty) +
-                          (newValue.Substring(65, 1).Equals("0") ? "m" : String.Empty) +
-                          (newValue.Substring(66, 1).Equals("0") ? "µ" : String.Empty) +
-                          (newValue.Substring(67, 1).Equals("1") ? "F" : String.Empty) +
-                          (newValue.Substring(69, 1).Equals("0") ? "%" : String.Empty) +
-                          (newValue.Substring(76, 1).Equals("0") ? "M" : String.Empty) +
-                          (newValue.Substring(77, 1).Equals("1") ? "k" : String.Empty) +
-                          (newValue.Substring(78, 1).Equals("0") ? "Ω" : String.Empty) +
-                          (newValue.Substring(79, 1).Equals("1") ? "Hz" : String.Empty) +
-                          (newValue.Substring(85, 1).Equals("1") ? "µ" : String.Empty) +
-                          (newValue.Substring(84, 1).Equals("0") ? "m" : String.Empty) +
-                          (newValue.Substring(72, 1).Equals("0") ? "A" : String.Empty);
-                        GattSampleContext.Context.MyGattCDataMax= newValue.Substring(71, 1).Equals("1");
-                        GattSampleContext.Context.MyGattCDataMin= newValue.Substring(70, 1).Equals("0");
-                        GattSampleContext.Context.MyGattCDataTrue_RMS = newValue.Substring(68, 1).Equals("1");
-                        GattSampleContext.Context.MyGattCDataAutoRange = newValue.Substring(87, 1).Equals("0");
-                        GattSampleContext.Context.MyGattCDataDiode = newValue.Substring(56, 1).Equals("1");
-                        GattSampleContext.Context.MyGattCDataContinuity = newValue.Substring(28, 1).Equals("1");
-                        //message = digits; //+ "    " + message;
-                        //GattSampleContext.Context.MyGattCData = digits;
-                    }
-                        //return "Unknown format: " + binaryvalstr;
-                }
-                catch (ArgumentException)
-                {
-                    GattSampleContext.Context.MyGattCData = "Error binary value";
-                }
+            {
+                //Stopwatch sw = Stopwatch.StartNew();
+                //sw.Reset();
+                //sw.Start();
+                await Decode();
+                //sw.Stop();
+                //Debug.WriteLine(String.Format("ended at {0}", sw.ElapsedMilliseconds));
             }
             //Context.MyGattCData = temp.Value.
-            SetValue();
+            //SetValue();
         }
-  
+        
+
+        private async Task Decode()
+        {
+            try
+            {
+                var message = "";
+                var newValue = "";
+                foreach (var binaryval in data)
+                    newValue += Convert.ToString(binaryval, 2).PadLeft(8, '0');
+                //GattSampleContext.Context.MyGattCData = binaryvalstr;
+
+
+                if (oldMessage != newValue || oldMessage == "")
+                {
+                    var digit1 = "0" + newValue.Substring(48, 3) + newValue.Substring(60, 4);// 00010001 " "
+                    var digit2 = "0" + newValue.Substring(40, 3) + newValue.Substring(52, 4);
+                    int outputd2 = Convert.ToInt32(digit2, 2);
+                    digit2 = Convert.ToString((outputd2 ^ 115), 2).PadLeft(8, '0'); //115  00100000 L
+                    var digit3 = newValue.Substring(32, 3) + newValue.Substring(44, 4);
+                    int outputd3 = Convert.ToInt32(digit3, 2);
+                    digit3 = Convert.ToString((outputd3 ^ 64), 2).PadLeft(8, '0');//64 01000000
+                    var digit4 = newValue.Substring(24, 3) + newValue.Substring(36, 4);
+                    int outputd4 = Convert.ToInt32(digit4, 2);
+                    digit4 = Convert.ToString((outputd4 ^ 51), 2).PadLeft(8, '0');//51 00110011
+                    Debug.WriteLine(String.Format("NewVal {0} at {1}", newValue, DateTime.Now.ToString()));
+                    oldMessage = newValue;
+
+                    GattSampleContext.Context.MyGattCDataHold = newValue.Substring(59, 1).Equals("0");
+                    GattSampleContext.Context.MyGattCDataACDC = (newValue.Substring(30, 1).Equals("1") ? "Δ " : String.Empty) +
+                       (newValue.Substring(68, 1).Equals("1") ? "AC " : String.Empty) +
+                       (newValue.Substring(73, 1).Equals("1") ? "DC " : String.Empty);
+                    if (newValue== "0001101110000100011100001011000110001100101000100001011101110110011001101010101000111011")
+                    {
+                        message =  "AUTO";
+                        GattSampleContext.Context.MyGattCData = message;
+                    }
+                    else
+                    {
+                        GattSampleContext.Context.MyGattCData = (newValue.Substring(27, 1).Equals("0") ? "-" : String.Empty) +
+                                                  Parsedigit(digit4).ToString() + (newValue.Substring(35, 1).Equals("1") ? "." : String.Empty) +
+                                                  Parsedigit(digit3).ToString() + (newValue.Substring(43, 1).Equals("1") ? "." : String.Empty) +
+                                                  Parsedigit(digit2).ToString() + (newValue.Substring(51, 1).Equals("0") ? "." : String.Empty) +
+                                                  Parsedigit(digit1).ToString() + " ";
+                    }
+
+                    GattSampleContext.Context.MyGattCDataSymbol = (newValue.Substring(57, 1).Equals("0") ? "°C" : String.Empty) +
+                      (newValue.Substring(58, 1).Equals("0") ? "°F" : String.Empty) +
+                      (newValue.Substring(74, 1).Equals("0") ? "m" : String.Empty) +
+                      (newValue.Substring(75, 1).Equals("1") ? "V" : String.Empty) +
+                      (newValue.Substring(64, 1).Equals("1") ? "n" : String.Empty) +
+                      (newValue.Substring(65, 1).Equals("0") ? "m" : String.Empty) +
+                      (newValue.Substring(66, 1).Equals("0") ? "µ" : String.Empty) +
+                      (newValue.Substring(67, 1).Equals("1") ? "F" : String.Empty) +
+                      (newValue.Substring(69, 1).Equals("0") ? "%" : String.Empty) +
+                      (newValue.Substring(76, 1).Equals("0") ? "M" : String.Empty) +
+                      (newValue.Substring(77, 1).Equals("1") ? "k" : String.Empty) +
+                      (newValue.Substring(78, 1).Equals("0") ? "Ω" : String.Empty) +
+                      (newValue.Substring(79, 1).Equals("1") ? "Hz" : String.Empty) +
+                      (newValue.Substring(85, 1).Equals("1") ? "µ" : String.Empty) +
+                      (newValue.Substring(84, 1).Equals("0") ? "m" : String.Empty) +
+                      (newValue.Substring(72, 1).Equals("0") ? "A" : String.Empty);
+                    GattSampleContext.Context.MyGattCDataMax= newValue.Substring(71, 1).Equals("1");
+                    GattSampleContext.Context.MyGattCDataMin= newValue.Substring(70, 1).Equals("0");
+                    GattSampleContext.Context.MyGattCDataTrue_RMS = newValue.Substring(68, 1).Equals("1");
+                    GattSampleContext.Context.MyGattCDataAutoRange = newValue.Substring(87, 1).Equals("0");
+                    GattSampleContext.Context.MyGattCDataDiode = newValue.Substring(56, 1).Equals("1");
+                    GattSampleContext.Context.MyGattCDataContinuity = newValue.Substring(28, 1).Equals("1");
+                    //message = digits; //+ "    " + message;
+                    //GattSampleContext.Context.MyGattCData = digits;
+                }
+                //return "Unknown format: " + binaryvalstr;
+            }
+            catch (ArgumentException)
+            {
+                GattSampleContext.Context.MyGattCData = "Error binary value";
+            }
+
+        }
         private static string Parsedigit(string digitraw)
         {
 

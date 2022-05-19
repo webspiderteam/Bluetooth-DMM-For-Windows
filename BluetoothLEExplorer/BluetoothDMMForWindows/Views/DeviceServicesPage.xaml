@@ -54,20 +54,7 @@
         <local:BackgroundColorConverter x:Key="BackgroundColorConverter"/>
         <myconverters:StringFormatConverter x:Key="StringFormatConverter" />
 
-        <Storyboard x:Name="Storyboard1">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="00:00:00.7000000" Value="Visible"/>
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:00.7000000" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
+   
 
     </Page.Resources>
     
@@ -162,12 +149,12 @@
                 <Grid>
                     <TextBlock HorizontalAlignment="Left" Height="63" Margin="350,16,0,0" TextWrapping="Wrap" Text="Auto Range" Visibility="{Binding MyGattCDataAutoRange, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="421" FontSize="48" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
                     <TextBlock HorizontalAlignment="Left" Height="262" Margin="231,16,0,0" TextWrapping="NoWrap" Text="{Binding MyGattCData, Mode=OneWay}" Foreground="{Binding MyGattCDataHold, Converter={StaticResource ForegroundColorConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="652" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
-                    <TextBlock HorizontalAlignment="Left" Height="73" Margin="838,286,0,0" TextWrapping="Wrap" Text="TRUE RMS" Visibility="{Binding MyGattCDataTrue_RMS, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Left" Height="73" Margin="838,16,0,0" TextWrapping="Wrap" Text="TRUE RMS" Visibility="{Binding MyGattCDataTrue_RMS, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="250" FontSize="48" FontWeight="Bold"/>
                     <TextBlock HorizontalAlignment="Left" Height="93" Margin="0,175,0,0" TextWrapping="NoWrap" Text="{Binding MyGattCDataACDC, Mode=OneWay}" VerticalAlignment="Top" Width="139" FontSize="60" FontWeight="Bold" TextAlignment="Right"/>
-                    <TextBlock HorizontalAlignment="Left" Height="73" Margin="219,244,0,0" TextWrapping="Wrap" Text="MIN" Visibility="{Binding MyGattCDataMin, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Left" Height="73" Margin="207,28,0,0" TextWrapping="Wrap" Text="MIN" Visibility="{Binding MyGattCDataMin, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
                     <TextBlock HorizontalAlignment="Left" Height="73" Margin="207,28,0,0" TextWrapping="Wrap" Text="MAX" Visibility="{Binding MyGattCDataMax, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
-                    <Image Margin="425,0,543,279" Source="/Assets/Diode.png" Visibility="{Binding MyGattCDataDiode, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" Stretch="Fill" Width="80" Height="80" RenderTransformOrigin="0.63,-1.494"/>
-                    <Image Margin="525,0,447,279" Source="/Assets/Continuity.png" Visibility="{Binding MyGattCDataContinuity, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" Stretch="Fill" Width="80" Height="80"/>
+                    <Image Margin="450,16,0,0" Source="/Assets/Diode.png" Visibility="{Binding MyGattCDataDiode, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" Stretch="Fill" Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Image Margin="550,16,0,0" Source="/Assets/Continuity.png" Visibility="{Binding MyGattCDataContinuity, Converter={StaticResource VisibleWhenTrueConverter}, Mode=OneWay}" Stretch="Fill" Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" />
                     <Image x:Name="image" Margin="65,90,0,0" Source="/Assets/bluetooth.png" Visibility="{Binding MyGattCData, Converter={StaticResource VisibleWhenBlankConverter}, Mode=OneWay}" Stretch="Fill" Width="70" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Height="87" Margin="961,159,0,0" TextWrapping="Wrap" Text="{Binding MyGattCDataSymbol, Mode=OneWay}" VerticalAlignment="Top" Width="171" FontSize="72" FontWeight="Bold"/>
                 </Grid>

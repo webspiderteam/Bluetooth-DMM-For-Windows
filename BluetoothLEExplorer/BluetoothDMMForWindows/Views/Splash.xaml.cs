@@ -21,6 +21,7 @@ namespace BluetoothLEExplorer.Views
         /// <param name="splashScreen"></param>
         public Splash(SplashScreen splashScreen)
         {
+            
             var viewtb = ApplicationView.GetForCurrentView();
             viewtb.TryResizeView(new Size { Width = 694, Height = 536 });//536x694
             InitializeComponent();

@@ -13,6 +13,8 @@ using Windows.UI.Popups;
 using BluetoothLEExplorer.Models;
 using BluetoothLEExplorer.ViewModels;
 using System.Diagnostics;
+using Windows.UI.ViewManagement;
+using Windows.Foundation;
 
 namespace BluetoothLEExplorer
 {
@@ -30,13 +32,14 @@ namespace BluetoothLEExplorer
         /// </summary>
         public App()
         {
+ 
             InitializeComponent();
             this.UnhandledException += App_UnhandledException;
 
             this.Suspending += App_Suspending;
             this.Resuming += App_Resuming;
 
-            SplashFactory = (e) => new Views.Splash(e);
+            //SplashFactory = (e) => new Views.Splash(e);
 
             #region App settings
 

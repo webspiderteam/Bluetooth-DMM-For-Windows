@@ -233,7 +233,10 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
-                                <Button Name="Pair" Click="{x:Bind DoInAppPairing}" HorizontalAlignment="Center" IsEnabled="{x:Bind CanPair, Mode=OneWay}">
+                                <Button Name="Connect" Click="{x:Bind Path=ViewModel.ConnectToSelectedDevice}" HorizontalAlignment="Center" Visibility="Collapsed">
+                                    Connect
+                                </Button>
+                                <Button Name="Pair" Click="{x:Bind DoInAppPairing}" HorizontalAlignment="Center" IsEnabled="{x:Bind CanPair, Mode=OneWay}" Visibility="Collapsed">
                                     Pair
                                 </Button>
                             </StackPanel>

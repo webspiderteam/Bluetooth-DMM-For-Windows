@@ -96,7 +96,9 @@ namespace GattServicesLibrary.Characteristics
         //    NotifyValue();
         //}
 
+#pragma warning disable CS1998 // Bu zaman uyumsuz yöntemde 'await' işleçleri yok ve zaman uyumlu çalışacak. 'await' işlecini kullanarak engelleyici olmayan API çağrılarını beklemeyi veya 'await Task.Run(...)' kullanarak bir arka plan iş parçacığında CPU bağlantılı iş yapmayı düşünün.
         public async void NotifyImmediatelyForCategory(AlertCategoryId categoryId)
+#pragma warning restore CS1998 // Bu zaman uyumsuz yöntemde 'await' işleçleri yok ve zaman uyumlu çalışacak. 'await' işlecini kullanarak engelleyici olmayan API çağrılarını beklemeyi veya 'await Task.Run(...)' kullanarak bir arka plan iş parçacığında CPU bağlantılı iş yapmayı düşünün.
         {
             if ((categoryId != AlertCategoryId.SimpleAlert) && (categoryId != AlertCategoryId.All))
             {
