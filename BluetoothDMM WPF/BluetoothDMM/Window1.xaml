@@ -1,0 +1,16 @@
+﻿<Window x:Class="HeartRateLE.UI.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HeartRateLE.UI"
+        xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=DotNetProjects.DataVisualization.Toolkit"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Compatible;assembly=DotNetProjects.DataVisualization.Toolkit"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800" WindowStyle="None">
+    <Grid>
+        <DVC:LineSeries Name="MyChart" Background="YellowGreen"/>
+        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="969,280,-277,0" VerticalAlignment="Top" Width="100"/>
+
+    </Grid>
+</Window>

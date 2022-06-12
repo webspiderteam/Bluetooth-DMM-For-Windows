@@ -1,0 +1,87 @@
+﻿<Window x:Class="HeartRateLE.UI.DevicePicker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HeartRateLE.UI"
+        Style="{DynamicResource CustomWindowStyle}"
+        mc:Ignorable="d"
+        Title="DevicePicker" Height="490.415" Width="562.94" HorizontalAlignment="Center"  >
+
+    <Window.Resources>
+
+        <DataTemplate x:Key="ResultsListViewTemplate">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" MinWidth="100"/>
+                </Grid.ColumnDefinitions>
+                <!--<Border Grid.Column="0" Height="40" Width="40" Margin="5" VerticalAlignment="Top">
+                    <Image Source="{Binding Path=GlyphBitmapImage}"
+                           Stretch="UniformToFill"/>
+                </Border>-->
+                <Border Grid.Column="1" Margin="5">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Name:" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                            <TextBlock Text="Id:" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding Path=Id}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Mac:" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding Path=MacAdr}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid x:Name="RootGrid" Margin="12,20,12,12" RenderTransformOrigin="0.499,0.741">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="0,0,10,10" >
+
+            <TextBlock Text="Manage Bluetooth Devices" FontWeight="Bold" />
+            <TextBlock TextWrapping="Wrap" Margin="0,0,0,10" 
+                               Text="Searching for Bluetooth devices..." />
+
+            <Border BorderBrush="AntiqueWhite" BorderThickness="1" Width="Auto">
+                <StackPanel Margin="0">
+                    <Label Content="Unpaired devices:" ></Label>
+                    <ListView x:Name="unpairedListView"
+                                  ItemTemplate="{StaticResource ResultsListViewTemplate}"
+                                  ItemsSource="{Binding Path=UnpairedCollection}" Height="300" Width="Auto">
+                    </ListView>
+                </StackPanel>
+            </Border>
+            <Button x:Name="PairDeviceButton" Content="Pair" Click="PairDeviceButton_Click" Visibility="Collapsed"/>
+
+            <Border BorderBrush="AntiqueWhite" BorderThickness="1" Width="Auto" Visibility="Collapsed">
+                <StackPanel Orientation="Vertical" Visibility="Hidden">
+                    <Label Content="Paired devices:" ></Label>
+                    <ListView x:Name="pairedListView"
+                                  ItemTemplate="{StaticResource ResultsListViewTemplate}"
+                                  ItemsSource="{Binding Path=PairedCollection}" Height="100" Width="Auto">
+                    </ListView>
+                </StackPanel>
+            </Border>
+            <Button x:Name="UnpairDeviceButton" Content="Unpair" Click="UnpairDeviceButton_Click" Visibility="Hidden"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,15,15,1" Height="50">
+            <Button x:Name="OkButton" Content="Select"  Width="100" Click="OkButton_Click" />
+        </StackPanel>
+        <!-- Status Block for providing messages to the user.  Use the
+             NotifyUser() method to populate the message -->
+        <Border x:Name="ErrorBorder" Background="Red" Grid.Row="2"/>
+        <TextBlock x:Name="StatusBlock" Grid.Row="2" Margin="12,10,12,-10" Height="50" Visibility="Collapsed"/>
+    </Grid>
+
+</Window>

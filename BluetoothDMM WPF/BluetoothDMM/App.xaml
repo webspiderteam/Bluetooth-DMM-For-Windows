@@ -1,0 +1,19 @@
+﻿<Application x:Class="HeartRateLE.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:system="using:System"
+             xmlns:local="clr-namespace:HeartRateLE.UI"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/DeepDark.xaml"/>
+                <ResourceDictionary Source="Styles/ControlColours.xaml"/>
+                <ResourceDictionary Source="Styles/Controls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>
