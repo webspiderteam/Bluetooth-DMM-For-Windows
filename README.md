@@ -8,7 +8,10 @@ As I said before I'm not pro and also most of BluetoothLe Explorer codes and sou
 
 For this reasons probably there will not any Update on this project but if there is succestions by you over this project I will try to make them. If you have issues with code I also tyr to fix but I'm not sure I can... and one last thing, as I said before I made this project with my Aneng an9002 and Im not sure its compilable with other same type models. If its not I could try to integrate them by your helps.
 
-
+New Alpha Release is in WPF type and added 10byte protocol that Aneng V05B uses and also another 10byte protocol that Aneng St207 uses.
+You can download it from releases.
+Code is not uploaded yet because it needs more checking.
+Link is here that compiled  https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFAlpha_1.03
 
 # Contributing
 
