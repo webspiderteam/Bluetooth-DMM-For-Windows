@@ -170,7 +170,7 @@ namespace BluetoothDMM
         }
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(500);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);
             try
             {
                 float value = float.Parse(GattValue, CultureInfo.InvariantCulture.NumberFormat);

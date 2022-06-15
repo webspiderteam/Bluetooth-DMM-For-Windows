@@ -103,7 +103,6 @@
     </Compile>
     <Compile Include="Styles\ThemesController.cs" />
     <Compile Include="Styles\ThemeTypes.cs" />
-    <Compile Include="Utilities.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>

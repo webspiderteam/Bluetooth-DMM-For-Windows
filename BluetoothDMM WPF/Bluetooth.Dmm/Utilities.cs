@@ -254,7 +254,7 @@ namespace HeartRateLE.Bluetooth
                         //data = Array.ConvertAll(logdata[Convert.ToInt16(line/20)].Split(','), byte.Parse);
                         //line++;
 
-                    //data = new byte[] { 27, 132, 114, 177, 140, 162, 23, 118, 102, 42 };
+                    data = new byte[] { 27, 132, 113, 85, 232, 79, 104, 255, 102, 169 };
                     var datashift = new byte[] { 65, 33, 115, 85, 162, 193, 50, 113, 102, 170, 59, 208, 226, 168, 51, 20, 32, 26, 170, 187 };
                     //var datashift = new byte[] { 65, 33, 115, 85, 162, 193, 50, 241, 102, 170, 59, 208, 226, 168, 51, 20, 32, 26, 170, 187 };
                     var tmp = "";
@@ -315,21 +315,21 @@ namespace HeartRateLE.Bluetooth
                         } else if (data.Count() == 10)
                         {
                             var dev_type = data[2] ^ datashift[2];
-                            if (dev_type == 3)
+                            if (dev_type == 2)
                             {
                                 MyGattCDataHold = newValue.Substring(60, 1).Equals("1");
                                 MyGattCDataACDC = (newValue.Substring(26, 1).Equals("1") ? "Ϟ " : String.Empty) +
                                    (newValue.Substring(67, 1).Equals("1") ? "AC " : String.Empty) +
                                    (newValue.Substring(66, 1).Equals("1") ? "DC " : String.Empty);
 
-
+                                //1b 84 71 55 e8 4f 68 ff 66 a9 { 27, 132, 113, 85, 232, 79, 104, 255, 102, 169 };
                                 MyGattCDataSymbol = (newValue.Substring(79, 1).Equals("1") ? "°C" : String.Empty) +
                                   (newValue.Substring(78, 1).Equals("1") ? "°F" : String.Empty) +
                                   (newValue.Substring(75, 1).Equals("1") ? "M" : String.Empty) +
                                   (newValue.Substring(73, 1).Equals("1") ? "k" : String.Empty) +
                                   (newValue.Substring(72, 1).Equals("1") ? "Ω" : String.Empty) +
-                                  (newValue.Substring(66, 1).Equals("1") ? "%" : String.Empty) +
-                                  (newValue.Substring(72, 1).Equals("1") ? "Hz" : String.Empty) +
+                                  (newValue.Substring(76, 1).Equals("1") ? "%" : String.Empty) +
+                                  (newValue.Substring(77, 1).Equals("1") ? "Hz" : String.Empty) +
                                   (newValue.Substring(64, 1).Equals("1") ? "n" : String.Empty) +
                                   (newValue.Substring(71, 1).Equals("1") ? "µ" : String.Empty) +
                                   (newValue.Substring(74, 1).Equals("1") ? "m" : String.Empty) +
