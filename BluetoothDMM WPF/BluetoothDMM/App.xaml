@@ -1,8 +1,8 @@
-﻿<Application x:Class="HeartRateLE.UI.App"
+﻿<Application x:Class="BluetoothDMM.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:system="using:System"
-             xmlns:local="clr-namespace:HeartRateLE.UI"
+             xmlns:local="clr-namespace:BluetoothDMM"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
 

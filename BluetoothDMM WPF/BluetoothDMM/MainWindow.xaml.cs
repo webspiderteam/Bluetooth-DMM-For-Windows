@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using HeartRateLE.UI;
 using System.Diagnostics;
 using HeartRateLE.Bluetooth.Events;
 using System.ComponentModel;
+using System.Globalization;
+using LiveCharts;
+using LiveCharts.Wpf;
+using System.Linq;
+using System.Windows.Input;
+using System.Windows.Controls;
 
-
-namespace HeartRateLE.UI
+namespace BluetoothDMM
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -28,12 +22,44 @@ namespace HeartRateLE.UI
         private HeartRateLE.Bluetooth.HeartRateMonitor _heartRateMonitor;
         private string SelectedDeviceId { get; set; }
         private string SelectedDeviceName { get; set; }
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> YFormatter { get; set; }
+        private string GattValue;
+        private ZoomingOptions _zoomingMode;
+        private double doublevalue;
+        private System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        private int tickcount;
 
         public MainWindow()
         {
             
             InitializeComponent();
+            Tg_Btn.IsChecked = true;
+            LV.SelectionChanged += LstOnSelectionChanced;
+            SeriesCollection = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "Series 1",
+                    Values = new ChartValues<double> { 0 }
+                },
 
+            };
+            ZoomingMode = ZoomingOptions.X;
+            Labels = new[] { "0","", "", "", "", "", "", "", "", "", "5", "", "", "", "", "", "", "", "", "", "10"};
+            //YFormatter = value => value.ToString("C");
+
+            //modifying the series collection will animate and update the chart
+
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            //modifying any series values will also animate and update the chart
+            //Labels = Labels.Concat(new[] { "2" }).ToArray(); 
+            //SeriesCollection[0].Values.Add(5d);
+            //Labels = Labels.Concat(new[] { "3" }).ToArray();
+            //SeriesCollection[0].Values.Add(5d);
+            
+            DataContext = this;
             _heartRateMonitor = new HeartRateLE.Bluetooth.HeartRateMonitor();
 
             // we should always monitor the connection status
@@ -45,7 +71,47 @@ namespace HeartRateLE.UI
             _heartRateMonitor.RateChanged -= HrParserOnValueChanged;
             _heartRateMonitor.RateChanged += HrParserOnValueChanged;
         }
+        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Set tooltip visibility
 
+            if (Tg_Btn.IsChecked == true)
+            {
+                tt_home.Visibility = Visibility.Collapsed;
+                tt_contacts.Visibility = Visibility.Collapsed;
+                tt_messages.Visibility = Visibility.Collapsed;
+
+                
+            }
+            else
+            {
+                tt_home.Visibility = Visibility.Visible;
+                tt_contacts.Visibility = Visibility.Visible;
+                tt_messages.Visibility = Visibility.Visible;
+
+                
+            }
+        }
+
+        private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            //img_bg.Opacity = 1;
+        }
+
+        private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
+        {
+            //img_bg.Opacity = 0.3;
+        }
+
+        private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Tg_Btn.IsChecked = false;
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
         protected async override void OnClosing(CancelEventArgs e)
         {
             base.OnClosing(e);
@@ -54,6 +120,22 @@ namespace HeartRateLE.UI
             {
                 await _heartRateMonitor.DisconnectAsync();
             }
+        }
+        public ZoomingOptions ZoomingMode
+        {
+            get { return _zoomingMode; }
+            set
+            {
+                _zoomingMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName = null)
+        {
+            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private async void HrParserOnValueChanged(object sender, RateChangedEventArgs arg)
@@ -74,7 +156,7 @@ namespace HeartRateLE.UI
                 InRush.Visibility = Bool_to_Vis(arg.MyGattCDataInRush);
                 MyGattCDataContinuity.Visibility = Bool_to_Vis(arg.MyGattCDataContinuity);
                 MyGattCDataDiode.Visibility = Bool_to_Vis(arg.MyGattCDataDiode);
-                
+                GattValue = arg.MyGattCData;
                 if (arg.MyGattCDataHold)
                 {
                     MyGattCData.Foreground = Brushes.Red; //new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 255, 125, 35));
@@ -86,7 +168,26 @@ namespace HeartRateLE.UI
                 }
             });
         }
-
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(500);
+            try
+            {
+                float value = float.Parse(GattValue, CultureInfo.InvariantCulture.NumberFormat);
+                doublevalue = Convert.ToDouble(value);
+            }
+            catch 
+            {
+                doublevalue = 0;
+            }
+            tickcount++;
+            if (tickcount % 5 == 0)
+            {
+                Labels = Labels.Concat(new[] { (tickcount + 10).ToString() }).ToArray();
+            } else { Labels = Labels.Concat(new[] { "" }).ToArray(); }
+            
+            SeriesCollection[0].Values.Add(doublevalue);
+        }
         private async void HrDeviceOnDeviceConnectionStatusChanged(object sender, ConnectionStatusChangedEventArgs args)
         {
             d("Current connection status is: " + args.IsConnected);
@@ -99,17 +200,49 @@ namespace HeartRateLE.UI
                     TxtStatus.Text = SelectedDeviceName + ": connected";
                     TxtBattery.Text = String.Format("battery level: {0}%", device.BatteryPercent);
                     MyGattCDataBluetooth.Visibility = Visibility.Visible;
+
+                    
+                    tickcount = 0;
+                    dispatcherTimer.Start();
+                    Is_Connected.IsChecked = true;
                 }
                 else
                 {
                     TxtStatus.Text = SelectedDeviceName + ": disconnected";
                     TxtBattery.Text = "battery level: --";
-                    MyGattCDataBluetooth.Visibility = Visibility.Hidden;
+                    //MyGattCDataBluetooth.Visibility = Visibility.Hidden;
+                    dispatcherTimer.Stop();
                     //TxtHr.Text = "--";
-                }
+                    Is_Connected.IsChecked = false;
+                    if (_heartRateMonitor.IsConnected)
+                    {
+                        //SelectedDeviceId = string.Empty;
+                        //SelectedDeviceName = string.Empty;
 
+                        await _heartRateMonitor.DisconnectAsync();
+                    }
+
+
+                    //SelectedDeviceId = devicePicker.SelectedDeviceId;
+                    //SelectedDeviceName = devicePicker.SelectedDeviceName;
+                    while (true)
+                    {
+                        try
+                        {
+                            var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
+                            if (connectResult.IsConnected)
+                                break;
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+                }
+                
                 //BtnReadInfo.IsEnabled = connected;
             });
+            
         }
 
         private async void BtnStart_Click(object sender, RoutedEventArgs e)
@@ -184,8 +317,8 @@ namespace HeartRateLE.UI
         {
             if (_heartRateMonitor.IsConnected)
             {
-                SelectedDeviceId = string.Empty;
-                SelectedDeviceName = string.Empty;
+                //SelectedDeviceId = string.Empty;
+                //SelectedDeviceName = string.Empty;
 
                 await _heartRateMonitor.DisconnectAsync();
             }
@@ -193,12 +326,95 @@ namespace HeartRateLE.UI
 
             //SelectedDeviceId = devicePicker.SelectedDeviceId;
             //SelectedDeviceName = devicePicker.SelectedDeviceName;
-
-            var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
-            if (!connectResult.IsConnected)
-                MessageBox.Show(connectResult.ErrorMessage);
+            while (true){
+                try
+                {
+                    var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
+                    if (connectResult.IsConnected)
+                        break;
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+            
+            
             
         }
 
+
+        private async void LstOnSelectionChanced(object sender, SelectionChangedEventArgs e)
+        {
+            var Sender = ((System.Windows.FrameworkElement)((System.Windows.Controls.Primitives.Selector)sender).SelectedItem);
+            if (LV.SelectedIndex != -1)
+            {
+                if (Sender.Name == "ConnectTo")
+                {
+                    if (_heartRateMonitor.IsConnected)
+                    {
+                        SelectedDeviceId = string.Empty;
+                        SelectedDeviceName = string.Empty;
+
+                        await _heartRateMonitor.DisconnectAsync();
+                    }
+
+                    var devicePicker = new DevicePicker();
+                    var result = devicePicker.ShowDialog();
+                    if (result.Value)
+                    {
+                        SelectedDeviceId = devicePicker.SelectedDeviceId;
+                        SelectedDeviceName = devicePicker.SelectedDeviceName;
+
+                        var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
+                        if (!connectResult.IsConnected)
+                            MessageBox.Show(connectResult.ErrorMessage);
+                    }
+                }
+                else if (Sender.Name == "Chart")
+                {
+                    _OnChart();
+                }
+                else if (Sender.Name == "OnTop")
+                {
+                    _OnTop();
+                }
+                LV.SelectedIndex = -1;
+                Tg_Btn.IsChecked = false;
+            }
+        }
+        private void _OnChart()
+        {
+            if (TopStackPanel.Visibility==Visibility.Visible)
+            {
+                TopStackPanel.Visibility=Visibility.Collapsed;
+                ChartON.Visibility = Visibility.Hidden;
+                this.Height = this.Height - 164;
+            }
+            else
+            {
+                TopStackPanel.Visibility = Visibility.Visible;
+                ChartON.Visibility = Visibility.Visible;
+                this.Height = this.Height + 164;
+            }
+        }
+        private void _OnTop()
+        {
+            if (this.Topmost)
+            {
+                this.Topmost = false;
+                OnTonON.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                this.Topmost = true;
+                OnTonON.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void SettingBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

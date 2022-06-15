@@ -1,9 +1,9 @@
-﻿<Window x:Class="HeartRateLE.UI.DevicePicker"
+﻿<Window x:Class="BluetoothDMM.DevicePicker"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HeartRateLE.UI"
+        xmlns:local="clr-namespace:BluetoothDMM"
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
         Title="DevicePicker" Height="490.415" Width="562.94" HorizontalAlignment="Center"  >

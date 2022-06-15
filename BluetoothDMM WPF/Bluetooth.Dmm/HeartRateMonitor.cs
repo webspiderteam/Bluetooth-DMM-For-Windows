@@ -49,6 +49,14 @@ namespace HeartRateLE.Bluetooth
 
         public async Task<ConnectionResult> ConnectAsync(string deviceId)
         {
+            try
+            {
+                await DisconnectAsync();
+            }
+            catch
+            {
+
+            }
             _heartRateDevice = await BluetoothLEDevice.FromIdAsync(deviceId);
             if (_heartRateDevice == null)
             {
@@ -209,9 +217,10 @@ namespace HeartRateLE.Bluetooth
             // BT_Code: GetGattServicesAsync returns a list of all the supported services of the device (even if it's not paired to the system).
             // If the services supported by the device are expected to change during BT usage, subscribe to the GattServicesChanged event.
             GattDeviceServicesResult result = await _heartRateDevice.GetGattServicesAsync(BluetoothCacheMode.Uncached);
-
+            
             if (result.Status == GattCommunicationStatus.Success)
             {
+                _serviceCollection.Clear();
                 _serviceCollection.AddRange(result.Services.Select(a => new BluetoothAttribute(a)));
                 return true;
             }

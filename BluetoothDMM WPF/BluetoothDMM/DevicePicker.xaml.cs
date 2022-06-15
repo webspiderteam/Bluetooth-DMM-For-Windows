@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using HeartRateLE.Bluetooth.Schema;
 using HeartRateLE.Bluetooth;
 
-namespace HeartRateLE.UI
+namespace BluetoothDMM
 {
     /// <summary>
     /// Interaction logic for DeviceWatcher.xaml
@@ -45,7 +45,7 @@ namespace HeartRateLE.UI
         public DevicePicker()
         {
             InitializeComponent();
-
+            this.Topmost = true;
             UnpairedCollection = new ObservableCollection<WatcherDevice>();
             PairedCollection = new ObservableCollection<WatcherDevice>();
             this.DataContext = this;
