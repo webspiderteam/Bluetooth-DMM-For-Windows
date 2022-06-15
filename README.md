@@ -10,8 +10,7 @@ For this reasons probably there will not any Update on this project but if there
 
 New Alpha Release is in WPF type and added 10byte protocol that Aneng V05B uses and also another 10byte protocol that Aneng St207 uses.
 You can download it from releases.
-Code is not uploaded yet because it needs more checking.
-Link is here that compiled  https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFAlpha_1.03
+Link is here that compiled  [https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases](https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFRelease1.05)
 
 # Contributing
 
