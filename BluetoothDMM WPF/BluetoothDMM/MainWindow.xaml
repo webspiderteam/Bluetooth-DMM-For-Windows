@@ -10,14 +10,13 @@
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="Bluetooth DMM" Height="172" Width="640" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        Title="Bluetooth DMM" Height="172" Width="550.84" HorizontalAlignment="Center" VerticalAlignment="Center" >
     <Window.Resources>
-
         <!--// Toggle Button Style Template //-->
 
         <ImageBrush x:Key="tb_mouse_over"
                      ImageSource="Assets/tgBtn_MouseOver.png"/>
-  
+
         <!--// Tooltip Style Template //-->
 
         <Style TargetType="ToolTip" x:Key="tt_style">
@@ -97,10 +96,10 @@
         <Grid>
             <Viewbox HorizontalAlignment="Stretch" Margin="5,5,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
                 <Grid>
-                    <TextBlock x:Name="AutoRange" Visibility="Hidden" HorizontalAlignment="Left" Height="63" Margin="350,16,0,0" TextWrapping="Wrap" Text="Auto Range" VerticalAlignment="Top" Width="421" FontSize="48" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCData" HorizontalAlignment="Left" Height="262" Margin="231,16,0,0" TextWrapping="NoWrap" Text="---" VerticalAlignment="Top" Width="652" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
-                    <TextBlock x:Name="True_RMS" Visibility="Hidden" HorizontalAlignment="Left" Height="73" Margin="838,16,0,0" TextWrapping="Wrap" Text="TRUE RMS" VerticalAlignment="Top" Width="250" FontSize="48" FontWeight="Bold"/>
-                    <TextBlock x:Name="InRush" Visibility="Hidden" HorizontalAlignment="Left" Height="73" Margin="888,70,0,0" TextWrapping="Wrap" Text="INRUSH" VerticalAlignment="Top" Width="200" FontSize="48" FontWeight="Bold"/>
+                    <TextBlock x:Name="AutoRange" Visibility="Visible" HorizontalAlignment="Center" Height="63" Margin="0,30,0,0" TextWrapping="Wrap" Text="Auto Range" VerticalAlignment="Top" Width="421" FontSize="44" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCData" HorizontalAlignment="Center" Height="262" Margin="0,10,30,0" TextWrapping="WrapWithOverflow" Text="----" VerticalAlignment="Top" Width="700"  TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
+                    <TextBlock x:Name="True_RMS" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="350,0,0,-30" TextWrapping="Wrap" Text="TRUE RMS" VerticalAlignment="Bottom" Width="250" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="InRush" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="-300,70,0,-30" TextWrapping="Wrap" Text="INRUSH" VerticalAlignment="Bottom" Width="200" FontSize="40" FontWeight="Bold"/>
                     <TextBlock x:Name="MyGattCDataACDC" HorizontalAlignment="Left" Height="110" Margin="0,175,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="160" FontSize="60" FontWeight="Bold" TextAlignment="Right"/>
                     <TextBlock x:Name="TxtStatus"
                        TextWrapping="Wrap"
@@ -111,14 +110,33 @@
                                VerticalAlignment="Top"
                        HorizontalAlignment="Center"
                        Margin="0,0,0,0"/>
-                    <TextBlock x:Name="MyGattCDataMin" Visibility="Hidden" HorizontalAlignment="Left" Height="73" Margin="207,28,0,0" TextWrapping="Wrap" Text="MIN" VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCDataMax" Visibility="Hidden" HorizontalAlignment="Left" Height="73" Margin="207,28,0,0" TextWrapping="Wrap" Text="MAX"  VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCDataPeek" Visibility="Hidden" HorizontalAlignment="Left" Height="73" Margin="207,28,0,0" TextWrapping="Wrap" Text="PEEK"  VerticalAlignment="Top" Width="329" FontSize="48" FontWeight="Bold"/>
-                    <Image x:Name="MyGattCDataDiode" Visibility="Hidden" Margin="450,16,0,0" Source="/Assets/Diode.png" Stretch="Fill" Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <Image x:Name="MyGattCDataContinuity" Visibility="Hidden" Margin="550,16,0,0" Source="/Assets/Continuity.png"  Stretch="Fill" Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <Image x:Name="MyGattCDataBluetooth" Visibility="Hidden" Margin="65,90,0,0" Source="/Assets/bluetooth.png" Stretch="Fill" Width="70" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" OpacityMask="Black">
-                        <Image.Style>
-                            <Style TargetType="Image">
+                    <TextBlock x:Name="MyGattCDataMin" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,-30" TextWrapping="Wrap" Text="MIN" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCDataMax" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,-30" TextWrapping="Wrap" Text="MAX"  VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCDataPeek" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,-30" TextWrapping="Wrap" Text="PEEK"  VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
+                    <Viewbox x:Name="MyGattCDataDiode" Visibility="Hidden" Margin="-60,10,0,0" Stretch="Fill" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Path Fill="White" Data="m 185.09961,79.863281 -0.26563,27.749999 -0.26562,27.75 -3.74219,0.3086 -3.74219,0.31054 -6.2207,-1.59375 -6.2207,-1.59375 -14.37696,-6.94336 -14.37695,-6.94531 -26.46875,-15.12891 -26.468748,-15.128902 -0.458984,0.457031 -0.458985,0.458984 -1.080078,22.398437 -1.080078,22.40039 -1.152344,0.73438 -1.152344,0.73437 -31.867187,0.0156 -31.867188,0.0156 0.716797,7.75 0.71875,7.75 0.34961,0.36524 0.349609,0.36718 29.800781,0.9336 29.798828,0.93359 2.148438,0.44336 2.146484,0.44336 0.632813,13.75586 0.632812,13.75781 0.71875,7.70899 0.720703,7.71093 15.5,-9.09375 15.500001,-9.0957 12.75195,-7.31836 12.75,-7.31641 8.67774,-4.06836 8.67773,-4.0664 5.7168,-1.48047 5.71484,-1.48047 h 8.60547 8.60547 v 26 26 h 9.5 9.5 v -26 -26 h 36.5 36.5 v -9 -9 h -34.91797 -34.91797 l -1.58203,-0.60742 -1.58203,-0.60742 V 107.25586 79.863281 h -9.48438 z"></Path>
+                    </Viewbox>
+                    <Viewbox x:Name="MyGattCDataContinuity" Visibility="Hidden" Margin="130,22,0,0" Stretch="Fill" Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Viewbox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Viewbox.RenderTransform>
+                        <Grid Width="60" Height="60" >
+                            <Path Margin="-60,-80" Stretch="None" Fill="White"  Data="m 67.07584,134.57891 -0.815234,-1.14438 1.058009,-1.40376 c 5.155183,-6.83979 12.314169,-10.37003 19.646209,-9.68794 6.089114,0.56647 11.61571,3.90579 16.110016,9.73411 l 1.01588,1.31743 -0.84159,1.15548 -0.8416,1.15548 -1.3269,-1.61763 c -3.404807,-4.15081 -6.895369,-6.59418 -11.317613,-7.92225 -2.112852,-0.63453 -6.777563,-0.68526 -8.892325,-0.0967 -4.230496,1.17737 -8.394749,3.98629 -11.325129,7.63916 -1.831311,2.28282 -1.537721,2.17928 -2.469723,0.871 z"></Path>
+                            <Path Margin="-60,-80" Stretch="none" Fill="White"  Data="m 70.400122,139.1779 -0.774656,-1.09923 1.181191,-1.55179 c 2.633356,-3.45959 6.153108,-5.9552 10.021894,-7.1058 2.305085,-0.68554 6.385909,-0.68786 8.658733,-0.005 3.871728,1.16339 7.330323,3.62243 10.097302,7.17912 l 1.147154,1.47454 -0.828278,1.13398 -0.828273,1.13398 -1.221775,-1.45214 c -5.037942,-5.98782 -11.200506,-8.06379 -17.432165,-5.87233 -2.880612,1.01301 -6.101168,3.43823 -8.197539,6.17309 -0.459836,0.59989 -0.88396,1.0907 -0.942498,1.0907 -0.05853,0 -0.455028,-0.49465 -0.88109,-1.09922 z"></Path>
+                            <Path Margin="-60,-80" Stretch="None" Fill="White"  Data="m 73.787016,143.88265 -0.823144,-1.15549 0.931189,-1.19517 c 1.900955,-2.43982 4.29792,-4.26784 6.922134,-5.27908 1.787622,-0.68885 4.88506,-0.9294 6.846876,-0.53174 3.253775,0.65956 6.845086,3.07882 8.928529,6.01464 l 0.741482,1.04485 -0.856924,1.17321 c -0.744368,1.0191 -0.882771,1.12957 -1.053695,0.84103 -0.108224,-0.1827 -0.618253,-0.82107 -1.1334,-1.41859 -4.247665,-4.92692 -10.210934,-5.96814 -15.209063,-2.65563 -1.46226,0.96912 -2.932342,2.35673 -3.749296,3.53895 -0.295881,0.42818 -0.579269,0.7785 -0.629753,0.7785 -0.05048,0 -0.462204,-0.51996 -0.914935,-1.15548 z"></Path>
+                            <Path Margin="-60,-80" Stretch="None" Fill="White"  Data="m 80.618914,153.35632 c -0.465642,-0.52952 -0.84662,-1.0826 -0.84662,-1.22906 0,-0.4353 1.857402,-2.2474 2.83733,-2.76812 1.821648,-0.968 4.04228,-0.79637 5.8265,0.45035 0.832802,0.58192 2.185471,2.03047 2.185471,2.34038 0,0.0841 -0.393882,0.61201 -0.875296,1.17313 l -0.875294,1.02023 -0.472443,-0.55111 c -1.048678,-1.22328 -1.651892,-1.50306 -3.240644,-1.50306 -1.584972,0 -2.192514,0.28042 -3.230294,1.49099 l -0.462088,0.53904 z"></Path>
+                            <Path Margin="-60,-80" Stretch="None" Fill="White"  Data="m 92.318377,149.69095 -0.887417,-1.04659 c -1.024559,-1.20835 -3.014187,-2.59582 -4.212333,-2.9375 -1.176883,-0.33562 -3.241526,-0.29177 -4.33046,0.092 -1.31958,0.46502 -2.980835,1.65114 -3.921585,2.79998 -0.443142,0.54117 -0.867268,0.98394 -0.942499,0.98394 -0.07523,0 -0.481839,-0.48566 -0.90357,-1.07923 l -0.766787,-1.07922 0.460444,-0.67102 c 0.823918,-1.20073 3.007738,-3.05157 4.366838,-3.701 0.717449,-0.34283 1.905755,-0.73092 2.640682,-0.86245 3.17151,-0.56755 6.806294,1.01965 9.237051,4.03355 0.803177,0.99586 0.889503,1.17821 0.704254,1.48765 -0.260412,0.38208 -0.107783,0.16196 -0.429203,0.57318 l -0.417094,0.60354 c -0.571004,0.74994 -0.626193,0.6548 -0.598321,0.80321 z"></Path>
+                        </Grid>
+                    </Viewbox>
+                    <Viewbox x:Name="MyGattCDataBluetooth" Margin="0,95,90,0" Height="80" Width="50" Stretch="Uniform" HorizontalAlignment="Right" VerticalAlignment="Top" OpacityMask="Black">
+                        <Path  Fill="White" Data="M 25.41,11.41 14,0 H 12 V 15.17 L 2.83,6 0,8.83 11.17,20 0,31.17 2.83,34 12,24.83 V 40 h 2 L 25.41,28.59 16.83,20 Z M 16,7.66 19.76,11.42 16,15.17 Z M 19.76,28.59 16,32.34 v -7.52 z">
+                        <Path.Style>
+                            <Style TargetType="Path">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsChecked, ElementName=Is_Connected}" Value="false">
                                         <DataTrigger.EnterActions>
@@ -138,19 +156,20 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </Image.Style>
-                        <Image.Effect>
+                        </Path.Style>
+                        <Path.Effect>
                             <DropShadowEffect BlurRadius="20" RenderingBias="Quality"/>
-                        </Image.Effect>
-                    </Image>
-                    <TextBlock x:Name="MyGattCDataSymbol" HorizontalAlignment="Left" Height="87" Margin="961,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171" FontSize="72" FontWeight="Bold"/>
+                        </Path.Effect>
+                    </Path>
+                    </Viewbox>
+                    <TextBlock x:Name="MyGattCDataSymbol" HorizontalAlignment="Left" Height="87" Margin="800,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171" FontSize="72" FontWeight="Bold"/>
                 </Grid>
             </Viewbox>
             <CheckBox x:Name="Is_Connected" Visibility="Hidden" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
         </Grid>
         <StackPanel x:Name="TopStackPanel" Visibility="Collapsed" Height="167" VerticalAlignment="Bottom" >
-            
-            <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="164" DisableAnimations="True" DataTooltip="{x:Null}" Hoverable="False">
+
+            <lvc:CartesianChart x:Name="ChartView" Series="{Binding SeriesCollection}" Height="164" DisableAnimations="True" DataTooltip="{x:Null}" Hoverable="False" Zoom="{Binding ZoomingMode}">
                 <lvc:CartesianChart.Resources>
                     <Style TargetType="lvc:LineSeries">
                         <Setter Property="PointGeometry" Value="{x:Null}"></Setter>
@@ -165,7 +184,15 @@
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                    
+                    <Style TargetType="lvc:Separator">
+                        <Setter Property="Stroke" Value="#50DADADA"></Setter>
+                        <Setter Property="StrokeThickness" Value="2"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="AxisOrientation" Value="X">
+                                <Setter Property="IsEnabled" Value="False"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
                 </lvc:CartesianChart.Resources>
                 <lvc:CartesianChart.AxisY>
                     <lvc:Axis Title="" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
@@ -180,8 +207,6 @@
                        HorizontalAlignment="Center"
                        Margin="0,10,0,0" Visibility="Collapsed"/>
 
-
-            
             <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="52" Margin="30,0,0,0" TextWrapping="Wrap" Text="TextBox" Width="548" Visibility="Collapsed"/>
         </StackPanel>
         <Grid   x:Name="nav_pnl"
@@ -190,7 +215,7 @@
                     Width="65"
                     Height="400"
                     Background="#2E333A">
- 
+
             <StackPanel x:Name="st_pnl">
 
                 <!--// Grid for the Menu Toggle Button //-->
@@ -243,13 +268,14 @@
                         </TextBlock.Effect>
 
                     </TextBlock>
+                    <!--// TODO: Setting Window //-->
                     <Button x:Name="SettingBtn"
                         Grid.Column="1"
                         Grid.Row="1"
                         Height="25"
                         Width="25"
                         Margin="170, 20,0,0"
-                        
+                        Visibility="Hidden" 
                         BorderThickness="0"
                         Style="{StaticResource Setting_btn}" Click="SettingBtn_Click">
 
@@ -313,7 +339,7 @@
                                                 Storyboard.TargetProperty="Background.Color"
                                                 From="#FF2E333A" To="#002E333A"
                                                 Duration="0:0:0.125">
-                                         
+
                                         </ColorAnimation>
                                     </Storyboard>
 

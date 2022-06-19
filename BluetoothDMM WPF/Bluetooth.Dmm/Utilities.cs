@@ -29,8 +29,8 @@ namespace HeartRateLE.Bluetooth
         private static bool MyGattCDataHold;
         private static string MyGattCDataACDC;
         private static string oldMessage = "";
-        private static int line=0;
-        private static byte [] olddata = {1 ,2};
+        private static int line = 0;
+        private static byte[] olddata = { 1, 2 };
 
 
         public static async Task<string> ReadCharacteristicValueAsync(List<BluetoothAttribute> characteristics, string characteristicName)
@@ -107,12 +107,12 @@ namespace HeartRateLE.Bluetooth
         /// </summary>
         /// <param name="data">Raw data received from the heart rate monitor.</param>
         /// <returns>The heart rate measurement value.</returns>
-        
+
         public static ArrayList ParseHeartRateValue(byte[] data)
         {
             // Heart Rate profile defined flag values
             const byte heartRateValueFormat = 0x01;
-            
+
             byte flags = data[0];
             bool isHeartRateValueSizeLong = ((flags & heartRateValueFormat) != 0);
 
@@ -230,10 +230,10 @@ namespace HeartRateLE.Bluetooth
                     "27, 132, 113, 181, 89, 106, 63, 251, 119, 170",
                     "27, 132, 113, 181, 89, 42, 217, 250, 102, 138",
                     "27, 132, 113, 85, 162, 193, 210, 250, 102, 42",
-                    "27, 132, 113, 85, 162, 97, 191, 251, 102, 42"};
+                    "27, 132, 113, 85, 162, 97, 191, 251, 102, 42"};*/
 
                     //10 Byte ID 1 Log data
-                    var logdata207 = new string[]
+                    /*var logdata = new string[]//ST207
                     {
                         "27, 132, 114, 177, 140, 162, 23, 118, 102, 42",
                         "27, 132, 114, 89, 82, 170, 51, 81, 100, 42",
@@ -360,129 +360,191 @@ namespace HeartRateLE.Bluetooth
                         "27, 132, 114, 177, 89, 42, 217, 106, 103, 42",
                         "27, 132, 114, 177, 89, 202, 184, 107, 103, 42"
 
-                    };
+                    };*/
 
-                        data = Array.ConvertAll(logdata[Convert.ToInt16(line/20)].Split(','), byte.Parse);
-                        line++;
-                    */
-                    //data = new byte[] { 27, 132, 113, 85, 232, 79, 104, 255, 102, 169 };
-                    var datashift = new byte[] { 65, 33, 115, 85, 162, 193, 50, 113, 102, 170, 59, 208, 226, 168, 51, 20, 32, 26, 170, 187 };
+                    //data = Array.ConvertAll(logdata[Convert.ToInt16(line/100)].Split(','), byte.Parse);
+                    //line++;
+                    //*/
+                    //data = new byte[] { 27, 132, 113, 181, 140, 162, 23, 246, 102, 170 };
+                    var datashift = new byte[] { 65, 33, 115, 85, 256-94, 256-63, 50, 113, 102, 256-86, 59, 256-48, 256-30, 256-88, 51, 20, 32, 26, 256-86, 256-69 };
                     //var datashift = new byte[] { 65, 33, 115, 85, 162, 193, 50, 241, 102, 170, 59, 208, 226, 168, 51, 20, 32, 26, 170, 187 };
                     var tmp = "";
+                    bool[] subValue = { };
+                    bool[] msubValue = { };
                     int i = 0;
-                    foreach (var binaryval in data) {
-                        tmp =  new string(Convert.ToString(binaryval ^ datashift[i], 2).PadLeft(8, '0').Reverse().ToArray());// Convert.ToString(binaryval ^ datashift[i], 2).PadLeft(8, '0');
+                    foreach (var binaryval in data)
+                    {
+                        tmp = new string(Convert.ToString(binaryval ^ datashift[i], 2).PadLeft(8, '0').ToArray());// Convert.ToString(binaryval ^ datashift[i], 2).PadLeft(8, '0');
                         newValue += tmp;
                         i++;
-                        
+
                     }
-                    
-                    //GattSampleContext.Context.MyGattCData = binaryvalstr; {27, 132, 112, 177, 140, 162, 23, 118, 102, 170, 59}
-                    
+
+                    //MyGattCData = binaryvalstr; {27, 132, 112, 177, 140, 162, 23, 118, 102, 170, 59}
+
 
                     if (oldMessage != newValue || oldMessage == "")
                     {
-                        string[] pre_digits = new string[] { "-", ".", ".", "." };
+                        string[] pre_digits = new string[] { "-", ".", ".", "."};
                         string[] digits = new string[] { "", "", "", "" };
-                        for (int n = 0; n < 4; n++)
+                        int dev_type = data[2] ^ datashift[2];
+                        if (dev_type != 4)
                         {
-                            digits[n] = (newValue.Substring(((n + 3) * 8) + 4, 1).Equals("1") ? pre_digits[n] : string.Empty) + Parsedigit(newValue.Substring(((n + 3) * 8) + 5, 7));
+                            for (int n = 0; n < 4; n++)
+                            {
+                                int fi = (n + 3) * 8;
+                                string first = newValue.Substring(fi, 3);
+                                int si = ((n + 4) * 8) + 4;
+                                string second = newValue.Substring(si, 4);
+                                digits[n] = (newValue.Substring(((n + 3) * 8) + 3, 1).Equals("1") ? pre_digits[n] : string.Empty) + Parsedigit(first + second, dev_type);
+                            }
+                        } else
+                        {
+                            pre_digits = new string[] { ".", ".", (newValue.Substring((14 * 8) + 3, 1).Equals("1") ? ":" : "."), ".", "" };
+
+                            for (int n = 14; n > 9; n--)
+                            {
+                                
+                                int fi = n * 8;
+                                string first = newValue.Substring(fi, 3);
+                                int si = (n * 8) + 4;
+                                string second = newValue.Substring(si, 4);
+                                digits[14-n] = (newValue.Substring((n * 8) + 3, 1).Equals("1") ? pre_digits[n-10] : string.Empty) + Parsedigit(first + second, dev_type);
+                            }
                         }
-                        MyGattCData = string.Join("",digits);
+                        MyGattCData = string.Join("", digits);
                         Debug.WriteLine(String.Format("NewVal {0} at {1}", newValue, DateTime.Now.ToString()));
                         File.AppendAllText("log.txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
                         //File.AppendAllText("logbinary.txt", newValue + System.Environment.NewLine);
                         oldMessage = newValue;
-                        if (data.Count() == 11){
-                            MyGattCDataHold = newValue.Substring(60, 1).Equals("1");
-                            MyGattCDataACDC = (newValue.Substring(25, 1).Equals("1") ? "Δ " : String.Empty) +
-                               (newValue.Substring(67, 1).Equals("1") ? "AC " : String.Empty) +
-                               (newValue.Substring(78, 1).Equals("1") ? "DC " : String.Empty);
 
-
-                            MyGattCDataSymbol = (newValue.Substring(62, 1).Equals("1") ? "°C" : String.Empty) +
-                              (newValue.Substring(61, 1).Equals("1") ? "°F" : String.Empty) +
-                              (newValue.Substring(77, 1).Equals("1") ? "m" : String.Empty) +
-                              (newValue.Substring(76, 1).Equals("1") ? "V" : String.Empty) +
-                              (newValue.Substring(71, 1).Equals("1") ? "n" : String.Empty) +
-                              (newValue.Substring(70, 1).Equals("1") ? "m" : String.Empty) +
-                              (newValue.Substring(69, 1).Equals("1") ? "µ" : String.Empty) +
-                              (newValue.Substring(68, 1).Equals("1") ? "F" : String.Empty) +
-                              (newValue.Substring(66, 1).Equals("1") ? "%" : String.Empty) +
-                              (newValue.Substring(75, 1).Equals("1") ? "M" : String.Empty) +
-                              (newValue.Substring(74, 1).Equals("1") ? "k" : String.Empty) +
-                              (newValue.Substring(73, 1).Equals("1") ? "Ω" : String.Empty) +
-                              (newValue.Substring(72, 1).Equals("1") ? "Hz" : String.Empty) +
-                              (newValue.Substring(82, 1).Equals("1") ? "µ" : String.Empty) +
-                              (newValue.Substring(83, 1).Equals("1") ? "m" : String.Empty) +
-                              (newValue.Substring(79, 1).Equals("1") ? "A" : String.Empty);
-                            MyGattCDataMax = newValue.Substring(64, 1).Equals("1");
-                            MyGattCDataMin = newValue.Substring(65, 1).Equals("1");
-                            MyGattCDataTrue_RMS = newValue.Substring(67, 1).Equals("1");
-                            MyGattCDataAutoRange = newValue.Substring(80, 1).Equals("1");
-                            MyGattCDataDiode = newValue.Substring(63, 1).Equals("1");
-                            MyGattCDataContinuity = newValue.Substring(27, 1).Equals("1");
-                           
-                        } else if (data.Count() == 10)
+                        if (data.Count() == 11)
                         {
-                            var dev_type = data[2] ^ datashift[2];
-                            if (dev_type == 2)
+                            MyGattCDataHold = newValue.Substring(59, 1).Equals("1");
+                            MyGattCDataACDC = (newValue.Substring(30, 1).Equals("1") ? "Δ " : String.Empty) +
+                               (newValue.Substring(68, 1).Equals("1") ? "AC " : String.Empty) +
+                               (newValue.Substring(73, 1).Equals("1") ? "DC " : String.Empty);
+
+                            MyGattCDataSymbol = (newValue.Substring(57, 1).Equals("1") ? "°C" : String.Empty) +
+                                                                          (newValue.Substring(58, 1).Equals("1") ? "°F" : String.Empty) +
+                                                                          (newValue.Substring(74, 1).Equals("1") ? "m" : String.Empty) +
+                                                                          (newValue.Substring(75, 1).Equals("1") ? "V" : String.Empty) +
+                                                                          (newValue.Substring(64, 1).Equals("1") ? "n" : String.Empty) +
+                                                                          (newValue.Substring(65, 1).Equals("1") ? "m" : String.Empty) +
+                                                                          (newValue.Substring(66, 1).Equals("1") ? "µ" : String.Empty) +
+                                                                          (newValue.Substring(67, 1).Equals("1") ? "F" : String.Empty) +
+                                                                          (newValue.Substring(69, 1).Equals("1") ? "%" : String.Empty) +
+                                                                          (newValue.Substring(76, 1).Equals("1") ? "M" : String.Empty) +
+                                                                          (newValue.Substring(77, 1).Equals("1") ? "k" : String.Empty) +
+                                                                          (newValue.Substring(78, 1).Equals("1") ? "Ω" : String.Empty) +
+                                                                          (newValue.Substring(79, 1).Equals("1") ? "Hz" : String.Empty) +
+                                                                          (newValue.Substring(85, 1).Equals("1") ? "µ" : String.Empty) +
+                                                                          (newValue.Substring(84, 1).Equals("1") ? "m" : String.Empty) +
+                                                                          (newValue.Substring(72, 1).Equals("1") ? "A" : String.Empty);
+                            MyGattCDataMax = newValue.Substring(71, 1).Equals("1");
+                            MyGattCDataMin = newValue.Substring(70, 1).Equals("1");
+                            MyGattCDataTrue_RMS = newValue.Substring(68, 1).Equals("1");
+                            MyGattCDataAutoRange = newValue.Substring(87, 1).Equals("1");
+                            MyGattCDataDiode = newValue.Substring(56, 1).Equals("1");
+                            MyGattCDataContinuity = newValue.Substring(28, 1).Equals("1");
+
+                        }
+                        else
+                        {
+                            if (data.Count() == 10)
                             {
-                                MyGattCDataHold = newValue.Substring(60, 1).Equals("1");
-                                MyGattCDataACDC = (newValue.Substring(26, 1).Equals("1") ? "Ϟ " : String.Empty) +
-                                   (newValue.Substring(67, 1).Equals("1") ? "AC " : String.Empty) +
-                                   (newValue.Substring(66, 1).Equals("1") ? "DC " : String.Empty);
 
-                                //1b 84 71 55 e8 4f 68 ff 66 a9 { 27, 132, 113, 85, 232, 79, 104, 255, 102, 169 };
-                                MyGattCDataSymbol = (newValue.Substring(79, 1).Equals("1") ? "°C" : String.Empty) +
-                                  (newValue.Substring(78, 1).Equals("1") ? "°F" : String.Empty) +
-                                  (newValue.Substring(75, 1).Equals("1") ? "M" : String.Empty) +
-                                  (newValue.Substring(73, 1).Equals("1") ? "k" : String.Empty) +
-                                  (newValue.Substring(72, 1).Equals("1") ? "Ω" : String.Empty) +
-                                  (newValue.Substring(76, 1).Equals("1") ? "%" : String.Empty) +
-                                  (newValue.Substring(77, 1).Equals("1") ? "Hz" : String.Empty) +
-                                  (newValue.Substring(64, 1).Equals("1") ? "n" : String.Empty) +
-                                  (newValue.Substring(71, 1).Equals("1") ? "µ" : String.Empty) +
-                                  (newValue.Substring(74, 1).Equals("1") ? "m" : String.Empty) +
-                                  (newValue.Substring(65, 1).Equals("1") ? "V" : String.Empty) +
-                                  (newValue.Substring(68, 1).Equals("1") ? "F" : String.Empty) +
-                                  (newValue.Substring(70, 1).Equals("1") ? "A" : String.Empty);
-                                MyGattCDataTrue_RMS = newValue.Substring(67, 1).Equals("1");
-                                MyGattCDataDiode = newValue.Substring(69, 1).Equals("1");
-                                MyGattCDataContinuity = newValue.Substring(27, 1).Equals("1");
-                            }else if (dev_type == 1)
-                            {
-                                MyGattCDataHold = newValue.Substring(25, 1).Equals("1");
-                                MyGattCDataACDC = (newValue.Substring(26, 1).Equals("0") ? "Ϟ " : String.Empty) +
-                                   (newValue.Substring(63, 1).Equals("1") ? "AC " : String.Empty) +
-                                   (newValue.Substring(62, 1).Equals("1") ? "DC " : String.Empty);
+                                if (dev_type == 2)
+                                {
+                                    subValue = (newValue.Substring(28, 4) +
+                                                        newValue.Substring(56, 4) +
+                                                        newValue.Substring(68, 4) +
+                                                        newValue.Substring(64, 4) +
+                                                        newValue.Substring(76, 4) +
+                                                        newValue.Substring(72, 4)).Select(c => c == '1').ToArray();
+                                    msubValue = ("0000" + "0000").Select(c => c == '1').ToArray();
+                                }
+                                else if (dev_type == 1)
+                                {
+                                    subValue = (newValue.Substring(28, 4) +
+                                                        newValue.Substring(72, 4) +
+                                                        newValue.Substring(56, 4) +
+                                                        newValue.Substring(68, 4) +
+                                                        newValue.Substring(64, 4) +
+                                                        newValue.Substring(76, 4)).Select(c => c == '1').ToArray();
+                                    msubValue = (newValue.Substring(72, 4) + "0000").Select(c => c == '1').ToArray();
+                                }
+                                MyGattCDataHold = subValue[2];
+                                MyGattCDataACDC = (!subValue[1] ? "Ϟ " : String.Empty) +
+                                                    (subValue[8] ? "AC " : String.Empty) +
+                                                    (subValue[9] ? "DC " : String.Empty);
 
 
-                                MyGattCDataSymbol = (newValue.Substring(75, 1).Equals("1") ? "°C" : String.Empty) +
-                                  (newValue.Substring(74, 1).Equals("1") ? "°F" : String.Empty) +
-                                  (newValue.Substring(71, 1).Equals("1") ? "M" : String.Empty) +
-                                  (newValue.Substring(69, 1).Equals("1") ? "k" : String.Empty) +
-                                  (newValue.Substring(68, 1).Equals("1") ? "Ω" : String.Empty) +
-                                  //(newValue.Substring(66, 1).Equals("1") ? "%" : String.Empty) +
-                                  (newValue.Substring(73, 1).Equals("1") ? "Hz" : String.Empty) +
-                                  (newValue.Substring(60, 1).Equals("1") ? "n" : String.Empty) +
-                                  (newValue.Substring(67, 1).Equals("1") ? "µ" : String.Empty) +
-                                  (newValue.Substring(70, 1).Equals("1") ? "m" : String.Empty) +
-                                  (newValue.Substring(61, 1).Equals("1") ? "V" : String.Empty) +
-                                  (newValue.Substring(64, 1).Equals("1") ? "F" : String.Empty) +
-                                  (newValue.Substring(66, 1).Equals("1") ? "A" : String.Empty);
-                                MyGattCDataTrue_RMS = newValue.Substring(63, 1).Equals("1");
-                                MyGattCDataDiode = newValue.Substring(65, 1).Equals("1");
-                                MyGattCDataContinuity = newValue.Substring(27, 1).Equals("1");
-                                MyGattCDataPeek= newValue.Substring(78, 1).Equals("1");
-                                MyGattCDataInRush = newValue.Substring(76, 1).Equals("1");
+                                MyGattCDataSymbol = (subValue[20] ? "°C" : String.Empty) +
+                                                      (subValue[21] ? "°F" : String.Empty) +
+                                                      (subValue[16] ? "M" : String.Empty) +
+                                                      (subValue[18] ? "k" : String.Empty) +
+                                                      (subValue[19] ? "Ω" : String.Empty) +
+                                                      ((subValue[23] && dev_type != 1) ? "%" : String.Empty) +
+                                                      (subValue[22] ? "Hz" : String.Empty) +
+                                                      (subValue[11] ? "n" : String.Empty) +
+                                                      (subValue[12] ? "µ" : String.Empty) +
+                                                      (subValue[17] ? "m" : String.Empty) +
+                                                      (subValue[10] ? "V" : String.Empty) +
+                                                      (subValue[15] ? "F" : String.Empty) +
+                                                      (subValue[13] ? "A" : String.Empty);
+                                MyGattCDataTrue_RMS = subValue[8];
+                                MyGattCDataDiode = subValue[14];
+                                MyGattCDataContinuity = subValue[0];
+                                MyGattCDataPeek = msubValue[1];
+                                MyGattCDataInRush = msubValue[3];
                             }
+                            else if (data.Count() > 18 && dev_type == 4)
+                            {
+                                subValue = (newValue.Substring(36, 4) +
+                                                    newValue.Substring(32, 4) +
+                                                    newValue.Substring(44, 4) +
+                                                    newValue.Substring(40, 4) +
+                                                    newValue.Substring(100, 4) +
+                                                    newValue.Substring(96, 4) +
+                                                    newValue.Substring(120, 4) +
+                                                    newValue.Substring(132, 4) +
+                                                    newValue.Substring(136, 4)).Select(c => c == '1').ToArray();
+                                msubValue = ("0000" + "0000").Select(c => c == '1').ToArray();
+                                MyGattCDataHold = subValue[2];
+
+                                MyGattCDataACDC = (!subValue[8] ? "Δ " : String.Empty) +
+                                                    (subValue[21] ? "AC " : String.Empty) +
+                                                    (subValue[18] ? "DC " : String.Empty);
+
+
+                                MyGattCDataSymbol = (subValue[27] ? "M" : String.Empty) +
+                                                      (subValue[26] ? "k" : String.Empty) +
+                                                      (subValue[25] ? "Ω" : String.Empty) +
+                                                      (subValue[23] ? "%" : String.Empty) +
+                                                      (subValue[24] ? "Hz" : String.Empty) +
+                                                      (subValue[28] ? "n" : String.Empty) +
+                                                      (subValue[12] ? "µ1" : String.Empty) +
+                                                      (subValue[30] ? "µ2" : String.Empty) +
+                                                      (subValue[29] ? "m" : String.Empty) +
+                                                      (subValue[15] ? "V" : String.Empty) +
+                                                      (subValue[31] ? "F" : String.Empty) +
+                                                      (subValue[35] ? "A" : String.Empty);
+                                MyGattCDataTrue_RMS = subValue[21];
+                                MyGattCDataDiode = subValue[5];
+                                MyGattCDataContinuity = subValue[6];
+                                MyGattCDataPeek = subValue[9];
+                                MyGattCDataMax = subValue[10];
+                                MyGattCDataMin = subValue[11];
+                            }
+
+
                         }
                     }
                     //return "Unknown format: " + binaryvalstr;
-                    
+
                 }
-                
+
                 catch (ArgumentException)
                 {
                     MyGattCData = "Error binary value";
@@ -506,36 +568,38 @@ namespace HeartRateLE.Bluetooth
             }
         }
 
-        private static string Parsedigit(string digitraw)
+        private static string Parsedigit(string digitraw, int dev_type)
         {
 
             switch (digitraw)
             {
-                ///  aaa --> ebagfdc
+                ///  aaa --> ebagfdc (flipped)
                 ///  b c
                 ///  ddd
-                ///  e f
-                ///  ggg
-                
+                ///  e f 
+                ///  ggg ----> abecdfg (rightorder)
+
                 case "0000000": return " ";
-                case "1110111": return "A";
-                case "1001100": return "U";
-                case "1101010": return "T";
-                case "1001110": return "O";
-                case "1111010": return "E";
-                case "1110010": return "F";
-                case "1101000": return "L";
-                case "0000010": return "-";
-                case "1111101": return "0";
-                case "0000101": return "1";
-                case "1011011": return "2";
-                case "0011111": return "3";
-                case "0100111": return "4";
-                case "0111110": return "5";
-                case "1111110": return "6";
-                case "0010101": return "7";
+                case "1111110": return "A";
+                case "0010011": return "U";
+                case "0110101": return "T";
+                case "0010111": return "O";
+                case "1110101": return "E";
+                case "1110100": return "F";
+                case "0110001": return "L";
+                case "0000100": return "-";
+                case "1111011": return "0";
+                case "0001010": return "1";
+                case "1011101": return "2";
+                case "1001111": return "3";
+                case "0101110": return "4";
+                case "1100111": return "5";
+                case "1110111": return "6";
+                case "1001010": return "7";
                 case "1111111": return "8";
-                case "0111111": return "9";
+                case "1101111": return "9";
+                case "0001100": return "1";//p66 firstdigit
+                case "1000000": return "-";//P66
                 default: return "?";
             }
         }

@@ -30,6 +30,7 @@ namespace BluetoothDMM
         private double doublevalue;
         private System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         private int tickcount;
+        private bool DevicePickerActive = false;
 
         public MainWindow()
         {
@@ -70,7 +71,17 @@ namespace BluetoothDMM
             //HrParser.ConnectWithCharacteristic(HrDevice.HeartRate.HeartRateMeasurement);
             _heartRateMonitor.RateChanged -= HrParserOnValueChanged;
             _heartRateMonitor.RateChanged += HrParserOnValueChanged;
+            ChartView.MouseLeave -= ChartMouseLeave;
+            ChartView.MouseLeave += ChartMouseLeave;
         }
+
+        private void ChartMouseLeave(object sender, MouseEventArgs e)
+        {
+            //ChartView.ScrollMode = ScrollMode.X;
+            //ChartView.mi  X.MinValue = double.NaN;
+            //X.MaxValue = double.NaN;
+        }
+
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
@@ -145,6 +156,7 @@ namespace BluetoothDMM
                 d("Got new measurement: " + arg.MyGattCData);
                 textBox.Text= arg.MyGattCData;
                 //TxtHr.Text = String.Format("{0}", arg.MyGattCData);
+                if (arg.MyGattCData.Length > 6) { MyGattCData.FontWeight = FontWeights.SemiBold; } else { MyGattCData.FontWeight = FontWeights.Bold; }
                 MyGattCData.Text = arg.MyGattCData;
                 MyGattCDataSymbol.Text = arg.MyGattCDataSymbol;
                 MyGattCDataACDC.Text = arg.MyGattCDataACDC;
@@ -200,10 +212,6 @@ namespace BluetoothDMM
                     TxtStatus.Text = SelectedDeviceName + ": connected";
                     TxtBattery.Text = String.Format("battery level: {0}%", device.BatteryPercent);
                     MyGattCDataBluetooth.Visibility = Visibility.Visible;
-
-                    
-                    tickcount = 0;
-                    dispatcherTimer.Start();
                     Is_Connected.IsChecked = true;
                 }
                 else
@@ -225,7 +233,7 @@ namespace BluetoothDMM
 
                     //SelectedDeviceId = devicePicker.SelectedDeviceId;
                     //SelectedDeviceName = devicePicker.SelectedDeviceName;
-                    while (true)
+                    while (!DevicePickerActive)
                     {
                         try
                         {
@@ -243,21 +251,6 @@ namespace BluetoothDMM
                 //BtnReadInfo.IsEnabled = connected;
             });
             
-        }
-
-        private async void BtnStart_Click(object sender, RoutedEventArgs e)
-        {
-            d("Button START clicked.");
-            //await _heartRateMonitor.EnableNotificationsAsync();
-            d("Notification enabled");
-        }
-
-        private async void BtnStop_Click(object sender, RoutedEventArgs e)
-        {
-            d("Button STOP clicked.");
-            //await _heartRateMonitor.DisableNotificationsAsync();
-            d("Notification disabled.");
-            //TxtHr.Text = "--";
         }
 
         private async void BtnReadInfo_Click(object sender, RoutedEventArgs e)
@@ -291,59 +284,7 @@ namespace BluetoothDMM
            });
         }
 
-        private async void PairDeviceButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (_heartRateMonitor.IsConnected)
-            {
-                SelectedDeviceId = string.Empty;
-                SelectedDeviceName = string.Empty;
-
-                await _heartRateMonitor.DisconnectAsync();
-            }
-
-            var devicePicker = new DevicePicker();
-            var result = devicePicker.ShowDialog();
-            if (result.Value)
-            {
-                SelectedDeviceId = devicePicker.SelectedDeviceId;
-                SelectedDeviceName = devicePicker.SelectedDeviceName;
-
-                var connectResult= await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
-                if (!connectResult.IsConnected)
-                    MessageBox.Show(connectResult.ErrorMessage);
-            }
-        }
-        private async void ReConnectDeviceButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (_heartRateMonitor.IsConnected)
-            {
-                //SelectedDeviceId = string.Empty;
-                //SelectedDeviceName = string.Empty;
-
-                await _heartRateMonitor.DisconnectAsync();
-            }
-
-
-            //SelectedDeviceId = devicePicker.SelectedDeviceId;
-            //SelectedDeviceName = devicePicker.SelectedDeviceName;
-            while (true){
-                try
-                {
-                    var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
-                    if (connectResult.IsConnected)
-                        break;
-                }
-                catch
-                {
-                    continue;
-                }
-            }
-            
-            
-            
-        }
-
-
+ 
         private async void LstOnSelectionChanced(object sender, SelectionChangedEventArgs e)
         {
             var Sender = ((System.Windows.FrameworkElement)((System.Windows.Controls.Primitives.Selector)sender).SelectedItem);
@@ -351,15 +292,16 @@ namespace BluetoothDMM
             {
                 if (Sender.Name == "ConnectTo")
                 {
-                    if (_heartRateMonitor.IsConnected)
+                    /*if (_heartRateMonitor.IsConnected)
                     {
                         SelectedDeviceId = string.Empty;
                         SelectedDeviceName = string.Empty;
 
                         await _heartRateMonitor.DisconnectAsync();
-                    }
+                    }*/
 
                     var devicePicker = new DevicePicker();
+                    DevicePickerActive = true;
                     var result = devicePicker.ShowDialog();
                     if (result.Value)
                     {
@@ -369,7 +311,10 @@ namespace BluetoothDMM
                         var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
                         if (!connectResult.IsConnected)
                             MessageBox.Show(connectResult.ErrorMessage);
+                        SeriesCollection[0].Values.Clear();
+                        Labels = new[] { "0", "", "", "", "", "", "", "", "", "", "5", "", "", "", "", "", "", "", "", "", "10" };
                     }
+                    DevicePickerActive = false;
                 }
                 else if (Sender.Name == "Chart")
                 {
@@ -387,12 +332,18 @@ namespace BluetoothDMM
         {
             if (TopStackPanel.Visibility==Visibility.Visible)
             {
+                dispatcherTimer.Stop();
+                tickcount = 0;
+                SeriesCollection[0].Values.Clear();
+                Labels = new[] { "0", "", "", "", "", "", "", "", "", "", "5", "", "", "", "", "", "", "", "", "", "10" };
+                
                 TopStackPanel.Visibility=Visibility.Collapsed;
                 ChartON.Visibility = Visibility.Hidden;
                 this.Height = this.Height - 164;
             }
             else
             {
+                dispatcherTimer.Start();
                 TopStackPanel.Visibility = Visibility.Visible;
                 ChartON.Visibility = Visibility.Visible;
                 this.Height = this.Height + 164;

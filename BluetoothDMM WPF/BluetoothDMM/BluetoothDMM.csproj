@@ -209,11 +209,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\bluetooth.png" />
-    <Resource Include="Assets\Continuity.png" />
-    <Resource Include="Assets\Diode.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Logo.ico" />
   </ItemGroup>
   <ItemGroup>
