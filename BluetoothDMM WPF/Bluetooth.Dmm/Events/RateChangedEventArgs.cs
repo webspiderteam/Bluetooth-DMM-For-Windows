@@ -21,5 +21,6 @@ namespace HeartRateLE.Bluetooth.Events
         public bool MyGattCDataInRush { get; set; }
         public bool MyGattCDataHold { get; set; }
         public string MyGattCDataACDC { get; set; }
+        public bool? MyGattCDataBattery { get; set; }
     }
 }

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluetooth.Dmm", "Bluetooth.Dmm\Bluetooth.Dmm.csproj", "{CE863405-A1F9-464D-AEED-E265C8244689}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeartRateLE.UI", "BluetoothDMM\BluetoothDMM.csproj", "{B585EF35-DC34-48CE-A070-0BB2095756D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothDMM", "BluetoothDMM\BluetoothDMM.csproj", "{B585EF35-DC34-48CE-A070-0BB2095756D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57AF84EC-920F-4AF1-8EF7-BAF8C08B8909}
 	EndGlobalSection
 EndGlobal

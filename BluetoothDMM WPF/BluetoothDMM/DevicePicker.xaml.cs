@@ -50,7 +50,7 @@ namespace BluetoothDMM
             PairedCollection = new ObservableCollection<WatcherDevice>();
             this.DataContext = this;
 
-            _unpairedWatcher = new HeartRateLE.Bluetooth.HeartDeviceWatcher(DeviceSelector.BluetoothLeUnpairedOnly);
+            _unpairedWatcher = new HeartRateLE.Bluetooth.HeartDeviceWatcher(DeviceSelector.BluetoothLe);
             _unpairedWatcher.DeviceAdded += OnDeviceAdded;
             _unpairedWatcher.DeviceRemoved += OnDeviceRemoved;
             _unpairedWatcher.Start();

@@ -715,7 +715,7 @@
                 <ControlTemplate TargetType="{x:Type CheckBox}">
                     <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="154" />
+                            <ColumnDefinition Width="250" />
                         </Grid.ColumnDefinitions>
                         <Border x:Name="checkBoxBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="Left" Margin="1 0 0 0" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Height="16" Width="16">
                             <Grid x:Name="markGrid">

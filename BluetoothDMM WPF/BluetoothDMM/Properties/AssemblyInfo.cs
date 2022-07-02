@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("Bluetooth DMM For Windows")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("WebSpiderTeam")]
 [assembly: AssemblyProduct("Bluetooth DMM For Windows")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.4")]
-[assembly: AssemblyFileVersion("1.0.0.4")]
+[assembly: AssemblyVersion("1.07.0.4")]
+[assembly: AssemblyFileVersion("1.07.0.4")]

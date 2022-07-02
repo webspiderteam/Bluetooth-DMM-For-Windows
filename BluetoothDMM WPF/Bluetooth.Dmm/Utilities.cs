@@ -24,6 +24,7 @@ namespace HeartRateLE.Bluetooth
         private static bool MyGattCDataAutoRange;
         private static bool MyGattCDataDiode;
         private static bool MyGattCDataContinuity;
+        private static bool MyGattCDataBattery;
         private static bool MyGattCDataPeek;
         private static bool MyGattCDataInRush;
         private static bool MyGattCDataHold;
@@ -99,32 +100,33 @@ namespace HeartRateLE.Bluetooth
             return data;
         }
 
-        /// <summary>
-        /// Process the raw data received from the device into application usable data,
-        /// according the the Bluetooth Heart Rate Profile.
-        /// https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.heart_rate_measurement.xml&u=org.bluetooth.characteristic.heart_rate_measurement.xml
-        /// This function throws an exception if the data cannot be parsed.
-        /// </summary>
-        /// <param name="data">Raw data received from the heart rate monitor.</param>
-        /// <returns>The heart rate measurement value.</returns>
 
-        public static ArrayList ParseHeartRateValue(byte[] data)
+        private static byte[] TestData(int dev_type, int freq)
         {
-            // Heart Rate profile defined flag values
-            const byte heartRateValueFormat = 0x01;
-
-            byte flags = data[0];
-            bool isHeartRateValueSizeLong = ((flags & heartRateValueFormat) != 0);
-
-            if (isHeartRateValueSizeLong)
+            var logdata = new string[] { " " };
+            if (dev_type == 2)
             {
-                //TODO: Convert data from dmm 1b 84 70 b1 8c a2 17 76 66 aa 3b
-                try                         //1b 84 71 55 a2 61 df fe 66 2a
+                //10 Byte ID 2 Log data
+                logdata = new string[]
                 {
-                    var newValue = "";
-                    //10 Byte ID 2 Log data
-                    /*var logdata = new string[]
-                    {
+                    "27, 132, 113, 241, 47, 110, 207, 254, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 207, 246, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 207, 254, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 175, 251, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 207, 246, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 239, 246, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 207, 246, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 239, 246, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 175, 251, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 239, 246, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 175, 251, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 207, 254, 108, 170",
+                    "27, 132, 113, 241, 47, 110, 239, 254, 108, 170",
+                    "27, 132, 113, 241, 47, 78, 173, 254, 108, 170",
+                    "27, 132, 113, 241, 47, 78, 109, 255, 108, 170",
+                    "27, 132, 113, 81, 72, 46, 41, 251, 108, 170",
+                    "27, 132, 113, 81, 162, 209, 50, 241, 108, 170",
+                    "27, 132, 113, 181, 140, 162, 23, 246, 102, 170",
                     "27, 132, 113, 181, 140, 162, 23, 246, 102, 170",
                     "27, 132, 113, 93, 82, 170, 51, 241, 68, 170",
                     "27, 132, 113, 181, 89, 42, 217, 250, 119, 170",
@@ -230,11 +232,14 @@ namespace HeartRateLE.Bluetooth
                     "27, 132, 113, 181, 89, 106, 63, 251, 119, 170",
                     "27, 132, 113, 181, 89, 42, 217, 250, 102, 138",
                     "27, 132, 113, 85, 162, 193, 210, 250, 102, 42",
-                    "27, 132, 113, 85, 162, 97, 191, 251, 102, 42"};*/
-
-                    //10 Byte ID 1 Log data
-                    /*var logdata = new string[]//ST207
-                    {
+                    "27, 132, 113, 85, 162, 97, 191, 251, 102, 42"
+                };
+            }
+            else if (dev_type == 1)
+            {
+                //10 Byte ID 1 Log data
+                logdata = new string[]//ST207
+                {
                         "27, 132, 114, 177, 140, 162, 23, 118, 102, 42",
                         "27, 132, 114, 89, 82, 170, 51, 81, 100, 42",
                         "27, 132, 114, 177, 89, 42, 217, 106, 103, 42",
@@ -360,28 +365,48 @@ namespace HeartRateLE.Bluetooth
                         "27, 132, 114, 177, 89, 42, 217, 106, 103, 42",
                         "27, 132, 114, 177, 89, 202, 184, 107, 103, 42"
 
-                    };*/
+                };
+            }
+            if (line > logdata.Length) { line = 0; }
+            byte[] data = Array.ConvertAll(logdata[Convert.ToInt16(line / freq)].Split(','), byte.Parse);
+            line++;
+            return data;
+        }
 
-                    //data = Array.ConvertAll(logdata[Convert.ToInt16(line/100)].Split(','), byte.Parse);
-                    //line++;
-                    //*/
-                    //data = new byte[] { 27, 132, 113, 181, 140, 162, 23, 246, 102, 170 };
+        /// <summary>
+        /// Process the raw data received from the device into application usable data,
+        /// according the the Bluetooth Heart Rate Profile.
+        /// https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.heart_rate_measurement.xml&u=org.bluetooth.characteristic.heart_rate_measurement.xml
+        /// This function throws an exception if the data cannot be parsed.
+        /// </summary>
+        /// <param name="data">Raw data received from the heart rate monitor.</param>
+        /// <returns>The heart rate measurement value.</returns>
+
+        public static ArrayList ParseHeartRateValue(byte[] data,bool LogData)
+        {
+
+            var TestDevice = 0;
+            if (TestDevice > 0)
+            {
+                data = TestData(TestDevice, 20);
+            }
+
+            if (data.Length>9)
+            {
+                try
+                {
+                    var newValue = "";
                     var datashift = new byte[] { 65, 33, 115, 85, 256-94, 256-63, 50, 113, 102, 256-86, 59, 256-48, 256-30, 256-88, 51, 20, 32, 26, 256-86, 256-69 };
-                    //var datashift = new byte[] { 65, 33, 115, 85, 162, 193, 50, 241, 102, 170, 59, 208, 226, 168, 51, 20, 32, 26, 170, 187 };
                     var tmp = "";
                     bool[] subValue = { };
                     bool[] msubValue = { };
                     int i = 0;
                     foreach (var binaryval in data)
                     {
-                        tmp = new string(Convert.ToString(binaryval ^ datashift[i], 2).PadLeft(8, '0').ToArray());// Convert.ToString(binaryval ^ datashift[i], 2).PadLeft(8, '0');
+                        tmp = new string(Convert.ToString(binaryval ^ datashift[i], 2).PadLeft(8, '0').ToArray());
                         newValue += tmp;
                         i++;
-
                     }
-
-                    //MyGattCData = binaryvalstr; {27, 132, 112, 177, 140, 162, 23, 118, 102, 170, 59}
-
 
                     if (oldMessage != newValue || oldMessage == "")
                     {
@@ -414,8 +439,11 @@ namespace HeartRateLE.Bluetooth
                         }
                         MyGattCData = string.Join("", digits);
                         Debug.WriteLine(String.Format("NewVal {0} at {1}", newValue, DateTime.Now.ToString()));
-                        File.AppendAllText("log.txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
-                        //File.AppendAllText("logbinary.txt", newValue + System.Environment.NewLine);
+                        if (LogData)
+                        {
+                            File.AppendAllText("log.txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
+                            //File.AppendAllText("logbinary.txt", newValue + System.Environment.NewLine);
+                        }
                         oldMessage = newValue;
 
                         if (data.Count() == 11)
@@ -447,6 +475,7 @@ namespace HeartRateLE.Bluetooth
                             MyGattCDataAutoRange = newValue.Substring(87, 1).Equals("1");
                             MyGattCDataDiode = newValue.Substring(56, 1).Equals("1");
                             MyGattCDataContinuity = newValue.Substring(28, 1).Equals("1");
+                            MyGattCDataBattery = newValue.Substring(31, 1).Equals("1");
 
                         }
                         else
@@ -475,10 +504,9 @@ namespace HeartRateLE.Bluetooth
                                     msubValue = (newValue.Substring(72, 4) + "0000").Select(c => c == '1').ToArray();
                                 }
                                 MyGattCDataHold = subValue[2];
-                                MyGattCDataACDC = (!subValue[1] ? "Ϟ " : String.Empty) +
+                                MyGattCDataACDC = (Convert.ToBoolean( Convert.ToInt16(subValue[1]) ^ Convert.ToInt16(newValue.Substring(23, 1))) ? "Ϟ " : String.Empty) +
                                                     (subValue[8] ? "AC " : String.Empty) +
                                                     (subValue[9] ? "DC " : String.Empty);
-
 
                                 MyGattCDataSymbol = (subValue[20] ? "°C" : String.Empty) +
                                                       (subValue[21] ? "°F" : String.Empty) +
@@ -496,6 +524,7 @@ namespace HeartRateLE.Bluetooth
                                 MyGattCDataTrue_RMS = subValue[8];
                                 MyGattCDataDiode = subValue[14];
                                 MyGattCDataContinuity = subValue[0];
+                                MyGattCDataBattery = subValue[3];
                                 MyGattCDataPeek = msubValue[1];
                                 MyGattCDataInRush = msubValue[3];
                             }
@@ -536,13 +565,10 @@ namespace HeartRateLE.Bluetooth
                                 MyGattCDataPeek = subValue[9];
                                 MyGattCDataMax = subValue[10];
                                 MyGattCDataMin = subValue[11];
+                                MyGattCDataBattery = subValue[3];
                             }
-
-
                         }
                     }
-                    //return "Unknown format: " + binaryvalstr;
-
                 }
 
                 catch (ArgumentException)
@@ -560,7 +586,8 @@ namespace HeartRateLE.Bluetooth
                                           MyGattCDataHold,
                                           MyGattCDataInRush,
                                           MyGattCDataPeek,
-                                          MyGattCDataACDC };
+                                          MyGattCDataACDC,
+                                          MyGattCDataBattery };
             }
             else
             {
@@ -603,7 +630,5 @@ namespace HeartRateLE.Bluetooth
                 default: return "?";
             }
         }
-
-
     }
 }

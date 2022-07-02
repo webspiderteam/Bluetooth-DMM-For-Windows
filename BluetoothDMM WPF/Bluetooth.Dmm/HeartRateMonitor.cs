@@ -17,6 +17,8 @@ namespace HeartRateLE.Bluetooth
         private BluetoothLEDevice _heartRateDevice = null;
         private List<BluetoothAttribute> _serviceCollection = new List<BluetoothAttribute>();
 
+        public bool LogData { get; set; }
+
         private BluetoothAttribute _heartRateMeasurementAttribute;
         private BluetoothAttribute _heartRateAttribute;
         private GattCharacteristic _heartRateMeasurementCharacteristic;
@@ -63,19 +65,19 @@ namespace HeartRateLE.Bluetooth
                 return new Schema.ConnectionResult()
                 {
                     IsConnected = false,
-                    ErrorMessage = "Could not find specified heart rate device"
+                    ErrorMessage = "Could not find specified device"
                 };
             }
 
-            if (_heartRateDevice.DeviceInformation.Pairing.IsPaired)
-            {
-                _heartRateDevice = null;
-                return new Schema.ConnectionResult()
-                {
-                    IsConnected = false,
-                    ErrorMessage = "Heart rate device is not paired"
-                };
-            }
+            //if (_heartRateDevice.DeviceInformation.Pairing.IsPaired)
+            //{
+            //    _heartRateDevice = null;
+            //    return new Schema.ConnectionResult()
+            //    {
+            //        IsConnected = false,
+            //        ErrorMessage = "Device is not paired"
+            //    };
+            //}
 
             // we should always monitor the connection status
             _heartRateDevice.ConnectionStatusChanged -= DeviceConnectionStatusChanged;
@@ -88,7 +90,7 @@ namespace HeartRateLE.Bluetooth
                 return new Schema.ConnectionResult()
                 {
                     IsConnected = false,
-                    ErrorMessage = "Heart rate device is unreachable (i.e. out of range or shutoff)"
+                    ErrorMessage = "Device is unreachable or has no DMM service(i.e. out of range or shutoff)"
                 };
             }
 
@@ -169,7 +171,7 @@ namespace HeartRateLE.Bluetooth
                 return new CharacteristicResult()
                 {
                     IsSuccess = false,
-                    Message = "Cannot find HeartRateMeasurement characteristic"
+                    Message = "Cannot find characteristic"
                 };
             }
             _heartRateMeasurementCharacteristic = _heartRateMeasurementAttribute.characteristic;
@@ -204,7 +206,7 @@ namespace HeartRateLE.Bluetooth
                 return new CharacteristicResult()
                 {
                     IsSuccess = false,
-                    Message = "HeartRateMeasurement characteristic does not support notify"
+                    Message = "Characteristic does not support notify"
                 };
 
             }
@@ -217,7 +219,7 @@ namespace HeartRateLE.Bluetooth
             // BT_Code: GetGattServicesAsync returns a list of all the supported services of the device (even if it's not paired to the system).
             // If the services supported by the device are expected to change during BT usage, subscribe to the GattServicesChanged event.
             GattDeviceServicesResult result = await _heartRateDevice.GetGattServicesAsync(BluetoothCacheMode.Uncached);
-            
+
             if (result.Status == GattCommunicationStatus.Success)
             {
                 _serviceCollection.Clear();
@@ -283,21 +285,23 @@ namespace HeartRateLE.Bluetooth
         {
             byte[] data;
             CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out data);
-
+            var GattData =Utilities.ParseHeartRateValue(data,LogData);
             var args = new Events.RateChangedEventArgs()
             {
-                MyGattCData = (string)Utilities.ParseHeartRateValue(data)[0],
-                MyGattCDataSymbol = (string)Utilities.ParseHeartRateValue(data)[1],
-                MyGattCDataMax = (bool)Utilities.ParseHeartRateValue(data)[2],
-                MyGattCDataMin = (bool)Utilities.ParseHeartRateValue(data)[3],
-                MyGattCDataTrue_RMS = (bool)Utilities.ParseHeartRateValue(data)[4],
-                MyGattCDataAutoRange= (bool)Utilities.ParseHeartRateValue(data)[5],
-                MyGattCDataDiode= (bool)Utilities.ParseHeartRateValue(data)[6],
-                MyGattCDataContinuity= (bool)Utilities.ParseHeartRateValue(data)[7],
-                MyGattCDataHold= (bool)Utilities.ParseHeartRateValue(data)[8],
-                MyGattCDataInRush = (bool)Utilities.ParseHeartRateValue(data)[9],
-                MyGattCDataPeek = (bool)Utilities.ParseHeartRateValue(data)[10],
-                MyGattCDataACDC = (string)Utilities.ParseHeartRateValue(data)[11]
+
+                MyGattCData = (string)GattData[0],
+                MyGattCDataSymbol = (string)GattData[1],
+                MyGattCDataMax = (bool)GattData[2],
+                MyGattCDataMin = (bool)GattData[3],
+                MyGattCDataTrue_RMS = (bool)GattData[4],
+                MyGattCDataAutoRange = (bool)GattData[5],
+                MyGattCDataDiode = (bool)GattData[6],
+                MyGattCDataContinuity = (bool)GattData[7],
+                MyGattCDataHold = (bool)GattData[8],
+                MyGattCDataInRush = (bool)GattData[9],
+                MyGattCDataPeek = (bool)GattData[10],
+                MyGattCDataACDC = (string)GattData[11],
+                MyGattCDataBattery = (bool?)GattData[12]
 
             };
             OnRateChanged(args);
@@ -313,6 +317,8 @@ namespace HeartRateLE.Bluetooth
         {
             get { return _heartRateDevice != null ? _heartRateDevice.ConnectionStatus == BluetoothConnectionStatus.Connected : false; }
         }
+
+ 
 
         /// <summary>
         /// Gets the device information for the current BLE heart rate device.
