@@ -1,18 +1,19 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
-using System.Diagnostics;
-using HeartRateLE.Bluetooth.Events;
-using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Windows.Input;
-using System.Windows.Controls;
+﻿using HeartRateLE.Bluetooth.Events;
+using Microsoft.Win32;
 using ScottPlot;
 using ScottPlot.Plottable;
-using System.Windows.Documents;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace BluetoothDMM
 {
@@ -40,6 +41,8 @@ namespace BluetoothDMM
         private int ZoomScale = 30;
         private string OldACDC;
         private string OldSymbol;
+        private bool onLoad;
+        private bool Draggable;
 
         public MainWindow()
         {
@@ -68,7 +71,6 @@ namespace BluetoothDMM
             signalPlot.LineWidth = 2;
             signalPlot.MarkerSize = 3;
 
-
             signalPlot.IsVisible = false;
             HighlightedPoint = plt.AddPoint(0, 0);
             HighlightedPoint.Color = System.Drawing.Color.Yellow;
@@ -85,19 +87,15 @@ namespace BluetoothDMM
             txt.Font.Size = 12;
             txt.IsVisible = false;
 
-
-
-
             wpfPlot1.Plot.YAxis2.LockLimits(true);
             wpfPlot1.Configuration.LockVerticalAxis = true;
             wpfPlot1.Refresh();
-
 
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
 
             DataContext = this;
             _heartRateMonitor = new HeartRateLE.Bluetooth.HeartRateMonitor();
-            _heartRateMonitor.LogData= Properties.Settings.Default.LogData;
+            _heartRateMonitor.LogData = Properties.Settings.Default.LogData;
             // we should always monitor the connection status
             _heartRateMonitor.ConnectionStatusChanged -= HrDeviceOnDeviceConnectionStatusChanged;
             _heartRateMonitor.ConnectionStatusChanged += HrDeviceOnDeviceConnectionStatusChanged;
@@ -115,18 +113,14 @@ namespace BluetoothDMM
                 Reconnect();
             }
             else { Tg_Btn.IsChecked = true; }
-            if (Properties.Settings.Default.ChartOn)
-            {
-                dispatcherTimer.Start();
-                TopStackPanel.Visibility = Visibility.Visible;
-                ChartON.Visibility = Visibility.Visible;
-            }
+            onLoad = true;
         }
 
         private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
         {
             MyPopup.IsOpen = false;
             Tg_Btn.IsChecked = false;
+
         }
 
         private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
@@ -134,7 +128,7 @@ namespace BluetoothDMM
             MyPopup.IsOpen = false;
             MyPopup.PlacementTarget = sender as UIElement;
             MyPopup.Placement = PlacementMode.Relative;
-            MyPopup.HorizontalOffset =-20;
+            MyPopup.HorizontalOffset = -20;
             MyPopup.VerticalOffset = -35;
             MyPopup.AllowsTransparency = true;
             MyPopup.PopupAnimation = PopupAnimation.Fade;
@@ -193,10 +187,12 @@ namespace BluetoothDMM
                 MyGattCDataContinuity.Visibility = Bool_to_Vis(arg.MyGattCDataContinuity);
                 MyGattCDataDiode.Visibility = Bool_to_Vis(arg.MyGattCDataDiode);
                 Battery.IsChecked = arg.MyGattCDataBattery;
+                MyGattCDataHV.Visibility = Bool_to_Vis(arg.MyGattCDataHV);
+                MyGattCDataRel.Visibility = Bool_to_Vis(arg.MyGattCDataRel);
                 GattValue = arg.MyGattCData;
                 if (arg.MyGattCDataHold)
                 {
-                    MyGattCData.Foreground = Brushes.Red; 
+                    MyGattCData.Foreground = Brushes.Red;
                 }
                 else
                 {
@@ -233,14 +229,7 @@ namespace BluetoothDMM
                 if (!wpfPlot1.IsMouseOver)
                 {
                     txt.IsVisible = false;
-                    if (nextDataIndex > ZoomScale)
-                    {
-                        fitChart(nextDataIndex - ZoomScale, nextDataIndex + 1);
-                    }
-                    else 
-                    {
-                        fitChart(0, ZoomScale + 1);
-                    }
+                    fitChart(nextDataIndex - ZoomScale, nextDataIndex);
                 }
                 wpfPlot1.Refresh();
                 nextDataIndex += 1;
@@ -285,7 +274,7 @@ namespace BluetoothDMM
         {
             if (_heartRateMonitor.IsConnected)
             {
-                await _heartRateMonitor.DisconnectAsync();
+                //await _heartRateMonitor.DisconnectAsync();
             }
 
             while (!DevicePickerActive)
@@ -350,6 +339,7 @@ namespace BluetoothDMM
                         SelectedDeviceName = devicePicker.SelectedDeviceName;
 
                         var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
+                        
                         if (!connectResult.IsConnected)
                             MessageBox.Show(connectResult.ErrorMessage);
 
@@ -421,6 +411,7 @@ namespace BluetoothDMM
 
         private void wpfPlot1_MouseMove(object sender, MouseEventArgs e)
         {
+            Draggable = false;
             // determine point nearest the cursor
             (double mouseCoordX, _) = wpfPlot1.GetMouseCoordinates();
             (double pointX, double pointY, int pointIndex) = signalPlot.GetPointNearestX(mouseCoordX);
@@ -433,13 +424,33 @@ namespace BluetoothDMM
                 HighlightedPoint.X = pointX;
                 HighlightedPoint.Y = pointY;
                 HighlightedPoint.IsVisible = true;
+                var plottablelist = plt.GetPlottables();
+                int LastX = 0;
+                foreach (var plotT in plottablelist)
+                {
+                    var name = plotT.GetType().Name;
+                    if (plotT.GetType().Name == "Text")
+                    {
+                        if (pointIndex <= (int)((ScottPlot.Plottable.Text)plotT).X && pointIndex>LastX)
+                        {
+                            string[] st = SymbolToText(((ScottPlot.Plottable.Text)plotT).Label);
+                            txt.Label = $" {st[0]} {pointY}{st[1]} \n at {pointX} ";
+                        }
+                        LastX = (int)((ScottPlot.Plottable.Text)plotT).X;
+                    }
+                }
+                if (LastX < pointIndex)
+                {
+                    txt.Label = $" {MyGattCDataACDC.Text} {pointY}{MyGattCDataSymbol.Text} \n at {pointX} ";
+                }
 
                 LastHighlightedIndex = pointIndex;
-                txt.Label = $" Value: {pointY} \n at {pointX} ";
+
                 txt.X = pointX;
                 txt.Y = pointY;
                 txt.IsVisible = true;
 
+                wpfPlot1.Render();
                 wpfPlot1.Render();
             }
 
@@ -449,14 +460,40 @@ namespace BluetoothDMM
             //label1.Content = $"Closest point to ({mouseX:N2}, {mouseY:N2}) " +
             //   $"is index {pointIndex} ({pointX:N2}, {pointY:N2})";
         }
+        private static string[] SymbolToText(string Value)
+        {
+            Value = Value.Replace('*', ' ');
+            var result = Value.Split(new string[] { "\n", " " }, StringSplitOptions.RemoveEmptyEntries);
+
+            //var result = Value.Split(new string[] { ";" } , StringSplitOptions.RemoveEmptyEntries);
+            string s1;
+            string s2;
+            if (result.Length == 2)
+            {
+                s1 = result[0];
+                s2 = result[1];
+            }
+            else
+            {
+                s1 = " ";
+                s2 = result[0];
+            }
+
+
+            return new string[] { s1, s2 };
+        }
 
         private void wpfPlot1_MouseUp(object sender, MouseButtonEventArgs e)
         {
             // determine the axis where we are now
             var axes = plt.GetAxisLimits();
-            int xLow = (int)axes.XMin;
-            int xHigh = (int)axes.XMax;
-            ZoomScale = xHigh - xLow;
+            int xLow = (int)(axes.XMin + ZoomScale * 0.02);
+            int xHigh = (int)(axes.XMax - ZoomScale * 0.02);
+            if (e.ChangedButton != MouseButton.Left)
+            {
+                ZoomScale = xHigh - xLow;
+            }
+            TxtBattery.Text = ZoomScale.ToString();
             //set the Y axis limits to the high and low of the range
             fitChart(xLow, xHigh);
             wpfPlot1.Refresh();
@@ -473,23 +510,36 @@ namespace BluetoothDMM
             }
             else
             {
-                if (xHigh > nextDataIndex) { xHigh = nextDataIndex; }
-                if (xLow < 0 || nextDataIndex == 0) { xLow = 0; }
-                double yLow = gattData.Skip(xLow).Take(xHigh - xLow + 1).Min();
-                double yHigh = gattData.Skip(xLow).Take(xHigh - xLow + 1).Max();
+                double yLow = gattData[0];
+                double yHigh = gattData[0];
+                int DataLow = xLow;
+                int DataHigh = xHigh;
+                int lastDataIndex = (int)plt.GetDataLimits().XMax;
+                if (DataLow < 0 || lastDataIndex == 0 || lastDataIndex < ZoomScale)
+                {
+                    DataLow = 0;
+                    DataHigh = ZoomScale + 1;
+                    xLow = 0;
+                }
+                if (DataHigh > lastDataIndex) { DataHigh = lastDataIndex; }
 
+                if (lastDataIndex > 0)
+                {
+                    yLow = gattData.Skip(DataLow).Take(DataHigh - DataLow + 1).Min();
+                    yHigh = gattData.Skip(DataLow).Take(DataHigh - DataLow + 1).Max();
+                }
                 //set the Y axis limits to the high and low of the range
                 //plt.SetAxisLimitsX(nextDataIndex - 30, nextDataIndex - 0.5);
-                plt.SetAxisLimits(xLow - ZoomScale* 0.02, xLow + ZoomScale + ZoomScale * 0.02, yLow - (yHigh - yLow) * plt.Margins().y, yHigh + (yHigh - yLow) * plt.Margins().y);
+                plt.SetAxisLimits(xLow - ZoomScale * 0.02, xLow + ZoomScale + ZoomScale * 0.02, yLow - (yHigh - yLow) * plt.Margins().y, yHigh + (yHigh - yLow) * plt.Margins().y);
             }
         }
 
         private void addVLine()
         {
-            var vline = plt.AddVerticalLine(nextDataIndex-1);
+            var vline = plt.AddVerticalLine(nextDataIndex - 1);
             vline.YAxisIndex = 1;
             vline.LineWidth = 2;
-            var axes = plt.GetAxisLimits(0,1);
+            var axes = plt.GetAxisLimits(0, 1);
 
             int yHigh = (int)axes.YMax;
             var txtvline1 = plt.AddText((OldACDC == "" ? string.Empty : "  " + OldACDC + " * \n") + "  " + OldSymbol + " *  ", nextDataIndex - 1, yHigh);
@@ -510,7 +560,7 @@ namespace BluetoothDMM
             var axes = plt.GetAxisLimits();
             int xLow = (int)axes.XMin;
             int xHigh = (int)axes.XMax;
-            ZoomScale = xHigh - xLow;
+            ZoomScale = xHigh - xLow - 1;
             //set the Y axis limits to the high and low of the range
             fitChart(xLow, xHigh);
             wpfPlot1.Refresh();
@@ -527,7 +577,8 @@ namespace BluetoothDMM
             {
                 SettingPopup.PlacementTarget = sender as UIElement;
                 SettingPopup.IsOpen = true;
-            } else { SettingPopup.IsOpen = false; }
+            }
+            else { SettingPopup.IsOpen = false; }
 
         }
 
@@ -549,14 +600,145 @@ namespace BluetoothDMM
 
         private void Chart_Import_Click(object sender, RoutedEventArgs e)
         {
+            dispatcherTimer.Stop();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "DMM Chart Data file (*.dcd)|*.dcd";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var newplt = new ScottPlot.Plot(600, 400);
+                byte[] bytes = File.ReadAllBytes(openFileDialog.FileName);
+                int DataLen = BitConverter.ToInt32(bytes, bytes.Length - sizeof(int)) + 1;
+                byte[] VLines = new byte[(bytes.Length - DataLen * sizeof(double))]; 
+                Array.Copy(bytes, (DataLen * sizeof(double)),VLines,0,(bytes.Length- DataLen * sizeof(double)));
+                double[] ImportedData = Enumerable.Range(0, DataLen).Select(offset => BitConverter.ToDouble(bytes, offset * sizeof(double))).ToArray();
+                
+                byte[] vLinesS = Enumerable.Range(0, VLines.Length / 5).Select(offset => VLines[offset*5] ).ToArray();
+                int[] vLinesX = Enumerable.Range(0, VLines.Length / 5)
+                                        .Select(offset => BitConverter.ToInt32(VLines, (offset*5)+1)).ToArray();
+
+                
+                //firstArray = array.Take(array.Length / 2).ToArray();
+                //secondArray = array.Skip(array.Length / 2).ToArray();
+                var dataWindow = new DataViewer(ImportedData,vLinesS,vLinesX);
+                dataWindow.Show();
+                //newMyWindow2.myString = "The great String Value";
+            }
+            SettingPopup.IsOpen = false;
+            dispatcherTimer.Start();
 
             SettingPopup.IsOpen = false;
         }
 
+
+        private static byte SymbolToByte(string Value)
+        {
+            Value = Value.Replace('*', ' ');
+            var result = Value.Split(new string[] { "\n", " " }, StringSplitOptions.RemoveEmptyEntries);
+
+            //var result = Value.Split(new string[] { ";" } , StringSplitOptions.RemoveEmptyEntries);
+            string s1;
+            string s2;
+            int final = 0;
+            if (result.Length == 2)
+            {
+                s1 = result[0];
+                s2 = result[1];
+            }
+            else
+            {
+                s1 = " ";
+                s2 = result[0];
+            }
+
+            switch (s1)
+            {
+                case "Δ": final = 3; break;
+                case "AC": final = 2; break;
+                case "DC": final = 1; break;
+                default: final = 0; break;
+            }
+
+            switch (s2)
+            {
+                case "µA": final += 10; break;
+                case "mA": final += 20; break;
+                case "A": final += 30; break;
+                case "mV": final += 40; break;
+                case "V": final += 50; break;
+                case "nF": final += 60; break;
+                case "µF": final += 70; break;
+                case "F": final += 80; break;
+                case "mF": final += 90; break;
+                case "MΩ": final += 100; break;
+                case "kΩ": final += 110; break;
+                case "Ω": final += 120; break;
+                case "KHz": final += 130; break;
+                case "MHz": final += 140; break;
+                case "Hz": final += 150; break;
+                case "°C": final += 160; break;
+                case "°F": final += 170; break;
+                case "%": final += 180; break;
+                default: final = 9; break;
+            }
+            return (byte)final;
+        }
+
+
         private void Chart_Export_Click(object sender, RoutedEventArgs e)
         {
+            dispatcherTimer.Stop();
+            double[] ChartData = gattData.Take((int)plt.GetDataLimits().XMax + 1).ToArray();
+            byte[] Chartbytes = ChartData.SelectMany(value => BitConverter.GetBytes(value)).ToArray();
+            var plottablelist = plt.GetPlottables();
+            System.Collections.Generic.List<byte> VlineList = new System.Collections.Generic.List<byte>();
+            foreach (var plotT in plottablelist)
+            {
+                var name = plotT.GetType().Name;
+                if (plotT.GetType().Name == "Text")
+                {
+                    byte sb = SymbolToByte(((ScottPlot.Plottable.Text)plotT).Label);
+                    VlineList.Add(sb);
+                    byte[] pb = BitConverter.GetBytes((int)((ScottPlot.Plottable.Text)plotT).X);
+                    foreach (var pba in pb)
+                        VlineList.Add(pba);
+                }
+            }
+            byte sbe = SymbolToByte((MyGattCDataACDC.Text == "" ? string.Empty : "  " + MyGattCDataACDC.Text + " * \n") + "  " + MyGattCDataSymbol.Text + " *  ");
+            VlineList.Add(sbe);
+            byte[] pbe = BitConverter.GetBytes((int)plt.GetDataLimits().XMax);
+            foreach (var pba in pbe)
+                VlineList.Add(pba);
 
+            byte[] Vlines = VlineList.ToArray();
+            byte[] Final = Chartbytes.Concat(Vlines).ToArray();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "DMM Chart Data file (*.dcd)|*.dcd";
+            if (saveFileDialog.ShowDialog() == true)
+                File.WriteAllBytes(saveFileDialog.FileName, Final);
             SettingPopup.IsOpen = false;
+            dispatcherTimer.Start();
+        }
+
+        private void window_MouseDown(Object sender, MouseButtonEventArgs e)
+        {
+            if(Draggable)
+                this.DragMove();
+        }
+        private void window_Activated(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.ChartOn && onLoad && (Display.ActualHeight + 180>this.Height))
+            {
+
+                TopStackPanel.Visibility = Visibility.Visible;
+                ChartON.Visibility = Visibility.Visible;
+                this.Height = Display.ActualHeight + 180;
+                onLoad = false;
+            }
+        }
+
+        private void wpfPlot1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Draggable = true;
         }
     }
 }

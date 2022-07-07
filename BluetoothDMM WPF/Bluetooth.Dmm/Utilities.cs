@@ -28,6 +28,8 @@ namespace HeartRateLE.Bluetooth
         private static bool MyGattCDataPeek;
         private static bool MyGattCDataInRush;
         private static bool MyGattCDataHold;
+        private static bool MyGattCDataHV;
+        private static bool MyGattCDataRel;
         private static string MyGattCDataACDC;
         private static string oldMessage = "";
         private static int line = 0;
@@ -442,6 +444,7 @@ namespace HeartRateLE.Bluetooth
                         if (LogData)
                         {
                             File.AppendAllText("log.txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
+                            
                             //File.AppendAllText("logbinary.txt", newValue + System.Environment.NewLine);
                         }
                         oldMessage = newValue;
@@ -449,9 +452,9 @@ namespace HeartRateLE.Bluetooth
                         if (data.Count() == 11)
                         {
                             MyGattCDataHold = newValue.Substring(59, 1).Equals("1");
-                            MyGattCDataACDC = (newValue.Substring(30, 1).Equals("1") ? "Δ " : String.Empty) +
-                               (newValue.Substring(68, 1).Equals("1") ? "AC " : String.Empty) +
-                               (newValue.Substring(73, 1).Equals("1") ? "DC " : String.Empty);
+                            MyGattCDataRel = newValue.Substring(30, 1).Equals("1");
+                            MyGattCDataACDC = (newValue.Substring(68, 1).Equals("1") ? "AC" : String.Empty) +
+                               (newValue.Substring(73, 1).Equals("1") ? "DC" : String.Empty);
 
                             MyGattCDataSymbol = (newValue.Substring(57, 1).Equals("1") ? "°C" : String.Empty) +
                                                                           (newValue.Substring(58, 1).Equals("1") ? "°F" : String.Empty) +
@@ -504,9 +507,9 @@ namespace HeartRateLE.Bluetooth
                                     msubValue = (newValue.Substring(72, 4) + "0000").Select(c => c == '1').ToArray();
                                 }
                                 MyGattCDataHold = subValue[2];
-                                MyGattCDataACDC = (Convert.ToBoolean( Convert.ToInt16(subValue[1]) ^ Convert.ToInt16(newValue.Substring(23, 1))) ? "Ϟ " : String.Empty) +
-                                                    (subValue[8] ? "AC " : String.Empty) +
-                                                    (subValue[9] ? "DC " : String.Empty);
+                                MyGattCDataHV = Convert.ToBoolean(Convert.ToInt16(subValue[1]) ^ Convert.ToInt16(newValue.Substring(23, 1)));
+                                MyGattCDataACDC =  (subValue[8] ? "AC" : String.Empty) +
+                                                    (subValue[9] ? "DC" : String.Empty);
 
                                 MyGattCDataSymbol = (subValue[20] ? "°C" : String.Empty) +
                                                       (subValue[21] ? "°F" : String.Empty) +
@@ -542,9 +545,9 @@ namespace HeartRateLE.Bluetooth
                                 msubValue = ("0000" + "0000").Select(c => c == '1').ToArray();
                                 MyGattCDataHold = subValue[2];
 
-                                MyGattCDataACDC = (!subValue[8] ? "Δ " : String.Empty) +
-                                                    (subValue[21] ? "AC " : String.Empty) +
-                                                    (subValue[18] ? "DC " : String.Empty);
+                                MyGattCDataRel = !subValue[8];
+                                MyGattCDataACDC = (subValue[21] ? "AC" : String.Empty) +
+                                                    (subValue[18] ? "DC" : String.Empty);
 
 
                                 MyGattCDataSymbol = (subValue[27] ? "M" : String.Empty) +
@@ -587,7 +590,9 @@ namespace HeartRateLE.Bluetooth
                                           MyGattCDataInRush,
                                           MyGattCDataPeek,
                                           MyGattCDataACDC,
-                                          MyGattCDataBattery };
+                                          MyGattCDataBattery,
+                                          MyGattCDataHV,
+                                          MyGattCDataRel };
             }
             else
             {

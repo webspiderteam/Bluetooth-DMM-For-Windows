@@ -22,6 +22,7 @@ namespace HeartRateLE.Bluetooth
         private BluetoothAttribute _heartRateMeasurementAttribute;
         private BluetoothAttribute _heartRateAttribute;
         private GattCharacteristic _heartRateMeasurementCharacteristic;
+        private byte[] olddata = { 0 };
 
         /// <summary>
         /// Occurs when [connection status changed].
@@ -51,15 +52,9 @@ namespace HeartRateLE.Bluetooth
 
         public async Task<ConnectionResult> ConnectAsync(string deviceId)
         {
-            try
-            {
-                await DisconnectAsync();
-            }
-            catch
-            {
 
-            }
             _heartRateDevice = await BluetoothLEDevice.FromIdAsync(deviceId);
+            
             if (_heartRateDevice == null)
             {
                 return new Schema.ConnectionResult()
@@ -285,26 +280,33 @@ namespace HeartRateLE.Bluetooth
         {
             byte[] data;
             CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out data);
-            var GattData =Utilities.ParseHeartRateValue(data,LogData);
-            var args = new Events.RateChangedEventArgs()
+            if (!Enumerable.SequenceEqual(data, olddata))
             {
+                var GattData = Utilities.ParseHeartRateValue(data, LogData);
+                var args = new Events.RateChangedEventArgs()
+                {
 
-                MyGattCData = (string)GattData[0],
-                MyGattCDataSymbol = (string)GattData[1],
-                MyGattCDataMax = (bool)GattData[2],
-                MyGattCDataMin = (bool)GattData[3],
-                MyGattCDataTrue_RMS = (bool)GattData[4],
-                MyGattCDataAutoRange = (bool)GattData[5],
-                MyGattCDataDiode = (bool)GattData[6],
-                MyGattCDataContinuity = (bool)GattData[7],
-                MyGattCDataHold = (bool)GattData[8],
-                MyGattCDataInRush = (bool)GattData[9],
-                MyGattCDataPeek = (bool)GattData[10],
-                MyGattCDataACDC = (string)GattData[11],
-                MyGattCDataBattery = (bool?)GattData[12]
+                    MyGattCData = (string)GattData[0],
+                    MyGattCDataSymbol = (string)GattData[1],
+                    MyGattCDataMax = (bool)GattData[2],
+                    MyGattCDataMin = (bool)GattData[3],
+                    MyGattCDataTrue_RMS = (bool)GattData[4],
+                    MyGattCDataAutoRange = (bool)GattData[5],
+                    MyGattCDataDiode = (bool)GattData[6],
+                    MyGattCDataContinuity = (bool)GattData[7],
+                    MyGattCDataHold = (bool)GattData[8],
+                    MyGattCDataInRush = (bool)GattData[9],
+                    MyGattCDataPeek = (bool)GattData[10],
+                    MyGattCDataACDC = (string)GattData[11],
+                    MyGattCDataBattery = (bool?)GattData[12],
+                    MyGattCDataHV = (bool)GattData[13],
+                    MyGattCDataRel = (bool)GattData[14]
 
-            };
-            OnRateChanged(args);
+                };
+                olddata = data;
+                OnRateChanged(args);
+            }
+            
         }
 
         /// <summary>
