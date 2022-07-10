@@ -85,7 +85,7 @@ namespace HeartRateLE.Bluetooth
                 return new Schema.ConnectionResult()
                 {
                     IsConnected = false,
-                    ErrorMessage = "Device is unreachable or has no DMM service(i.e. out of range or shutoff)"
+                    ErrorMessage = "Device is unreachable or has no DMM service(i.e. out of range or shutoff).\n If error continues Check your Bluetooth settings on Windows and Try Disable and Enable Bluetooth."
                 };
             }
 

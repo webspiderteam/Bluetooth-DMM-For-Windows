@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluetooth.Dmm", "Bluetooth.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothDMM", "BluetoothDMM\BluetoothDMM.csproj", "{B585EF35-DC34-48CE-A070-0BB2095756D4}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BluetoothDMMSetup", "BluetoothDMMSetup\BluetoothDMMSetup.vdproj", "{5ED65F95-1C29-4457-A045-2EF2BBC643EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{B585EF35-DC34-48CE-A070-0BB2095756D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B585EF35-DC34-48CE-A070-0BB2095756D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B585EF35-DC34-48CE-A070-0BB2095756D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED65F95-1C29-4457-A045-2EF2BBC643EE}.Debug|Any CPU.ActiveCfg = Debug
+		{5ED65F95-1C29-4457-A045-2EF2BBC643EE}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
