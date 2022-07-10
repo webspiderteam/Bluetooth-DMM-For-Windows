@@ -1,37 +1,49 @@
 ﻿using System.Windows;
 
-namespace REghZyFramework.Themes {
-    public partial class ColourfulDarkTheme {
-        private void CloseWindow_Event(object sender, RoutedEventArgs e) {
+namespace REghZyFramework.Themes
+{
+    public partial class ColourfulDarkTheme
+    {
+        private void CloseWindow_Event(object sender, RoutedEventArgs e)
+        {
             if (e.Source != null)
-                try {
-                    CloseWind(Window.GetWindow((FrameworkElement) e.Source));
+                try
+                {
+                    CloseWind(Window.GetWindow((FrameworkElement)e.Source));
                 }
-                catch {
+                catch
+                {
                 }
         }
 
-        private void AutoMinimize_Event(object sender, RoutedEventArgs e) {
+        private void AutoMinimize_Event(object sender, RoutedEventArgs e)
+        {
             if (e.Source != null)
-                try {
-                    MaximizeRestore(Window.GetWindow((FrameworkElement) e.Source));
+                try
+                {
+                    MaximizeRestore(Window.GetWindow((FrameworkElement)e.Source));
                 }
-                catch {
+                catch
+                {
                 }
         }
 
-        private void Minimize_Event(object sender, RoutedEventArgs e) {
+        private void Minimize_Event(object sender, RoutedEventArgs e)
+        {
             if (e.Source != null)
-                try {
-                    MinimizeWind(Window.GetWindow((FrameworkElement) e.Source));
+                try
+                {
+                    MinimizeWind(Window.GetWindow((FrameworkElement)e.Source));
                 }
-                catch {
+                catch
+                {
                 }
         }
 
         public void CloseWind(Window window) => window.Close();
 
-        public void MaximizeRestore(Window window) {
+        public void MaximizeRestore(Window window)
+        {
             if (window.WindowState == WindowState.Maximized)
                 window.WindowState = WindowState.Normal;
             else if (window.WindowState == WindowState.Normal)

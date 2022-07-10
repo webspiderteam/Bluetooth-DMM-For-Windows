@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace BluetoothDMM
 {
@@ -28,6 +16,7 @@ namespace BluetoothDMM
             checkBox6.IsChecked = Properties.Settings.Default.Reconnect;
             checkBox5.IsChecked = Properties.Settings.Default.LogData;
             checkBox4.IsChecked = Properties.Settings.Default.Remember;
+            checkBox41.IsChecked = Properties.Settings.Default.ADisplay;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -41,6 +30,7 @@ namespace BluetoothDMM
             Properties.Settings.Default.DeviceID = ((MainWindow)Application.Current.MainWindow).SelectedDeviceId;
             Properties.Settings.Default.DeviceName = ((MainWindow)Application.Current.MainWindow).SelectedDeviceName;
             Properties.Settings.Default.Remember = checkBox4.IsChecked == true;
+            Properties.Settings.Default.ADisplay = checkBox41.IsChecked == true;
             Properties.Settings.Default.Save();
             //Properties.Settings.Default.WindowSize = new System.Drawing.Size(0,0);
             //Properties.Settings.Default.WindowPosition = new System.Drawing.Size(0, 0);

@@ -15,13 +15,16 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
+
 namespace BluetoothDMM
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+
         private HeartRateLE.Bluetooth.HeartRateMonitor _heartRateMonitor;
         public string SelectedDeviceId { get; private set; }
 
@@ -104,6 +107,11 @@ namespace BluetoothDMM
             //HrParser.ConnectWithCharacteristic(HrDevice.HeartRate.HeartRateMeasurement);
             _heartRateMonitor.RateChanged -= HrParserOnValueChanged;
             _heartRateMonitor.RateChanged += HrParserOnValueChanged;
+            if (Properties.Settings.Default.ADisplay)
+            {
+                aDisplay.Visibility = Visibility.Collapsed;
+                _ADisplay();
+            }
             if (Properties.Settings.Default.ConnectOn)
             {
                 Tg_Btn.IsChecked = true;
@@ -113,7 +121,9 @@ namespace BluetoothDMM
                 Reconnect();
             }
             else { Tg_Btn.IsChecked = true; }
+
             onLoad = true;
+
         }
 
         private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
@@ -190,6 +200,23 @@ namespace BluetoothDMM
                 MyGattCDataHV.Visibility = Bool_to_Vis(arg.MyGattCDataHV);
                 MyGattCDataRel.Visibility = Bool_to_Vis(arg.MyGattCDataRel);
                 GattValue = arg.MyGattCData;
+                try
+                {
+
+                    doublevalue = Convert.ToDouble(GattValue);
+                }
+                catch
+                {
+                    doublevalue = 0;
+                }
+                if (GattValue != null)
+                {
+                    var result = Math.Abs(doublevalue).ToString().Split(new string[] { ".", " " }, StringSplitOptions.RemoveEmptyEntries);
+                    double maxvalue = 6 * Math.Pow(10, result[0].Length - 1);
+                    if (maxvalue < doublevalue)
+                        maxvalue = maxvalue * 10;
+                    Meter.Value = doublevalue * 100 / maxvalue;
+                }
                 if (arg.MyGattCDataHold)
                 {
                     MyGattCData.Foreground = Brushes.Red;
@@ -206,15 +233,7 @@ namespace BluetoothDMM
             if (Is_Connected.IsChecked == true)
             {
                 signalPlot.IsVisible = true;
-                try
-                {
 
-                    doublevalue = Convert.ToDouble(GattValue);
-                }
-                catch
-                {
-                    doublevalue = 0;
-                }
                 if (MyGattCDataSymbol.Text != OldSymbol || MyGattCDataACDC.Text != OldACDC)
                 {
                     if (nextDataIndex > 1)
@@ -243,9 +262,9 @@ namespace BluetoothDMM
                 bool connected = args.IsConnected;
                 if (connected)
                 {
-                    var device = await _heartRateMonitor.GetDeviceInfoAsync();
+                    //var device = await _heartRateMonitor.GetDeviceInfoAsync();
                     TxtStatus.Text = SelectedDeviceName + ": connected";
-                    TxtBattery.Text = String.Format("battery level: {0}%", device.BatteryPercent);
+                    //TxtBattery.Text = String.Format("battery level: {0}%", device.BatteryPercent);
                     MyGattCDataBluetooth.Visibility = Visibility.Visible;
                     Is_Connected.IsChecked = true;
                     dispatcherTimer.Start();
@@ -339,7 +358,7 @@ namespace BluetoothDMM
                         SelectedDeviceName = devicePicker.SelectedDeviceName;
 
                         var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
-                        
+
                         if (!connectResult.IsConnected)
                             MessageBox.Show(connectResult.ErrorMessage);
 
@@ -354,6 +373,10 @@ namespace BluetoothDMM
                 {
                     _OnTop();
                 }
+                else if (Sender.Name == "ADisplay")
+                {
+                    _ADisplay();
+                }
                 LV.SelectedIndex = -1;
                 Tg_Btn.IsChecked = false;
             }
@@ -366,14 +389,14 @@ namespace BluetoothDMM
 
                 TopStackPanel.Visibility = Visibility.Collapsed;
                 ChartON.Visibility = Visibility.Hidden;
-                Height = Display.ActualHeight;
+                Height = grid.RowDefinitions[0].ActualHeight;
             }
             else
             {
                 dispatcherTimer.Start();
                 TopStackPanel.Visibility = Visibility.Visible;
                 ChartON.Visibility = Visibility.Visible;
-                this.Height = 160 + Display.ActualHeight + 20;
+                this.Height = 160 + grid.RowDefinitions[0].ActualHeight + 20;
             }
         }
         private void _OnTop()
@@ -389,7 +412,24 @@ namespace BluetoothDMM
                 OnTopON.Visibility = Visibility.Visible;
             }
         }
-
+        private void _ADisplay()
+        {
+            if (aDisplay.Visibility==Visibility.Visible)
+            {
+                TxtStatus.Margin = new Thickness(0, 10, 0, 0);
+                Display.Margin = new Thickness(0, 5, 0, 0);
+                aDisplay.Visibility = Visibility.Collapsed;
+                ADisplayON.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                Meter.Value = 0.1;
+                TxtStatus.Margin= new Thickness(0, -70, 0, 0);
+                Display.Margin= new Thickness(0, 45, 0, 0);
+                aDisplay.Visibility = Visibility.Visible;
+                ADisplayON.Visibility = Visibility.Visible;
+            }
+        }
         private void SettingBtn_Click(object sender, RoutedEventArgs e)
         {
             var Settings = new Settings();
@@ -405,6 +445,11 @@ namespace BluetoothDMM
                 Properties.Settings.Default.DeviceID = SelectedDeviceId;
                 Properties.Settings.Default.DeviceName = SelectedDeviceName;
                 Properties.Settings.Default.Save();
+            }
+            if (Properties.Settings.Default.ADisplay)
+            {
+                aDisplay.Visibility = Visibility.Collapsed;
+                _ADisplay();
             }
             _heartRateMonitor.LogData = Properties.Settings.Default.LogData;
         }
@@ -431,7 +476,7 @@ namespace BluetoothDMM
                     var name = plotT.GetType().Name;
                     if (plotT.GetType().Name == "Text")
                     {
-                        if (pointIndex <= (int)((ScottPlot.Plottable.Text)plotT).X && pointIndex>LastX)
+                        if (pointIndex <= (int)((ScottPlot.Plottable.Text)plotT).X && pointIndex > LastX)
                         {
                             string[] st = SymbolToText(((ScottPlot.Plottable.Text)plotT).Label);
                             txt.Label = $" {st[0]} {pointY}{st[1]} \n at {pointX} ";
@@ -608,18 +653,18 @@ namespace BluetoothDMM
                 var newplt = new ScottPlot.Plot(600, 400);
                 byte[] bytes = File.ReadAllBytes(openFileDialog.FileName);
                 int DataLen = BitConverter.ToInt32(bytes, bytes.Length - sizeof(int)) + 1;
-                byte[] VLines = new byte[(bytes.Length - DataLen * sizeof(double))]; 
-                Array.Copy(bytes, (DataLen * sizeof(double)),VLines,0,(bytes.Length- DataLen * sizeof(double)));
+                byte[] VLines = new byte[(bytes.Length - DataLen * sizeof(double))];
+                Array.Copy(bytes, (DataLen * sizeof(double)), VLines, 0, (bytes.Length - DataLen * sizeof(double)));
                 double[] ImportedData = Enumerable.Range(0, DataLen).Select(offset => BitConverter.ToDouble(bytes, offset * sizeof(double))).ToArray();
-                
-                byte[] vLinesS = Enumerable.Range(0, VLines.Length / 5).Select(offset => VLines[offset*5] ).ToArray();
-                int[] vLinesX = Enumerable.Range(0, VLines.Length / 5)
-                                        .Select(offset => BitConverter.ToInt32(VLines, (offset*5)+1)).ToArray();
 
-                
+                byte[] vLinesS = Enumerable.Range(0, VLines.Length / 5).Select(offset => VLines[offset * 5]).ToArray();
+                int[] vLinesX = Enumerable.Range(0, VLines.Length / 5)
+                                        .Select(offset => BitConverter.ToInt32(VLines, (offset * 5) + 1)).ToArray();
+
+
                 //firstArray = array.Take(array.Length / 2).ToArray();
                 //secondArray = array.Skip(array.Length / 2).ToArray();
-                var dataWindow = new DataViewer(ImportedData,vLinesS,vLinesX);
+                var dataWindow = new DataViewer(ImportedData, vLinesS, vLinesX);
                 dataWindow.Show();
                 //newMyWindow2.myString = "The great String Value";
             }
@@ -721,17 +766,18 @@ namespace BluetoothDMM
 
         private void window_MouseDown(Object sender, MouseButtonEventArgs e)
         {
-            if(Draggable)
+            if (Draggable)
                 this.DragMove();
         }
         private void window_Activated(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.ChartOn && onLoad && (Display.ActualHeight + 180>this.Height))
+            if (Properties.Settings.Default.ChartOn && onLoad && (grid.RowDefinitions[0].ActualHeight + 180 > this.Height))
             {
 
                 TopStackPanel.Visibility = Visibility.Visible;
                 ChartON.Visibility = Visibility.Visible;
-                this.Height = Display.ActualHeight + 180;
+                
+                this.Height = grid.RowDefinitions[0].ActualHeight + 180;
                 onLoad = false;
             }
         }
@@ -741,4 +787,5 @@ namespace BluetoothDMM
             Draggable = true;
         }
     }
+
 }

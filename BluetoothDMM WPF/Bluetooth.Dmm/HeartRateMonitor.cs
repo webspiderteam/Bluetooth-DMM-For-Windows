@@ -112,39 +112,43 @@ namespace HeartRateLE.Bluetooth
         private async Task<List<BluetoothAttribute>> GetServiceCharacteristicsAsync(BluetoothAttribute service)
         {
             IReadOnlyList<GattCharacteristic> characteristics = null;
-            try
+            if (service != null)
             {
-                // Ensure we have access to the device.
-                var accessStatus = await service.service.RequestAccessAsync();
-                if (accessStatus == DeviceAccessStatus.Allowed)
+                try
                 {
-                    // BT_Code: Get all the child characteristics of a service. Use the cache mode to specify uncached characterstics only 
-                    // and the new Async functions to get the characteristics of unpaired devices as well. 
-                    var result = await service.service.GetCharacteristicsAsync(BluetoothCacheMode.Uncached);
-                    if (result.Status == GattCommunicationStatus.Success)
+                    // Ensure we have access to the device.
+                    var accessStatus = await service.service.RequestAccessAsync();
+                    if (accessStatus == DeviceAccessStatus.Allowed)
                     {
-                        characteristics = result.Characteristics;
+                        // BT_Code: Get all the child characteristics of a service. Use the cache mode to specify uncached characterstics only 
+                        // and the new Async functions to get the characteristics of unpaired devices as well. 
+                        var result = await service.service.GetCharacteristicsAsync(BluetoothCacheMode.Uncached);
+                        if (result.Status == GattCommunicationStatus.Success)
+                        {
+                            characteristics = result.Characteristics;
+                        }
+                        else
+                        {
+                            characteristics = new List<GattCharacteristic>();
+                        }
                     }
                     else
                     {
+                        // Not granted access
+                        // On error, act as if there are no characteristics.
                         characteristics = new List<GattCharacteristic>();
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    // Not granted access
-                    // On error, act as if there are no characteristics.
                     characteristics = new List<GattCharacteristic>();
                 }
-            }
-            catch (Exception ex)
-            {
-                characteristics = new List<GattCharacteristic>();
-            }
 
-            var characteristicCollection = new List<BluetoothAttribute>();
-            characteristicCollection.AddRange(characteristics.Select(a => new BluetoothAttribute(a)));
-            return characteristicCollection;
+                var characteristicCollection = new List<BluetoothAttribute>();
+                characteristicCollection.AddRange(characteristics.Select(a => new BluetoothAttribute(a)));
+                return characteristicCollection;
+            }
+            return null;
         }
 
         private async Task<CharacteristicResult> SetupHeartRateCharacteristic()

@@ -121,7 +121,7 @@ namespace BluetoothDMM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool LogData {
             get {
                 return ((bool)(this["LogData"]));
@@ -140,6 +140,18 @@ namespace BluetoothDMM.Properties {
             }
             set {
                 this["DeviceName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ADisplay {
+            get {
+                return ((bool)(this["ADisplay"]));
+            }
+            set {
+                this["ADisplay"] = value;
             }
         }
     }

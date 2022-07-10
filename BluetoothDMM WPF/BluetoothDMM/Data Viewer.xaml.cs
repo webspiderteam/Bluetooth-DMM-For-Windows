@@ -1,19 +1,13 @@
-﻿using HeartRateLE.Bluetooth.Events;
-using Microsoft.Win32;
-using ScottPlot;
+﻿using ScottPlot;
 using ScottPlot.Plottable;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace BluetoothDMM
 {
@@ -22,14 +16,22 @@ namespace BluetoothDMM
     /// </summary>
     public partial class DataViewer : Window
     {
+#pragma warning disable CS0169 // The field 'DataViewer._heartRateMonitor' is never used
         private HeartRateLE.Bluetooth.HeartRateMonitor _heartRateMonitor;
+#pragma warning restore CS0169 // The field 'DataViewer._heartRateMonitor' is never used
         public string SelectedDeviceId { get; private set; }
 
         public string SelectedDeviceName { get; private set; }
+#pragma warning disable CS0169 // The field 'DataViewer.GattValue' is never used
         private string GattValue;
+#pragma warning restore CS0169 // The field 'DataViewer.GattValue' is never used
+#pragma warning disable CS0169 // The field 'DataViewer.doublevalue' is never used
         private double doublevalue;
+#pragma warning restore CS0169 // The field 'DataViewer.doublevalue' is never used
         private System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+#pragma warning disable CS0414 // The field 'DataViewer.DevicePickerActive' is assigned but its value is never used
         private bool DevicePickerActive = false;
+#pragma warning restore CS0414 // The field 'DataViewer.DevicePickerActive' is assigned but its value is never used
         private readonly Plot plt;
         private readonly Tooltip txt;
         public double[] gattData = new double[1_000_000];
@@ -39,9 +41,15 @@ namespace BluetoothDMM
         private double LastHighlightedIndex = -1;
         private int nextDataIndex;
         private int ZoomScale = 30;
+#pragma warning disable CS0649 // Field 'DataViewer.OldACDC' is never assigned to, and will always have its default value null
         private string OldACDC;
+#pragma warning restore CS0649 // Field 'DataViewer.OldACDC' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DataViewer.OldSymbol' is never assigned to, and will always have its default value null
         private string OldSymbol;
+#pragma warning restore CS0649 // Field 'DataViewer.OldSymbol' is never assigned to, and will always have its default value null
+#pragma warning disable CS0414 // The field 'DataViewer.onLoad' is assigned but its value is never used
         private bool onLoad;
+#pragma warning restore CS0414 // The field 'DataViewer.onLoad' is assigned but its value is never used
 
         public DataViewer(double[] ImportedData, byte[] vLinesS, int[] VLinesX)
         {
@@ -209,7 +217,7 @@ namespace BluetoothDMM
                     }
                 }
                 LastHighlightedIndex = pointIndex;
-                
+
                 txt.X = pointX;
                 txt.Y = pointY;
                 txt.IsVisible = true;
@@ -244,7 +252,7 @@ namespace BluetoothDMM
             }
 
 
-            return new string[] { s1,s2 };
+            return new string[] { s1, s2 };
         }
         private void wpfPlot1_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -256,7 +264,7 @@ namespace BluetoothDMM
             {
                 ZoomScale = xHigh - xLow;
             }
-            
+
             //set the Y axis limits to the high and low of the range
             fitChart(xLow, xHigh);
             wpfPlot1.Refresh();
@@ -278,10 +286,11 @@ namespace BluetoothDMM
                 int DataLow = xLow;
                 int DataHigh = xHigh;
                 int lastDataIndex = (int)plt.GetDataLimits().XMax;
-                if (DataHigh > lastDataIndex) { 
+                if (DataHigh > lastDataIndex)
+                {
                     DataHigh = lastDataIndex;
                     DataLow = lastDataIndex - ZoomScale;
-                
+
                 }
                 if (DataLow < 0 || lastDataIndex == 0 || lastDataIndex < ZoomScale)
                 {

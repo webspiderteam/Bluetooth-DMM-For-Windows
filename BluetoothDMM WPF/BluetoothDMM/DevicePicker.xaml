@@ -58,7 +58,7 @@
                     <Label Content="Unpaired devices:" ></Label>
                     <ListView x:Name="unpairedListView"
                                   ItemTemplate="{StaticResource ResultsListViewTemplate}"
-                                  ItemsSource="{Binding Path=UnpairedCollection}" Height="300" Width="Auto">
+                                  ItemsSource="{Binding Path=UnpairedCollection}" Height="300" Width="Auto" MouseDoubleClick="unpairedListView_MouseDoubleClick">
                     </ListView>
                 </StackPanel>
             </Border>
