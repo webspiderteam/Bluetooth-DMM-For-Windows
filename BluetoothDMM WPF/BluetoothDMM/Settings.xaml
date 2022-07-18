@@ -6,18 +6,20 @@
         xmlns:local="clr-namespace:BluetoothDMM"
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
-        Title="Settings" Height="315.566" Width="484.146" WindowStyle="None" Topmost="True">
+        Title="Settings" Height="407.857" Width="484.146" WindowStyle="None">
     <Grid>
-        <CheckBox x:Name="checkBox1" Content="Auto Connect Last Device on startup"  HorizontalAlignment="Left" Height="34" Margin="56,40,0,0" VerticalAlignment="Top" Width="290"/>
-        <CheckBox x:Name="checkBox2" Content="Chart ON on startup" HorizontalAlignment="Left" Height="34" Margin="56,70,0,0" VerticalAlignment="Top" Width="161"/>
-        <CheckBox x:Name="checkBox3" Content="Always on top" HorizontalAlignment="Left" Height="34" Margin="56,100,0,0" VerticalAlignment="Top" Width="161"/>
-        <CheckBox x:Name="checkBox41" Content="Analog Display ON on startup" HorizontalAlignment="Left" Height="34" Margin="56,130,0,0" VerticalAlignment="Top" Width="254" MinWidth="200"/>
-        <CheckBox x:Name="checkBox5" Content="Log Raw Data" HorizontalAlignment="Left" Height="34" Margin="56,218,0,0" VerticalAlignment="Top" Width="161" IsChecked="True"/>
-        <CheckBox x:Name="checkBox6" Content="Auto Reconnect after disconnection" HorizontalAlignment="Left" Height="29" Margin="56,252,0,0" VerticalAlignment="Top" Width="246" IsChecked="True"/>
+        <CheckBox x:Name="checkBox1" Content="Auto Connect Known Devices on startup"  HorizontalAlignment="Left" Height="34" Margin="56,40,0,0" VerticalAlignment="Top" Width="290"/>
+        <CheckBox x:Name="checkBox2" Content="Chart ON on startup" HorizontalAlignment="Left" Height="34" Margin="56,100,0,0" VerticalAlignment="Top" Width="161"/>
+        <CheckBox x:Name="checkBox3" Content="Always on top" HorizontalAlignment="Left" Height="34" Margin="56,130,0,0" VerticalAlignment="Top" Width="161"/>
+        <CheckBox x:Name="checkBox41" Content="Analog Display ON on startup" HorizontalAlignment="Left" Height="34" Margin="56,160,0,0" VerticalAlignment="Top" Width="254" MinWidth="200"/>
+        <CheckBox x:Name="checkBox5" Content="Log Raw Data" HorizontalAlignment="Left" Height="34" Margin="56,248,0,0" VerticalAlignment="Top" Width="161" IsChecked="True"/>
+        <CheckBox x:Name="checkBox6" Content="Auto Reconnect after disconnection" HorizontalAlignment="Left" Height="29" Margin="56,282,0,0" VerticalAlignment="Top" Width="246" IsChecked="True"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="18" Margin="33,28,0,0" Text="Startup Settings" VerticalAlignment="Top" Width="241"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Height="18" Margin="33,205,0,0" Text="Advanced Settings" VerticalAlignment="Top" Width="241"/>
-        <Button x:Name="button" Content="Save" HorizontalAlignment="Left" Height="29" Margin="379,254,0,0" VerticalAlignment="Top" Width="76" Click="button_Click"/>
-        <CheckBox x:Name="checkBox4" Content="Save window position and size" HorizontalAlignment="Left" Height="34" Margin="56,160,0,0" VerticalAlignment="Top" Width="254" MinWidth="200"/>
-
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Height="18" Margin="33,235,0,0" Text="Advanced Settings" VerticalAlignment="Top" Width="241"/>
+        <Button x:Name="button" Content="Save" HorizontalAlignment="Left" Height="29" Margin="379,347,0,0" VerticalAlignment="Top" Width="76" Click="button_Click"/>
+        <CheckBox x:Name="checkBox4" Content="Save window position and size" HorizontalAlignment="Left" Height="34" Margin="56,190,0,0" VerticalAlignment="Top" Width="254" MinWidth="200"/>
+        <Button x:Name="button1" Content="Manage Known Devices" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="229,74,0,0" Height="26" Click="button1_Click" IsEnabled="{Binding IsChecked, ElementName=checkBox1}"/>
+        <CheckBox x:Name="checkBox7" Content="Always Minimize to Tray" HorizontalAlignment="Left" Height="29" Margin="56,315,0,0" VerticalAlignment="Top" Width="246" IsChecked="True"/>
+        <CheckBox x:Name="checkBox8" Content="Run on Windows Startup" HorizontalAlignment="Left" Height="29" Margin="56,350,0,0" VerticalAlignment="Top" Width="246" IsChecked="True"/>
     </Grid>
 </Window>

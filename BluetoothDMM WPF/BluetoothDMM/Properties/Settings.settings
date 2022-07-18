@@ -23,14 +23,14 @@
     <Setting Name="Reconnect" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="DeviceID" Type="System.String" Scope="User">
+    <Setting Name="DeviceID" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LogData" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="DeviceName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="MinimizeTray" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ADisplay" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

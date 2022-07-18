@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Windows.Devices.Enumeration;
 
 namespace HeartRateLE.Bluetooth.Schema
 {
@@ -14,10 +10,10 @@ namespace HeartRateLE.Bluetooth.Schema
         public bool IsDefault { get; set; }
         public string Name { get; set; }
         public string MacAdr { get; set; }
+        public System.IO.Stream GlyphImage { get; set;}
         public bool IsPaired { get; set; }
-        public bool IsConnected { get; set; }
         public string Kind { get; set; }
         public Dictionary<string, object> Properties { get; set; }
-        public Bitmap DeviceThumbnail { get; set; }
+        public DeviceThumbnail GlyphBitmapImage { get; internal set; }
     }
 }

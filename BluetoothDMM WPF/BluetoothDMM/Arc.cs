@@ -113,7 +113,7 @@ namespace BluetoothDMM
             {
                 double startAngle = StartAngle + 90;
                 double Differ = Math.Abs(EndAngle - StartAngle);
-                double endAngle = startAngle - ((Value / 100.0) * (Differ));
+                double endAngle = startAngle - ((Value / 100.0) * (Differ)+0.2);
 
                 double maxWidth = Math.Max(0.0, RenderSize.Width - StrokeThickness);
                 double maxHeight = Math.Max(0.0, RenderSize.Height - StrokeThickness);

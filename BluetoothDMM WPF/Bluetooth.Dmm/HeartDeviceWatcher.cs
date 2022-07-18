@@ -1,11 +1,10 @@
-﻿using HeartRateLE.Bluetooth.Schema;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Devices.Bluetooth;
-using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace HeartRateLE.Bluetooth
 {
@@ -13,18 +12,19 @@ namespace HeartRateLE.Bluetooth
     {
         // Additional properties we would like about the device.
         // Property strings are documented here https://msdn.microsoft.com/en-us/library/windows/desktop/ff521659(v=vs.85).aspx
-        string[] additionalProperties =
+        readonly string[] additionalProperties =
             {
                 "System.Devices.Aep.CanPair",
                 "System.Devices.Aep.IsConnected",
                 "System.Devices.Aep.IsPresent",
-                "System.Devices.Aep.IsPaired"
+                "System.Devices.Aep.IsPaired",
+                "System.Devices.GlyphIcon",
+                "System.Devices.Aep.Bluetooth.Le.IsConnectable"
             };
 
         private static readonly string[] RequiredServices = new string[] { "180D", "180A", "180F" };
         private DeviceWatcher _deviceWatcher;
-        private List<string> _filters;
-
+        private readonly List<string> _filters;
         public event EventHandler<Events.DeviceAddedEventArgs> DeviceAdded;
         protected virtual void OnDeviceAdded(Events.DeviceAddedEventArgs e)
         {
@@ -120,7 +120,6 @@ namespace HeartRateLE.Bluetooth
 
             return compatibleDevice;
         }
-
         private async void Added(DeviceWatcher sender, DeviceInformation deviceInformation)
         {
             if (await IsDeviceCompatible(deviceInformation.Id))
@@ -137,12 +136,14 @@ namespace HeartRateLE.Bluetooth
                             IsEnabled = deviceInformation.IsEnabled,
                             Name = (deviceInformation.Name=="" ? "Unknown Device " : deviceInformation.Name),
                             MacAdr = deviceInformation.Id.Substring(deviceInformation.Id.Length-17, 17).ToUpper(),
+                            GlyphBitmapImage = await deviceInformation.GetGlyphThumbnailAsync(),
                             IsPaired = deviceInformation.Pairing.IsPaired,
+                            //IsConnected = deviceInformation.Properties.ContainsKey("System.Devices.Aep.IsConnected") ? (bool)deviceInformation.Properties["System.Devices.Aep.IsConnected"] : false,
                             Kind = deviceInformation.Kind.ToString(),
                             Properties = deviceInformation.Properties.ToDictionary(pair => pair.Key, pair => pair.Value)
                         }
                     };
-
+                    
                     OnDeviceAdded(args);
                 }
             }
@@ -162,7 +163,7 @@ namespace HeartRateLE.Bluetooth
                             Id = deviceInformationUpdate.Id,
                             Kind = deviceInformationUpdate.Kind.ToString(),
                             Properties = deviceInformationUpdate.Properties.ToDictionary(pair => pair.Key, pair => pair.Value)
-                        }
+                }
                     };
 
                     OnDeviceUpdated(args);

@@ -31,7 +31,7 @@
     <UpdateUrl>https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/</UpdateUrl>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>1.08.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.10.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -103,6 +103,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -132,6 +133,9 @@
     <Compile Include="Data Viewer.xaml.cs">
       <DependentUpon>Data Viewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Devices.xaml.cs">
+      <DependentUpon>Devices.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Styles\ColourfulDarkTheme.xaml.cs">
       <DependentUpon>ColourfulDarkTheme.xaml</DependentUpon>
     </Compile>
@@ -159,6 +163,10 @@
     <Page Include="Data Viewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -256,7 +264,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Logo.ico" />
+    <EmbeddedResource Include="Logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\img_setting.png" />
@@ -288,7 +296,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <SplashScreen Include="Assets\SplashScreen.scale-100.png" />
     <Resource Include="Assets\ADisplay.png" />
+    <Resource Include="Assets\Logo.ico" />
     <Content Include="Assets\Meter.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

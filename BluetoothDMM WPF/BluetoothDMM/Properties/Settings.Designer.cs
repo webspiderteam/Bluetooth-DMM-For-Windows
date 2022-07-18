@@ -109,10 +109,9 @@ namespace BluetoothDMM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DeviceID {
+        public global::System.Collections.Specialized.StringCollection DeviceID {
             get {
-                return ((string)(this["DeviceID"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["DeviceID"]));
             }
             set {
                 this["DeviceID"] = value;
@@ -133,13 +132,13 @@ namespace BluetoothDMM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DeviceName {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool MinimizeTray {
             get {
-                return ((string)(this["DeviceName"]));
+                return ((bool)(this["MinimizeTray"]));
             }
             set {
-                this["DeviceName"] = value;
+                this["MinimizeTray"] = value;
             }
         }
         

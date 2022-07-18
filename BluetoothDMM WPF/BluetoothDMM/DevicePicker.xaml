@@ -9,17 +9,16 @@
         Title="DevicePicker" Height="490.415" Width="562.94" HorizontalAlignment="Center"  >
 
     <Window.Resources>
-
         <DataTemplate x:Key="ResultsListViewTemplate">
             <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*" MinWidth="100"/>
                 </Grid.ColumnDefinitions>
-                <!--<Border Grid.Column="0" Height="40" Width="40" Margin="5" VerticalAlignment="Top">
-                    <Image Source="{Binding Path=GlyphBitmapImage}"
+                <Border Grid.Column="0" Height="40" Width="40" Margin="5" VerticalAlignment="Top">
+                    <Image Source="{Binding GlyphImage}"
                            Stretch="UniformToFill"/>
-                </Border>-->
+                </Border>
                 <Border Grid.Column="1" Margin="5">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
@@ -38,10 +37,9 @@
                 </Border>
             </Grid>
         </DataTemplate>
-
     </Window.Resources>
 
-    <Grid x:Name="RootGrid" Margin="12,20,12,12" RenderTransformOrigin="0.499,0.741">
+    <Grid x:Name="RootGrid" Margin="12,40,12,12" RenderTransformOrigin="0.499,0.741">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
@@ -52,28 +50,15 @@
             <TextBlock Text="Manage Bluetooth Devices" FontWeight="Bold" />
             <TextBlock TextWrapping="Wrap" Margin="0,0,0,10" 
                                Text="Searching for Bluetooth devices..." />
-
             <Border BorderBrush="AntiqueWhite" BorderThickness="1" Width="Auto">
                 <StackPanel Margin="0">
-                    <Label Content="Unpaired devices:" ></Label>
+                    <Label Content="List of Available Devices:" ></Label>
                     <ListView x:Name="unpairedListView"
                                   ItemTemplate="{StaticResource ResultsListViewTemplate}"
                                   ItemsSource="{Binding Path=UnpairedCollection}" Height="300" Width="Auto" MouseDoubleClick="unpairedListView_MouseDoubleClick">
                     </ListView>
                 </StackPanel>
             </Border>
-            <Button x:Name="PairDeviceButton" Content="Pair" Click="PairDeviceButton_Click" Visibility="Collapsed"/>
-
-            <Border BorderBrush="AntiqueWhite" BorderThickness="1" Width="Auto" Visibility="Collapsed">
-                <StackPanel Orientation="Vertical" Visibility="Hidden">
-                    <Label Content="Paired devices:" ></Label>
-                    <ListView x:Name="pairedListView"
-                                  ItemTemplate="{StaticResource ResultsListViewTemplate}"
-                                  ItemsSource="{Binding Path=PairedCollection}" Height="100" Width="Auto">
-                    </ListView>
-                </StackPanel>
-            </Border>
-            <Button x:Name="UnpairDeviceButton" Content="Unpair" Click="UnpairDeviceButton_Click" Visibility="Hidden"/>
         </StackPanel>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,15,15,1" Height="50">
             <Button x:Name="OkButton" Content="Select"  Width="100" Click="OkButton_Click" />

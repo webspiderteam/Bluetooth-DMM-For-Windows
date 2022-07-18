@@ -2,8 +2,8 @@
 using HeartRateLE.Bluetooth.Schema;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
@@ -52,9 +52,11 @@ namespace HeartRateLE.Bluetooth
 
         public async Task<ConnectionResult> ConnectAsync(string deviceId)
         {
-
+            if (_heartRateDevice != null)
+            {
+                await DisconnectAsync();
+            }
             _heartRateDevice = await BluetoothLEDevice.FromIdAsync(deviceId);
-            
             if (_heartRateDevice == null)
             {
                 return new Schema.ConnectionResult()
@@ -81,6 +83,8 @@ namespace HeartRateLE.Bluetooth
             var isReachable = await GetDeviceServicesAsync();
             if (!isReachable)
             {
+                //Debug.WriteLine("2nd");
+                _heartRateDevice.Dispose();
                 _heartRateDevice = null;
                 return new Schema.ConnectionResult()
                 {
@@ -92,15 +96,19 @@ namespace HeartRateLE.Bluetooth
             CharacteristicResult characteristicResult;
             characteristicResult = await SetupHeartRateCharacteristic();
             if (!characteristicResult.IsSuccess)
+            {
+                //Debug.WriteLine("3rd");
+                _heartRateDevice.Dispose();
+                _heartRateDevice = null;
                 return new Schema.ConnectionResult()
                 {
                     IsConnected = false,
                     ErrorMessage = characteristicResult.Message
                 };
-
+            }
 
             // we could force propagation of event with connection status change, to run the callback for initial status
-            DeviceConnectionStatusChanged(_heartRateDevice, null);
+            //DeviceConnectionStatusChanged(_heartRateDevice, null);
 
             return new Schema.ConnectionResult()
             {
@@ -109,46 +117,43 @@ namespace HeartRateLE.Bluetooth
             };
         }
 
+
         private async Task<List<BluetoothAttribute>> GetServiceCharacteristicsAsync(BluetoothAttribute service)
         {
             IReadOnlyList<GattCharacteristic> characteristics = null;
-            if (service != null)
+            try
             {
-                try
+                // Ensure we have access to the device.
+                var accessStatus = await service.service.RequestAccessAsync();
+                if (accessStatus == DeviceAccessStatus.Allowed)
                 {
-                    // Ensure we have access to the device.
-                    var accessStatus = await service.service.RequestAccessAsync();
-                    if (accessStatus == DeviceAccessStatus.Allowed)
+                    // BT_Code: Get all the child characteristics of a service. Use the cache mode to specify uncached characterstics only 
+                    // and the new Async functions to get the characteristics of unpaired devices as well. 
+                    var result = await service.service.GetCharacteristicsAsync(BluetoothCacheMode.Uncached);
+                    if (result.Status == GattCommunicationStatus.Success)
                     {
-                        // BT_Code: Get all the child characteristics of a service. Use the cache mode to specify uncached characterstics only 
-                        // and the new Async functions to get the characteristics of unpaired devices as well. 
-                        var result = await service.service.GetCharacteristicsAsync(BluetoothCacheMode.Uncached);
-                        if (result.Status == GattCommunicationStatus.Success)
-                        {
-                            characteristics = result.Characteristics;
-                        }
-                        else
-                        {
-                            characteristics = new List<GattCharacteristic>();
-                        }
+                        characteristics = result.Characteristics;
                     }
                     else
                     {
-                        // Not granted access
-                        // On error, act as if there are no characteristics.
                         characteristics = new List<GattCharacteristic>();
                     }
                 }
-                catch (Exception ex)
+                else
                 {
+                    // Not granted access
+                    // On error, act as if there are no characteristics.
                     characteristics = new List<GattCharacteristic>();
                 }
-
-                var characteristicCollection = new List<BluetoothAttribute>();
-                characteristicCollection.AddRange(characteristics.Select(a => new BluetoothAttribute(a)));
-                return characteristicCollection;
             }
-            return null;
+            catch (Exception ex)
+            {
+                characteristics = new List<GattCharacteristic>();
+            }
+
+            var characteristicCollection = new List<BluetoothAttribute>();
+            characteristicCollection.AddRange(characteristics.Select(a => new BluetoothAttribute(a)));
+            return characteristicCollection;
         }
 
         private async Task<CharacteristicResult> SetupHeartRateCharacteristic()
@@ -156,10 +161,11 @@ namespace HeartRateLE.Bluetooth
             _heartRateAttribute = _serviceCollection.Where(a => a.Name == "65520").FirstOrDefault();
             if (_heartRateAttribute == null)
             {
+                await DisconnectAsync();
                 return new CharacteristicResult()
                 {
                     IsSuccess = false,
-                    Message = "Cannot find HeartRate service"
+                    Message = "Cannot find DMM service"
                 };
             }
 
@@ -167,6 +173,7 @@ namespace HeartRateLE.Bluetooth
             _heartRateMeasurementAttribute = characteristics.Where(a => a.Name == "65524").FirstOrDefault();
             if (_heartRateMeasurementAttribute == null)
             {
+                await DisconnectAsync();
                 return new CharacteristicResult()
                 {
                     IsSuccess = false,
@@ -181,6 +188,7 @@ namespace HeartRateLE.Bluetooth
             var result = await _heartRateMeasurementCharacteristic.GetDescriptorsAsync(BluetoothCacheMode.Uncached);
             if (result.Status != GattCommunicationStatus.Success)
             {
+                await DisconnectAsync();
                 return new CharacteristicResult()
                 {
                     IsSuccess = false,
@@ -218,7 +226,7 @@ namespace HeartRateLE.Bluetooth
             // BT_Code: GetGattServicesAsync returns a list of all the supported services of the device (even if it's not paired to the system).
             // If the services supported by the device are expected to change during BT usage, subscribe to the GattServicesChanged event.
             GattDeviceServicesResult result = await _heartRateDevice.GetGattServicesAsync(BluetoothCacheMode.Uncached);
-
+            
             if (result.Status == GattCommunicationStatus.Success)
             {
                 _serviceCollection.Clear();
@@ -241,15 +249,25 @@ namespace HeartRateLE.Bluetooth
             {
                 if (_heartRateMeasurementCharacteristic != null)
                 {
-                    //NOTE: might want to do something here if the result is not successful
-                    var result = await _heartRateMeasurementCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.None);
-                    if (_heartRateMeasurementCharacteristic.Service != null)
-                        _heartRateMeasurementCharacteristic.Service.Dispose();
-                    _heartRateMeasurementCharacteristic = null;
+                    try
+                    {
+                        //NOTE: might want to do something here if the result is not successful
+                        //Debug.WriteLine("1st a");
+                        _heartRateMeasurementCharacteristic.ValueChanged -= HeartRateValueChanged;
+                        //var result = await _heartRateMeasurementCharacteristic.WriteClientCharacteristicConfigurationDescriptorWithResultAsync(GattClientCharacteristicConfigurationDescriptorValue.None);
+                        if (_heartRateMeasurementCharacteristic.Service != null)
+                            _heartRateMeasurementCharacteristic.Service.Dispose();
+                        _heartRateMeasurementCharacteristic = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        //Debug.WriteLine("exr" + ex);
+                    }    
                 }
 
                 if (_heartRateMeasurementAttribute != null)
                 {
+                    //Debug.WriteLine("1st b");
                     if (_heartRateMeasurementAttribute.service != null)
                         _heartRateMeasurementAttribute.service.Dispose();
                     _heartRateMeasurementAttribute = null;
@@ -257,17 +275,19 @@ namespace HeartRateLE.Bluetooth
 
                 if (_heartRateAttribute != null)
                 {
+                    //Debug.WriteLine("1st c");
                     if (_heartRateAttribute.service != null)
                         _heartRateAttribute.service.Dispose();
                     _heartRateAttribute = null;
                 }
 
                 _serviceCollection = new List<BluetoothAttribute>();
-
+                //Debug.WriteLine("4th");
+                _heartRateDevice.ConnectionStatusChanged -= DeviceConnectionStatusChanged;
                 _heartRateDevice.Dispose();
                 _heartRateDevice = null;
 
-                DeviceConnectionStatusChanged(null, null);
+                //DeviceConnectionStatusChanged(null, null);
             }
         }
         private void DeviceConnectionStatusChanged(BluetoothLEDevice sender, object args)
@@ -282,8 +302,7 @@ namespace HeartRateLE.Bluetooth
 
         private void HeartRateValueChanged(GattCharacteristic sender, GattValueChangedEventArgs e)
         {
-            byte[] data;
-            CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out data);
+            CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out byte[] data);
             if (!Enumerable.SequenceEqual(data, olddata))
             {
                 var GattData = Utilities.ParseHeartRateValue(data, LogData);
@@ -310,7 +329,7 @@ namespace HeartRateLE.Bluetooth
                 olddata = data;
                 OnRateChanged(args);
             }
-            
+
         }
 
         /// <summary>
@@ -324,7 +343,7 @@ namespace HeartRateLE.Bluetooth
             get { return _heartRateDevice != null ? _heartRateDevice.ConnectionStatus == BluetoothConnectionStatus.Connected : false; }
         }
 
- 
+
 
         /// <summary>
         /// Gets the device information for the current BLE heart rate device.
