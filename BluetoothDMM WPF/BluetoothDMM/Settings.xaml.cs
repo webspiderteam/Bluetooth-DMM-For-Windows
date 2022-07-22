@@ -24,6 +24,7 @@ namespace BluetoothDMM
             checkBox4.IsChecked = Properties.Settings.Default.Remember;
             checkBox7.IsChecked = Properties.Settings.Default.MinimizeTray;
             checkBox41.IsChecked = Properties.Settings.Default.ADisplay;
+            checkBox9.IsChecked = Properties.Settings.Default.AskOnConnect;
             DeviceListC = deviceListC;
             if (rkApp.GetValue("BluetoothDMM") == null)
             {
@@ -37,7 +38,7 @@ namespace BluetoothDMM
             }
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
             Properties.Settings.Default.Ontop = checkBox3.IsChecked == true;
@@ -49,6 +50,7 @@ namespace BluetoothDMM
             Properties.Settings.Default.MinimizeTray = checkBox7.IsChecked == true;
             Properties.Settings.Default.Remember = checkBox4.IsChecked == true;
             Properties.Settings.Default.ADisplay = checkBox41.IsChecked == true;
+            Properties.Settings.Default.AskOnConnect = checkBox9.IsChecked == true;
             Properties.Settings.Default.Save();
             //Properties.Settings.Default.WindowSize = new System.Drawing.Size(0,0);
             //Properties.Settings.Default.WindowPosition = new System.Drawing.Size(0, 0);
@@ -66,7 +68,7 @@ namespace BluetoothDMM
 
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void Button1_Click(object sender, RoutedEventArgs e)
         {
             var DeviceListEditor = new Devices(DeviceListC)
             {

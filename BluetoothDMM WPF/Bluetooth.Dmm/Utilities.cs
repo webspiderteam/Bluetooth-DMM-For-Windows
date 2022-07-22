@@ -457,21 +457,21 @@ namespace HeartRateLE.Bluetooth
                                (newValue.Substring(73, 1).Equals("1") ? "DC" : String.Empty);
 
                             MyGattCDataSymbol = (newValue.Substring(57, 1).Equals("1") ? "°C" : String.Empty) +
-                                                                          (newValue.Substring(58, 1).Equals("1") ? "°F" : String.Empty) +
-                                                                          (newValue.Substring(74, 1).Equals("1") ? "m" : String.Empty) +
-                                                                          (newValue.Substring(75, 1).Equals("1") ? "V" : String.Empty) +
-                                                                          (newValue.Substring(64, 1).Equals("1") ? "n" : String.Empty) +
-                                                                          (newValue.Substring(65, 1).Equals("1") ? "m" : String.Empty) +
-                                                                          (newValue.Substring(66, 1).Equals("1") ? "µ" : String.Empty) +
-                                                                          (newValue.Substring(67, 1).Equals("1") ? "F" : String.Empty) +
-                                                                          (newValue.Substring(69, 1).Equals("1") ? "%" : String.Empty) +
-                                                                          (newValue.Substring(76, 1).Equals("1") ? "M" : String.Empty) +
-                                                                          (newValue.Substring(77, 1).Equals("1") ? "k" : String.Empty) +
-                                                                          (newValue.Substring(78, 1).Equals("1") ? "Ω" : String.Empty) +
-                                                                          (newValue.Substring(79, 1).Equals("1") ? "Hz" : String.Empty) +
-                                                                          (newValue.Substring(85, 1).Equals("1") ? "µ" : String.Empty) +
-                                                                          (newValue.Substring(84, 1).Equals("1") ? "m" : String.Empty) +
-                                                                          (newValue.Substring(72, 1).Equals("1") ? "A" : String.Empty);
+                                                (newValue.Substring(58, 1).Equals("1") ? "°F" : String.Empty) +
+                                                (newValue.Substring(74, 1).Equals("1") ? "m" : String.Empty) +
+                                                (newValue.Substring(75, 1).Equals("1") ? "V" : String.Empty) +
+                                                (newValue.Substring(64, 1).Equals("1") ? "n" : String.Empty) +
+                                                (newValue.Substring(65, 1).Equals("1") ? "m" : String.Empty) +
+                                                (newValue.Substring(66, 1).Equals("1") ? "µ" : String.Empty) +
+                                                (newValue.Substring(67, 1).Equals("1") ? "F" : String.Empty) +
+                                                (newValue.Substring(69, 1).Equals("1") ? "%" : String.Empty) +
+                                                (newValue.Substring(76, 1).Equals("1") ? "M" : String.Empty) +
+                                                (newValue.Substring(77, 1).Equals("1") ? "k" : String.Empty) +
+                                                (newValue.Substring(78, 1).Equals("1") ? "Ω" : String.Empty) +
+                                                (newValue.Substring(79, 1).Equals("1") ? "Hz" : String.Empty) +
+                                                (newValue.Substring(85, 1).Equals("1") ? "µ" : String.Empty) +
+                                                (newValue.Substring(84, 1).Equals("1") ? "m" : String.Empty) +
+                                                (newValue.Substring(72, 1).Equals("1") ? "A" : String.Empty);
                             MyGattCDataMax = newValue.Substring(71, 1).Equals("1");
                             MyGattCDataMin = newValue.Substring(70, 1).Equals("1");
                             MyGattCDataTrue_RMS = newValue.Substring(68, 1).Equals("1");
@@ -489,21 +489,21 @@ namespace HeartRateLE.Bluetooth
                                 if (dev_type == 2)
                                 {
                                     subValue = (newValue.Substring(28, 4) +
-                                                        newValue.Substring(56, 4) +
-                                                        newValue.Substring(68, 4) +
-                                                        newValue.Substring(64, 4) +
-                                                        newValue.Substring(76, 4) +
-                                                        newValue.Substring(72, 4)).Select(c => c == '1').ToArray();
+                                                newValue.Substring(56, 4) +
+                                                newValue.Substring(68, 4) +
+                                                newValue.Substring(64, 4) +
+                                                newValue.Substring(76, 4) +
+                                                newValue.Substring(72, 4)).Select(c => c == '1').ToArray();
                                     msubValue = ("0000" + "0000").Select(c => c == '1').ToArray();
                                 }
                                 else if (dev_type == 1)
                                 {
                                     subValue = (newValue.Substring(28, 4) +
-                                                        newValue.Substring(72, 4) +
-                                                        newValue.Substring(56, 4) +
-                                                        newValue.Substring(68, 4) +
-                                                        newValue.Substring(64, 4) +
-                                                        newValue.Substring(76, 4)).Select(c => c == '1').ToArray();
+                                                newValue.Substring(72, 4) +
+                                                newValue.Substring(56, 4) +
+                                                newValue.Substring(68, 4) +
+                                                newValue.Substring(64, 4) +
+                                                newValue.Substring(76, 4)).Select(c => c == '1').ToArray();
                                     msubValue = (newValue.Substring(72, 4) + "0000").Select(c => c == '1').ToArray();
                                 }
                                 MyGattCDataHold = subValue[2];
@@ -574,9 +574,11 @@ namespace HeartRateLE.Bluetooth
                     }
                 }
 
-                catch (ArgumentException)
+                catch (Exception ex)
                 {
-                    MyGattCData = "Error binary value";
+                    MyGattCData = "Error";
+                    MyGattCDataSymbol = "Parse Data";
+                    Debug.WriteLine("Parse Data Error : " + ex);
                 }
                 return new ArrayList() { MyGattCData,
                                           MyGattCDataSymbol,
@@ -596,7 +598,7 @@ namespace HeartRateLE.Bluetooth
             }
             else
             {
-                return new ArrayList() { data[1] };
+                return new ArrayList() { "Error", "Unexpected Data" };
             }
         }
 

@@ -22,7 +22,7 @@ namespace HeartRateLE.Bluetooth
                 "System.Devices.Aep.Bluetooth.Le.IsConnectable"
             };
 
-        private static readonly string[] RequiredServices = new string[] { "180D", "180A", "180F" };
+        //private static readonly string[] RequiredServices = new string[] { "180D", "180A", "180F" };
         private DeviceWatcher _deviceWatcher;
         private readonly List<string> _filters;
         public event EventHandler<Events.DeviceAddedEventArgs> DeviceAdded;

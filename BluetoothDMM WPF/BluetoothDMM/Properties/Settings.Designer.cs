@@ -153,5 +153,17 @@ namespace BluetoothDMM.Properties {
                 this["ADisplay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AskOnConnect {
+            get {
+                return ((bool)(this["AskOnConnect"]));
+            }
+            set {
+                this["AskOnConnect"] = value;
+            }
+        }
     }
 }

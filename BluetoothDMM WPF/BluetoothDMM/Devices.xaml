@@ -27,10 +27,10 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="button" Content="Change Device Name" HorizontalAlignment="Left" Margin="591,49,0,0" VerticalAlignment="Top" Width="128" Height="35" Click="button_Click"/>
-        <Button x:Name="button1" Content="Remove Device" HorizontalAlignment="Left" Margin="591,92,0,0" VerticalAlignment="Top" Width="128" Height="35" Click="button1_Click"/>
-        <Button x:Name="button2" Content="Remove All Devices" HorizontalAlignment="Left" Margin="591,134,0,0" VerticalAlignment="Top" Width="128" Height="35" Click="button2_Click"/>
-        <Button x:Name="button3" Content="Save" HorizontalAlignment="Left" Margin="670,349,0,0" VerticalAlignment="Top" Width="87" Height="37" Click="button3_Click"/>
+        <Button x:Name="button" Content="Change Device Name" HorizontalAlignment="Left" Margin="591,49,0,0" VerticalAlignment="Top" Width="128" Height="35" Click="Button_Click"/>
+        <Button x:Name="button1" Content="Remove Device" HorizontalAlignment="Left" Margin="591,92,0,0" VerticalAlignment="Top" Width="128" Height="35" Click="Button1_Click"/>
+        <Button x:Name="button2" Content="Remove All Devices" HorizontalAlignment="Left" Margin="591,134,0,0" VerticalAlignment="Top" Width="128" Height="35" Click="Button2_Click"/>
+        <Button x:Name="button3" Content="Save" HorizontalAlignment="Left" Margin="670,349,0,0" VerticalAlignment="Top" Width="87" Height="37" Click="Button3_Click"/>
 
 
 

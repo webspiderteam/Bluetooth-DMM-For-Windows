@@ -98,7 +98,8 @@ namespace HeartRateLE.Bluetooth
             if (!characteristicResult.IsSuccess)
             {
                 //Debug.WriteLine("3rd");
-                _heartRateDevice.Dispose();
+                if (_heartRateDevice!=null)
+                    _heartRateDevice.Dispose();
                 _heartRateDevice = null;
                 return new Schema.ConnectionResult()
                 {
@@ -306,28 +307,31 @@ namespace HeartRateLE.Bluetooth
             if (!Enumerable.SequenceEqual(data, olddata))
             {
                 var GattData = Utilities.ParseHeartRateValue(data, LogData);
-                var args = new Events.RateChangedEventArgs()
+                if ((string)GattData[0] != "Error")
                 {
+                    var args = new Events.RateChangedEventArgs()
+                    {
 
-                    MyGattCData = (string)GattData[0],
-                    MyGattCDataSymbol = (string)GattData[1],
-                    MyGattCDataMax = (bool)GattData[2],
-                    MyGattCDataMin = (bool)GattData[3],
-                    MyGattCDataTrue_RMS = (bool)GattData[4],
-                    MyGattCDataAutoRange = (bool)GattData[5],
-                    MyGattCDataDiode = (bool)GattData[6],
-                    MyGattCDataContinuity = (bool)GattData[7],
-                    MyGattCDataHold = (bool)GattData[8],
-                    MyGattCDataInRush = (bool)GattData[9],
-                    MyGattCDataPeek = (bool)GattData[10],
-                    MyGattCDataACDC = (string)GattData[11],
-                    MyGattCDataBattery = (bool?)GattData[12],
-                    MyGattCDataHV = (bool)GattData[13],
-                    MyGattCDataRel = (bool)GattData[14]
+                        MyGattCData = (string)GattData[0],
+                        MyGattCDataSymbol = (string)GattData[1],
+                        MyGattCDataMax = (bool)GattData[2],
+                        MyGattCDataMin = (bool)GattData[3],
+                        MyGattCDataTrue_RMS = (bool)GattData[4],
+                        MyGattCDataAutoRange = (bool)GattData[5],
+                        MyGattCDataDiode = (bool)GattData[6],
+                        MyGattCDataContinuity = (bool)GattData[7],
+                        MyGattCDataHold = (bool)GattData[8],
+                        MyGattCDataInRush = (bool)GattData[9],
+                        MyGattCDataPeek = (bool)GattData[10],
+                        MyGattCDataACDC = (string)GattData[11],
+                        MyGattCDataBattery = (bool?)GattData[12],
+                        MyGattCDataHV = (bool)GattData[13],
+                        MyGattCDataRel = (bool)GattData[14]
 
-                };
-                olddata = data;
-                OnRateChanged(args);
+                    };
+                    olddata = data;
+                    OnRateChanged(args);
+                }
             }
 
         }
@@ -340,7 +344,7 @@ namespace HeartRateLE.Bluetooth
         /// </value>
         public bool IsConnected
         {
-            get { return _heartRateDevice != null ? _heartRateDevice.ConnectionStatus == BluetoothConnectionStatus.Connected : false; }
+            get { return _heartRateDevice != null && _heartRateDevice.ConnectionStatus == BluetoothConnectionStatus.Connected; }
         }
 
 

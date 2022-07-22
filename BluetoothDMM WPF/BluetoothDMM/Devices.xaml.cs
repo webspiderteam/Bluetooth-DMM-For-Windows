@@ -24,7 +24,7 @@ namespace BluetoothDMM
             this.DataContext = this;
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void Button1_Click(object sender, RoutedEventArgs e)
         {
             DeviceListC.Remove(((KeyValuePair<string, string>)listBox.SelectedValue).Key);
             listBox.SelectedIndex = -1;
@@ -33,14 +33,14 @@ namespace BluetoothDMM
             
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
+        private void Button2_Click(object sender, RoutedEventArgs e)
         {
             DeviceListC.Clear();
             listBox.SelectedIndex = -1;
             listBox.Items.Refresh();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             var a = ((System.Collections.Generic.KeyValuePair<string, string>)listBox.SelectedValue).Value;
             EditBox.Text = a;
@@ -58,7 +58,7 @@ namespace BluetoothDMM
             }
         }
 
-        private void button3_Click(object sender, RoutedEventArgs e)
+        private void Button3_Click(object sender, RoutedEventArgs e)
         {
             if (Properties.Settings.Default.ConnectOn)
             {

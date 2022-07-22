@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
         xmlns:local="clr-namespace:BluetoothDMM"
-        d:DataContext="d:DesignInstance local:MainWindow" Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="None" Title="Bluetooth DMM" Height="172" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center" Activated="window_Activated" MouseDown="window_MouseDown" StateChanged="OnStateChanged" IsVisibleChanged="OnIsVisibleChanged">
+        d:DataContext="d:DesignInstance local:MainWindow" Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="None" Title="Bluetooth DMM" Height="172" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center" Activated="Window_Activated" MouseDown="Window_MouseDown" StateChanged="OnStateChanged" IsVisibleChanged="OnIsVisibleChanged">
     <Window.Resources>
         <!--// Toggle Button Style Template //-->
         <ImageBrush x:Key="tb_mouse_over" ImageSource="Assets/tgBtn_MouseOver.png"/>
@@ -103,23 +103,65 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Popup x:Name="CustomDialog"
+                       StaysOpen="True" 
+                       Opened="CustomDialog_Opened"
+                       AllowsTransparency="True"
+                       Placement="AbsolutePoint"
+                       Height="190" Width="400"
+                       Margin="0,0,0,0"
+                       PopupAnimation="Fade" MouseLeave="CustomDialog_MouseLeave" PreviewMouseLeftButtonDown="CustomDialog_PreviewMouseLeftButtonDown" MouseLeftButtonUp="CustomDialog_MouseLeftButtonUp">
+            <Border x:Name="DialogBorder" CornerRadius="8" Background="Black" BorderThickness="2" Height="190" Width="400">
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0,0" MappingMode="Absolute" StartPoint="0,200">
+                        <GradientStop Color="#00000000" Offset="0.569"/>
+                        <GradientStop Color="White" Offset="0.986"/>
+                        <GradientStop Color="#FFFBFBFB"/>
+                        <GradientStop Color="#52515151" Offset="0.015"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <Grid>
+                    <Border Background="Red" Height="28" Width="396" VerticalAlignment="Top" CornerRadius="8,8,0,0">
+                        <TextBlock Name="CustomDialogHeader" Text="Device Available" FontSize="14" Margin="15,5">
+                            <TextBlock.Effect>
+                                <DropShadowEffect BlurRadius="9" ShadowDepth="1"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </Border>
+                    <StackPanel Orientation="Vertical" Height="135" Width="360" Margin="0,25,0,0" >
 
+                        <TextBlock FontSize="18" Height="70" TextWrapping="Wrap">
+
+                            One of your device is Available to connect.<LineBreak/> Do you Want to Connect?
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Name="Button1" Width="95" Height="32" FontSize="14" Content="Connect" Margin="5" Click="Button_Click" />
+                            <Button Name="Button2" Width="105" Height="32" FontSize="14" Content="Open New" Margin="5" Click="Button_Click" Visibility="Collapsed" />
+                            <Button Name="Button3" Width="105" Height="32" FontSize="14" Content="Don't Connect" Click="Button_Click" Margin="5"/>
+                        </StackPanel>
+                        <CheckBox Name="DontAsk" Content="Don't Ask again. Connect Automaticly." Height="20"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+
+        </Popup>
         <Grid x:Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Viewbox x:Name="Display" Grid.Row="0" HorizontalAlignment="Stretch" Margin="5,5,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
-                
+
                 <Grid>
                     <TextBlock x:Name="TxtStatus" TextWrapping="Wrap" FontSize="20" Height="40" Text="Not connected" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                     <Grid x:Name="aDisplay" Margin="0,-35,0,0" Visibility="Collapsed" >
                         <TextBlock  Width="1100" />
                         <Viewbox Width="700" HorizontalAlignment="Stretch" Margin="0,10,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
-                        <Grid>
-                                
+                            <Grid>
+
                                 <StackPanel Height="55" Width="270" Margin="0,0,0,0">
-                                <local:CircularProgress 
+                                    <local:CircularProgress 
                                  x:Name="Meter"
                                  Height="500" Width="500" Margin="0,10,0,0"
                                  StartAngle="29.7"
@@ -127,22 +169,22 @@
                                  Stroke="#FF6C6247"
                                  Value="50"
                                  HorizontalAlignment="Center"/>
-                                <Path Width="270" Height="55" Margin="0,-973,0,0" Fill="#FF0E0000" Data="m 119.95707,-30.720772 3.25784,9.461455 m 0.87995,-10.845939 2.91094,8.958938 m 1.2504,-10.270992 2.94662,9.63797 m 1.23695,-10.877219 2.64788,9.234264 m 5.78097,-11.492762 2.48079,9.94991 m 1.76192,-10.968494 2.20787,9.563318 m 2.052,-10.507697 2.04163,9.605113 m 2.23404,-10.475007 1.86949,9.617671 m -75.369666,17.134182 4.712805,8.5021243 m -0.878283,-10.5840943 4.677955,8.7979516 m -0.807665,-10.8126826 4.470953,8.7747389 m -0.566125,-10.7216289 4.356781,8.932722 m 3.551844,-12.62056 4.064541,9.129103 m -0.0632,-10.868952 3.9996,9.422459 m 0.0316,-11.092207 3.76717,9.324081 m 0.29247,-10.923235 3.57025,9.300817 m 175.6137,-9.300878 -3.47386,9.049723 m 7.53354,-7.450561 -3.57946,8.859474 m 7.61058,-7.189743 -4.06318,9.572249 m 8.06455,-7.832381 -3.98718,8.955354 m 11.89582,-5.267503 -4.51883,9.2649736 m 8.42369,-7.3180786 -4.72361,9.2706064 m 8.59385,-7.2559094 -4.89645,9.2088867 m 8.73096,-7.1268917 -5.0851,9.1737609 m -68.41503,-35.9256059 -1.96374,10.102557 m 6.2394,-9.232677 -2.11097,9.931365 m 6.37082,-8.986988 -2.29914,9.958669 m 6.54184,-8.940063 -2.41973,9.705028 m 10.8486,-7.44654 -2.64018,9.207387 m 6.82377,-7.968149 -2.83021,9.257192 m 6.99152,-7.94514 -2.88952,8.893015 m 7.02732,-7.508517 -3.08764,8.967161 m -73.94126,-22.549411 -0.18449,10.569143 m 4.54624,-10.454937 -0.36544,10.464869 m 4.72455,-10.274552 -0.54858,10.467569 m 4.90372,-10.201178 -0.71238,10.187471 m 9.40538,-9.426937 -1.03644,9.861033 m 5.37166,-9.367098 -1.22037,9.939147 m 5.54631,-9.369617 -1.40716,10.012503 m 5.7225,-9.367582 -1.52212,9.610278 m -76.69516,-9.610276 1.51703,9.578121 m 2.7983,-10.223061 1.41121,10.041225 m 2.91476,-10.610732 1.24556,10.144254 m 3.08965,-10.638203 1.05581,10.045329 m 7.63717,-10.805862 0.71238,10.187485 m 3.64275,-10.453854 0.52568,10.03054 m 3.83345,-10.220858 0.35041,10.034445 m 4.01136,-10.148663 0.18085,10.361007 m 26.52075,-15.443445 -1.42215,16.255218 m 45.37072,-8.501493 -4.1111,15.342827 m 46.04562,-0.07533 -6.67101,14.306015 m -209.727043,-14.32697 6.830483,14.648015 m 35.10695,-29.907402 4.12505,15.394881 m 39.82505,-23.140082 1.40249,16.030516 m 66.2693,-18.360358 -3.7129,21.056905 m 47.33941,-8.22945 -6.76209,18.578668 m -171.40869,-18.996666 7.02985,19.314347 m 36.71542,-31.913147 3.72324,21.115539 m 41.6929,-25.186439 v 22.243909 m 135.00005,5.567961 c -5.16677,8.949108 -10.33354,17.898215 -15.50031,26.8473224 M 66.349166,-28.16797 81.384742,-2.1255919"  Stretch="Fill" StrokeThickness="2" Opacity="0.7" >
-                                    <Path.Effect>
-                                        <DropShadowEffect Direction="225" BlurRadius="3" ShadowDepth="1"/>
-                                    </Path.Effect>
-                                    <Path.Stroke>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                            <GradientStop Color="#FF00F70A" Offset="0.863"/>
-                                            <GradientStop Color="#FFF71E09" Offset="1"/>
-                                            <GradientStop Color="#FF00F7EC" Offset="0.011"/>
-                                            <GradientStop Color="#FF00F774" Offset="0.13"/>
-                                        </LinearGradientBrush>
-                                    </Path.Stroke>
-                                </Path>
-                            </StackPanel>
-                        </Grid>
-                    </Viewbox>
+                                    <Path Width="270" Height="55" Margin="0,-973,0,0" Fill="#FF0E0000" Data="m 119.95707,-30.720772 3.25784,9.461455 m 0.87995,-10.845939 2.91094,8.958938 m 1.2504,-10.270992 2.94662,9.63797 m 1.23695,-10.877219 2.64788,9.234264 m 5.78097,-11.492762 2.48079,9.94991 m 1.76192,-10.968494 2.20787,9.563318 m 2.052,-10.507697 2.04163,9.605113 m 2.23404,-10.475007 1.86949,9.617671 m -75.369666,17.134182 4.712805,8.5021243 m -0.878283,-10.5840943 4.677955,8.7979516 m -0.807665,-10.8126826 4.470953,8.7747389 m -0.566125,-10.7216289 4.356781,8.932722 m 3.551844,-12.62056 4.064541,9.129103 m -0.0632,-10.868952 3.9996,9.422459 m 0.0316,-11.092207 3.76717,9.324081 m 0.29247,-10.923235 3.57025,9.300817 m 175.6137,-9.300878 -3.47386,9.049723 m 7.53354,-7.450561 -3.57946,8.859474 m 7.61058,-7.189743 -4.06318,9.572249 m 8.06455,-7.832381 -3.98718,8.955354 m 11.89582,-5.267503 -4.51883,9.2649736 m 8.42369,-7.3180786 -4.72361,9.2706064 m 8.59385,-7.2559094 -4.89645,9.2088867 m 8.73096,-7.1268917 -5.0851,9.1737609 m -68.41503,-35.9256059 -1.96374,10.102557 m 6.2394,-9.232677 -2.11097,9.931365 m 6.37082,-8.986988 -2.29914,9.958669 m 6.54184,-8.940063 -2.41973,9.705028 m 10.8486,-7.44654 -2.64018,9.207387 m 6.82377,-7.968149 -2.83021,9.257192 m 6.99152,-7.94514 -2.88952,8.893015 m 7.02732,-7.508517 -3.08764,8.967161 m -73.94126,-22.549411 -0.18449,10.569143 m 4.54624,-10.454937 -0.36544,10.464869 m 4.72455,-10.274552 -0.54858,10.467569 m 4.90372,-10.201178 -0.71238,10.187471 m 9.40538,-9.426937 -1.03644,9.861033 m 5.37166,-9.367098 -1.22037,9.939147 m 5.54631,-9.369617 -1.40716,10.012503 m 5.7225,-9.367582 -1.52212,9.610278 m -76.69516,-9.610276 1.51703,9.578121 m 2.7983,-10.223061 1.41121,10.041225 m 2.91476,-10.610732 1.24556,10.144254 m 3.08965,-10.638203 1.05581,10.045329 m 7.63717,-10.805862 0.71238,10.187485 m 3.64275,-10.453854 0.52568,10.03054 m 3.83345,-10.220858 0.35041,10.034445 m 4.01136,-10.148663 0.18085,10.361007 m 26.52075,-15.443445 -1.42215,16.255218 m 45.37072,-8.501493 -4.1111,15.342827 m 46.04562,-0.07533 -6.67101,14.306015 m -209.727043,-14.32697 6.830483,14.648015 m 35.10695,-29.907402 4.12505,15.394881 m 39.82505,-23.140082 1.40249,16.030516 m 66.2693,-18.360358 -3.7129,21.056905 m 47.33941,-8.22945 -6.76209,18.578668 m -171.40869,-18.996666 7.02985,19.314347 m 36.71542,-31.913147 3.72324,21.115539 m 41.6929,-25.186439 v 22.243909 m 135.00005,5.567961 c -5.16677,8.949108 -10.33354,17.898215 -15.50031,26.8473224 M 66.349166,-28.16797 81.384742,-2.1255919"  Stretch="Fill" StrokeThickness="2" Opacity="0.7" >
+                                        <Path.Effect>
+                                            <DropShadowEffect Direction="225" BlurRadius="3" ShadowDepth="1"/>
+                                        </Path.Effect>
+                                        <Path.Stroke>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Color="#FF00F70A" Offset="0.863"/>
+                                                <GradientStop Color="#FFF71E09" Offset="1"/>
+                                                <GradientStop Color="#FF00F7EC" Offset="0.011"/>
+                                                <GradientStop Color="#FF00F774" Offset="0.13"/>
+                                            </LinearGradientBrush>
+                                        </Path.Stroke>
+                                    </Path>
+                                </StackPanel>
+                            </Grid>
+                        </Viewbox>
                     </Grid>
                     <TextBlock x:Name="AutoRange" Visibility="Visible" HorizontalAlignment="Center" Height="60" Margin="0,27,0,0" TextWrapping="Wrap" Text="Auto Range" VerticalAlignment="Top" Width="421" FontSize="44" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
                     <TextBlock x:Name="MyGattCData" HorizontalAlignment="Center" Height="262" Margin="0,10,30,0" TextWrapping="WrapWithOverflow" Text="----" VerticalAlignment="Top" Width="700" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
@@ -241,7 +283,7 @@
             </Viewbox>
             <Grid Grid.Row="1" x:Name="TopStackPanel" Margin="0,0,0,0" Visibility="Collapsed" VerticalAlignment="Stretch" Height="Auto" Width="Auto">
 
-                <ScottPlot:WpfPlot Name="wpfPlot1"  Margin="-10,-40,0,-10" MouseMove="wpfPlot1_MouseMove" MouseUp="wpfPlot1_MouseUp" MouseWheel="wpfPlot1_MouseWheel" MouseLeave="wpfPlot1_MouseLeave"/>
+                <ScottPlot:WpfPlot Name="wpfPlot1"  Margin="-10,-40,0,-10" MouseMove="WpfPlot1_MouseMove" MouseUp="WpfPlot1_MouseUp" MouseWheel="WpfPlot1_MouseWheel" MouseLeave="WpfPlot1_MouseLeave"/>
 
                 <TextBlock x:Name="TxtBattery" TextWrapping="Wrap" Text="battery level: --" HorizontalAlignment="Center" Margin="0,10,0,0" Visibility="Collapsed"/>
                 <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="52" Margin="30,0,0,0" TextWrapping="Wrap" Text="TextBox" Width="548" Visibility="Collapsed"/>
@@ -376,7 +418,7 @@
                                 <!--// Toggle Button - Checked, Unchecked events //-->
 
                             </Button>
-                            
+
                             <!--// Menu title text //-->
                             <TextBlock Grid.Row="1" Grid.Column="0" Margin="73, 20,0,0" Text="MENU" Foreground="White" FontSize="18" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Center">
 						<!--// Shadow Effect //-->
