@@ -1,4 +1,4 @@
-Bluetooth DMM for windows 
+# Bluetooth DMM for Windows 
 
 Bluetooth DMM for Windows is an application for Bluetooth Dmm Multimeter devices to connect and get datas over Gatt. Project is builded over BluetootLE Explorer for connection ability and changed for Dmm devices to reading characteristic values by decoding. Application is not made for any financial think. Just for Personal NEEDS .
 
