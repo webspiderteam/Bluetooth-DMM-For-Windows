@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -106,6 +107,7 @@ namespace BluetoothDMM
             wpfPlot1.Refresh();
             
             CustomDialog.PreviewMouseMove += new MouseEventHandler(CustomDialog_MouseMove);
+            AboutDialog.PreviewMouseMove += new MouseEventHandler(CustomDialog_MouseMove);
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
 
             DataContext = this;
@@ -526,6 +528,8 @@ namespace BluetoothDMM
                     _OnTop();
                 else if (Sender.Name == "ADisplay")
                     _ADisplay();
+                else if (Sender.Name == "About")
+                    AboutDialog.IsOpen=true;
                 LV.SelectedIndex = -1;
                 Tg_Btn.IsChecked = false;
             }
@@ -879,36 +883,91 @@ namespace BluetoothDMM
         private void Chart_Export_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
-            double[] ChartData = gattData.Take((int)plt.GetDataLimits().XMax + 1).ToArray();
-            byte[] Chartbytes = ChartData.SelectMany(value => BitConverter.GetBytes(value)).ToArray();
-            var plottablelist = plt.GetPlottables();
-            System.Collections.Generic.List<byte> VlineList = new System.Collections.Generic.List<byte>();
-            foreach (var plotT in plottablelist)
-            {
-                var name = plotT.GetType().Name;
-                if (plotT.GetType().Name == "Text")
-                {
-                    byte sb = SymbolToByte(((ScottPlot.Plottable.Text)plotT).Label);
-                    VlineList.Add(sb);
-                    byte[] pb = BitConverter.GetBytes((int)((ScottPlot.Plottable.Text)plotT).X);
-                    foreach (var pba in pb)
-                        VlineList.Add(pba);
-                }
-            }
-            byte sbe = SymbolToByte((MyGattCDataACDC.Text == "" ? string.Empty : "  " + MyGattCDataACDC.Text + " * \n") + "  " + MyGattCDataSymbol.Text + " *  ");
-            VlineList.Add(sbe);
-            byte[] pbe = BitConverter.GetBytes((int)plt.GetDataLimits().XMax);
-            foreach (var pba in pbe)
-                VlineList.Add(pba);
 
-            byte[] Vlines = VlineList.ToArray();
-            byte[] Final = Chartbytes.Concat(Vlines).ToArray();
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                Filter = "DMM Chart Data file (*.dcd)|*.dcd"
+                Filter = "DMM Chart Data file (*.dcd)|*.dcd|CSV file (*.csv)|*.csv"
             };
-            if (saveFileDialog.ShowDialog() == true)
-                File.WriteAllBytes(saveFileDialog.FileName, Final);
+            var result = saveFileDialog.ShowDialog();
+            var extension = Path.GetExtension(saveFileDialog.FileName);
+            if ( result == true && nextDataIndex>0)
+                if (extension == ".dcd")
+                {
+                    double[] ChartData = gattData.Take((int)plt.GetDataLimits().XMax + 1).ToArray();
+                    byte[] Chartbytes = ChartData.SelectMany(value => BitConverter.GetBytes(value)).ToArray();
+                    var plottablelist = plt.GetPlottables();
+                    System.Collections.Generic.List<byte> VlineList = new System.Collections.Generic.List<byte>();
+                    foreach (var plotT in plottablelist)
+                    {
+                        var name = plotT.GetType().Name;
+                        if (plotT.GetType().Name == "Text")
+                        {
+                            byte sb = SymbolToByte(((ScottPlot.Plottable.Text)plotT).Label);
+                            VlineList.Add(sb);
+                            byte[] pb = BitConverter.GetBytes((int)((ScottPlot.Plottable.Text)plotT).X);
+                            foreach (var pba in pb)
+                                VlineList.Add(pba);
+                        }
+                    }
+                    byte sbe = SymbolToByte((MyGattCDataACDC.Text == "" ? string.Empty : "  " + MyGattCDataACDC.Text + " * \n") + "  " + MyGattCDataSymbol.Text + " *  ");
+                    VlineList.Add(sbe);
+                    byte[] pbe = BitConverter.GetBytes((int)plt.GetDataLimits().XMax);
+                    foreach (var pba in pbe)
+                        VlineList.Add(pba);
+
+                    byte[] Vlines = VlineList.ToArray();
+                    byte[] Final = Chartbytes.Concat(Vlines).ToArray();
+                    File.WriteAllBytes(saveFileDialog.FileName, Final);
+                }
+                else if (extension == ".csv")
+                {
+                    /// TODO Export csv...
+                    /// 
+
+                    double[] ChartData = gattData.Take((int)plt.GetDataLimits().XMax + 1).ToArray();
+                    string[] createText = new string[(int)plt.GetDataLimits().XMax + 2];
+                    createText[0] = "Time,CurrentType,Value,Symbol";
+                    var plottablelist = plt.GetPlottables();
+                    int LastX = 0;
+                    Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
+                    foreach (var plotT in plottablelist)
+                    {
+                        var name = plotT.GetType().Name;
+                        if (plotT.GetType().Name == "Text")
+                        {
+                            string sb = ((ScottPlot.Plottable.Text)plotT).Label;
+                            int pb = (int)((ScottPlot.Plottable.Text)plotT).X;
+                            keyValuePairs.Add(pb, sb);
+                        }
+                    }
+                    string sbe = (MyGattCDataACDC.Text == "" ? string.Empty : "  " + MyGattCDataACDC.Text + " * \n") + "  " + MyGattCDataSymbol.Text + " *  ";
+                    int pbe = (int)plt.GetDataLimits().XMax;
+                    keyValuePairs.Add(pbe, sbe);
+                    int pairs_i = 0;
+                    foreach (var (value, index) in ChartData.Select((v, i) => (v, i)))
+                    {
+                        string Value = keyValuePairs.ElementAt(pairs_i).Value.Replace('*', ' ');
+                        var resultval = Value.Split(new string[] { "\n", " " }, StringSplitOptions.RemoveEmptyEntries);
+                        string s1;
+                        string s2;
+                        if (resultval.Length == 2)
+                        {
+                            s1 = resultval[0];
+                            s2 = resultval[1];
+                        }
+                        else
+                        {
+                            s1 = " ";
+                            s2 = resultval[0];
+                        }
+                        if (index == keyValuePairs.ElementAt(pairs_i).Key)
+                            pairs_i++;
+                        createText[index+1]= $"{index},{s1},{value},{s2}";
+                    }
+                    try {File.WriteAllLines(saveFileDialog.FileName, createText); }
+                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+                    
+                }
             SettingPopup.IsOpen = false;
             dispatcherTimer.Start();
         }
@@ -918,12 +977,18 @@ namespace BluetoothDMM
             if (Draggable)
                 this.DragMove();
         }
+        private void HandleLinkClick(object sender, RoutedEventArgs e)
+        {
+            Hyperlink hl = (Hyperlink)sender;
+            string navigateUri = hl.NavigateUri.ToString();
+            Process.Start(new ProcessStartInfo(navigateUri));
+            e.Handled = true;
+        }
         private async void Window_Activated(object sender, EventArgs e)
         {
             if (onLoad)
             {
                 await SearchDevices();
-
                 if (Properties.Settings.Default.ChartOn && (grid.RowDefinitions[0].ActualHeight + 180 > this.Height))
                 {
                     
@@ -939,6 +1004,7 @@ namespace BluetoothDMM
                 }
                 //Console.WriteLine("xxxGetCommandLineArgs: {0}", string.Join(", ", arguments));
                 onLoad = false;
+                
             }
         }
 
@@ -950,21 +1016,23 @@ namespace BluetoothDMM
         private void CustomDialog_MouseMove(object sender, MouseEventArgs e)
         {
             Draggable = false;
+            var uiElement = (Popup)sender;
             bool controlsnotover = !Button1.IsMouseOver && !Button1.IsMouseOver && !Button1.IsMouseOver && !DontAsk.IsMouseOver;
             if (e.LeftButton == MouseButtonState.Pressed && controlsnotover)
             {
                 Point relative = e.GetPosition(null);
-                CustomDialog.PlacementRectangle = new Rect(relative.X + CustomDialog.PlacementRectangle.X - Startpoint.X, relative.Y + CustomDialog.PlacementRectangle.Y - Startpoint.Y, CustomDialog.Width, CustomDialog.Height);
+                uiElement.PlacementRectangle = new Rect(relative.X + uiElement.PlacementRectangle.X - Startpoint.X, relative.Y + uiElement.PlacementRectangle.Y - Startpoint.Y, uiElement.Width, uiElement.Height);
             }
         }
 
         private void CustomDialog_MouseLeave(object sender, MouseEventArgs e)
         {
             bool controlsnotover = !Button1.IsMouseOver && !Button1.IsMouseOver && !Button1.IsMouseOver && !DontAsk.IsMouseOver;
+            var uiElement = (Popup)sender;
             if (e.LeftButton == MouseButtonState.Pressed && controlsnotover)
             {
                 Point relative = e.GetPosition(null);
-                CustomDialog.PlacementRectangle = new Rect(relative.X + CustomDialog.PlacementRectangle.X - Startpoint.X, relative.Y + CustomDialog.PlacementRectangle.Y - Startpoint.Y, CustomDialog.Width, CustomDialog.Height);
+                uiElement.PlacementRectangle = new Rect(relative.X + uiElement.PlacementRectangle.X - Startpoint.X, relative.Y + uiElement.PlacementRectangle.Y - Startpoint.Y, uiElement.Width, uiElement.Height);
             }
             else
                 Draggable = true;
@@ -979,10 +1047,11 @@ namespace BluetoothDMM
 
         private void CustomDialog_Opened(object sender, EventArgs e)
         {
+            var uiElement = (Popup)sender;
             DialogBorder.Opacity = 1;
             DontAsk.IsChecked = !Properties.Settings.Default.AskOnConnect;
-            CustomDialog.PlacementRectangle = new Rect((SystemParameters.FullPrimaryScreenWidth - CustomDialog.Width) / 2,
-         (SystemParameters.FullPrimaryScreenHeight - CustomDialog.Height) / 2, CustomDialog.Width, CustomDialog.Height);
+            uiElement.PlacementRectangle = new Rect((SystemParameters.FullPrimaryScreenWidth - uiElement.Width) / 2,
+         (SystemParameters.FullPrimaryScreenHeight - uiElement.Height) / 2, uiElement.Width, uiElement.Height);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -997,6 +1066,11 @@ namespace BluetoothDMM
         private void CustomDialog_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             DialogBorder.Opacity = 1;
+        }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            AboutDialog.IsOpen = false;
         }
     }
 }

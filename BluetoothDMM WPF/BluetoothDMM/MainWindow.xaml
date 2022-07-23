@@ -146,6 +146,59 @@
 
 
         </Popup>
+        <Popup x:Name="AboutDialog"
+                       StaysOpen="True" 
+                       Opened="CustomDialog_Opened"
+                       AllowsTransparency="True"
+                       Placement="AbsolutePoint"
+                       Height="190" Width="520"
+                       Margin="0,0,0,0"
+                       PopupAnimation="Fade" MouseLeave="CustomDialog_MouseLeave" PreviewMouseLeftButtonDown="CustomDialog_PreviewMouseLeftButtonDown" MouseLeftButtonUp="CustomDialog_MouseLeftButtonUp">
+            <Border x:Name="AboutDialogBorder" CornerRadius="8" Background="Black" BorderThickness="2" Height="190" Width="520">
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0,0" MappingMode="Absolute" StartPoint="0,200">
+                        <GradientStop Color="#00000000" Offset="0.569"/>
+                        <GradientStop Color="White" Offset="0.986"/>
+                        <GradientStop Color="#FFFBFBFB"/>
+                        <GradientStop Color="#52515151" Offset="0.015"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <Grid>
+                    <Border Background="Red" Height="28" Width="516" VerticalAlignment="Top" CornerRadius="8,8,0,0">
+                        <TextBlock Name="AboutDialogHeader" Text="About Software" FontSize="14" Margin="15,5">
+                            <TextBlock.Effect>
+                                <DropShadowEffect BlurRadius="9" ShadowDepth="1"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </Border>
+                    <StackPanel Orientation="Vertical" Height="135" Width="480" Margin="0,25,0,0" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Assets/Logo.ico" Width="100"/>
+                            <StackPanel Margin="10,15,0,0">
+                            <TextBlock Text="Bluetooth DMM for Windows" FontWeight="Bold" />
+
+                            <TextBlock Text="Created By WebSpiderTeam" />
+                            <TextBlock> 
+                                <Run Text="Version :"/>
+                                <Run Text="{Binding Text, ElementName=version}"/>
+                            </TextBlock>
+                            <TextBlock>
+			                    <Hyperlink RequestNavigate="HandleLinkClick" NavigateUri="https://github.com/webspiderteam/Bluetooth-DMM-For-Windows">
+				                    <Run Text="https://github.com/webspiderteam/Bluetooth-DMM-For-Windows" />
+			                    </Hyperlink>
+
+                            </TextBlock>
+                        </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Name="Ok" Width="95" Height="32" FontSize="14" Content="Ok" Margin="5" Click="Ok_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+
+        </Popup>
         <Grid x:Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -402,7 +455,7 @@
         <CheckBox x:Name="Is_Connected" Visibility="Hidden" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Battery" Visibility="Hidden" IsChecked="False" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
 
-        <Popup StaysOpen="False" Width="300" Height="240" x:Name="MyPopup" Closed="MyPopup_Closed" >
+        <Popup StaysOpen="False" Width="300" Height="280" x:Name="MyPopup" Closed="MyPopup_Closed" >
             <Popup.Child>
                 <Grid x:Name="nav_pnl" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65" Height="400" Background="#2E333A">
 
@@ -478,6 +531,16 @@
                                     </Image>
                                     <TextBlock Text="Always on Top" Width="120" Height="30" Margin="25,10,0,0"/>
                                     <Image x:Name="OnTopON" Visibility="Hidden" Source="Assets/done.png" Width="16" Height="16" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                                </StackPanel>
+                            </ListViewItem>
+                            <ListViewItem x:Name="About" HorizontalAlignment="Left" Margin="0,0,0,0" Height="30">
+                                <StackPanel Orientation="Horizontal" Margin="0,-18,0,0" Width="230">
+                                    <Image Source="Assets/Information.png" Width="28" Margin="12,0,0,0">
+                                        <Image.Effect>
+                                            <DropShadowEffect Color="white" Direction="-90" ShadowDepth="0" BlurRadius="7" Opacity="1"/>
+                                        </Image.Effect>
+                                    </Image>
+                                    <TextBlock Text="About" Width="120" Height="30" Margin="25,10,0,0"/>
                                 </StackPanel>
                             </ListViewItem>
                             <!--// Listview items style template //-->

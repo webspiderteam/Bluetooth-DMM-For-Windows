@@ -16,22 +16,10 @@ namespace BluetoothDMM
     /// </summary>
     public partial class DataViewer : Window
     {
-#pragma warning disable CS0169 // The field 'DataViewer._heartRateMonitor' is never used
-        private HeartRateLE.Bluetooth.HeartRateMonitor _heartRateMonitor;
-#pragma warning restore CS0169 // The field 'DataViewer._heartRateMonitor' is never used
         public string SelectedDeviceId { get; private set; }
 
         public string SelectedDeviceName { get; private set; }
-#pragma warning disable CS0169 // The field 'DataViewer.GattValue' is never used
-        private string GattValue;
-#pragma warning restore CS0169 // The field 'DataViewer.GattValue' is never used
-#pragma warning disable CS0169 // The field 'DataViewer.doublevalue' is never used
-        private double doublevalue;
-#pragma warning restore CS0169 // The field 'DataViewer.doublevalue' is never used
         private System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-#pragma warning disable CS0414 // The field 'DataViewer.DevicePickerActive' is assigned but its value is never used
-        private bool DevicePickerActive = false;
-#pragma warning restore CS0414 // The field 'DataViewer.DevicePickerActive' is assigned but its value is never used
         private readonly Plot plt;
         private readonly Tooltip txt;
         public double[] gattData = new double[1_000_000];
@@ -41,15 +29,8 @@ namespace BluetoothDMM
         private double LastHighlightedIndex = -1;
         private int nextDataIndex;
         private int ZoomScale = 30;
-#pragma warning disable CS0649 // Field 'DataViewer.OldACDC' is never assigned to, and will always have its default value null
         private string OldACDC;
-#pragma warning restore CS0649 // Field 'DataViewer.OldACDC' is never assigned to, and will always have its default value null
-#pragma warning disable CS0649 // Field 'DataViewer.OldSymbol' is never assigned to, and will always have its default value null
         private string OldSymbol;
-#pragma warning restore CS0649 // Field 'DataViewer.OldSymbol' is never assigned to, and will always have its default value null
-#pragma warning disable CS0414 // The field 'DataViewer.onLoad' is assigned but its value is never used
-        private bool onLoad;
-#pragma warning restore CS0414 // The field 'DataViewer.onLoad' is assigned but its value is never used
 
         public DataViewer(double[] ImportedData, byte[] vLinesS, int[] VLinesX)
         {
@@ -118,7 +99,6 @@ namespace BluetoothDMM
 
             DataContext = this;
 
-            onLoad = true;
         }
 
         private static string ByteToSymbol(byte Value)
