@@ -1,4 +1,4 @@
-Bluetooth DMM for windows 
+# Bluetooth DMM for Windows 
 
 Bluetooth DMM for Windows is an application for Bluetooth Dmm Multimeter devices to connect and get datas over Gatt. Project is builded over BluetootLE Explorer for connection ability and changed for Dmm devices to reading characteristic values by decoding. Application is not made for any financial think. Just for Personal NEEDS .
 
@@ -10,13 +10,34 @@ For this reasons probably there will not any Update on this project but if there
 
 New Alpha Release is in WPF type and added 10byte protocol that Aneng V05B uses and also another 10byte protocol that Aneng St207 uses.
 You can download it from releases.
-Link is here that compiled  [https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases](https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFRelease1.09)
+Link is here that compiled  [https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases](https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/latest)
 
-Screenshots :
-
-![173920659-fb0bfc53-f7ed-40af-aeae-e79ced8357e3](https://user-images.githubusercontent.com/85828505/174023410-ceb07423-4400-4808-acfe-cc859389b5e7.png)
+# Screenshots :
 
 ![image](https://user-images.githubusercontent.com/85828505/178142637-8d111490-a235-478c-ae2c-06fe04be27ff.png)
+
+![image](https://user-images.githubusercontent.com/85828505/180448743-e0200384-13cc-494a-a210-c1c77f57c419.png)
+
+![image](https://user-images.githubusercontent.com/85828505/180449524-7202afc3-8935-4c3a-a38c-cc5b02f3ba2a.png)
+
+![image](https://user-images.githubusercontent.com/85828505/180449697-e0b7e208-c608-40ab-8d4a-9258311977f9.png)
+
+![image](https://user-images.githubusercontent.com/85828505/180447959-9a76a9a7-6af5-4be2-b7c0-7edf9b2ad3d9.png)
+
+![image](https://user-images.githubusercontent.com/85828505/180448323-efef630b-3aa8-4300-9195-7e7ce0ec2185.png)
+
+![image](https://user-images.githubusercontent.com/85828505/180448485-4bce6f51-190c-4948-8c3e-e679b4ebb7b1.png)
+
+# Supported Devices :
+
+Aneng 9002, BSIDE ZT-300AB, ZOYI ZT-300AB, BABATools AD900
+
+Aneng V05B, BSIDE ZT-5B, ZT-5B
+
+Aneng ST207, BSIDE ZT-5BQ, ZT-5566B, ZT-XB
+
+Aneng AN999S, ZOYI ZT-5566S
+
 
 # Contributing
 
