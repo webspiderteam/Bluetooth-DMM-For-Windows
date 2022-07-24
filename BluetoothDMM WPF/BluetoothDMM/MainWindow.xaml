@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
         xmlns:local="clr-namespace:BluetoothDMM"
-        d:DataContext="d:DesignInstance local:MainWindow" Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="None" Title="Bluetooth DMM" Height="172" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center" Activated="Window_Activated" MouseDown="Window_MouseDown" StateChanged="OnStateChanged" IsVisibleChanged="OnIsVisibleChanged">
+        d:DataContext="d:DesignInstance local:MainWindow" Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="None" Title="Bluetooth DMM" Height="172" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center" Activated="Window_Activated" MouseDown="Window_MouseDown" StateChanged="OnStateChanged" IsVisibleChanged="OnIsVisibleChanged" >
     <Window.Resources>
         <!--// Toggle Button Style Template //-->
         <ImageBrush x:Key="tb_mouse_over" ImageSource="Assets/tgBtn_MouseOver.png"/>
@@ -139,7 +139,7 @@
                             <Button Name="Button2" Width="105" Height="32" FontSize="14" Content="Open New" Margin="5" Click="Button_Click" Visibility="Collapsed" />
                             <Button Name="Button3" Width="105" Height="32" FontSize="14" Content="Don't Connect" Click="Button_Click" Margin="5"/>
                         </StackPanel>
-                        <CheckBox Name="DontAsk" Content="Don't Ask again. Connect Automaticly." Height="20"/>
+                        <CheckBox Name="DontAsk" Content="Don't Ask again. Connect Automaticly." Height="20" Unchecked="DontAsk_Unchecked" Checked="DontAsk_Unchecked"/>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -175,20 +175,20 @@
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Assets/Logo.ico" Width="100"/>
                             <StackPanel Margin="10,15,0,0">
-                            <TextBlock Text="Bluetooth DMM for Windows" FontWeight="Bold" />
+                                <TextBlock Text="Bluetooth DMM for Windows" FontWeight="Bold" />
 
-                            <TextBlock Text="Created By WebSpiderTeam" />
-                            <TextBlock> 
+                                <TextBlock Text="Created By WebSpiderTeam" />
+                                <TextBlock> 
                                 <Run Text="Version :"/>
                                 <Run Text="{Binding Text, ElementName=version}"/>
-                            </TextBlock>
-                            <TextBlock>
+                                </TextBlock>
+                                <TextBlock>
 			                    <Hyperlink RequestNavigate="HandleLinkClick" NavigateUri="https://github.com/webspiderteam/Bluetooth-DMM-For-Windows">
 				                    <Run Text="https://github.com/webspiderteam/Bluetooth-DMM-For-Windows" />
 			                    </Hyperlink>
 
-                            </TextBlock>
-                        </StackPanel>
+                                </TextBlock>
+                            </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button Name="Ok" Width="95" Height="32" FontSize="14" Content="Ok" Margin="5" Click="Ok_Click" />
@@ -202,139 +202,10 @@
         <Grid x:Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="2"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Viewbox x:Name="Display" Grid.Row="0" HorizontalAlignment="Stretch" Margin="5,5,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
-
-                <Grid>
-                    <TextBlock x:Name="TxtStatus" TextWrapping="Wrap" FontSize="20" Height="40" Text="Not connected" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                    <Grid x:Name="aDisplay" Margin="0,-35,0,0" Visibility="Collapsed" >
-                        <TextBlock  Width="1100" />
-                        <Viewbox Width="700" HorizontalAlignment="Stretch" Margin="0,10,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
-                            <Grid>
-
-                                <StackPanel Height="55" Width="270" Margin="0,0,0,0">
-                                    <local:CircularProgress 
-                                 x:Name="Meter"
-                                 Height="500" Width="500" Margin="0,10,0,0"
-                                 StartAngle="29.7"
-                                 EndAngle="-29.3"
-                                 Stroke="#FF6C6247"
-                                 Value="50"
-                                 HorizontalAlignment="Center"/>
-                                    <Path Width="270" Height="55" Margin="0,-973,0,0" Fill="#FF0E0000" Data="m 119.95707,-30.720772 3.25784,9.461455 m 0.87995,-10.845939 2.91094,8.958938 m 1.2504,-10.270992 2.94662,9.63797 m 1.23695,-10.877219 2.64788,9.234264 m 5.78097,-11.492762 2.48079,9.94991 m 1.76192,-10.968494 2.20787,9.563318 m 2.052,-10.507697 2.04163,9.605113 m 2.23404,-10.475007 1.86949,9.617671 m -75.369666,17.134182 4.712805,8.5021243 m -0.878283,-10.5840943 4.677955,8.7979516 m -0.807665,-10.8126826 4.470953,8.7747389 m -0.566125,-10.7216289 4.356781,8.932722 m 3.551844,-12.62056 4.064541,9.129103 m -0.0632,-10.868952 3.9996,9.422459 m 0.0316,-11.092207 3.76717,9.324081 m 0.29247,-10.923235 3.57025,9.300817 m 175.6137,-9.300878 -3.47386,9.049723 m 7.53354,-7.450561 -3.57946,8.859474 m 7.61058,-7.189743 -4.06318,9.572249 m 8.06455,-7.832381 -3.98718,8.955354 m 11.89582,-5.267503 -4.51883,9.2649736 m 8.42369,-7.3180786 -4.72361,9.2706064 m 8.59385,-7.2559094 -4.89645,9.2088867 m 8.73096,-7.1268917 -5.0851,9.1737609 m -68.41503,-35.9256059 -1.96374,10.102557 m 6.2394,-9.232677 -2.11097,9.931365 m 6.37082,-8.986988 -2.29914,9.958669 m 6.54184,-8.940063 -2.41973,9.705028 m 10.8486,-7.44654 -2.64018,9.207387 m 6.82377,-7.968149 -2.83021,9.257192 m 6.99152,-7.94514 -2.88952,8.893015 m 7.02732,-7.508517 -3.08764,8.967161 m -73.94126,-22.549411 -0.18449,10.569143 m 4.54624,-10.454937 -0.36544,10.464869 m 4.72455,-10.274552 -0.54858,10.467569 m 4.90372,-10.201178 -0.71238,10.187471 m 9.40538,-9.426937 -1.03644,9.861033 m 5.37166,-9.367098 -1.22037,9.939147 m 5.54631,-9.369617 -1.40716,10.012503 m 5.7225,-9.367582 -1.52212,9.610278 m -76.69516,-9.610276 1.51703,9.578121 m 2.7983,-10.223061 1.41121,10.041225 m 2.91476,-10.610732 1.24556,10.144254 m 3.08965,-10.638203 1.05581,10.045329 m 7.63717,-10.805862 0.71238,10.187485 m 3.64275,-10.453854 0.52568,10.03054 m 3.83345,-10.220858 0.35041,10.034445 m 4.01136,-10.148663 0.18085,10.361007 m 26.52075,-15.443445 -1.42215,16.255218 m 45.37072,-8.501493 -4.1111,15.342827 m 46.04562,-0.07533 -6.67101,14.306015 m -209.727043,-14.32697 6.830483,14.648015 m 35.10695,-29.907402 4.12505,15.394881 m 39.82505,-23.140082 1.40249,16.030516 m 66.2693,-18.360358 -3.7129,21.056905 m 47.33941,-8.22945 -6.76209,18.578668 m -171.40869,-18.996666 7.02985,19.314347 m 36.71542,-31.913147 3.72324,21.115539 m 41.6929,-25.186439 v 22.243909 m 135.00005,5.567961 c -5.16677,8.949108 -10.33354,17.898215 -15.50031,26.8473224 M 66.349166,-28.16797 81.384742,-2.1255919"  Stretch="Fill" StrokeThickness="2" Opacity="0.7" >
-                                        <Path.Effect>
-                                            <DropShadowEffect Direction="225" BlurRadius="3" ShadowDepth="1"/>
-                                        </Path.Effect>
-                                        <Path.Stroke>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                <GradientStop Color="#FF00F70A" Offset="0.863"/>
-                                                <GradientStop Color="#FFF71E09" Offset="1"/>
-                                                <GradientStop Color="#FF00F7EC" Offset="0.011"/>
-                                                <GradientStop Color="#FF00F774" Offset="0.13"/>
-                                            </LinearGradientBrush>
-                                        </Path.Stroke>
-                                    </Path>
-                                </StackPanel>
-                            </Grid>
-                        </Viewbox>
-                    </Grid>
-                    <TextBlock x:Name="AutoRange" Visibility="Visible" HorizontalAlignment="Center" Height="60" Margin="0,27,0,0" TextWrapping="Wrap" Text="Auto Range" VerticalAlignment="Top" Width="421" FontSize="44" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCData" HorizontalAlignment="Center" Height="262" Margin="0,10,30,0" TextWrapping="WrapWithOverflow" Text="----" VerticalAlignment="Top" Width="700" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
-                    <TextBlock x:Name="True_RMS" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="350,0,0,-30" TextWrapping="Wrap" Text="TRUE RMS" VerticalAlignment="Bottom" Width="250" FontSize="40" FontWeight="Bold"/>
-                    <TextBlock x:Name="InRush" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="-300,70,0,-30" TextWrapping="Wrap" Text="INRUSH" VerticalAlignment="Bottom" Width="200" FontSize="40" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCDataACDC" HorizontalAlignment="Left" Height="70" Margin="80,175,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="85" FontSize="60" FontWeight="Bold" TextAlignment="Right"/>
-                    <TextBlock x:Name="MyGattCDataMin" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,-30" TextWrapping="Wrap" Text="MIN" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCDataMax" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,-30" TextWrapping="Wrap" Text="MAX" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCDataPeek" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,-30" TextWrapping="Wrap" Text="PEEK" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
-                    <Viewbox x:Name="MyGattCDataDiode" Visibility="Hidden" Margin="-60,10,0,0" Stretch="Fill" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Top">
-                        <Path Fill="White" Data="m 185.09961,79.863281 -0.26563,27.749999 -0.26562,27.75 -3.74219,0.3086 -3.74219,0.31054 -6.2207,-1.59375 -6.2207,-1.59375 -14.37696,-6.94336 -14.37695,-6.94531 -26.46875,-15.12891 -26.468748,-15.128902 -0.458984,0.457031 -0.458985,0.458984 -1.080078,22.398437 -1.080078,22.40039 -1.152344,0.73438 -1.152344,0.73437 -31.867187,0.0156 -31.867188,0.0156 0.716797,7.75 0.71875,7.75 0.34961,0.36524 0.349609,0.36718 29.800781,0.9336 29.798828,0.93359 2.148438,0.44336 2.146484,0.44336 0.632813,13.75586 0.632812,13.75781 0.71875,7.70899 0.720703,7.71093 15.5,-9.09375 15.500001,-9.0957 12.75195,-7.31836 12.75,-7.31641 8.67774,-4.06836 8.67773,-4.0664 5.7168,-1.48047 5.71484,-1.48047 h 8.60547 8.60547 v 26 26 h 9.5 9.5 v -26 -26 h 36.5 36.5 v -9 -9 h -34.91797 -34.91797 l -1.58203,-0.60742 -1.58203,-0.60742 V 107.25586 79.863281 h -9.48438 z"/>
-                    </Viewbox>
-                    <Viewbox x:Name="MyGattCDataRel" Visibility="Hidden" Margin="20,180,0,0" Stretch="Uniform" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <Path Fill="White" Data="M509.775,481.154L275.109,11.82c-7.862-15.724-30.3-15.724-38.162,0L2.28,481.154c-7.092,14.185,3.222,30.874,19.081,30.874h469.333C506.553,512.028,516.868,495.338,509.775,481.154z M55.879,469.361L256.028,69.064l200.149,400.297H55.879z"/>
-                    </Viewbox>
-                    <Viewbox x:Name="MyGattCDataHV" Visibility="Hidden" Margin="75,100,0,0" Stretch="Uniform" Width="64" Height="64" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <Path Fill="White" Data="m 207.523,560.316 c 0,0 194.42,-421.925 194.444,-421.986 l 10.79,-23.997 c -41.824,12.02 -135.271,34.902 -135.57,35.833 C 286.96,122.816 329.017,0 330.829,0 290.853,0 250.877,0 210.902,0 L 198.735,57.938 147.559,267.933 282.75,231.127 Z"/>
-                    </Viewbox>
-                    <Viewbox x:Name="MyGattCDataContinuity" Visibility="Hidden" Margin="130,22,0,0" Stretch="Fill" Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
-                        <Viewbox.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="90"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Viewbox.RenderTransform>
-                        <Grid Width="60" Height="60">
-                            <Path Margin="-60,-80" Stretch="None" Fill="White" Data="m 67.07584,134.57891 -0.815234,-1.14438 1.058009,-1.40376 c 5.155183,-6.83979 12.314169,-10.37003 19.646209,-9.68794 6.089114,0.56647 11.61571,3.90579 16.110016,9.73411 l 1.01588,1.31743 -0.84159,1.15548 -0.8416,1.15548 -1.3269,-1.61763 c -3.404807,-4.15081 -6.895369,-6.59418 -11.317613,-7.92225 -2.112852,-0.63453 -6.777563,-0.68526 -8.892325,-0.0967 -4.230496,1.17737 -8.394749,3.98629 -11.325129,7.63916 -1.831311,2.28282 -1.537721,2.17928 -2.469723,0.871 z"/>
-                            <Path Margin="-60,-80" Stretch="none" Fill="White" Data="m 70.400122,139.1779 -0.774656,-1.09923 1.181191,-1.55179 c 2.633356,-3.45959 6.153108,-5.9552 10.021894,-7.1058 2.305085,-0.68554 6.385909,-0.68786 8.658733,-0.005 3.871728,1.16339 7.330323,3.62243 10.097302,7.17912 l 1.147154,1.47454 -0.828278,1.13398 -0.828273,1.13398 -1.221775,-1.45214 c -5.037942,-5.98782 -11.200506,-8.06379 -17.432165,-5.87233 -2.880612,1.01301 -6.101168,3.43823 -8.197539,6.17309 -0.459836,0.59989 -0.88396,1.0907 -0.942498,1.0907 -0.05853,0 -0.455028,-0.49465 -0.88109,-1.09922 z"/>
-                            <Path Margin="-60,-80" Stretch="None" Fill="White" Data="m 73.787016,143.88265 -0.823144,-1.15549 0.931189,-1.19517 c 1.900955,-2.43982 4.29792,-4.26784 6.922134,-5.27908 1.787622,-0.68885 4.88506,-0.9294 6.846876,-0.53174 3.253775,0.65956 6.845086,3.07882 8.928529,6.01464 l 0.741482,1.04485 -0.856924,1.17321 c -0.744368,1.0191 -0.882771,1.12957 -1.053695,0.84103 -0.108224,-0.1827 -0.618253,-0.82107 -1.1334,-1.41859 -4.247665,-4.92692 -10.210934,-5.96814 -15.209063,-2.65563 -1.46226,0.96912 -2.932342,2.35673 -3.749296,3.53895 -0.295881,0.42818 -0.579269,0.7785 -0.629753,0.7785 -0.05048,0 -0.462204,-0.51996 -0.914935,-1.15548 z"/>
-                            <Path Margin="-60,-80" Stretch="None" Fill="White" Data="m 80.618914,153.35632 c -0.465642,-0.52952 -0.84662,-1.0826 -0.84662,-1.22906 0,-0.4353 1.857402,-2.2474 2.83733,-2.76812 1.821648,-0.968 4.04228,-0.79637 5.8265,0.45035 0.832802,0.58192 2.185471,2.03047 2.185471,2.34038 0,0.0841 -0.393882,0.61201 -0.875296,1.17313 l -0.875294,1.02023 -0.472443,-0.55111 c -1.048678,-1.22328 -1.651892,-1.50306 -3.240644,-1.50306 -1.584972,0 -2.192514,0.28042 -3.230294,1.49099 l -0.462088,0.53904 z"/>
-                            <Path Margin="-60,-80" Stretch="None" Fill="White" Data="m 92.318377,149.69095 -0.887417,-1.04659 c -1.024559,-1.20835 -3.014187,-2.59582 -4.212333,-2.9375 -1.176883,-0.33562 -3.241526,-0.29177 -4.33046,0.092 -1.31958,0.46502 -2.980835,1.65114 -3.921585,2.79998 -0.443142,0.54117 -0.867268,0.98394 -0.942499,0.98394 -0.07523,0 -0.481839,-0.48566 -0.90357,-1.07923 l -0.766787,-1.07922 0.460444,-0.67102 c 0.823918,-1.20073 3.007738,-3.05157 4.366838,-3.701 0.717449,-0.34283 1.905755,-0.73092 2.640682,-0.86245 3.17151,-0.56755 6.806294,1.01965 9.237051,4.03355 0.803177,0.99586 0.889503,1.17821 0.704254,1.48765 -0.260412,0.38208 -0.107783,0.16196 -0.429203,0.57318 l -0.417094,0.60354 c -0.571004,0.74994 -0.626193,0.6548 -0.598321,0.80321 z"/>
-                        </Grid>
-                    </Viewbox>
-                    <Viewbox x:Name="MyGattCDataBluetooth" Margin="0,95,90,0" Height="80" Width="50" Stretch="Uniform" HorizontalAlignment="Right" VerticalAlignment="Top" OpacityMask="Black">
-                        <Path Fill="White" Data="M 25.41,11.41 14,0 H 12 V 15.17 L 2.83,6 0,8.83 11.17,20 0,31.17 2.83,34 12,24.83 V 40 h 2 L 25.41,28.59 16.83,20 Z M 16,7.66 19.76,11.42 16,15.17 Z M 19.76,28.59 16,32.34 v -7.52 z">
-                            <Path.Style>
-                                <Style TargetType="Path">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsChecked, ElementName=Is_Connected}" Value="false">
-                                            <DataTrigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty='Opacity' From='0' To='1' Duration='0:0:1' AutoReverse='True' RepeatBehavior='Forever'/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.EnterActions>
-                                            <DataTrigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard FillBehavior='Stop'>
-                                                        <DoubleAnimation Storyboard.TargetProperty='Opacity' To='1' Duration='0:0:0.5'/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.ExitActions>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Path.Style>
-                            <Path.Effect>
-                                <DropShadowEffect BlurRadius="20" RenderingBias="Quality"/>
-                            </Path.Effect>
-                        </Path>
-                    </Viewbox>
-                    <Viewbox x:Name="MyGattCDataBattery" Margin="5,110,90,0" Height="50" Width="80" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" OpacityMask="Black">
-                        <Path Opacity="0" Fill="Red" Data="m 10.1,256 h 381.1 c 5.5,0 9.9,-4.5 9.9,-10 V 192 H 438 c 5.6,0 10.1,-4.5 10.1,-10 V 74 c 0,-5.5 -4.5,-10 -10.1,-10 H 401 V 10 C 401,4.5 396.7,0 391.1,0 H 10.1 C 4.5,0 0,4.5 0,10 v 236 c 0,5.5 4.5,10 10.1,10 z M 369,32 v 32 32 h 32.2 14.8 v 64 H 401.2 369 v 32 32 H 192 L 160,32 Z">
-                            <Path.Style>
-                                <Style TargetType="Path">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsChecked, ElementName=Battery}" Value="true">
-                                            <DataTrigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty='Opacity' From='0' To='1' Duration='0:0:1' AutoReverse='True' RepeatBehavior='Forever'/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.EnterActions>
-                                            <DataTrigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty='Opacity' From="1" To='0' Duration='0:0:0.5'/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.ExitActions>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Path.Style>
-                            <Path.Effect>
-                                <DropShadowEffect BlurRadius="20" RenderingBias="Quality"/>
-                            </Path.Effect>
-                        </Path>
-                    </Viewbox>
-                    <TextBlock x:Name="MyGattCDataSymbol" HorizontalAlignment="Right" Height="87" Margin="800,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171" FontSize="72" FontWeight="Bold"/>
-                </Grid>
-            </Viewbox>
-            <Grid Grid.Row="1" x:Name="TopStackPanel" Margin="0,0,0,0" Visibility="Collapsed" VerticalAlignment="Stretch" Height="Auto" Width="Auto">
+            <Grid Grid.Row="2" x:Name="TopStackPanel" Margin="0,0,0,0" Visibility="Collapsed" VerticalAlignment="Stretch" Height="Auto" Width="Auto">
 
                 <ScottPlot:WpfPlot Name="wpfPlot1"  Margin="-10,-40,0,-10" MouseMove="WpfPlot1_MouseMove" MouseUp="WpfPlot1_MouseUp" MouseWheel="WpfPlot1_MouseWheel" MouseLeave="WpfPlot1_MouseLeave"/>
 
@@ -451,6 +322,139 @@
                     </Border>
                 </Popup>
             </Grid>
+
+            <Viewbox x:Name="Display" Grid.Row="0" HorizontalAlignment="Stretch" Margin="5,5,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
+
+                <Grid>
+                    <TextBlock x:Name="TxtStatus" TextWrapping="Wrap" FontSize="20" Height="40" Text="Not connected" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                    <Grid x:Name="aDisplay" Margin="0,-35,0,0" Visibility="Collapsed" >
+                        <TextBlock  Width="1100" />
+                        <Viewbox Width="700" HorizontalAlignment="Stretch" Margin="0,10,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
+                            <Grid>
+
+                                <StackPanel Height="55" Width="270" Margin="0,0,0,0">
+                                    <local:CircularProgress 
+                                 x:Name="Meter"
+                                 Height="500" Width="500" Margin="0,10,0,0"
+                                 StartAngle="29.7"
+                                 EndAngle="-29.3"
+                                 Stroke="#FFFFFF00"
+                                 Value="50"
+                                 HorizontalAlignment="Center"/>
+                                    <Path Width="270" Height="55" Margin="0,-973,0,0" Fill="#FF0E0000" Data="m 119.95707,-30.720772 3.25784,9.461455 m 0.87995,-10.845939 2.91094,8.958938 m 1.2504,-10.270992 2.94662,9.63797 m 1.23695,-10.877219 2.64788,9.234264 m 5.78097,-11.492762 2.48079,9.94991 m 1.76192,-10.968494 2.20787,9.563318 m 2.052,-10.507697 2.04163,9.605113 m 2.23404,-10.475007 1.86949,9.617671 m -75.369666,17.134182 4.712805,8.5021243 m -0.878283,-10.5840943 4.677955,8.7979516 m -0.807665,-10.8126826 4.470953,8.7747389 m -0.566125,-10.7216289 4.356781,8.932722 m 3.551844,-12.62056 4.064541,9.129103 m -0.0632,-10.868952 3.9996,9.422459 m 0.0316,-11.092207 3.76717,9.324081 m 0.29247,-10.923235 3.57025,9.300817 m 175.6137,-9.300878 -3.47386,9.049723 m 7.53354,-7.450561 -3.57946,8.859474 m 7.61058,-7.189743 -4.06318,9.572249 m 8.06455,-7.832381 -3.98718,8.955354 m 11.89582,-5.267503 -4.51883,9.2649736 m 8.42369,-7.3180786 -4.72361,9.2706064 m 8.59385,-7.2559094 -4.89645,9.2088867 m 8.73096,-7.1268917 -5.0851,9.1737609 m -68.41503,-35.9256059 -1.96374,10.102557 m 6.2394,-9.232677 -2.11097,9.931365 m 6.37082,-8.986988 -2.29914,9.958669 m 6.54184,-8.940063 -2.41973,9.705028 m 10.8486,-7.44654 -2.64018,9.207387 m 6.82377,-7.968149 -2.83021,9.257192 m 6.99152,-7.94514 -2.88952,8.893015 m 7.02732,-7.508517 -3.08764,8.967161 m -73.94126,-22.549411 -0.18449,10.569143 m 4.54624,-10.454937 -0.36544,10.464869 m 4.72455,-10.274552 -0.54858,10.467569 m 4.90372,-10.201178 -0.71238,10.187471 m 9.40538,-9.426937 -1.03644,9.861033 m 5.37166,-9.367098 -1.22037,9.939147 m 5.54631,-9.369617 -1.40716,10.012503 m 5.7225,-9.367582 -1.52212,9.610278 m -76.69516,-9.610276 1.51703,9.578121 m 2.7983,-10.223061 1.41121,10.041225 m 2.91476,-10.610732 1.24556,10.144254 m 3.08965,-10.638203 1.05581,10.045329 m 7.63717,-10.805862 0.71238,10.187485 m 3.64275,-10.453854 0.52568,10.03054 m 3.83345,-10.220858 0.35041,10.034445 m 4.01136,-10.148663 0.18085,10.361007 m 26.52075,-15.443445 -1.42215,16.255218 m 45.37072,-8.501493 -4.1111,15.342827 m 46.04562,-0.07533 -6.67101,14.306015 m -209.727043,-14.32697 6.830483,14.648015 m 35.10695,-29.907402 4.12505,15.394881 m 39.82505,-23.140082 1.40249,16.030516 m 66.2693,-18.360358 -3.7129,21.056905 m 47.33941,-8.22945 -6.76209,18.578668 m -171.40869,-18.996666 7.02985,19.314347 m 36.71542,-31.913147 3.72324,21.115539 m 41.6929,-25.186439 v 22.243909 m 135.00005,5.567961 c -5.16677,8.949108 -10.33354,17.898215 -15.50031,26.8473224 M 66.349166,-28.16797 81.384742,-2.1255919"  Stretch="Fill" StrokeThickness="2" Opacity="0.7" >
+                                        <Path.Effect>
+                                            <DropShadowEffect Direction="225" BlurRadius="3" ShadowDepth="1"/>
+                                        </Path.Effect>
+                                        <Path.Stroke>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Color="#FF00F70A" Offset="0.863"/>
+                                                <GradientStop Color="#FFF71E09" Offset="1"/>
+                                                <GradientStop Color="#FF00F7EC" Offset="0.011"/>
+                                                <GradientStop Color="#FF00F774" Offset="0.13"/>
+                                            </LinearGradientBrush>
+                                        </Path.Stroke>
+                                    </Path>
+                                </StackPanel>
+                            </Grid>
+                        </Viewbox>
+                    </Grid>
+                    <TextBlock x:Name="AutoRange" Visibility="Visible" HorizontalAlignment="Center" Height="60" Margin="0,27,0,0" TextWrapping="Wrap" Text="Auto Range" VerticalAlignment="Top" Width="421" FontSize="44" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCData" HorizontalAlignment="Center" Height="262" Margin="0,10,30,0" TextWrapping="WrapWithOverflow" Text="----" VerticalAlignment="Top" Width="700" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
+                    <TextBlock x:Name="True_RMS" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="350,0,0,-30" TextWrapping="Wrap" Text="TRUE RMS" VerticalAlignment="Bottom" Width="250" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="InRush" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="-300,70,0,-30" TextWrapping="Wrap" Text="INRUSH" VerticalAlignment="Bottom" Width="200" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCDataACDC" HorizontalAlignment="Left" Height="70" Margin="80,175,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="85" FontSize="60" FontWeight="Bold" TextAlignment="Right"/>
+                    <TextBlock x:Name="MyGattCDataMin" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,-30" TextWrapping="Wrap" Text="MIN" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCDataMax" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,-30" TextWrapping="Wrap" Text="MAX" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCDataPeek" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,-30" TextWrapping="Wrap" Text="PEEK" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
+                    <Viewbox x:Name="MyGattCDataDiode" Visibility="Hidden" Margin="-60,10,0,0" Stretch="Fill" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Path Fill="White" Data="m 185.09961,79.863281 -0.26563,27.749999 -0.26562,27.75 -3.74219,0.3086 -3.74219,0.31054 -6.2207,-1.59375 -6.2207,-1.59375 -14.37696,-6.94336 -14.37695,-6.94531 -26.46875,-15.12891 -26.468748,-15.128902 -0.458984,0.457031 -0.458985,0.458984 -1.080078,22.398437 -1.080078,22.40039 -1.152344,0.73438 -1.152344,0.73437 -31.867187,0.0156 -31.867188,0.0156 0.716797,7.75 0.71875,7.75 0.34961,0.36524 0.349609,0.36718 29.800781,0.9336 29.798828,0.93359 2.148438,0.44336 2.146484,0.44336 0.632813,13.75586 0.632812,13.75781 0.71875,7.70899 0.720703,7.71093 15.5,-9.09375 15.500001,-9.0957 12.75195,-7.31836 12.75,-7.31641 8.67774,-4.06836 8.67773,-4.0664 5.7168,-1.48047 5.71484,-1.48047 h 8.60547 8.60547 v 26 26 h 9.5 9.5 v -26 -26 h 36.5 36.5 v -9 -9 h -34.91797 -34.91797 l -1.58203,-0.60742 -1.58203,-0.60742 V 107.25586 79.863281 h -9.48438 z"/>
+                    </Viewbox>
+                    <Viewbox x:Name="MyGattCDataRel" Visibility="Hidden" Margin="20,180,0,0" Stretch="Uniform" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Path Fill="White" Data="M509.775,481.154L275.109,11.82c-7.862-15.724-30.3-15.724-38.162,0L2.28,481.154c-7.092,14.185,3.222,30.874,19.081,30.874h469.333C506.553,512.028,516.868,495.338,509.775,481.154z M55.879,469.361L256.028,69.064l200.149,400.297H55.879z"/>
+                    </Viewbox>
+                    <Viewbox x:Name="MyGattCDataHV" Visibility="Hidden" Margin="75,100,0,0" Stretch="Uniform" Width="64" Height="64" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Path Fill="White" Data="m 207.523,560.316 c 0,0 194.42,-421.925 194.444,-421.986 l 10.79,-23.997 c -41.824,12.02 -135.271,34.902 -135.57,35.833 C 286.96,122.816 329.017,0 330.829,0 290.853,0 250.877,0 210.902,0 L 198.735,57.938 147.559,267.933 282.75,231.127 Z"/>
+                    </Viewbox>
+                    <Viewbox x:Name="MyGattCDataContinuity" Visibility="Hidden" Margin="130,22,0,0" Stretch="Fill" Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Viewbox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Viewbox.RenderTransform>
+                        <Grid Width="60" Height="60">
+                            <Path Margin="-60,-80" Stretch="None" Fill="White" Data="m 67.07584,134.57891 -0.815234,-1.14438 1.058009,-1.40376 c 5.155183,-6.83979 12.314169,-10.37003 19.646209,-9.68794 6.089114,0.56647 11.61571,3.90579 16.110016,9.73411 l 1.01588,1.31743 -0.84159,1.15548 -0.8416,1.15548 -1.3269,-1.61763 c -3.404807,-4.15081 -6.895369,-6.59418 -11.317613,-7.92225 -2.112852,-0.63453 -6.777563,-0.68526 -8.892325,-0.0967 -4.230496,1.17737 -8.394749,3.98629 -11.325129,7.63916 -1.831311,2.28282 -1.537721,2.17928 -2.469723,0.871 z"/>
+                            <Path Margin="-60,-80" Stretch="none" Fill="White" Data="m 70.400122,139.1779 -0.774656,-1.09923 1.181191,-1.55179 c 2.633356,-3.45959 6.153108,-5.9552 10.021894,-7.1058 2.305085,-0.68554 6.385909,-0.68786 8.658733,-0.005 3.871728,1.16339 7.330323,3.62243 10.097302,7.17912 l 1.147154,1.47454 -0.828278,1.13398 -0.828273,1.13398 -1.221775,-1.45214 c -5.037942,-5.98782 -11.200506,-8.06379 -17.432165,-5.87233 -2.880612,1.01301 -6.101168,3.43823 -8.197539,6.17309 -0.459836,0.59989 -0.88396,1.0907 -0.942498,1.0907 -0.05853,0 -0.455028,-0.49465 -0.88109,-1.09922 z"/>
+                            <Path Margin="-60,-80" Stretch="None" Fill="White" Data="m 73.787016,143.88265 -0.823144,-1.15549 0.931189,-1.19517 c 1.900955,-2.43982 4.29792,-4.26784 6.922134,-5.27908 1.787622,-0.68885 4.88506,-0.9294 6.846876,-0.53174 3.253775,0.65956 6.845086,3.07882 8.928529,6.01464 l 0.741482,1.04485 -0.856924,1.17321 c -0.744368,1.0191 -0.882771,1.12957 -1.053695,0.84103 -0.108224,-0.1827 -0.618253,-0.82107 -1.1334,-1.41859 -4.247665,-4.92692 -10.210934,-5.96814 -15.209063,-2.65563 -1.46226,0.96912 -2.932342,2.35673 -3.749296,3.53895 -0.295881,0.42818 -0.579269,0.7785 -0.629753,0.7785 -0.05048,0 -0.462204,-0.51996 -0.914935,-1.15548 z"/>
+                            <Path Margin="-60,-80" Stretch="None" Fill="White" Data="m 80.618914,153.35632 c -0.465642,-0.52952 -0.84662,-1.0826 -0.84662,-1.22906 0,-0.4353 1.857402,-2.2474 2.83733,-2.76812 1.821648,-0.968 4.04228,-0.79637 5.8265,0.45035 0.832802,0.58192 2.185471,2.03047 2.185471,2.34038 0,0.0841 -0.393882,0.61201 -0.875296,1.17313 l -0.875294,1.02023 -0.472443,-0.55111 c -1.048678,-1.22328 -1.651892,-1.50306 -3.240644,-1.50306 -1.584972,0 -2.192514,0.28042 -3.230294,1.49099 l -0.462088,0.53904 z"/>
+                            <Path Margin="-60,-80" Stretch="None" Fill="White" Data="m 92.318377,149.69095 -0.887417,-1.04659 c -1.024559,-1.20835 -3.014187,-2.59582 -4.212333,-2.9375 -1.176883,-0.33562 -3.241526,-0.29177 -4.33046,0.092 -1.31958,0.46502 -2.980835,1.65114 -3.921585,2.79998 -0.443142,0.54117 -0.867268,0.98394 -0.942499,0.98394 -0.07523,0 -0.481839,-0.48566 -0.90357,-1.07923 l -0.766787,-1.07922 0.460444,-0.67102 c 0.823918,-1.20073 3.007738,-3.05157 4.366838,-3.701 0.717449,-0.34283 1.905755,-0.73092 2.640682,-0.86245 3.17151,-0.56755 6.806294,1.01965 9.237051,4.03355 0.803177,0.99586 0.889503,1.17821 0.704254,1.48765 -0.260412,0.38208 -0.107783,0.16196 -0.429203,0.57318 l -0.417094,0.60354 c -0.571004,0.74994 -0.626193,0.6548 -0.598321,0.80321 z"/>
+                        </Grid>
+                    </Viewbox>
+                    <Viewbox x:Name="MyGattCDataBluetooth" Margin="0,95,90,0" Height="80" Width="50" Stretch="Uniform" HorizontalAlignment="Right" VerticalAlignment="Top" OpacityMask="Black">
+                        <Path Fill="White" Data="M 25.41,11.41 14,0 H 12 V 15.17 L 2.83,6 0,8.83 11.17,20 0,31.17 2.83,34 12,24.83 V 40 h 2 L 25.41,28.59 16.83,20 Z M 16,7.66 19.76,11.42 16,15.17 Z M 19.76,28.59 16,32.34 v -7.52 z">
+                            <Path.Style>
+                                <Style TargetType="Path">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=Is_Connected}" Value="false">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty='Opacity' From='0' To='1' Duration='0:0:1' AutoReverse='True' RepeatBehavior='Forever'/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                            <DataTrigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard FillBehavior='Stop'>
+                                                        <DoubleAnimation Storyboard.TargetProperty='Opacity' To='1' Duration='0:0:0.5'/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.ExitActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Path.Style>
+                            <Path.Effect>
+                                <DropShadowEffect BlurRadius="20" RenderingBias="Quality"/>
+                            </Path.Effect>
+                        </Path>
+                    </Viewbox>
+                    <Viewbox x:Name="MyGattCDataBattery" Margin="5,110,90,0" Height="50" Width="80" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" OpacityMask="Black">
+                        <Path Opacity="0" Fill="Red" Data="m 10.1,256 h 381.1 c 5.5,0 9.9,-4.5 9.9,-10 V 192 H 438 c 5.6,0 10.1,-4.5 10.1,-10 V 74 c 0,-5.5 -4.5,-10 -10.1,-10 H 401 V 10 C 401,4.5 396.7,0 391.1,0 H 10.1 C 4.5,0 0,4.5 0,10 v 236 c 0,5.5 4.5,10 10.1,10 z M 369,32 v 32 32 h 32.2 14.8 v 64 H 401.2 369 v 32 32 H 192 L 160,32 Z">
+                            <Path.Style>
+                                <Style TargetType="Path">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=Battery}" Value="true">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty='Opacity' From='0' To='1' Duration='0:0:1' AutoReverse='True' RepeatBehavior='Forever'/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                            <DataTrigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty='Opacity' From="1" To='0' Duration='0:0:0.5'/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.ExitActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Path.Style>
+                            <Path.Effect>
+                                <DropShadowEffect BlurRadius="20" RenderingBias="Quality"/>
+                            </Path.Effect>
+                        </Path>
+                    </Viewbox>
+                    <TextBlock x:Name="MyGattCDataSymbol" HorizontalAlignment="Right" Height="87" Margin="800,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171" FontSize="72" FontWeight="Bold"/>
+                </Grid>
+            </Viewbox>
+            <GridSplitter Grid.Row="1" Height="2" Background="#a0303030" HorizontalAlignment="Stretch" ResizeDirection="Rows" Visibility="{Binding Visibility, ElementName=TopStackPanel}" />
+
         </Grid>
         <CheckBox x:Name="Is_Connected" Visibility="Hidden" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Battery" Visibility="Hidden" IsChecked="False" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>

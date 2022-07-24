@@ -309,7 +309,8 @@ namespace BluetoothDMM
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);
-            if (Is_Connected.IsChecked == true && GotFirstData)
+            bool exCondition = MyGattCDataSymbol.Text == "" && MyGattCDataACDC.Text == "";
+            if (Is_Connected.IsChecked == true && GotFirstData && !exCondition)
             {
                 signalPlot.IsVisible = true;
 
@@ -680,11 +681,12 @@ namespace BluetoothDMM
                 s1 = result[0];
                 s2 = result[1];
             }
-            else
+            else if (result.Length==1)
             {
                 s1 = " ";
                 s2 = result[0];
-            }
+            } else { s1 = s2 = " "; }
+
             return new string[] { s1, s2 };
         }
 
@@ -841,11 +843,11 @@ namespace BluetoothDMM
                 s1 = result[0];
                 s2 = result[1];
             }
-            else
+            else if (result.Length==1)
             {
                 s1 = " ";
                 s2 = result[0];
-            }
+            } else { s1 = s2 = " "; }
 
             switch (s1)
             {
@@ -883,14 +885,15 @@ namespace BluetoothDMM
         private void Chart_Export_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
-
+            //File.AppendAllText("debug.txt", "start export" + System.Environment.NewLine);
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 Filter = "DMM Chart Data file (*.dcd)|*.dcd|CSV file (*.csv)|*.csv"
             };
             var result = saveFileDialog.ShowDialog();
             var extension = Path.GetExtension(saveFileDialog.FileName);
-            if ( result == true && nextDataIndex>0)
+            if (result == true && nextDataIndex > 0)
+            {
                 if (extension == ".dcd")
                 {
                     double[] ChartData = gattData.Take((int)plt.GetDataLimits().XMax + 1).ToArray();
@@ -921,53 +924,58 @@ namespace BluetoothDMM
                 }
                 else if (extension == ".csv")
                 {
-                    /// TODO Export csv...
-                    /// 
-
-                    double[] ChartData = gattData.Take((int)plt.GetDataLimits().XMax + 1).ToArray();
-                    string[] createText = new string[(int)plt.GetDataLimits().XMax + 2];
-                    createText[0] = "Time,CurrentType,Value,Symbol";
-                    var plottablelist = plt.GetPlottables();
-                    int LastX = 0;
-                    Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
-                    foreach (var plotT in plottablelist)
+                    try
                     {
-                        var name = plotT.GetType().Name;
-                        if (plotT.GetType().Name == "Text")
+                        double[] ChartData = gattData.Take((int)plt.GetDataLimits().XMax + 1).ToArray();
+                        string[] createText = new string[(int)plt.GetDataLimits().XMax + 2];
+                        createText[0] = "Time,CurrentType,Value,Symbol";
+                        var plottablelist = plt.GetPlottables();
+                        Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
+                        foreach (var plotT in plottablelist)
                         {
-                            string sb = ((ScottPlot.Plottable.Text)plotT).Label;
-                            int pb = (int)((ScottPlot.Plottable.Text)plotT).X;
-                            keyValuePairs.Add(pb, sb);
+                            var name = plotT.GetType().Name;
+                            if (plotT.GetType().Name == "Text")
+                            {
+                                string sb = ((ScottPlot.Plottable.Text)plotT).Label;
+                                int pb = (int)((ScottPlot.Plottable.Text)plotT).X;
+                                keyValuePairs.Add(pb, sb);
+                            }
                         }
+                        string sbe = (MyGattCDataACDC.Text == "" ? string.Empty : "  " + MyGattCDataACDC.Text + " * \n") + "  " + MyGattCDataSymbol.Text + " *  ";
+                        int pbe = (int)plt.GetDataLimits().XMax;
+                        keyValuePairs.Add(pbe, sbe);
+                        int pairs_i = 0;
+                        foreach (var (value, index) in ChartData.Select((v, i) => (v, i)))
+                        {
+                            string Value = keyValuePairs.ElementAt(pairs_i).Value.Replace('*', ' ');
+                            var resultval = Value.Split(new string[] { "\n", " " }, StringSplitOptions.RemoveEmptyEntries);
+                            string s1;
+                            string s2;
+                            if (resultval.Length == 2)
+                            {
+                                s1 = resultval[0];
+                                s2 = resultval[1];
+                            }
+                            else if (resultval.Length==1)
+                            {
+                                s1 = " ";
+                                s2 = resultval[0];
+                            }
+                            else { s1 = s2 = " "; }
+                            if (index == keyValuePairs.ElementAt(pairs_i).Key)
+                                pairs_i++;
+                            createText[index + 1] = $"{index},{s1},{value},{s2}";
+                        }
+                        File.WriteAllLines(saveFileDialog.FileName, createText, System.Text.Encoding.UTF8);
                     }
-                    string sbe = (MyGattCDataACDC.Text == "" ? string.Empty : "  " + MyGattCDataACDC.Text + " * \n") + "  " + MyGattCDataSymbol.Text + " *  ";
-                    int pbe = (int)plt.GetDataLimits().XMax;
-                    keyValuePairs.Add(pbe, sbe);
-                    int pairs_i = 0;
-                    foreach (var (value, index) in ChartData.Select((v, i) => (v, i)))
+                    catch (Exception ex)
                     {
-                        string Value = keyValuePairs.ElementAt(pairs_i).Value.Replace('*', ' ');
-                        var resultval = Value.Split(new string[] { "\n", " " }, StringSplitOptions.RemoveEmptyEntries);
-                        string s1;
-                        string s2;
-                        if (resultval.Length == 2)
-                        {
-                            s1 = resultval[0];
-                            s2 = resultval[1];
-                        }
-                        else
-                        {
-                            s1 = " ";
-                            s2 = resultval[0];
-                        }
-                        if (index == keyValuePairs.ElementAt(pairs_i).Key)
-                            pairs_i++;
-                        createText[index+1]= $"{index},{s1},{value},{s2}";
+                        MessageBox.Show(ex.Message.ToString());
+                        File.AppendAllText("debug.txt", "error catch Error: " + ex.ToString() + System.Environment.NewLine);
                     }
-                    try {File.WriteAllLines(saveFileDialog.FileName, createText); }
-                    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
                     
                 }
+            }
             SettingPopup.IsOpen = false;
             dispatcherTimer.Start();
         }
@@ -989,12 +997,13 @@ namespace BluetoothDMM
             if (onLoad)
             {
                 await SearchDevices();
-                if (Properties.Settings.Default.ChartOn && (grid.RowDefinitions[0].ActualHeight + 180 > this.Height))
+                if (Properties.Settings.Default.ChartOn )
                 {
                     
                     TopStackPanel.Visibility = Visibility.Visible;
                     ChartON.Visibility = Visibility.Visible;
-                    this.Height = grid.RowDefinitions[0].ActualHeight + 180;
+                    if ((grid.RowDefinitions[0].ActualHeight + 90 > this.ActualHeight))
+                        this.Height = grid.RowDefinitions[0].ActualHeight + 180;
                 }
                 if (Properties.Settings.Default.MinimizeTray)
                 {
@@ -1071,6 +1080,11 @@ namespace BluetoothDMM
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
             AboutDialog.IsOpen = false;
+        }
+
+        private void DontAsk_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Button3.IsEnabled = (bool)!DontAsk.IsChecked;
         }
     }
 }

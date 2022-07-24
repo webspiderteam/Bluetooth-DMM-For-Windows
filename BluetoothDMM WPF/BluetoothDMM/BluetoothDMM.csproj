@@ -30,7 +30,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/</UpdateUrl>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.11.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -300,7 +300,6 @@
     <Resource Include="Assets\ADisplay.png" />
     <Resource Include="Assets\Logo.ico" />
     <Resource Include="Assets\Information.png" />
-    <Content Include="Assets\Meter.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

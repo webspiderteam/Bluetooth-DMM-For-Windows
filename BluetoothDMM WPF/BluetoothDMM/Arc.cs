@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using Windows.UI;
 
 namespace BluetoothDMM
 {
@@ -9,7 +10,8 @@ namespace BluetoothDMM
     {
         static CircularProgress()
         {
-            Brush myGreenBrush = new SolidColorBrush(Color.FromArgb(155, 255, 176, 37));
+            var Clr = System.Drawing.Color.Yellow;
+            Brush myGreenBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255,Clr.R,Clr.G,Clr.B));//Color.FromArgb(155, 255, 176, 37));
             myGreenBrush.Freeze();
 
             StrokeProperty.OverrideMetadata(

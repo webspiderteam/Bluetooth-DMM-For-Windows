@@ -225,11 +225,11 @@ namespace BluetoothDMM
                 s1 = result[0];
                 s2 = result[1];
             }
-            else
+            else if (result.Length==1)
             {
                 s1 = " ";
                 s2 = result[0];
-            }
+            } else { s1 = s2 = " "; }
 
 
             return new string[] { s1, s2 };

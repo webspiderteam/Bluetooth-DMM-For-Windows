@@ -386,7 +386,7 @@ namespace HeartRateLE.Bluetooth
 
         public static ArrayList ParseHeartRateValue(byte[] data,bool LogData)
         {
-
+            // Testing other device data
             var TestDevice = 0;
             if (TestDevice > 0)
             {
