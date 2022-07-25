@@ -19,6 +19,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using WPFLocalizeExtension.Engine;
+using WPFLocalizeExtension.Providers;
 
 namespace BluetoothDMM
 {
@@ -60,6 +62,32 @@ namespace BluetoothDMM
         {
 
             InitializeComponent();
+            if (Properties.Settings.Default.Lang == "")
+                LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
+            else
+            {
+                LocalizeDictionary.Instance.Culture = new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
+            }
+                
+            var x = WPFLocalizeExtension.Engine.LocalizeDictionary.Instance.MergedAvailableCultures;
+            (LocalizeDictionary.Instance.DefaultProvider as ResxLocalizationProvider).SearchCultures =
+    new List<System.Globalization.CultureInfo>()
+    {
+                    System.Globalization.CultureInfo.GetCultureInfo("ar"),
+                    System.Globalization.CultureInfo.GetCultureInfo("de"),
+                    System.Globalization.CultureInfo.GetCultureInfo("el"),
+                    System.Globalization.CultureInfo.GetCultureInfo("es"),
+                    System.Globalization.CultureInfo.GetCultureInfo("fr"),
+                    System.Globalization.CultureInfo.GetCultureInfo("it"),
+                    System.Globalization.CultureInfo.GetCultureInfo("ja"),
+                    System.Globalization.CultureInfo.GetCultureInfo("nl"),
+                    System.Globalization.CultureInfo.GetCultureInfo("en"),
+                    System.Globalization.CultureInfo.GetCultureInfo("ru"),
+                    System.Globalization.CultureInfo.GetCultureInfo("tr"),
+                    System.Globalization.CultureInfo.GetCultureInfo("zh-CN"),
+                    System.Globalization.CultureInfo.GetCultureInfo("zh-TW")
+    };
             version.Text = "V " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0,4);
             if (Properties.Settings.Default.Remember)
             {
@@ -68,7 +96,7 @@ namespace BluetoothDMM
             }
             this.Topmost = Properties.Settings.Default.Ontop;
             OnTopON.Visibility = (Properties.Settings.Default.Ontop ? Visibility.Visible : Visibility.Hidden);
-            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             LV.SelectionChanged += LstOnSelectionChanced;
 
             //Chart Startup initialization
@@ -292,7 +320,7 @@ namespace BluetoothDMM
                 MyGattCDataHV.Visibility = Bool_to_Vis(arg.MyGattCDataHV);
                 MyGattCDataRel.Visibility = Bool_to_Vis(arg.MyGattCDataRel);
                 GattValue = arg.MyGattCData;
-                try { doublevalue = Convert.ToDouble(GattValue); }
+                try { doublevalue = Convert.ToDouble(GattValue,CultureInfo.InvariantCulture); }
                 catch { }//doublevalue = 0;}
                 if (GattValue != null)
                 {
@@ -341,7 +369,7 @@ namespace BluetoothDMM
                 if (connected)
                 {
                     //var device = await _heartRateMonitor.GetDeviceInfoAsync();
-                    TxtStatus.Text = SelectedDeviceName + ": connected";
+                    TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Connected;
                     //TxtBattery.Text = String.Format("battery level: {0}%", device.BatteryPercent);
                     MyGattCDataBluetooth.Visibility = Visibility.Visible;
                     Is_Connected.IsChecked = true;
@@ -350,7 +378,7 @@ namespace BluetoothDMM
                 }
                 else
                 {
-                    TxtStatus.Text = SelectedDeviceName + ": disconnected";
+                    TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Disconnected;
                     TxtBattery.Text = "battery level: --";
                     dispatcherTimer.Stop();
                     Is_Connected.IsChecked = false;
@@ -419,9 +447,17 @@ namespace BluetoothDMM
                             if (result == "Button1")
                             {
                                 Debug.WriteLine("Connecting From Updated Event");
-                                var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
-                                if (connectResult.IsConnected)
-                                    Debug.WriteLine("Connected From Updated Event");
+                                try
+                                {
+                                    var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
+                                    if (connectResult.IsConnected)
+                                        Debug.WriteLine("Connected From Updated Event");
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+
                             }
                             else
                             {
@@ -445,7 +481,7 @@ namespace BluetoothDMM
             ResultDialog = "0";
             await RunOnUiThread(async () =>
             {
-                CustomDialogHeader.Text = DeviceName + " is available!";
+                CustomDialogHeader.Text = DeviceName;
                 CustomDialog.IsOpen = true;
             });
 
@@ -576,7 +612,7 @@ namespace BluetoothDMM
             }
             else
             {
-                Meter.Value = 0.1;
+                
                 TxtStatus.Margin= new Thickness(0, -70, 0, 0);
                 Display.Margin= new Thickness(0, 45, 0, 0);
                 aDisplay.Visibility = Visibility.Visible;
@@ -592,6 +628,13 @@ namespace BluetoothDMM
             var result = Settings.ShowDialog();
             if ((bool)result)
             {
+                if (Properties.Settings.Default.Lang == "")
+                    LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
+                else
+                {
+                    LocalizeDictionary.Instance.Culture = new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
+                }
                 if (Properties.Settings.Default.Remember)
                 {
                     Properties.Settings.Default.WindowSize = new System.Drawing.Size((int)ActualWidth, (int)ActualHeight);
@@ -615,8 +658,12 @@ namespace BluetoothDMM
                     {
                         SelectedDeviceName = DeviceListC[SelectedDeviceId];
                         if (Connected == 1)
-                            TxtStatus.Text = SelectedDeviceName + ": connected";
+                            TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Connected;
+                        else
+                            TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Disconnected;
                     }
+                    else
+                        TxtStatus.Text = Properties.Resources.NotConnected;
                 }
                 _heartRateMonitor.LogData = Properties.Settings.Default.LogData;
             }
@@ -1013,7 +1060,6 @@ namespace BluetoothDMM
                 }
                 //Console.WriteLine("xxxGetCommandLineArgs: {0}", string.Join(", ", arguments));
                 onLoad = false;
-                
             }
         }
 

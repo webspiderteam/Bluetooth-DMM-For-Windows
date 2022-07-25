@@ -118,162 +118,162 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>关于</value>
   </data>
   <data name="AboutSoftware" xml:space="preserve">
-    <value>About Software</value>
+    <value>关于软件</value>
   </data>
   <data name="AdvencedSettings" xml:space="preserve">
-    <value>Advanced Settings</value>
+    <value>高级设置</value>
   </data>
   <data name="AlwaysonTop" xml:space="preserve">
-    <value>Always on Top</value>
+    <value>总在最前面</value>
   </data>
   <data name="AnalogDisplatONStart" xml:space="preserve">
-    <value>Open Analog Display on Startup</value>
+    <value>启动时打开模拟显示</value>
   </data>
   <data name="AnalogDisplay" xml:space="preserve">
-    <value>Analog Display</value>
+    <value>模拟显示</value>
   </data>
   <data name="AskBeforeConnect" xml:space="preserve">
-    <value>Ask Before Connect</value>
+    <value>连接前询问</value>
   </data>
   <data name="AutoConnectKnown" xml:space="preserve">
-    <value>Auto Connect Known Devices on Startup</value>
+    <value>启动时自动连接已知设备</value>
   </data>
   <data name="AutoRange" xml:space="preserve">
-    <value>Auto Range</value>
+    <value>自动量程</value>
   </data>
   <data name="AvailableString" xml:space="preserve">
-    <value>One of your device is Available to connect.</value>
+    <value>您的设备之一可以连接。</value>
   </data>
   <data name="ChangeName" xml:space="preserve">
-    <value>Change Device Name</value>
+    <value>更改设备名称</value>
   </data>
   <data name="ChartON" xml:space="preserve">
-    <value>Open Data Chart on Startup</value>
+    <value>启动时打开数据图表</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>连接</value>
   </data>
   <data name="Connected" xml:space="preserve">
-    <value>connected</value>
+    <value>连接的</value>
   </data>
   <data name="ConnectToDevice" xml:space="preserve">
-    <value>Connect to Device</value>
+    <value>连接到设备</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
-    <value>Created By</value>
+    <value>由...制作</value>
   </data>
   <data name="DataChart" xml:space="preserve">
-    <value>Data Chart</value>
+    <value>数据图表</value>
   </data>
   <data name="DeviceManager" xml:space="preserve">
-    <value>Manage Devices</value>
+    <value>管理设备</value>
   </data>
   <data name="DevicePicker" xml:space="preserve">
-    <value>Device Picker</value>
+    <value>设备选择器</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
-    <value>disconnected</value>
+    <value>断开连接</value>
   </data>
   <data name="DontAsk" xml:space="preserve">
-    <value>Don't Ask again. Connect Automaticly.</value>
+    <value>不要再问了。自动连接。</value>
   </data>
   <data name="DontConnect" xml:space="preserve">
-    <value>Don't Connect</value>
+    <value>不要连接</value>
   </data>
   <data name="ExportData" xml:space="preserve">
-    <value>Export Data</value>
+    <value>导出数据</value>
   </data>
   <data name="ImportData" xml:space="preserve">
-    <value>Import Data</value>
+    <value>导入数据</value>
   </data>
   <data name="InRush" xml:space="preserve">
-    <value>INRUSH</value>
+    <value>浪涌</value>
   </data>
   <data name="IsAvailable" xml:space="preserve">
-    <value>is Available!</value>
+    <value>可用！</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>语</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
-    <value>List of Available Devices:</value>
+    <value>可用设备列表：</value>
   </data>
   <data name="LogRaw" xml:space="preserve">
-    <value>Log Raw Data</value>
+    <value>记录原始数据</value>
   </data>
   <data name="ManageDevices" xml:space="preserve">
-    <value>Manage Bluetooth Devices</value>
+    <value>管理蓝牙设备</value>
   </data>
   <data name="ManageKnown" xml:space="preserve">
-    <value>Manage Known Devices</value>
+    <value>管理已知设备</value>
   </data>
   <data name="Max" xml:space="preserve">
-    <value>MAX</value>
+    <value>最大限度</value>
   </data>
   <data name="Menu" xml:space="preserve">
-    <value>MENU</value>
+    <value>菜单</value>
   </data>
   <data name="Min" xml:space="preserve">
-    <value>MIN</value>
+    <value>最小</value>
   </data>
   <data name="MinimizeToTray" xml:space="preserve">
-    <value>Always Minimize to Tray</value>
+    <value>始终最小化到托盘</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>姓名：</value>
   </data>
   <data name="NotConnected" xml:space="preserve">
-    <value>Not Connected</value>
+    <value>未连接</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>好的</value>
   </data>
   <data name="Peek" xml:space="preserve">
-    <value>PEEK</value>
+    <value>窥视</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
-    <value>Auto Reconnect after Disconnection</value>
+    <value>断线后自动重连</value>
   </data>
   <data name="RemoveAll" xml:space="preserve">
-    <value>Remove All Devices</value>
+    <value>删除所有设备</value>
   </data>
   <data name="RemoveDevice" xml:space="preserve">
-    <value>Remove Device</value>
+    <value>删除设备</value>
   </data>
   <data name="ResetView" xml:space="preserve">
-    <value>Reset View</value>
+    <value>重置视图</value>
   </data>
   <data name="RunStartup" xml:space="preserve">
-    <value>Run on Windows Startup</value>
+    <value>在 Windows 启动时运行</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>节省</value>
   </data>
   <data name="SavePosition" xml:space="preserve">
-    <value>Save Window Position and Size</value>
+    <value>保存窗口位置和大小</value>
   </data>
   <data name="SearchingDevices" xml:space="preserve">
-    <value>Searching for Bluetooth Devices...</value>
+    <value>正在搜索蓝牙设备...</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="StartupSettings" xml:space="preserve">
-    <value>Startup Settings</value>
+    <value>启动设置</value>
   </data>
   <data name="TrueRMS" xml:space="preserve">
-    <value>TRUE RMS</value>
+    <value>真有效值</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version :</value>
+    <value>版本 ：</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
-    <value>Do you Want to Connect?</value>
+    <value>你想连接吗？</value>
   </data>
   <data name="ZoomandFitData" xml:space="preserve">
-    <value>Zoom and Fit Data</value>
+    <value>缩放和拟合数据</value>
   </data>
 </root>

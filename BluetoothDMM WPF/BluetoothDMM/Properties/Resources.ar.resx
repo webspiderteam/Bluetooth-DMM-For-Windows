@@ -118,162 +118,162 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>حول</value>
   </data>
   <data name="AboutSoftware" xml:space="preserve">
-    <value>About Software</value>
+    <value>حول البرمجيات</value>
   </data>
   <data name="AdvencedSettings" xml:space="preserve">
-    <value>Advanced Settings</value>
+    <value>إعدادات متقدمة</value>
   </data>
   <data name="AlwaysonTop" xml:space="preserve">
-    <value>Always on Top</value>
+    <value>دائما في القمة</value>
   </data>
   <data name="AnalogDisplatONStart" xml:space="preserve">
-    <value>Open Analog Display on Startup</value>
+    <value>افتح العرض التناظري عند بدء التشغيل</value>
   </data>
   <data name="AnalogDisplay" xml:space="preserve">
-    <value>Analog Display</value>
+    <value>عرض تناظري</value>
   </data>
   <data name="AskBeforeConnect" xml:space="preserve">
-    <value>Ask Before Connect</value>
+    <value>اسأل قبل الاتصال</value>
   </data>
   <data name="AutoConnectKnown" xml:space="preserve">
-    <value>Auto Connect Known Devices on Startup</value>
+    <value>الاتصال التلقائي بالأجهزة المعروفة عند بدء التشغيل</value>
   </data>
   <data name="AutoRange" xml:space="preserve">
-    <value>Auto Range</value>
+    <value>نطاق السيارات</value>
   </data>
   <data name="AvailableString" xml:space="preserve">
-    <value>One of your device is Available to connect.</value>
+    <value>أحد أجهزتك متاح للاتصال.</value>
   </data>
   <data name="ChangeName" xml:space="preserve">
-    <value>Change Device Name</value>
+    <value>تغيير اسم الجهاز</value>
   </data>
   <data name="ChartON" xml:space="preserve">
-    <value>Open Data Chart on Startup</value>
+    <value>افتح مخطط البيانات عند بدء التشغيل</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>الاتصال</value>
   </data>
   <data name="Connected" xml:space="preserve">
-    <value>connected</value>
+    <value>متصل</value>
   </data>
   <data name="ConnectToDevice" xml:space="preserve">
-    <value>Connect to Device</value>
+    <value>الاتصال بالجهاز</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
-    <value>Created By</value>
+    <value>انشأ من قبل</value>
   </data>
   <data name="DataChart" xml:space="preserve">
-    <value>Data Chart</value>
+    <value>مخطط البيانات</value>
   </data>
   <data name="DeviceManager" xml:space="preserve">
-    <value>Manage Devices</value>
+    <value>إدارة الأجهزة</value>
   </data>
   <data name="DevicePicker" xml:space="preserve">
-    <value>Device Picker</value>
+    <value>منتقي الجهاز</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
-    <value>disconnected</value>
+    <value>انقطع الاتصال</value>
   </data>
   <data name="DontAsk" xml:space="preserve">
-    <value>Don't Ask again. Connect Automaticly.</value>
+    <value>لا تسأل مرة أخرى. ربط تلقائيا.</value>
   </data>
   <data name="DontConnect" xml:space="preserve">
-    <value>Don't Connect</value>
+    <value>لا تتصل</value>
   </data>
   <data name="ExportData" xml:space="preserve">
-    <value>Export Data</value>
+    <value>تصدير البيانات</value>
   </data>
   <data name="ImportData" xml:space="preserve">
-    <value>Import Data</value>
+    <value>بيانات الاستيراد</value>
   </data>
   <data name="InRush" xml:space="preserve">
-    <value>INRUSH</value>
+    <value>تدفق</value>
   </data>
   <data name="IsAvailable" xml:space="preserve">
-    <value>is Available!</value>
+    <value>متاح!</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>لغة</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
-    <value>List of Available Devices:</value>
+    <value>قائمة الأجهزة المتاحة:</value>
   </data>
   <data name="LogRaw" xml:space="preserve">
-    <value>Log Raw Data</value>
+    <value>تسجيل البيانات الأولية</value>
   </data>
   <data name="ManageDevices" xml:space="preserve">
-    <value>Manage Bluetooth Devices</value>
+    <value>إدارة أجهزة البلوتوث</value>
   </data>
   <data name="ManageKnown" xml:space="preserve">
-    <value>Manage Known Devices</value>
+    <value>إدارة الأجهزة المعروفة</value>
   </data>
   <data name="Max" xml:space="preserve">
-    <value>MAX</value>
+    <value>الأعلى</value>
   </data>
   <data name="Menu" xml:space="preserve">
-    <value>MENU</value>
+    <value>قائمة</value>
   </data>
   <data name="Min" xml:space="preserve">
-    <value>MIN</value>
+    <value>دقيقة</value>
   </data>
   <data name="MinimizeToTray" xml:space="preserve">
-    <value>Always Minimize to Tray</value>
+    <value>تصغير دائمًا إلى الدرج</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>اسم:</value>
   </data>
   <data name="NotConnected" xml:space="preserve">
-    <value>Not Connected</value>
+    <value>غير متصل</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>نعم</value>
   </data>
   <data name="Peek" xml:space="preserve">
-    <value>PEEK</value>
+    <value>نظرة خاطفة</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
-    <value>Auto Reconnect after Disconnection</value>
+    <value>إعادة الاتصال التلقائي بعد قطع الاتصال</value>
   </data>
   <data name="RemoveAll" xml:space="preserve">
-    <value>Remove All Devices</value>
+    <value>قم بإزالة كافة الأجهزة</value>
   </data>
   <data name="RemoveDevice" xml:space="preserve">
-    <value>Remove Device</value>
+    <value>إنزع الجهاز</value>
   </data>
   <data name="ResetView" xml:space="preserve">
-    <value>Reset View</value>
+    <value>إعادة عرض</value>
   </data>
   <data name="RunStartup" xml:space="preserve">
-    <value>Run on Windows Startup</value>
+    <value>تشغيل عند بدء التشغيل ويندوز</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>يحفظ</value>
   </data>
   <data name="SavePosition" xml:space="preserve">
-    <value>Save Window Position and Size</value>
+    <value>حفظ وضع النافذة وحجمها</value>
   </data>
   <data name="SearchingDevices" xml:space="preserve">
-    <value>Searching for Bluetooth Devices...</value>
+    <value>جاري البحث عن أجهزة Bluetooth ...</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>إعدادات</value>
   </data>
   <data name="StartupSettings" xml:space="preserve">
-    <value>Startup Settings</value>
+    <value>إعدادات البدء</value>
   </data>
   <data name="TrueRMS" xml:space="preserve">
-    <value>TRUE RMS</value>
+    <value>صحيح RMS</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version :</value>
+    <value>إصدار :</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
-    <value>Do you Want to Connect?</value>
+    <value>هل تريد الاتصال؟</value>
   </data>
   <data name="ZoomandFitData" xml:space="preserve">
-    <value>Zoom and Fit Data</value>
+    <value>تكبير وتناسب البيانات</value>
   </data>
 </root>

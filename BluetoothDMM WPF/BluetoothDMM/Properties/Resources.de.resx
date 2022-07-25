@@ -118,162 +118,162 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Um</value>
   </data>
   <data name="AboutSoftware" xml:space="preserve">
-    <value>About Software</value>
+    <value>Über Software</value>
   </data>
   <data name="AdvencedSettings" xml:space="preserve">
-    <value>Advanced Settings</value>
+    <value>Erweiterte Einstellungen</value>
   </data>
   <data name="AlwaysonTop" xml:space="preserve">
-    <value>Always on Top</value>
+    <value>Immer oben</value>
   </data>
   <data name="AnalogDisplatONStart" xml:space="preserve">
-    <value>Open Analog Display on Startup</value>
+    <value>Öffnen Sie die Analoganzeige beim Start</value>
   </data>
   <data name="AnalogDisplay" xml:space="preserve">
-    <value>Analog Display</value>
+    <value>Analoge Anzeige</value>
   </data>
   <data name="AskBeforeConnect" xml:space="preserve">
-    <value>Ask Before Connect</value>
+    <value>Fragen Sie vor dem Verbinden</value>
   </data>
   <data name="AutoConnectKnown" xml:space="preserve">
-    <value>Auto Connect Known Devices on Startup</value>
+    <value>Bekannte Geräte beim Start automatisch verbinden</value>
   </data>
   <data name="AutoRange" xml:space="preserve">
-    <value>Auto Range</value>
+    <value>Automatische Reichweite</value>
   </data>
   <data name="AvailableString" xml:space="preserve">
-    <value>One of your device is Available to connect.</value>
+    <value>Eines Ihrer Geräte ist zum Verbinden verfügbar.</value>
   </data>
   <data name="ChangeName" xml:space="preserve">
-    <value>Change Device Name</value>
+    <value>Ändern Sie den Gerätenamen</value>
   </data>
   <data name="ChartON" xml:space="preserve">
-    <value>Open Data Chart on Startup</value>
+    <value>Öffnen Sie das Datendiagramm beim Start</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>Verbinden</value>
   </data>
   <data name="Connected" xml:space="preserve">
-    <value>connected</value>
+    <value>in Verbindung gebracht</value>
   </data>
   <data name="ConnectToDevice" xml:space="preserve">
-    <value>Connect to Device</value>
+    <value>Mit Gerät verbinden</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
-    <value>Created By</value>
+    <value>Erstellt von</value>
   </data>
   <data name="DataChart" xml:space="preserve">
-    <value>Data Chart</value>
+    <value>Datendiagramm</value>
   </data>
   <data name="DeviceManager" xml:space="preserve">
-    <value>Manage Devices</value>
+    <value>Geräte verwalten</value>
   </data>
   <data name="DevicePicker" xml:space="preserve">
-    <value>Device Picker</value>
+    <value>Geräteauswahl</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
-    <value>disconnected</value>
+    <value>getrennt</value>
   </data>
   <data name="DontAsk" xml:space="preserve">
-    <value>Don't Ask again. Connect Automaticly.</value>
+    <value>Fragen Sie nicht noch einmal. Automatisch verbinden.</value>
   </data>
   <data name="DontConnect" xml:space="preserve">
-    <value>Don't Connect</value>
+    <value>Nicht verbinden</value>
   </data>
   <data name="ExportData" xml:space="preserve">
-    <value>Export Data</value>
+    <value>Daten exportieren</value>
   </data>
   <data name="ImportData" xml:space="preserve">
-    <value>Import Data</value>
+    <value>Daten importieren</value>
   </data>
   <data name="InRush" xml:space="preserve">
-    <value>INRUSH</value>
+    <value>ANRUF</value>
   </data>
   <data name="IsAvailable" xml:space="preserve">
-    <value>is Available!</value>
+    <value>ist verfügbar!</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Sprache</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
-    <value>List of Available Devices:</value>
+    <value>Liste der verfügbaren Geräte:</value>
   </data>
   <data name="LogRaw" xml:space="preserve">
-    <value>Log Raw Data</value>
+    <value>Rohdaten protokollieren</value>
   </data>
   <data name="ManageDevices" xml:space="preserve">
-    <value>Manage Bluetooth Devices</value>
+    <value>Bluetooth-Geräte verwalten</value>
   </data>
   <data name="ManageKnown" xml:space="preserve">
-    <value>Manage Known Devices</value>
+    <value>Bekannte Geräte verwalten</value>
   </data>
   <data name="Max" xml:space="preserve">
-    <value>MAX</value>
+    <value>max</value>
   </data>
   <data name="Menu" xml:space="preserve">
-    <value>MENU</value>
+    <value>SPEISEKARTE</value>
   </data>
   <data name="Min" xml:space="preserve">
-    <value>MIN</value>
+    <value>MINDEST</value>
   </data>
   <data name="MinimizeToTray" xml:space="preserve">
-    <value>Always Minimize to Tray</value>
+    <value>Immer in den Tray minimieren</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name:</value>
   </data>
   <data name="NotConnected" xml:space="preserve">
-    <value>Not Connected</value>
+    <value>Nicht verbunden</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Peek" xml:space="preserve">
-    <value>PEEK</value>
+    <value>SPÄHEN</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
-    <value>Auto Reconnect after Disconnection</value>
+    <value>Automatische Wiederverbindung nach Trennung</value>
   </data>
   <data name="RemoveAll" xml:space="preserve">
-    <value>Remove All Devices</value>
+    <value>Alle Geräte entfernen</value>
   </data>
   <data name="RemoveDevice" xml:space="preserve">
-    <value>Remove Device</value>
+    <value>Gerät entfernen</value>
   </data>
   <data name="ResetView" xml:space="preserve">
-    <value>Reset View</value>
+    <value>Ansicht zurücksetzen</value>
   </data>
   <data name="RunStartup" xml:space="preserve">
-    <value>Run on Windows Startup</value>
+    <value>Beim Windows-Start ausführen</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
   </data>
   <data name="SavePosition" xml:space="preserve">
-    <value>Save Window Position and Size</value>
+    <value>Fensterposition und -größe speichern</value>
   </data>
   <data name="SearchingDevices" xml:space="preserve">
-    <value>Searching for Bluetooth Devices...</value>
+    <value>Suche nach Bluetooth-Geräten...</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="StartupSettings" xml:space="preserve">
-    <value>Startup Settings</value>
+    <value>Starteinstellungen</value>
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>TRUE RMS</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version :</value>
+    <value>Ausführung :</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
-    <value>Do you Want to Connect?</value>
+    <value>Möchten Sie sich verbinden?</value>
   </data>
   <data name="ZoomandFitData" xml:space="preserve">
-    <value>Zoom and Fit Data</value>
+    <value>Zoom- und Anpassungsdaten</value>
   </data>
 </root>

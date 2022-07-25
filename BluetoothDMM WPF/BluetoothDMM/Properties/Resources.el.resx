@@ -118,162 +118,162 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Σχετικά με</value>
   </data>
   <data name="AboutSoftware" xml:space="preserve">
-    <value>About Software</value>
+    <value>Σχετικά με το λογισμικό</value>
   </data>
   <data name="AdvencedSettings" xml:space="preserve">
-    <value>Advanced Settings</value>
+    <value>Προηγμένες ρυθμίσεις</value>
   </data>
   <data name="AlwaysonTop" xml:space="preserve">
-    <value>Always on Top</value>
+    <value>Πάντα στην κορυφή</value>
   </data>
   <data name="AnalogDisplatONStart" xml:space="preserve">
-    <value>Open Analog Display on Startup</value>
+    <value>Ανοίξτε την αναλογική οθόνη κατά την εκκίνηση</value>
   </data>
   <data name="AnalogDisplay" xml:space="preserve">
-    <value>Analog Display</value>
+    <value>Αναλογική οθόνη</value>
   </data>
   <data name="AskBeforeConnect" xml:space="preserve">
-    <value>Ask Before Connect</value>
+    <value>Ρωτήστε πριν συνδεθείτε</value>
   </data>
   <data name="AutoConnectKnown" xml:space="preserve">
-    <value>Auto Connect Known Devices on Startup</value>
+    <value>Αυτόματη σύνδεση γνωστών συσκευών κατά την εκκίνηση</value>
   </data>
   <data name="AutoRange" xml:space="preserve">
-    <value>Auto Range</value>
+    <value>Αυτόματο εύρος</value>
   </data>
   <data name="AvailableString" xml:space="preserve">
-    <value>One of your device is Available to connect.</value>
+    <value>Μία από τις συσκευές σας είναι διαθέσιμη για σύνδεση.</value>
   </data>
   <data name="ChangeName" xml:space="preserve">
-    <value>Change Device Name</value>
+    <value>Αλλαγή ονόματος συσκευής</value>
   </data>
   <data name="ChartON" xml:space="preserve">
-    <value>Open Data Chart on Startup</value>
+    <value>Ανοίξτε το γράφημα δεδομένων κατά την εκκίνηση</value>
   </data>
   <data name="Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>Συνδέω-συωδεομαι</value>
   </data>
   <data name="Connected" xml:space="preserve">
-    <value>connected</value>
+    <value>συνδεδεμένος</value>
   </data>
   <data name="ConnectToDevice" xml:space="preserve">
-    <value>Connect to Device</value>
+    <value>Σύνδεση στη Συσκευή</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
-    <value>Created By</value>
+    <value>Δημιουργήθηκε από</value>
   </data>
   <data name="DataChart" xml:space="preserve">
-    <value>Data Chart</value>
+    <value>Διάγραμμα δεδομένων</value>
   </data>
   <data name="DeviceManager" xml:space="preserve">
-    <value>Manage Devices</value>
+    <value>Διαχείριση Συσκευών</value>
   </data>
   <data name="DevicePicker" xml:space="preserve">
-    <value>Device Picker</value>
+    <value>Επιλογέας συσκευής</value>
   </data>
   <data name="Disconnected" xml:space="preserve">
-    <value>disconnected</value>
+    <value>ασύνδετος</value>
   </data>
   <data name="DontAsk" xml:space="preserve">
-    <value>Don't Ask again. Connect Automaticly.</value>
+    <value>Μην ρωτάς ξανά. Αυτόματη σύνδεση.</value>
   </data>
   <data name="DontConnect" xml:space="preserve">
-    <value>Don't Connect</value>
+    <value>Μην Συνδεθείτε</value>
   </data>
   <data name="ExportData" xml:space="preserve">
-    <value>Export Data</value>
+    <value>Εξαγωγή δεδομένων</value>
   </data>
   <data name="ImportData" xml:space="preserve">
-    <value>Import Data</value>
+    <value>Εισαγωγή δεδομένων</value>
   </data>
   <data name="InRush" xml:space="preserve">
-    <value>INRUSH</value>
+    <value>ΕΙΣΡΟΗ</value>
   </data>
   <data name="IsAvailable" xml:space="preserve">
-    <value>is Available!</value>
+    <value>είναι διαθέσιμο!</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Γλώσσα</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
-    <value>List of Available Devices:</value>
+    <value>Λίστα διαθέσιμων συσκευών:</value>
   </data>
   <data name="LogRaw" xml:space="preserve">
-    <value>Log Raw Data</value>
+    <value>Καταγραφή πρωτογενών δεδομένων</value>
   </data>
   <data name="ManageDevices" xml:space="preserve">
-    <value>Manage Bluetooth Devices</value>
+    <value>Διαχείριση Συσκευών Bluetooth</value>
   </data>
   <data name="ManageKnown" xml:space="preserve">
-    <value>Manage Known Devices</value>
+    <value>Διαχείριση γνωστών συσκευών</value>
   </data>
   <data name="Max" xml:space="preserve">
-    <value>MAX</value>
+    <value>ΜΕΓΙΣΤΗ</value>
   </data>
   <data name="Menu" xml:space="preserve">
-    <value>MENU</value>
+    <value>ΜΕΝΟΥ</value>
   </data>
   <data name="Min" xml:space="preserve">
     <value>MIN</value>
   </data>
   <data name="MinimizeToTray" xml:space="preserve">
-    <value>Always Minimize to Tray</value>
+    <value>Πάντα ελαχιστοποίηση στο δίσκο</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Ονομα:</value>
   </data>
   <data name="NotConnected" xml:space="preserve">
-    <value>Not Connected</value>
+    <value>Μη συνδεδεμένο</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Εντάξει</value>
   </data>
   <data name="Peek" xml:space="preserve">
-    <value>PEEK</value>
+    <value>ΚΡΥΦΟΚΟΙΤΑΓΜΑ</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
-    <value>Auto Reconnect after Disconnection</value>
+    <value>Αυτόματη επανασύνδεση μετά την αποσύνδεση</value>
   </data>
   <data name="RemoveAll" xml:space="preserve">
-    <value>Remove All Devices</value>
+    <value>Κατάργηση όλων των συσκευών</value>
   </data>
   <data name="RemoveDevice" xml:space="preserve">
-    <value>Remove Device</value>
+    <value>Αφαίρεση της συσκευής</value>
   </data>
   <data name="ResetView" xml:space="preserve">
-    <value>Reset View</value>
+    <value>Επαναφορά προβολής</value>
   </data>
   <data name="RunStartup" xml:space="preserve">
-    <value>Run on Windows Startup</value>
+    <value>Εκτέλεση κατά την εκκίνηση των Windows</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Αποθηκεύσετε</value>
   </data>
   <data name="SavePosition" xml:space="preserve">
-    <value>Save Window Position and Size</value>
+    <value>Αποθήκευση θέσης και μεγέθους παραθύρου</value>
   </data>
   <data name="SearchingDevices" xml:space="preserve">
-    <value>Searching for Bluetooth Devices...</value>
+    <value>Αναζήτηση για συσκευές Bluetooth...</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Ρυθμίσεις</value>
   </data>
   <data name="StartupSettings" xml:space="preserve">
-    <value>Startup Settings</value>
+    <value>Ρυθμίσεις εκκίνησης</value>
   </data>
   <data name="TrueRMS" xml:space="preserve">
-    <value>TRUE RMS</value>
+    <value>ΑΛΗΘΙΝΗ RMS</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Version :</value>
+    <value>Εκδοχή :</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
-    <value>Do you Want to Connect?</value>
+    <value>Θέλετε να συνδεθείτε;</value>
   </data>
   <data name="ZoomandFitData" xml:space="preserve">
-    <value>Zoom and Fit Data</value>
+    <value>Ζουμ και προσαρμογή δεδομένων</value>
   </data>
 </root>

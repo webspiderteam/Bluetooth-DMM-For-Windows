@@ -1,6 +1,9 @@
 ﻿using Microsoft.Win32;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
+using WPFLocalizeExtension.Engine;
+using WPFLocalizeExtension.Providers;
 
 namespace BluetoothDMM
 {
@@ -16,6 +19,10 @@ namespace BluetoothDMM
         public Settings(System.Collections.Generic.Dictionary<string, string> deviceListC)
         {
             InitializeComponent();
+
+            LocalizeDictionary.Instance.OutputMissingKeys = true;
+            LocalizeDictionary.Instance.MissingKeyEvent += Instance_MissingKeyEvent;
+
             checkBox3.IsChecked = Properties.Settings.Default.Ontop;
             checkBox2.IsChecked = Properties.Settings.Default.ChartOn;
             checkBox1.IsChecked = Properties.Settings.Default.ConnectOn;
@@ -38,9 +45,15 @@ namespace BluetoothDMM
             }
         }
 
+        private void Instance_MissingKeyEvent(object sender, MissingKeyEventArgs e)
+        {
+            e.MissingKeyResult = "Hello World";
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+            Properties.Settings.Default.Lang = ((System.Globalization.CultureInfo)comboBox.SelectedItem).Name;
             Properties.Settings.Default.Ontop = checkBox3.IsChecked == true;
             Properties.Settings.Default.ChartOn = checkBox2.IsChecked == true;
             Properties.Settings.Default.ConnectOn = checkBox1.IsChecked == true;

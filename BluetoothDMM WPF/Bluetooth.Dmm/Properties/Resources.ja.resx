@@ -117,163 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
+  <data name="CannotFind" xml:space="preserve">
+    <value>指定されたデバイスが見つかりませんでした！</value>
   </data>
-  <data name="AboutSoftware" xml:space="preserve">
-    <value>About Software</value>
+  <data name="NoCharacteristic" xml:space="preserve">
+    <value>特徴が見つかりません</value>
   </data>
-  <data name="AdvencedSettings" xml:space="preserve">
-    <value>Advanced Settings</value>
+  <data name="NoDMMService" xml:space="preserve">
+    <value>DMMサービスが見つかりません</value>
   </data>
-  <data name="AlwaysonTop" xml:space="preserve">
-    <value>Always on Top</value>
+  <data name="NotReachable" xml:space="preserve">
+    <value>デバイスに到達できないか、DMMサービスがありません（つまり、範囲外またはシャットオフ）。\ nエラーが続く場合WindowsでBluetooth設定を確認し、Bluetoothの無効化と有効化を試してください。</value>
   </data>
-  <data name="AnalogDisplatONStart" xml:space="preserve">
-    <value>Open Analog Display on Startup</value>
-  </data>
-  <data name="AnalogDisplay" xml:space="preserve">
-    <value>Analog Display</value>
-  </data>
-  <data name="AskBeforeConnect" xml:space="preserve">
-    <value>Ask Before Connect</value>
-  </data>
-  <data name="AutoConnectKnown" xml:space="preserve">
-    <value>Auto Connect Known Devices on Startup</value>
-  </data>
-  <data name="AutoRange" xml:space="preserve">
-    <value>Auto Range</value>
-  </data>
-  <data name="AvailableString" xml:space="preserve">
-    <value>One of your device is Available to connect.</value>
-  </data>
-  <data name="ChangeName" xml:space="preserve">
-    <value>Change Device Name</value>
-  </data>
-  <data name="ChartON" xml:space="preserve">
-    <value>Open Data Chart on Startup</value>
-  </data>
-  <data name="Connect" xml:space="preserve">
-    <value>Connect</value>
-  </data>
-  <data name="Connected" xml:space="preserve">
-    <value>connected</value>
-  </data>
-  <data name="ConnectToDevice" xml:space="preserve">
-    <value>Connect to Device</value>
-  </data>
-  <data name="CreatedBy" xml:space="preserve">
-    <value>Created By</value>
-  </data>
-  <data name="DataChart" xml:space="preserve">
-    <value>Data Chart</value>
-  </data>
-  <data name="DeviceManager" xml:space="preserve">
-    <value>Manage Devices</value>
-  </data>
-  <data name="DevicePicker" xml:space="preserve">
-    <value>Device Picker</value>
-  </data>
-  <data name="Disconnected" xml:space="preserve">
-    <value>disconnected</value>
-  </data>
-  <data name="DontAsk" xml:space="preserve">
-    <value>Don't Ask again. Connect Automaticly.</value>
-  </data>
-  <data name="DontConnect" xml:space="preserve">
-    <value>Don't Connect</value>
-  </data>
-  <data name="ExportData" xml:space="preserve">
-    <value>Export Data</value>
-  </data>
-  <data name="ImportData" xml:space="preserve">
-    <value>Import Data</value>
-  </data>
-  <data name="InRush" xml:space="preserve">
-    <value>INRUSH</value>
-  </data>
-  <data name="IsAvailable" xml:space="preserve">
-    <value>is Available!</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="ListAvailDevices" xml:space="preserve">
-    <value>List of Available Devices:</value>
-  </data>
-  <data name="LogRaw" xml:space="preserve">
-    <value>Log Raw Data</value>
-  </data>
-  <data name="ManageDevices" xml:space="preserve">
-    <value>Manage Bluetooth Devices</value>
-  </data>
-  <data name="ManageKnown" xml:space="preserve">
-    <value>Manage Known Devices</value>
-  </data>
-  <data name="Max" xml:space="preserve">
-    <value>MAX</value>
-  </data>
-  <data name="Menu" xml:space="preserve">
-    <value>MENU</value>
-  </data>
-  <data name="Min" xml:space="preserve">
-    <value>MIN</value>
-  </data>
-  <data name="MinimizeToTray" xml:space="preserve">
-    <value>Always Minimize to Tray</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name:</value>
-  </data>
-  <data name="NotConnected" xml:space="preserve">
-    <value>Not Connected</value>
-  </data>
-  <data name="Ok" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="Peek" xml:space="preserve">
-    <value>PEEK</value>
-  </data>
-  <data name="Reconnect" xml:space="preserve">
-    <value>Auto Reconnect after Disconnection</value>
-  </data>
-  <data name="RemoveAll" xml:space="preserve">
-    <value>Remove All Devices</value>
-  </data>
-  <data name="RemoveDevice" xml:space="preserve">
-    <value>Remove Device</value>
-  </data>
-  <data name="ResetView" xml:space="preserve">
-    <value>Reset View</value>
-  </data>
-  <data name="RunStartup" xml:space="preserve">
-    <value>Run on Windows Startup</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="SavePosition" xml:space="preserve">
-    <value>Save Window Position and Size</value>
-  </data>
-  <data name="SearchingDevices" xml:space="preserve">
-    <value>Searching for Bluetooth Devices...</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="StartupSettings" xml:space="preserve">
-    <value>Startup Settings</value>
-  </data>
-  <data name="TrueRMS" xml:space="preserve">
-    <value>TRUE RMS</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Version :</value>
-  </data>
-  <data name="WantToConnect" xml:space="preserve">
-    <value>Do you Want to Connect?</value>
-  </data>
-  <data name="ZoomandFitData" xml:space="preserve">
-    <value>Zoom and Fit Data</value>
+  <data name="NotSupportNotify" xml:space="preserve">
+    <value>特性は通知をサポートしていません</value>
   </data>
 </root>
