@@ -118,46 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Um</value>
+    <value>Über</value>
   </data>
   <data name="AboutSoftware" xml:space="preserve">
-    <value>Über Software</value>
+    <value>Über das Programm</value>
   </data>
   <data name="AdvencedSettings" xml:space="preserve">
     <value>Erweiterte Einstellungen</value>
   </data>
   <data name="AlwaysonTop" xml:space="preserve">
-    <value>Immer oben</value>
+    <value>Fenster i. Vordergrund </value>
   </data>
   <data name="AnalogDisplatONStart" xml:space="preserve">
-    <value>Öffnen Sie die Analoganzeige beim Start</value>
+    <value>Analoganzeige beim Start öffnen</value>
   </data>
   <data name="AnalogDisplay" xml:space="preserve">
     <value>Analoge Anzeige</value>
   </data>
   <data name="AskBeforeConnect" xml:space="preserve">
-    <value>Fragen Sie vor dem Verbinden</value>
+    <value>Nachfragen; vor dem Verbinden</value>
   </data>
   <data name="AutoConnectKnown" xml:space="preserve">
     <value>Bekannte Geräte beim Start automatisch verbinden</value>
   </data>
   <data name="AutoRange" xml:space="preserve">
-    <value>Automatische Reichweite</value>
+    <value>Auto-Range</value>
   </data>
   <data name="AvailableString" xml:space="preserve">
     <value>Eines Ihrer Geräte ist zum Verbinden verfügbar.</value>
   </data>
   <data name="ChangeName" xml:space="preserve">
-    <value>Ändern Sie den Gerätenamen</value>
+    <value>Gerätenamen ändern</value>
   </data>
   <data name="ChartON" xml:space="preserve">
-    <value>Öffnen Sie das Datendiagramm beim Start</value>
+    <value>Datendiagramm beim Start öffnen</value>
   </data>
   <data name="Connect" xml:space="preserve">
     <value>Verbinden</value>
   </data>
   <data name="Connected" xml:space="preserve">
-    <value>in Verbindung gebracht</value>
+    <value>Verbunden</value>
   </data>
   <data name="ConnectToDevice" xml:space="preserve">
     <value>Mit Gerät verbinden</value>
@@ -178,7 +178,7 @@
     <value>getrennt</value>
   </data>
   <data name="DontAsk" xml:space="preserve">
-    <value>Fragen Sie nicht noch einmal. Automatisch verbinden.</value>
+    <value>Ohne Nachfrage automatisch verbinden</value>
   </data>
   <data name="DontConnect" xml:space="preserve">
     <value>Nicht verbinden</value>
@@ -190,7 +190,7 @@
     <value>Daten importieren</value>
   </data>
   <data name="InRush" xml:space="preserve">
-    <value>ANRUF</value>
+    <value>Einschaltstrom </value>
   </data>
   <data name="IsAvailable" xml:space="preserve">
     <value>ist verfügbar!</value>
@@ -211,16 +211,16 @@
     <value>Bekannte Geräte verwalten</value>
   </data>
   <data name="Max" xml:space="preserve">
-    <value>max</value>
+    <value>MAX</value>
   </data>
   <data name="Menu" xml:space="preserve">
-    <value>SPEISEKARTE</value>
+    <value>MENÜ</value>
   </data>
   <data name="Min" xml:space="preserve">
-    <value>MINDEST</value>
+    <value>MİN</value>
   </data>
   <data name="MinimizeToTray" xml:space="preserve">
-    <value>Immer in den Tray minimieren</value>
+    <value>Programm minimieren</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name:</value>
@@ -229,13 +229,13 @@
     <value>Nicht verbunden</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="Peek" xml:space="preserve">
-    <value>SPÄHEN</value>
+    <value>SPİTZE</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
-    <value>Automatische Wiederverbindung nach Trennung</value>
+    <value>Automatisch Wiederverbinden nach Trennung</value>
   </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>Alle Geräte entfernen</value>
@@ -265,15 +265,15 @@
     <value>Starteinstellungen</value>
   </data>
   <data name="TrueRMS" xml:space="preserve">
-    <value>TRUE RMS</value>
+    <value>TrueRMS</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>Ausführung :</value>
+    <value>Version</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>Möchten Sie sich verbinden?</value>
   </data>
   <data name="ZoomandFitData" xml:space="preserve">
-    <value>Zoom- und Anpassungsdaten</value>
+    <value>Ansicht einpassen</value>
   </data>
 </root>

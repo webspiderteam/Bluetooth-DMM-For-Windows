@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="AboutSoftware" xml:space="preserve">
+    <value>O oprogramowaniu</value>
+  </data>
+  <data name="AdvencedSettings" xml:space="preserve">
+    <value>Zaawansowane ustawienia</value>
+  </data>
+  <data name="AlwaysonTop" xml:space="preserve">
+    <value>Zawsze na górze</value>
+  </data>
+  <data name="AnalogDisplatONStart" xml:space="preserve">
+    <value>Otwórz wyświetlacz analogowy podczas uruchamiania</value>
+  </data>
+  <data name="AnalogDisplay" xml:space="preserve">
+    <value>Wyświetlacz analogowy</value>
+  </data>
+  <data name="AskBeforeConnect" xml:space="preserve">
+    <value>Zapytaj przed połączeniem</value>
+  </data>
+  <data name="AutoConnectKnown" xml:space="preserve">
+    <value>Automatyczne łączenie znanych urządzeń podczas uruchamiania</value>
+  </data>
+  <data name="AutoRange" xml:space="preserve">
+    <value>Zakres automatyczny</value>
+  </data>
+  <data name="AvailableString" xml:space="preserve">
+    <value>Jedno z Twoich urządzeń jest dostępne do połączenia.</value>
+  </data>
+  <data name="ChangeName" xml:space="preserve">
+    <value>Zmień nazwę urządzenia</value>
+  </data>
+  <data name="ChartON" xml:space="preserve">
+    <value>Otwórz wykres danych przy starcie</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Połącz</value>
+  </data>
+  <data name="Connected" xml:space="preserve">
+    <value>połączony</value>
+  </data>
+  <data name="ConnectToDevice" xml:space="preserve">
+    <value>Połącz z urządzeniem</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Stworzone przez</value>
+  </data>
+  <data name="DataChart" xml:space="preserve">
+    <value>Wykres danych</value>
+  </data>
+  <data name="DeviceManager" xml:space="preserve">
+    <value>Zarządzaj urządzeniami</value>
+  </data>
+  <data name="DevicePicker" xml:space="preserve">
+    <value>Selektor urządzeń</value>
+  </data>
+  <data name="Disconnected" xml:space="preserve">
+    <value>niepowiązany</value>
+  </data>
+  <data name="DontAsk" xml:space="preserve">
+    <value>Nie pytaj ponownie. Połącz automatycznie.</value>
+  </data>
+  <data name="DontConnect" xml:space="preserve">
+    <value>Nie łącz</value>
+  </data>
+  <data name="ExportData" xml:space="preserve">
+    <value>Eksportuj dane</value>
+  </data>
+  <data name="ImportData" xml:space="preserve">
+    <value>Zaimportować dane</value>
+  </data>
+  <data name="InRush" xml:space="preserve">
+    <value>NAPÓR</value>
+  </data>
+  <data name="IsAvailable" xml:space="preserve">
+    <value>jest dostępny!</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Język</value>
+  </data>
+  <data name="ListAvailDevices" xml:space="preserve">
+    <value>Lista dostępnych urządzeń:</value>
+  </data>
+  <data name="LogRaw" xml:space="preserve">
+    <value>Zaloguj surowe dane</value>
+  </data>
+  <data name="ManageDevices" xml:space="preserve">
+    <value>Zarządzaj urządzeniami Bluetooth</value>
+  </data>
+  <data name="ManageKnown" xml:space="preserve">
+    <value>Zarządzaj znanymi urządzeniami</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>MAX</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>MENU</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>MIN</value>
+  </data>
+  <data name="MinimizeToTray" xml:space="preserve">
+    <value>Zawsze minimalizuj do zasobnika</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nazwa:</value>
+  </data>
+  <data name="NotConnected" xml:space="preserve">
+    <value>Nie połączony</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Peek" xml:space="preserve">
+    <value>ZERKAĆ</value>
+  </data>
+  <data name="Reconnect" xml:space="preserve">
+    <value>Automatyczne ponowne łączenie po rozłączeniu</value>
+  </data>
+  <data name="RemoveAll" xml:space="preserve">
+    <value>Usuń wszystkie urządzenia</value>
+  </data>
+  <data name="RemoveDevice" xml:space="preserve">
+    <value>Odłącz urządzenie</value>
+  </data>
+  <data name="ResetView" xml:space="preserve">
+    <value>Resetuj widok</value>
+  </data>
+  <data name="RunStartup" xml:space="preserve">
+    <value>Uruchom na starcie systemu Windows</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="SavePosition" xml:space="preserve">
+    <value>Zapisz pozycję i rozmiar okna</value>
+  </data>
+  <data name="SearchingDevices" xml:space="preserve">
+    <value>Wyszukiwanie urządzeń Bluetooth...</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="StartupSettings" xml:space="preserve">
+    <value>Ustawienia uruchamiania</value>
+  </data>
+  <data name="TrueRMS" xml:space="preserve">
+    <value>PRAWDZIWE RMS</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Wersja :</value>
+  </data>
+  <data name="WantToConnect" xml:space="preserve">
+    <value>Chcesz się połączyć?</value>
+  </data>
+  <data name="ZoomandFitData" xml:space="preserve">
+    <value>Powiększ i dopasuj dane</value>
+  </data>
+</root>

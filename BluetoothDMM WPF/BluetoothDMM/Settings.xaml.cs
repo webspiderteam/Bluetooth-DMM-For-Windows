@@ -1,7 +1,10 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media.Imaging;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 
@@ -43,6 +46,7 @@ namespace BluetoothDMM
                 // The value exists, the application is set to run at startup
                 checkBox8.IsChecked = true;
             }
+            DataContext = this;
         }
 
         private void Instance_MissingKeyEvent(object sender, MissingKeyEventArgs e)
@@ -88,6 +92,42 @@ namespace BluetoothDMM
                 Topmost = this.Topmost
             };
             var result = DeviceListEditor.ShowDialog();
+        }
+    }
+    public sealed class CountryIdToFlagImageSourceConverter : IValueConverter
+    {
+
+        public object Convert(object value, System.Type targetType, object parameter, CultureInfo culture)
+        {
+        
+            var countryId = value as string;
+
+            if (countryId == null)
+                return null;
+
+            try
+            {
+                var path = $"/Assets/Flags/{countryId.Substring(countryId.Length - 2).ToLower()}.png";
+                var uri = new Uri(path, UriKind.Relative);
+                var resourceStream = Application.GetResourceStream(uri);
+                if (resourceStream == null)
+                    return null;
+
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.StreamSource = resourceStream.Stream;
+                bitmap.EndInit();
+                return bitmap;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public object ConvertBack(object value, System.Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
         }
     }
 }

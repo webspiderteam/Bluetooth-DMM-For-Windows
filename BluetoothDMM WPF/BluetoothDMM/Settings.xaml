@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:BluetoothDMM"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         lex:LocalizeDictionary.IncludeInvariantCulture="False"
         lex:ResxLocalizationProvider.DefaultAssembly="BluetoothDMM"
@@ -10,6 +11,9 @@
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
         Title="{lex:LocText Settings}" Height="475.383" Width="484.146" WindowStyle="None">
+    <Window.Resources>
+        <local:CountryIdToFlagImageSourceConverter x:Key="CountryIdToFlagImageSourceConverter"/>
+    </Window.Resources>
     <Grid>
         <CheckBox x:Name="checkBox1" Content="{lex:LocText AutoConnectKnown}"  HorizontalAlignment="Left" Height="34" Margin="56,65,0,0" VerticalAlignment="Top" Width="400"/>
         <CheckBox x:Name="checkBox2" Content="{lex:LocText ChartON}" HorizontalAlignment="Left" Height="34" Margin="56,157,0,0" VerticalAlignment="Top" Width="400"/>
@@ -27,8 +31,16 @@
         <Button x:Name="button1" Content="{lex:LocText ManageKnown}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="229,99,0,0" Height="26" Click="Button1_Click" IsEnabled="{Binding IsChecked, ElementName=checkBox1}"/>
         <ComboBox x:Name="comboBox" ItemsSource="{Binding Source={x:Static lex:LocalizeDictionary.Instance}, Path=MergedAvailableCultures}"
                   SelectedItem="{Binding Source={x:Static lex:LocalizeDictionary.Instance}, Path=Culture}"
-                  DisplayMemberPath="NativeName"
-                  HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="158,27,0,0"/>
+                  HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="158,27,0,0">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Name, Converter={StaticResource CountryIdToFlagImageSourceConverter}, Mode=OneWay}" Stretch="Uniform" Width="23" Height="18" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Path=NativeName}" Margin="5,0,0,0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBlock x:Name="textBlockl" HorizontalAlignment="Left" Height="18" Margin="33,27,0,0" Text="{lex:LocText Language}" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

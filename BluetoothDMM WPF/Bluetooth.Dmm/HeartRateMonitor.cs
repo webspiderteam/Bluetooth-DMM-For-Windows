@@ -150,6 +150,7 @@ namespace HeartRateLE.Bluetooth
             catch (Exception ex)
             {
                 characteristics = new List<GattCharacteristic>();
+                Debug.WriteLine("exr2" + ex);
             }
 
             var characteristicCollection = new List<BluetoothAttribute>();
@@ -262,7 +263,7 @@ namespace HeartRateLE.Bluetooth
                     }
                     catch (Exception ex)
                     {
-                        //Debug.WriteLine("exr" + ex);
+                        Debug.WriteLine("exr" + ex);
                     }    
                 }
 

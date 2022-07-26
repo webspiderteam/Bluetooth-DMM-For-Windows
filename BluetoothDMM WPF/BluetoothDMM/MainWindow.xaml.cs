@@ -83,6 +83,7 @@ namespace BluetoothDMM
                     System.Globalization.CultureInfo.GetCultureInfo("ja"),
                     System.Globalization.CultureInfo.GetCultureInfo("nl"),
                     System.Globalization.CultureInfo.GetCultureInfo("en"),
+                    System.Globalization.CultureInfo.GetCultureInfo("pl"),
                     System.Globalization.CultureInfo.GetCultureInfo("ru"),
                     System.Globalization.CultureInfo.GetCultureInfo("tr"),
                     System.Globalization.CultureInfo.GetCultureInfo("zh-CN"),
@@ -1096,7 +1097,7 @@ namespace BluetoothDMM
         private void CustomDialog_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Startpoint = e.GetPosition(null);
-            if(!Button1.IsMouseOver && !Button1.IsMouseOver && !Button1.IsMouseOver && !DontAsk.IsMouseOver)
+            if(!Button1.IsMouseOver && !Button2.IsMouseOver && !Button3.IsMouseOver && !DontAsk.IsMouseOver)
                 DialogBorder.Opacity = 0.6;
         }
 
