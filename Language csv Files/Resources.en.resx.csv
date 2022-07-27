@@ -1,0 +1,56 @@
+﻿KEY,Value
+About,About
+AboutSoftware,About Software
+AdvencedSettings,Advanced Settings
+AlwaysonTop,Always on Top
+AnalogDisplatONStart,Open Analog Display on Startup
+AnalogDisplay,Analog Display
+AskBeforeConnect,Ask Before Connect
+AutoConnectKnown,Auto Connect Known Devices on Startup
+AutoRange,Auto Range
+AvailableString,One of your device is Available to connect.
+ChangeName,Change Device Name
+ChartON,Open Data Chart on Startup
+Connect,Connect
+Connected,connected
+ConnectToDevice,Connect to Device
+CreatedBy,Created By
+DataChart,Data Chart
+DeviceManager,Manage Devices
+DevicePicker,Device Picker
+Disconnected,disconnected
+DontAsk,Don't Ask again. Connect Automaticly.
+DontConnect,Don't Connect
+ExportData,Export Data
+ImportData,Import Data
+InRush,INRUSH
+IsAvailable,is Available!
+Language,Language
+ListAvailDevices,List of Available Devices:
+LogRaw,Log Raw Data
+ManageDevices,Manage Bluetooth Devices
+ManageKnown,Manage Known Devices
+Max,MAX
+Menu,MENU
+Min,MIN
+MinimizeToTray,Always Minimize to Tray
+Name,Name:
+NotConnected,Not Connected
+Ok,OK
+Peek,PEEK
+Reconnect,Auto Reconnect after Disconnection
+RemoveAll,Remove All Devices
+RemoveDevice,Remove Device
+ResetView,Reset View
+RunStartup,Run on Windows Startup
+Save,Save
+SavePosition,Save Window Position and Size
+SearchingDevices,Searching for Bluetooth Devices...
+Settings,Settings
+StartupSettings,Startup Settings
+TrueRMS,TRUE RMS
+Version,Version :
+WantToConnect,Do you Want to Connect?
+ZoomandFitData,Zoom and Fit Data
+
+

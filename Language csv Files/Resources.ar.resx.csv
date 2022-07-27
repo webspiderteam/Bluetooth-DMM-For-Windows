@@ -1,0 +1,56 @@
+﻿KEY,Value
+About,حول
+AboutSoftware,حول البرمجيات
+AdvencedSettings,إعدادات متقدمة
+AlwaysonTop,دائما في القمة
+AnalogDisplatONStart,افتح العرض التناظري عند بدء التشغيل
+AnalogDisplay,عرض تناظري
+AskBeforeConnect,اسأل قبل الاتصال
+AutoConnectKnown,الاتصال التلقائي بالأجهزة المعروفة عند بدء التشغيل
+AutoRange,نطاق السيارات
+AvailableString,أحد أجهزتك متاح للاتصال.
+ChangeName,تغيير اسم الجهاز
+ChartON,افتح مخطط البيانات عند بدء التشغيل
+Connect,الاتصال
+Connected,متصل
+ConnectToDevice,الاتصال بالجهاز
+CreatedBy,انشأ من قبل
+DataChart,مخطط البيانات
+DeviceManager,إدارة الأجهزة
+DevicePicker,منتقي الجهاز
+Disconnected,انقطع الاتصال
+DontAsk,لا تسأل مرة أخرى. ربط تلقائيا.
+DontConnect,لا تتصل
+ExportData,تصدير البيانات
+ImportData,بيانات الاستيراد
+InRush,تدفق
+IsAvailable,متاح!
+Language,لغة
+ListAvailDevices,قائمة الأجهزة المتاحة:
+LogRaw,تسجيل البيانات الأولية
+ManageDevices,إدارة أجهزة البلوتوث
+ManageKnown,إدارة الأجهزة المعروفة
+Max,الأعلى
+Menu,قائمة
+Min,دقيقة
+MinimizeToTray,تصغير دائمًا إلى الدرج
+Name,اسم:
+NotConnected,غير متصل
+Ok,نعم
+Peek,نظرة خاطفة
+Reconnect,إعادة الاتصال التلقائي بعد قطع الاتصال
+RemoveAll,قم بإزالة كافة الأجهزة
+RemoveDevice,إنزع الجهاز
+ResetView,إعادة عرض
+RunStartup,تشغيل عند بدء التشغيل ويندوز
+Save,يحفظ
+SavePosition,حفظ وضع النافذة وحجمها
+SearchingDevices,جاري البحث عن أجهزة Bluetooth ...
+Settings,إعدادات
+StartupSettings,إعدادات البدء
+TrueRMS,صحيح RMS
+Version,إصدار :
+WantToConnect,هل تريد الاتصال؟
+ZoomandFitData,تكبير وتناسب البيانات
+
+

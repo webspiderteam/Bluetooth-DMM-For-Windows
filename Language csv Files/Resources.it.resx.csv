@@ -1,0 +1,56 @@
+﻿KEY,Value
+About,Di
+AboutSoftware,A proposito di software
+AdvencedSettings,Impostazioni avanzate
+AlwaysonTop,Sempre in cima
+AnalogDisplatONStart,Aprire il display analogico all'avvio
+AnalogDisplay,Display analogico
+AskBeforeConnect,Chiedi prima di connetterti
+AutoConnectKnown,Connetti automaticamente i dispositivi noti all'avvio
+AutoRange,Intervallo automatico
+AvailableString,Uno dei tuoi dispositivi è disponibile per la connessione.
+ChangeName,Cambia nome dispositivo
+ChartON,Apri il grafico dei dati all'avvio
+Connect,Collegare
+Connected,collegato
+ConnectToDevice,Connetti al dispositivo
+CreatedBy,Creato da
+DataChart,Grafico dei dati
+DeviceManager,Gestisci dispositivi
+DevicePicker,Selezione dispositivo
+Disconnected,disconnesso
+DontAsk,Non chiedere di nuovo. Connetti automaticamente.
+DontConnect,Non connetterti
+ExportData,Esporta dati
+ImportData,Importa dati
+InRush,INRUSH
+IsAvailable,è disponibile!
+Language,Lingua
+ListAvailDevices,Elenco dei dispositivi disponibili:
+LogRaw,Registra dati grezzi
+ManageDevices,Gestisci dispositivi Bluetooth
+ManageKnown,Gestisci i dispositivi conosciuti
+Max,MASSIMO
+Menu,MENÙ
+Min,MIN
+MinimizeToTray,Riduci sempre a icona nel vassoio
+Name,Nome:
+NotConnected,Non collegata
+Ok,OK
+Peek,SBIRCIARE
+Reconnect,Riconnessione automatica dopo la disconnessione
+RemoveAll,Rimuovi tutti i dispositivi
+RemoveDevice,Rimuovi dispositivo
+ResetView,Ripristina vista
+RunStartup,Esegui all'avvio di Windows
+Save,Salva
+SavePosition,Salva posizione e dimensione della finestra
+SearchingDevices,Ricerca di dispositivi Bluetooth...
+Settings,Impostazioni
+StartupSettings,Impostazioni di avvio
+TrueRMS,VERO RMS
+Version,Versione:
+WantToConnect,Vuoi Connetterti?
+ZoomandFitData,Ingrandisci e adatta i dati
+
+

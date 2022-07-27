@@ -1,0 +1,56 @@
+﻿KEY,Value
+About,Über
+AboutSoftware,Über das Programm
+AdvencedSettings,Erweiterte Einstellungen
+AlwaysonTop,Fenster i. Vordergrund 
+AnalogDisplatONStart,Analoganzeige beim Start öffnen
+AnalogDisplay,Analoge Anzeige
+AskBeforeConnect,Nachfragen; vor dem Verbinden
+AutoConnectKnown,Bekannte Geräte beim Start automatisch verbinden
+AutoRange,Auto-Range
+AvailableString,Eines Ihrer Geräte ist zum Verbinden verfügbar.
+ChangeName,Gerätenamen ändern
+ChartON,Datendiagramm beim Start öffnen
+Connect,Verbinden
+Connected,Verbunden
+ConnectToDevice,Mit Gerät verbinden
+CreatedBy,Erstellt von
+DataChart,Datendiagramm
+DeviceManager,Geräte verwalten
+DevicePicker,Geräteauswahl
+Disconnected,getrennt
+DontAsk,Ohne Nachfrage automatisch verbinden
+DontConnect,Nicht verbinden
+ExportData,Daten exportieren
+ImportData,Daten importieren
+InRush,Einschaltstrom 
+IsAvailable,ist verfügbar!
+Language,Sprache
+ListAvailDevices,Liste der verfügbaren Geräte:
+LogRaw,Rohdaten protokollieren
+ManageDevices,Bluetooth-Geräte verwalten
+ManageKnown,Bekannte Geräte verwalten
+Max,MAX
+Menu,MENÜ
+Min,MİN
+MinimizeToTray,Programm minimieren
+Name,Name:
+NotConnected,Nicht verbunden
+Ok,Ok
+Peek,SPİTZE
+Reconnect,Automatisch Wiederverbinden nach Trennung
+RemoveAll,Alle Geräte entfernen
+RemoveDevice,Gerät entfernen
+ResetView,Ansicht zurücksetzen
+RunStartup,Beim Windows-Start ausführen
+Save,Speichern
+SavePosition,Fensterposition und -größe speichern
+SearchingDevices,Suche nach Bluetooth-Geräten...
+Settings,Einstellungen
+StartupSettings,Starteinstellungen
+TrueRMS,TrueRMS
+Version,Version
+WantToConnect,Möchten Sie sich verbinden?
+ZoomandFitData,Ansicht einpassen
+
+

@@ -1,0 +1,56 @@
+﻿KEY,Value
+About,Σχετικά με
+AboutSoftware,Σχετικά με το λογισμικό
+AdvencedSettings,Προηγμένες ρυθμίσεις
+AlwaysonTop,Πάντα στην κορυφή
+AnalogDisplatONStart,Ανοίξτε την αναλογική οθόνη κατά την εκκίνηση
+AnalogDisplay,Αναλογική οθόνη
+AskBeforeConnect,Ρωτήστε πριν συνδεθείτε
+AutoConnectKnown,Αυτόματη σύνδεση γνωστών συσκευών κατά την εκκίνηση
+AutoRange,Αυτόματο εύρος
+AvailableString,Μία από τις συσκευές σας είναι διαθέσιμη για σύνδεση.
+ChangeName,Αλλαγή ονόματος συσκευής
+ChartON,Ανοίξτε το γράφημα δεδομένων κατά την εκκίνηση
+Connect,Συνδέω-συωδεομαι
+Connected,συνδεδεμένος
+ConnectToDevice,Σύνδεση στη Συσκευή
+CreatedBy,Δημιουργήθηκε από
+DataChart,Διάγραμμα δεδομένων
+DeviceManager,Διαχείριση Συσκευών
+DevicePicker,Επιλογέας συσκευής
+Disconnected,ασύνδετος
+DontAsk,Μην ρωτάς ξανά. Αυτόματη σύνδεση.
+DontConnect,Μην Συνδεθείτε
+ExportData,Εξαγωγή δεδομένων
+ImportData,Εισαγωγή δεδομένων
+InRush,ΕΙΣΡΟΗ
+IsAvailable,είναι διαθέσιμο!
+Language,Γλώσσα
+ListAvailDevices,Λίστα διαθέσιμων συσκευών:
+LogRaw,Καταγραφή πρωτογενών δεδομένων
+ManageDevices,Διαχείριση Συσκευών Bluetooth
+ManageKnown,Διαχείριση γνωστών συσκευών
+Max,ΜΕΓΙΣΤΗ
+Menu,ΜΕΝΟΥ
+Min,MIN
+MinimizeToTray,Πάντα ελαχιστοποίηση στο δίσκο
+Name,Ονομα:
+NotConnected,Μη συνδεδεμένο
+Ok,Εντάξει
+Peek,ΚΡΥΦΟΚΟΙΤΑΓΜΑ
+Reconnect,Αυτόματη επανασύνδεση μετά την αποσύνδεση
+RemoveAll,Κατάργηση όλων των συσκευών
+RemoveDevice,Αφαίρεση της συσκευής
+ResetView,Επαναφορά προβολής
+RunStartup,Εκτέλεση κατά την εκκίνηση των Windows
+Save,Αποθηκεύσετε
+SavePosition,Αποθήκευση θέσης και μεγέθους παραθύρου
+SearchingDevices,Αναζήτηση για συσκευές Bluetooth...
+Settings,Ρυθμίσεις
+StartupSettings,Ρυθμίσεις εκκίνησης
+TrueRMS,ΑΛΗΘΙΝΗ RMS
+Version,Εκδοχή :
+WantToConnect,Θέλετε να συνδεθείτε;
+ZoomandFitData,Ζουμ και προσαρμογή δεδομένων
+
+

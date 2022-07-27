@@ -1,0 +1,56 @@
+﻿KEY,Value
+About,O
+AboutSoftware,O oprogramowaniu
+AdvencedSettings,Zaawansowane ustawienia
+AlwaysonTop,Zawsze na górze
+AnalogDisplatONStart,Otwórz wyświetlacz analogowy podczas uruchamiania
+AnalogDisplay,Wyświetlacz analogowy
+AskBeforeConnect,Zapytaj przed połączeniem
+AutoConnectKnown,Automatyczne łączenie znanych urządzeń podczas uruchamiania
+AutoRange,Zakres automatyczny
+AvailableString,Jedno z Twoich urządzeń jest dostępne do połączenia.
+ChangeName,Zmień nazwę urządzenia
+ChartON,Otwórz wykres danych przy starcie
+Connect,Połącz
+Connected,połączony
+ConnectToDevice,Połącz z urządzeniem
+CreatedBy,Stworzone przez
+DataChart,Wykres danych
+DeviceManager,Zarządzaj urządzeniami
+DevicePicker,Selektor urządzeń
+Disconnected,niepowiązany
+DontAsk,Nie pytaj ponownie. Połącz automatycznie.
+DontConnect,Nie łącz
+ExportData,Eksportuj dane
+ImportData,Zaimportować dane
+InRush,NAPÓR
+IsAvailable,jest dostępny!
+Language,Język
+ListAvailDevices,Lista dostępnych urządzeń:
+LogRaw,Zaloguj surowe dane
+ManageDevices,Zarządzaj urządzeniami Bluetooth
+ManageKnown,Zarządzaj znanymi urządzeniami
+Max,MAX
+Menu,MENU
+Min,MIN
+MinimizeToTray,Zawsze minimalizuj do zasobnika
+Name,Nazwa:
+NotConnected,Nie połączony
+Ok,OK
+Peek,ZERKAĆ
+Reconnect,Automatyczne ponowne łączenie po rozłączeniu
+RemoveAll,Usuń wszystkie urządzenia
+RemoveDevice,Odłącz urządzenie
+ResetView,Resetuj widok
+RunStartup,Uruchom na starcie systemu Windows
+Save,Zapisz
+SavePosition,Zapisz pozycję i rozmiar okna
+SearchingDevices,Wyszukiwanie urządzeń Bluetooth...
+Settings,Ustawienia
+StartupSettings,Ustawienia uruchamiania
+TrueRMS,PRAWDZIWE RMS
+Version,Wersja :
+WantToConnect,Chcesz się połączyć?
+ZoomandFitData,Powiększ i dopasuj dane
+
+

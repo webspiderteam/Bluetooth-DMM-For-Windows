@@ -1,0 +1,56 @@
+﻿KEY,Value
+About,О
+AboutSoftware,О программном обеспечении
+AdvencedSettings,Расширенные настройки
+AlwaysonTop,Всегда на вершине
+AnalogDisplatONStart,Открыть аналоговый дисплей при запуске
+AnalogDisplay,Аналоговый дисплей
+AskBeforeConnect,Спросите перед подключением
+AutoConnectKnown,Автоматическое подключение известных устройств при запуске
+AutoRange,Автоматический диапазон
+AvailableString,Одно из ваших устройств доступно для подключения.
+ChangeName,Изменить имя устройства
+ChartON,Диаграмма открытых данных при запуске
+Connect,Соединять
+Connected,связано
+ConnectToDevice,Подключиться к устройству
+CreatedBy,Сделано
+DataChart,Диаграмма данных
+DeviceManager,Управление устройствами
+DevicePicker,Выбор устройства
+Disconnected,отключен
+DontAsk,Не спрашивайте снова. Подключаться автоматически.
+DontConnect,Не подключать
+ExportData,Экспорт данных
+ImportData,Импорт данных
+InRush,НАГРУЗКА
+IsAvailable,доступен!
+Language,Язык
+ListAvailDevices,Список доступных устройств:
+LogRaw,Лог необработанных данных
+ManageDevices,Управление Bluetooth-устройствами
+ManageKnown,Управление известными устройствами
+Max,МАКСИМУМ
+Menu,МЕНЮ
+Min,МИН.
+MinimizeToTray,Всегда сворачивать в трей
+Name,Имя:
+NotConnected,Не подключен
+Ok,ХОРОШО
+Peek,PEEK
+Reconnect,Автоматическое повторное подключение после отключения
+RemoveAll,Удалить все устройства
+RemoveDevice,Удалить устройство
+ResetView,Сбросить вид
+RunStartup,Запуск при запуске Windows
+Save,Сохранять
+SavePosition,Сохранить положение и размер окна
+SearchingDevices,Поиск устройств Bluetooth...
+Settings,Настройки
+StartupSettings,Параметры запуска
+TrueRMS,ИСТИННОЕ СКЗ
+Version,Версия:
+WantToConnect,Вы хотите подключиться?
+ZoomandFitData,Масштабирование и подгонка данных
+
+

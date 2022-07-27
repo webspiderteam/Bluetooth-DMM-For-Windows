@@ -1,0 +1,56 @@
+﻿KEY,Value
+About,Over
+AboutSoftware,Over software
+AdvencedSettings,Geavanceerde instellingen
+AlwaysonTop,Altijd bovenop
+AnalogDisplatONStart,Analoge weergave openen bij opstarten
+AnalogDisplay,Analoge weergave
+AskBeforeConnect,Vragen voordat u verbinding maakt
+AutoConnectKnown,Bekende apparaten automatisch verbinden bij opstarten
+AutoRange,Automatisch bereik
+AvailableString,Een van uw apparaten is beschikbaar om verbinding te maken.
+ChangeName,Apparaatnaam wijzigen
+ChartON,Gegevenskaart openen bij opstarten
+Connect,Aansluiten
+Connected,verbonden
+ConnectToDevice,Verbinding maken met apparaat
+CreatedBy,Gemaakt door
+DataChart,Gegevensgrafiek:
+DeviceManager,Apparaten beheren
+DevicePicker,Apparaatkiezer
+Disconnected,verbinding verbroken
+DontAsk,Niet meer vragen. Automatisch verbinden.
+DontConnect,Geen verbinding maken
+ExportData,Exportgegevens
+ImportData,Data importeren
+InRush,INRUSH
+IsAvailable,is beschikbaar!
+Language,Taal
+ListAvailDevices,Lijst met beschikbare apparaten:
+LogRaw,Onbewerkte gegevens loggen
+ManageDevices,Bluetooth-apparaten beheren
+ManageKnown,Beheer bekende apparaten
+Max,MAX
+Menu,MENU
+Min,MIN
+MinimizeToTray,Altijd minimaliseren tot lade
+Name,Naam:
+NotConnected,Niet verbonden
+Ok,Oké
+Peek,KIJKJE
+Reconnect,Automatisch opnieuw verbinden na verbreken
+RemoveAll,Alle apparaten verwijderen
+RemoveDevice,Verwijder apparaat
+ResetView,Weergave resetten
+RunStartup,Uitvoeren bij opstarten van Windows
+Save,Opslaan
+SavePosition,Vensterpositie en -grootte opslaan
+SearchingDevices,Zoeken naar Bluetooth-apparaten...
+Settings,Instellingen
+StartupSettings,Opstartinstellingen
+TrueRMS,TRUE RMS
+Version,Versie :
+WantToConnect,Wil je verbinden?
+ZoomandFitData,Gegevens zoomen en aanpassen
+
+
