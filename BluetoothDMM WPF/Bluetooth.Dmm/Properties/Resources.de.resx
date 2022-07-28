@@ -127,7 +127,7 @@
     <value>Der DMM-Dienst kann nicht gefunden werden</value>
   </data>
   <data name="NotReachable" xml:space="preserve">
-    <value>Gerät ist nicht erreichbar oder hat keinen DMM-Dienst (d. h. außerhalb der Reichweite oder Abschaltung).\n Wenn der Fehler weiterhin besteht, überprüfen Sie Ihre Bluetooth-Einstellungen unter Windows und versuchen Sie, Bluetooth zu deaktivieren und zu aktivieren.</value>
+    <value>Das Gerät ist nicht erreichbar oder hat keinen DMM-Dienst (d. h. außerhalb der Reichweite oder abgeschaltet).\n Wenn der Fehler weiterhin besteht, überprüfen Sie Ihre Bluetooth-Einstellungen unter Windows und versuchen Sie, Bluetooth zu deaktivieren und zu aktivieren.</value>
   </data>
   <data name="NotSupportNotify" xml:space="preserve">
     <value>Merkmal unterstützt keine Benachrichtigung</value>

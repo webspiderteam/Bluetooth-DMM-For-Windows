@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Abrir gráfico de datos al inicio</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>Borrar gráfico</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Conectar</value>
   </data>

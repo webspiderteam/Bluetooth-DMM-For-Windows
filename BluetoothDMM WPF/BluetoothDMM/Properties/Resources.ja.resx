@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>起動時にデータチャートを開く</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>明確なチャート</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>接続</value>
   </data>

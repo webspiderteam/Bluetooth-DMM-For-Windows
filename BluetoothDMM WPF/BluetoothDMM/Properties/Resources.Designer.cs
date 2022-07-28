@@ -169,6 +169,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear Chart.
+        /// </summary>
+        public static string ClearChart {
+            get {
+                return ResourceManager.GetString("ClearChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connect.
         /// </summary>
         public static string Connect {

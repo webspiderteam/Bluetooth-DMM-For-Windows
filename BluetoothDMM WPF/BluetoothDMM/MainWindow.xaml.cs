@@ -42,11 +42,11 @@ namespace BluetoothDMM
         private System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         private bool DevicePickerActive = false;
         private readonly Plot plt;
-        private readonly Tooltip txt;
-        public double[] gattData = new double[1_000_000];
+        private Tooltip txt;
+        public double[] gattData;
         private double sampleRate = 1;
-        private readonly SignalPlot signalPlot;
-        private readonly MarkerPlot HighlightedPoint;
+        private SignalPlot signalPlot;
+        private MarkerPlot HighlightedPoint;
         private double LastHighlightedIndex = -1;
         private int nextDataIndex;
         private int ZoomScale = 30;
@@ -72,23 +72,23 @@ namespace BluetoothDMM
                 
             var x = WPFLocalizeExtension.Engine.LocalizeDictionary.Instance.MergedAvailableCultures;
             (LocalizeDictionary.Instance.DefaultProvider as ResxLocalizationProvider).SearchCultures =
-    new List<System.Globalization.CultureInfo>()
-    {
-                    System.Globalization.CultureInfo.GetCultureInfo("ar"),
-                    System.Globalization.CultureInfo.GetCultureInfo("de"),
-                    System.Globalization.CultureInfo.GetCultureInfo("el"),
-                    System.Globalization.CultureInfo.GetCultureInfo("es"),
-                    System.Globalization.CultureInfo.GetCultureInfo("fr"),
-                    System.Globalization.CultureInfo.GetCultureInfo("it"),
-                    System.Globalization.CultureInfo.GetCultureInfo("ja"),
-                    System.Globalization.CultureInfo.GetCultureInfo("nl"),
-                    System.Globalization.CultureInfo.GetCultureInfo("en"),
-                    System.Globalization.CultureInfo.GetCultureInfo("pl"),
-                    System.Globalization.CultureInfo.GetCultureInfo("ru"),
-                    System.Globalization.CultureInfo.GetCultureInfo("tr"),
-                    System.Globalization.CultureInfo.GetCultureInfo("zh-CN"),
-                    System.Globalization.CultureInfo.GetCultureInfo("zh-TW")
-    };
+                    new List<System.Globalization.CultureInfo>()
+                    {
+                                    System.Globalization.CultureInfo.GetCultureInfo("ar"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("de"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("el"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("es"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("fr"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("it"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("ja"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("nl"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("en"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("pl"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("ru"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("tr"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("zh-CN"),
+                                    System.Globalization.CultureInfo.GetCultureInfo("zh-TW")
+                    };
             version.Text = "V " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0,4);
             if (Properties.Settings.Default.Remember)
             {
@@ -110,27 +110,7 @@ namespace BluetoothDMM
             plt.YAxis.MinimumTickSpacing(0.0001);
             plt.Margins(0.1, 0.2);
 
-            signalPlot = plt.AddSignal(gattData, sampleRate, color: System.Drawing.Color.White);
-            signalPlot.YAxisIndex = 0;
-            signalPlot.LineWidth = 2;
-            signalPlot.MarkerSize = 3;
-
-            signalPlot.IsVisible = false;
-            HighlightedPoint = plt.AddPoint(0, 0);
-            HighlightedPoint.Color = System.Drawing.Color.Yellow;
-            HighlightedPoint.MarkerSize = 10;
-            HighlightedPoint.MarkerShape = ScottPlot.MarkerShape.openCircle;
-            HighlightedPoint.IsVisible = false;
-
-            txt = plt.AddTooltip("Data", 0, 0);
-            txt.Font.Color = System.Drawing.Color.White;
-            txt.FillColor = System.Drawing.Color.FromArgb(190, 107, 126, 243);
-            txt.BorderWidth = 1;
-            txt.BorderColor = System.Drawing.Color.White;
-            txt.Font.Bold = true;
-            txt.Font.Size = 12;
-            txt.IsVisible = false;
-
+            ChartSetup();
             wpfPlot1.Plot.YAxis2.LockLimits(true);
             wpfPlot1.Configuration.LockVerticalAxis = true;
             wpfPlot1.Refresh();
@@ -186,6 +166,31 @@ namespace BluetoothDMM
             m_notifyIcon.ContextMenu = TrayContextMenu;
             m_notifyIcon.Click += new EventHandler(NotifyIcon_Click);
 
+        }
+
+        private void ChartSetup()
+        {
+            gattData = new double[1_000_000];
+            signalPlot = plt.AddSignal(gattData, sampleRate, color: System.Drawing.Color.White);
+            signalPlot.YAxisIndex = 0;
+            signalPlot.LineWidth = 2;
+            signalPlot.MarkerSize = 3;
+
+            signalPlot.IsVisible = false;
+            HighlightedPoint = plt.AddPoint(0, 0);
+            HighlightedPoint.Color = System.Drawing.Color.Yellow;
+            HighlightedPoint.MarkerSize = 10;
+            HighlightedPoint.MarkerShape = ScottPlot.MarkerShape.openCircle;
+            HighlightedPoint.IsVisible = false;
+
+            txt = plt.AddTooltip("Data", 0, 0);
+            txt.Font.Color = System.Drawing.Color.White;
+            txt.FillColor = System.Drawing.Color.FromArgb(190, 107, 126, 243);
+            txt.BorderWidth = 1;
+            txt.BorderColor = System.Drawing.Color.White;
+            txt.Font.Bold = true;
+            txt.Font.Size = 12;
+            txt.IsVisible = false;
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -272,7 +277,6 @@ namespace BluetoothDMM
             Tg_Btn.IsChecked = false;
         }
 
-
         protected async override void OnClosing(CancelEventArgs e)
         {
             base.OnClosing(e);
@@ -335,6 +339,7 @@ namespace BluetoothDMM
                 MyGattCData.Foreground = arg.MyGattCDataHold ? Brushes.Red : Brushes.White;
             });
         }
+        
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);
@@ -361,6 +366,7 @@ namespace BluetoothDMM
                 nextDataIndex += 1;
             }
         }
+        
         private async void HrDeviceOnDeviceConnectionStatusChanged(object sender, ConnectionStatusChangedEventArgs args)
         {
             d("Current connection status is: " + args.IsConnected);
@@ -509,6 +515,7 @@ namespace BluetoothDMM
         {
             Debug.WriteLine(txt);
         }
+        
         private System.Windows.Visibility Bool_to_Vis(bool txt)
         {
             if (txt) { return Visibility.Visible; } else { return Visibility.Collapsed; }
@@ -589,6 +596,7 @@ namespace BluetoothDMM
                 this.Height = 160 + grid.RowDefinitions[0].ActualHeight + 20;
             }
         }
+        
         private void _OnTop()
         {
             if (this.Topmost)
@@ -602,6 +610,7 @@ namespace BluetoothDMM
                 OnTopON.Visibility = Visibility.Visible;
             }
         }
+        
         private void _ADisplay()
         {
             if (aDisplay.Visibility==Visibility.Visible)
@@ -620,6 +629,7 @@ namespace BluetoothDMM
                 ADisplayON.Visibility = Visibility.Visible;
             }
         }
+        
         private void SettingBtn_Click(object sender, RoutedEventArgs e)
         {
             var Settings = new Settings(DeviceListC)
@@ -718,6 +728,7 @@ namespace BluetoothDMM
             //label1.Content = $"Closest point to ({mouseX:N2}, {mouseY:N2}) " +
             //   $"is index {pointIndex} ({pointX:N2}, {pointY:N2})";
         }
+        
         private static string[] SymbolToText(string Value)
         {
             Value = Value.Replace('*', ' ');
@@ -807,6 +818,7 @@ namespace BluetoothDMM
             txtvline1.Font.Color = System.Drawing.Color.White;
 
         }
+        
         private void WpfPlot1_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             var axes = plt.GetAxisLimits();
@@ -1033,6 +1045,7 @@ namespace BluetoothDMM
             if (Draggable)
                 this.DragMove();
         }
+        
         private void HandleLinkClick(object sender, RoutedEventArgs e)
         {
             Hyperlink hl = (Hyperlink)sender;
@@ -1040,6 +1053,7 @@ namespace BluetoothDMM
             Process.Start(new ProcessStartInfo(navigateUri));
             e.Handled = true;
         }
+        
         private async void Window_Activated(object sender, EventArgs e)
         {
             if (onLoad)
@@ -1132,6 +1146,17 @@ namespace BluetoothDMM
         private void DontAsk_Unchecked(object sender, RoutedEventArgs e)
         {
             Button3.IsEnabled = (bool)!DontAsk.IsChecked;
+        }
+
+        private void ChartClear_Click(object sender, RoutedEventArgs e)
+        {
+            plt.Clear();
+            nextDataIndex = 0;
+            ChartSetup();
+            wpfPlot1.Plot.YAxis2.LockLimits(true);
+            wpfPlot1.Configuration.LockVerticalAxis = true;
+            wpfPlot1.Refresh();
+            SettingPopup.IsOpen = false;
         }
     }
 }

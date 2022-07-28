@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Ανοίξτε το γράφημα δεδομένων κατά την εκκίνηση</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>Καθαρό διάγραμμα</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Συνδέω-συωδεομαι</value>
   </data>

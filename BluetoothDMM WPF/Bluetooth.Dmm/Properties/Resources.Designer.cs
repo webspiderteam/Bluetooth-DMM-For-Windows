@@ -70,6 +70,15 @@ namespace Bluetooth.Dmm.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear Chart.
+        /// </summary>
+        internal static string ClearChart {
+            get {
+                return ResourceManager.GetString("ClearChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot find characteristic.
         /// </summary>
         internal static string NoCharacteristic {

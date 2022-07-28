@@ -384,7 +384,7 @@ namespace HeartRateLE.Bluetooth
         /// <param name="data">Raw data received from the heart rate monitor.</param>
         /// <returns>The heart rate measurement value.</returns>
 
-        public static ArrayList ParseHeartRateValue(byte[] data,bool LogData)
+        public static ArrayList ParseHeartRateValue(byte[] data, bool LogData)
         {
             // Testing other device data
             var TestDevice = 0;

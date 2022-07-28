@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Open Data Chart on Startup</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>Clear Chart</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Connect</value>
   </data>

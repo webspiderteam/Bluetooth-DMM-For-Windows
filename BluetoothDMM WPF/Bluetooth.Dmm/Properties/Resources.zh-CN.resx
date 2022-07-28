@@ -127,7 +127,7 @@
     <value>找不到 DMM 服务</value>
   </data>
   <data name="NotReachable" xml:space="preserve">
-    <value>设备无法访问或没有 DMM 服务（即超出范围或关闭）。\n 如果错误仍然存​​在，请检查 Windows 上的蓝牙设置并尝试禁用和启用蓝牙。</value>
+    <value>设备无法访问或没有 DMM 服务（即超出范围或关闭）。\n 如果错误仍然存​​在，请检查 Windows 上的蓝牙设置，然后尝试禁用和启用蓝牙。</value>
   </data>
   <data name="NotSupportNotify" xml:space="preserve">
     <value>特性不支持通知</value>

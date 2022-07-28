@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Başlangıçta Veri Grafiği'ni Aç</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>Grafiği Temizle</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Bağlan</value>
   </data>

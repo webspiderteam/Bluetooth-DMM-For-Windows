@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Otwórz wykres danych przy starcie</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>Wyczyść wykres</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Połącz</value>
   </data>

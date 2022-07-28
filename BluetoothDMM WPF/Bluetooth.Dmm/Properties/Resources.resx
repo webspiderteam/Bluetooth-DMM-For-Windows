@@ -120,6 +120,9 @@
   <data name="CannotFind" xml:space="preserve">
     <value>Could not find specified device!</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>Clear Chart</value>
+  </data>
   <data name="NoCharacteristic" xml:space="preserve">
     <value>Cannot find characteristic</value>
   </data>

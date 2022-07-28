@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Диаграмма открытых данных при запуске</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>Очистить диаграмму</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Соединять</value>
   </data>

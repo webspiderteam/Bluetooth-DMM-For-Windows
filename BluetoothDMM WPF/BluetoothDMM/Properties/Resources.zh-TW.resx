@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>啟動時打開數據圖表</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>清除圖表</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>連接</value>
   </data>

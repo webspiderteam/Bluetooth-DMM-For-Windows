@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>افتح مخطط البيانات عند بدء التشغيل</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>مسح الرسم البياني</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>الاتصال</value>
   </data>

@@ -153,6 +153,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Gegevenskaart openen bij opstarten</value>
   </data>
+  <data name="ClearChart" xml:space="preserve">
+    <value>Kaart wissen</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Aansluiten</value>
   </data>
