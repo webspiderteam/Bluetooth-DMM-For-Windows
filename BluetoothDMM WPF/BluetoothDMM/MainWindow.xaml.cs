@@ -750,6 +750,10 @@ namespace BluetoothDMM
                                 mqttClient.Connect(MQTTSetup.ClientId, MQTTSetup.Username, MQTTSetup.Password);
                             else
                                 mqttClient.Connect(MQTTSetup.ClientId);
+                            if (mqttClient != null && mqttClient.IsConnected)
+                            {
+                                mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes("Connected:" + SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_") + ":" + MQTTSetup.addMac.ToString()));
+                            }
                         }
                         catch (Exception ex)
                         {
