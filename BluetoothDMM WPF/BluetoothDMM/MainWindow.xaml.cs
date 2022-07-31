@@ -418,7 +418,7 @@ namespace BluetoothDMM
                         $"Device:\"{SelectedDeviceName}\" ," +
                         $"Value:\"{MyGattCData.Text}\", " +
                         $"Range:\"{MyGattCDataSymbol.Text}\", " +
-                        $"Current:\"{MyGattCDataACDC.Text} "));
+                        $"Current:\"{MyGattCDataACDC.Text}\"}}"));
                 }
             }
         }
@@ -441,9 +441,9 @@ namespace BluetoothDMM
                     if (mqttClient != null && mqttClient.IsConnected)
                     {
                         mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
-                            $"Status: \"Connected\", " +
+                            $"{{Status: \"Connected\", " +
                             $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                            $"UseMAC: \"{MQTTSetup.addMac.ToString()}\""));
+                            $"UseMAC: \"{MQTTSetup.addMac.ToString()}\" }}"));
                     }
                 }
                 else
@@ -457,8 +457,8 @@ namespace BluetoothDMM
                     if (mqttClient != null && mqttClient.IsConnected)
                     {
                         mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
-                            $"Status: \"Disconnected\", " +
-                            $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\""));
+                            $"{{Status: \"Disconnected\", " +
+                            $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\"}}"));
                     }
                 }
             });
@@ -763,9 +763,9 @@ namespace BluetoothDMM
                             if (mqttClient != null && mqttClient.IsConnected)
                             {
                                 mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
-                                    $"Status: \"Connected\", " +
+                                    $"{{ Status: \"Connected\", " +
                                     $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                                    $"UseMAC: \"{MQTTSetup.addMac.ToString()}\""));
+                                    $"UseMAC: \"{MQTTSetup.addMac.ToString()}\"}}"));
                             }
                         }
                         catch (Exception ex)
