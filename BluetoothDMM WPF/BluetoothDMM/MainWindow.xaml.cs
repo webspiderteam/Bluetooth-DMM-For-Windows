@@ -413,7 +413,12 @@ namespace BluetoothDMM
                     string Mac = "";
                     if (MQTTSetup.addMac)
                         Mac = "/" + SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_");
-                    mqttClient.Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes($"{MyGattCData.Text}:{MyGattCDataSymbol.Text}:{MyGattCDataACDC.Text}"));
+                    mqttClient.Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
+                        $"{{ Time:\"{DateTime.Now}\"," +
+                        $"Device:\"{SelectedDeviceName}\" ," +
+                        $"Value:\"{MyGattCData.Text}\", " +
+                        $"Range:\"{MyGattCDataSymbol.Text}\", " +
+                        $"Current:\"{MyGattCDataACDC.Text} "));
                 }
             }
         }
@@ -435,7 +440,10 @@ namespace BluetoothDMM
                     Connected = 1;
                     if (mqttClient != null && mqttClient.IsConnected)
                     {
-                        mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes("Connected:"+SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_") + ":" + MQTTSetup.addMac.ToString()));
+                        mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
+                            $"Status: \"Connected\", " +
+                            $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
+                            $"UseMAC: \"{MQTTSetup.addMac.ToString()}\""));
                     }
                 }
                 else
@@ -448,7 +456,9 @@ namespace BluetoothDMM
                         Connected = 0;
                     if (mqttClient != null && mqttClient.IsConnected)
                     {
-                        mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes("Disconnected:" + SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")));
+                        mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
+                            $"Status: \"Disconnected\", " +
+                            $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\""));
                     }
                 }
             });
@@ -752,13 +762,17 @@ namespace BluetoothDMM
                                 mqttClient.Connect(MQTTSetup.ClientId);
                             if (mqttClient != null && mqttClient.IsConnected)
                             {
-                                mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes("Connected:" + SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_") + ":" + MQTTSetup.addMac.ToString()));
+                                mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
+                                    $"Status: \"Connected\", " +
+                                    $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
+                                    $"UseMAC: \"{MQTTSetup.addMac.ToString()}\""));
                             }
                         }
                         catch (Exception ex)
                         {
                             //MQTT Connection Error
                             d("MQTT Connection Error");
+                            MessageBox.Show(ex.Message);
                         }
                     });
                 }
