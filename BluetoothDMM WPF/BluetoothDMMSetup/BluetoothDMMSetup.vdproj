@@ -550,6 +550,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_954E132ECDFE546B3A55FB910612FF9B"
+        "OwnerKey" = "8:_BE396C05F476449A9AB1C40D6825961D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_959E7E3754BB9B7E654D2567B6ED88BB"
         "OwnerKey" = "8:_BE396C05F476449A9AB1C40D6825961D"
         "MsmSig" = "8:_UNDEFINED"
@@ -899,12 +905,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F4A25A417946EE939559DCE22B4A8D3A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BE396C05F476449A9AB1C40D6825961D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -947,7 +947,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_954E132ECDFE546B3A55FB910612FF9B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_35984BCB3675E8647A3E15E3E1B319E6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F4A25A417946EE939559DCE22B4A8D3A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4134,6 +4146,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_954E132ECDFE546B3A55FB910612FF9B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:M2Mqtt.Net, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_954E132ECDFE546B3A55FB910612FF9B"
+                    {
+                    "Name" = "8:M2Mqtt.Net.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:M2Mqtt.Net.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_959E7E3754BB9B7E654D2567B6ED88BB"
             {
             "AssemblyRegister" = "3:1"
@@ -5760,15 +5803,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:BluetoothDMM For Windows"
-        "ProductCode" = "8:{A5E51BA6-64D4-4FA5-87EF-1DA66A3F2A8E}"
-        "PackageCode" = "8:{0F7D8A07-EDD7-4CE6-9927-30992B35842D}"
+        "ProductCode" = "8:{4C539227-1212-4A9D-9D97-AF112D8CF224}"
+        "PackageCode" = "8:{7E106753-A404-46B4-A19B-9D6489A358F5}"
         "UpgradeCode" = "8:{DB0CAFB1-E076-41B0-B7C2-DC4B12320C5B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.13"
+        "ProductVersion" = "8:1.14"
         "Manufacturer" = "8:WebSpiderTeam"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/webspiderteam/Bluetooth-DMM-For-Windows"
@@ -6366,7 +6409,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BE396C05F476449A9AB1C40D6825961D"
             {
-            "SourcePath" = "8:..\\BluetoothDMM\\obj\\Release\\BluetoothDMM.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"

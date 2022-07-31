@@ -61,7 +61,14 @@ namespace BluetoothDMM
 
         public MainWindow()
         {
-
+            if (Properties.Settings.Default.CallUpgrade)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.MQTT.Default.Upgrade();
+                Properties.MQTT.Default.Save();
+                Properties.Settings.Default.CallUpgrade = false;
+                Properties.Settings.Default.Save();
+            }
             InitializeComponent();
             if (Properties.Settings.Default.Lang == "")
                 LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
