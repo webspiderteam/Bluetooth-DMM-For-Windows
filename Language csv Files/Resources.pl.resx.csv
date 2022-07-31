@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,O
 AboutSoftware,O oprogramowaniu
+AddMacAdress,Użyj adresu MAC jako podkatalogu
 AdvencedSettings,Zaawansowane ustawienia
 AlwaysonTop,Zawsze na górze
 AnalogDisplatONStart,Otwórz wyświetlacz analogowy podczas uruchamiania
@@ -11,6 +12,8 @@ AutoRange,Zakres automatyczny
 AvailableString,Jedno z Twoich urządzeń jest dostępne do połączenia.
 ChangeName,Zmień nazwę urządzenia
 ChartON,Otwórz wykres danych przy starcie
+ClearChart,Wyczyść wykres
+ClientID,Identyfikator klienta :
 Connect,Połącz
 Connected,połączony
 ConnectToDevice,Połącz z urządzeniem
@@ -21,6 +24,8 @@ DevicePicker,Selektor urządzeń
 Disconnected,niepowiązany
 DontAsk,Nie pytaj ponownie. Połącz automatycznie.
 DontConnect,Nie łącz
+EnableMQTT,Włącz klienta MQTT
+Encrypted,Zaszyfrowane
 ExportData,Eksportuj dane
 ImportData,Zaimportować dane
 InRush,NAPÓR
@@ -34,10 +39,14 @@ Max,MAX
 Menu,MENU
 Min,MIN
 MinimizeToTray,Zawsze minimalizuj do zasobnika
+MQTTAdress,Adres serwera MQTT :
+MQTTSettings,Ustawienia MQTT
 Name,Nazwa:
 NotConnected,Nie połączony
 Ok,OK
+Password,Hasło :
 Peek,ZERKAĆ
+Port,Port :
 Reconnect,Automatyczne ponowne łączenie po rozłączeniu
 RemoveAll,Usuń wszystkie urządzenia
 RemoveDevice,Odłącz urządzenie
@@ -48,9 +57,10 @@ SavePosition,Zapisz pozycję i rozmiar okna
 SearchingDevices,Wyszukiwanie urządzeń Bluetooth...
 Settings,Ustawienia
 StartupSettings,Ustawienia uruchamiania
+TargetTopic,Temat docelowy :
 TrueRMS,PRAWDZIWE RMS
+UseLogin,Użyj logowania
+UserName,Nazwa użytkownika :
 Version,Wersja :
 WantToConnect,Chcesz się połączyć?
 ZoomandFitData,Powiększ i dopasuj dane
-
-

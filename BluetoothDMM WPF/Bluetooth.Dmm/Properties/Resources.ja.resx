@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CannotFind" xml:space="preserve">
-    <value>指定されたデバイスが見つかりませんでした！</value>
+    <value>指定されたデバイスが見つかりませんでした!</value>
   </data>
   <data name="NoCharacteristic" xml:space="preserve">
-    <value>特徴が見つかりません</value>
+    <value>特性が見つかりません</value>
   </data>
   <data name="NoDMMService" xml:space="preserve">
     <value>DMMサービスが見つかりません</value>
   </data>
   <data name="NotReachable" xml:space="preserve">
-    <value>デバイスに到達できないか、DMMサービスがありません（つまり、範囲外またはシャットオフ）。\ nエラーが続く場合WindowsでBluetooth設定を確認し、Bluetoothの無効化と有効化を試してください。</value>
+    <value>デバイスに到達できないか、DMM サービスがありません (つまり、範囲外またはシャットオフ)。\n エラーが続く場合 Windows の Bluetooth 設定を確認し、Bluetooth を無効にしてから有効にしてみてください。</value>
   </data>
   <data name="NotSupportNotify" xml:space="preserve">
     <value>特性は通知をサポートしていません</value>

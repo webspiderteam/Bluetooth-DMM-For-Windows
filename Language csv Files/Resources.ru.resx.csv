@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,О
 AboutSoftware,О программном обеспечении
+AddMacAdress,Использовать MAC-адрес в качестве подкаталога
 AdvencedSettings,Расширенные настройки
 AlwaysonTop,Всегда на вершине
 AnalogDisplatONStart,Открыть аналоговый дисплей при запуске
@@ -11,6 +12,8 @@ AutoRange,Автоматический диапазон
 AvailableString,Одно из ваших устройств доступно для подключения.
 ChangeName,Изменить имя устройства
 ChartON,Диаграмма открытых данных при запуске
+ClearChart,Очистить диаграмму
+ClientID,ID клиента :
 Connect,Соединять
 Connected,связано
 ConnectToDevice,Подключиться к устройству
@@ -21,6 +24,8 @@ DevicePicker,Выбор устройства
 Disconnected,отключен
 DontAsk,Не спрашивайте снова. Подключаться автоматически.
 DontConnect,Не подключать
+EnableMQTT,Включить MQTT-клиент
+Encrypted,Зашифровано
 ExportData,Экспорт данных
 ImportData,Импорт данных
 InRush,НАГРУЗКА
@@ -34,10 +39,14 @@ Max,МАКСИМУМ
 Menu,МЕНЮ
 Min,МИН.
 MinimizeToTray,Всегда сворачивать в трей
+MQTTAdress,Адрес MQTT-сервера:
+MQTTSettings,Настройки MQTT
 Name,Имя:
 NotConnected,Не подключен
 Ok,ХОРОШО
+Password,Пароль :
 Peek,PEEK
+Port,Порт:
 Reconnect,Автоматическое повторное подключение после отключения
 RemoveAll,Удалить все устройства
 RemoveDevice,Удалить устройство
@@ -48,9 +57,10 @@ SavePosition,Сохранить положение и размер окна
 SearchingDevices,Поиск устройств Bluetooth...
 Settings,Настройки
 StartupSettings,Параметры запуска
+TargetTopic,Целевая тема:
 TrueRMS,ИСТИННОЕ СКЗ
+UseLogin,Использовать логин
+UserName,Имя пользователя :
 Version,Версия:
 WantToConnect,Вы хотите подключиться?
 ZoomandFitData,Масштабирование и подгонка данных
-
-

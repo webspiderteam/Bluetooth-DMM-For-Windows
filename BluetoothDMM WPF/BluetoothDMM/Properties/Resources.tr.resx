@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>Yazılım Hakkında</value>
   </data>
+  <data name="AddMacAdress" xml:space="preserve">
+    <value>MAC Adresini Alt Dizin Olarak Kullan</value>
+  </data>
   <data name="AdvencedSettings" xml:space="preserve">
     <value>Gelişmiş Ayarlar</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="ClearChart" xml:space="preserve">
     <value>Grafiği Temizle</value>
   </data>
+  <data name="ClientID" xml:space="preserve">
+    <value>İstemci Kimliği :</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Bağlan</value>
   </data>
@@ -166,7 +172,7 @@
     <value>Cihaza Bağlan</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
-    <value>Tarafından yaratıldı</value>
+    <value>Yapımcı :</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>Veri Grafiği</value>
@@ -177,7 +183,7 @@
   <data name="DevicePicker" xml:space="preserve">
     <value>Cihaz Seçici</value>
   </data>
-  <data name="DisConnected" xml:space="preserve">
+  <data name="Disconnected" xml:space="preserve">
     <value>Bağlantı Koptu</value>
   </data>
   <data name="DontAsk" xml:space="preserve">
@@ -185,6 +191,12 @@
   </data>
   <data name="DontConnect" xml:space="preserve">
     <value>Bağlanma</value>
+  </data>
+  <data name="EnableMQTT" xml:space="preserve">
+    <value>MQTT İstemcisini Etkinleştir</value>
+  </data>
+  <data name="Encrypted" xml:space="preserve">
+    <value>Şifreli</value>
   </data>
   <data name="ExportData" xml:space="preserve">
     <value>Verileri Dışa Aktar</value>
@@ -225,6 +237,12 @@
   <data name="MinimizeToTray" xml:space="preserve">
     <value>Daima Tepsiye Küçült</value>
   </data>
+  <data name="MQTTAdress" xml:space="preserve">
+    <value>MQTT Sunucu Adresi :</value>
+  </data>
+  <data name="MQTTSettings" xml:space="preserve">
+    <value>MQTT Ayarları</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Ad:</value>
   </data>
@@ -234,8 +252,14 @@
   <data name="Ok" xml:space="preserve">
     <value>TAMAM</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Şifre :</value>
+  </data>
   <data name="Peek" xml:space="preserve">
     <value>TEPE</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Bağlantı Noktası :</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
     <value>Bağlantı Kesildikten Sonra Otomatik Olarak Yeniden Bağlan</value>
@@ -267,8 +291,17 @@
   <data name="StartupSettings" xml:space="preserve">
     <value>Başlangıç ​​Ayarları</value>
   </data>
+  <data name="TargetTopic" xml:space="preserve">
+    <value>Hedef Konu :</value>
+  </data>
   <data name="TrueRMS" xml:space="preserve">
-    <value>DOĞRU RMS</value>
+    <value>TRUE RMS</value>
+  </data>
+  <data name="UseLogin" xml:space="preserve">
+    <value>Girişi Kullan</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Kullanıcı adı :</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Sürüm :</value>

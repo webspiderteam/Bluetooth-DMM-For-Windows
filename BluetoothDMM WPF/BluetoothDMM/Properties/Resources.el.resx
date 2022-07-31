@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>Σχετικά με το λογισμικό</value>
   </data>
+  <data name="AddMacAdress" xml:space="preserve">
+    <value>Χρησιμοποιήστε τη διεύθυνση MAC ως υποκατάλογο</value>
+  </data>
   <data name="AdvencedSettings" xml:space="preserve">
     <value>Προηγμένες ρυθμίσεις</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="ClearChart" xml:space="preserve">
     <value>Καθαρό διάγραμμα</value>
   </data>
+  <data name="ClientID" xml:space="preserve">
+    <value>Ταυτότητα πελάτη :</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Συνδέω-συωδεομαι</value>
   </data>
@@ -185,6 +191,12 @@
   </data>
   <data name="DontConnect" xml:space="preserve">
     <value>Μην Συνδεθείτε</value>
+  </data>
+  <data name="EnableMQTT" xml:space="preserve">
+    <value>Ενεργοποίηση MQTT Client</value>
+  </data>
+  <data name="Encrypted" xml:space="preserve">
+    <value>Κρυπτογραφημένο</value>
   </data>
   <data name="ExportData" xml:space="preserve">
     <value>Εξαγωγή δεδομένων</value>
@@ -225,6 +237,12 @@
   <data name="MinimizeToTray" xml:space="preserve">
     <value>Πάντα ελαχιστοποίηση στο δίσκο</value>
   </data>
+  <data name="MQTTAdress" xml:space="preserve">
+    <value>Διεύθυνση διακομιστή MQTT:</value>
+  </data>
+  <data name="MQTTSettings" xml:space="preserve">
+    <value>Ρυθμίσεις MQTT</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Ονομα:</value>
   </data>
@@ -234,8 +252,14 @@
   <data name="Ok" xml:space="preserve">
     <value>Εντάξει</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Κωδικός πρόσβασης :</value>
+  </data>
   <data name="Peek" xml:space="preserve">
     <value>ΚΡΥΦΟΚΟΙΤΑΓΜΑ</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Λιμάνι :</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
     <value>Αυτόματη επανασύνδεση μετά την αποσύνδεση</value>
@@ -267,8 +291,17 @@
   <data name="StartupSettings" xml:space="preserve">
     <value>Ρυθμίσεις εκκίνησης</value>
   </data>
+  <data name="TargetTopic" xml:space="preserve">
+    <value>Θέμα στόχου:</value>
+  </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>ΑΛΗΘΙΝΗ RMS</value>
+  </data>
+  <data name="UseLogin" xml:space="preserve">
+    <value>Χρησιμοποιήστε τη σύνδεση</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Όνομα χρήστη:</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Εκδοχή :</value>

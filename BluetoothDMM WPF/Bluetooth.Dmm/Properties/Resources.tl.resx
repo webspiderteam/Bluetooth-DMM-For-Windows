@@ -120,9 +120,6 @@
   <data name="CannotFind" xml:space="preserve">
     <value>Hindi mahanap ang tinukoy na device!</value>
   </data>
-  <data name="ClearChart" xml:space="preserve">
-    <value>I-clear ang Chart</value>
-  </data>
   <data name="NoCharacteristic" xml:space="preserve">
     <value>Hindi mahanap ang katangian</value>
   </data>

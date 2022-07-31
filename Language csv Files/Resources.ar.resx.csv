@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,حول
 AboutSoftware,حول البرمجيات
+AddMacAdress,استخدم عنوان MAC كدليل فرعي
 AdvencedSettings,إعدادات متقدمة
 AlwaysonTop,دائما في القمة
 AnalogDisplatONStart,افتح العرض التناظري عند بدء التشغيل
@@ -11,6 +12,8 @@ AutoRange,نطاق السيارات
 AvailableString,أحد أجهزتك متاح للاتصال.
 ChangeName,تغيير اسم الجهاز
 ChartON,افتح مخطط البيانات عند بدء التشغيل
+ClearChart,مسح الرسم البياني
+ClientID,معرف العميل:
 Connect,الاتصال
 Connected,متصل
 ConnectToDevice,الاتصال بالجهاز
@@ -21,6 +24,8 @@ DevicePicker,منتقي الجهاز
 Disconnected,انقطع الاتصال
 DontAsk,لا تسأل مرة أخرى. ربط تلقائيا.
 DontConnect,لا تتصل
+EnableMQTT,تفعيل عميل MQTT
+Encrypted,مشفر
 ExportData,تصدير البيانات
 ImportData,بيانات الاستيراد
 InRush,تدفق
@@ -34,10 +39,14 @@ Max,الأعلى
 Menu,قائمة
 Min,دقيقة
 MinimizeToTray,تصغير دائمًا إلى الدرج
+MQTTAdress,عنوان خادم MQTT:
+MQTTSettings,إعدادات MQTT
 Name,اسم:
 NotConnected,غير متصل
 Ok,نعم
+Password,كلمة المرور :
 Peek,نظرة خاطفة
+Port,ميناء :
 Reconnect,إعادة الاتصال التلقائي بعد قطع الاتصال
 RemoveAll,قم بإزالة كافة الأجهزة
 RemoveDevice,إنزع الجهاز
@@ -48,9 +57,10 @@ SavePosition,حفظ وضع النافذة وحجمها
 SearchingDevices,جاري البحث عن أجهزة Bluetooth ...
 Settings,إعدادات
 StartupSettings,إعدادات البدء
+TargetTopic,الموضوع الهدف:
 TrueRMS,صحيح RMS
+UseLogin,استخدم تسجيل الدخول
+UserName,اسم المستخدم :
 Version,إصدار :
 WantToConnect,هل تريد الاتصال؟
 ZoomandFitData,تكبير وتناسب البيانات
-
-

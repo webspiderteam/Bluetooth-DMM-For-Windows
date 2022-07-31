@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,約
 AboutSoftware,ソフトウェアについて
+AddMacAdress,MAC アドレスをサブディレクトリとして使用する
 AdvencedSettings,高度な設定
 AlwaysonTop,常にトップに
 AnalogDisplatONStart,起動時にアナログディスプレイを開く
@@ -11,6 +12,8 @@ AutoRange,オートレンジ
 AvailableString,お使いのデバイスの1つが接続可能です。
 ChangeName,デバイス名の変更
 ChartON,起動時にデータチャートを開く
+ClearChart,明確なチャート
+ClientID,クライアントID ：
 Connect,接続
 Connected,接続済み
 ConnectToDevice,デバイスに接続する
@@ -21,6 +24,8 @@ DevicePicker,デバイスピッカー
 Disconnected,切断されました
 DontAsk,二度と聞かないでください。自動接続。
 DontConnect,接続しないでください
+EnableMQTT,MQTT クライアントを有効にする
+Encrypted,暗号化
 ExportData,データのエクスポート
 ImportData,データのインポート
 InRush,突入電流
@@ -34,10 +39,14 @@ Max,MAX
 Menu,メニュー
 Min,MIN
 MinimizeToTray,常にトレイを最小化する
+MQTTAdress,MQTT サーバーアドレス:
+MQTTSettings,MQTT 設定
 Name,名前：
 NotConnected,接続されていません
 Ok,わかった
+Password,パスワード:
 Peek,ピーク
+Port,ポート ：
 Reconnect,切断後の自動再接続
 RemoveAll,すべてのデバイスを削除する
 RemoveDevice,デバイスを削除
@@ -48,9 +57,10 @@ SavePosition,ウィンドウの位置とサイズを保存する
 SearchingDevices,Bluetoothデバイスを検索しています...
 Settings,設定
 StartupSettings,スタートアップ設定
+TargetTopic,対象トピック：
 TrueRMS,真のRMS
+UseLogin,ログインを使用
+UserName,ユーザー名 :
 Version,バージョン ：
 WantToConnect,接続しますか？
 ZoomandFitData,データのズームとフィット
-
-

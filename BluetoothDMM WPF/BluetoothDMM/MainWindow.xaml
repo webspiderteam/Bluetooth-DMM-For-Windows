@@ -214,7 +214,7 @@
         </Popup>
         <Grid x:Name="grid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="2"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -272,7 +272,7 @@
 			                        z M239.4,315.601c-42.1,0-76.3-34.2-76.3-76.3s34.2-76.3,76.3-76.3s76.3,34.2,76.3,76.3S281.5,315.601,239.4,315.601z"/>
                     </Button>
                 </Viewbox>
-                <Popup StaysOpen="True" Width="150" x:Name="SettingPopup" 
+                <Popup StaysOpen="False" Width="150" x:Name="SettingPopup" 
                        AllowsTransparency="True"
                        Placement="Top"
                        HorizontalOffset="-2500"

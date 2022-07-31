@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>À propos du logiciel</value>
   </data>
+  <data name="AddMacAdress" xml:space="preserve">
+    <value>Utiliser l'adresse MAC comme sous-répertoire</value>
+  </data>
   <data name="AdvencedSettings" xml:space="preserve">
     <value>Réglages avancés</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="ClearChart" xml:space="preserve">
     <value>Effacer le graphique</value>
   </data>
+  <data name="ClientID" xml:space="preserve">
+    <value>Identité du client :</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Relier</value>
   </data>
@@ -185,6 +191,12 @@
   </data>
   <data name="DontConnect" xml:space="preserve">
     <value>Ne pas se connecter</value>
+  </data>
+  <data name="EnableMQTT" xml:space="preserve">
+    <value>Activer le client MQTT</value>
+  </data>
+  <data name="Encrypted" xml:space="preserve">
+    <value>Crypté</value>
   </data>
   <data name="ExportData" xml:space="preserve">
     <value>Exporter des données</value>
@@ -225,6 +237,12 @@
   <data name="MinimizeToTray" xml:space="preserve">
     <value>Toujours réduire dans la barre d'état</value>
   </data>
+  <data name="MQTTAdress" xml:space="preserve">
+    <value>Adresse du serveur MQTT :</value>
+  </data>
+  <data name="MQTTSettings" xml:space="preserve">
+    <value>Paramètres MQTT</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Nom:</value>
   </data>
@@ -234,8 +252,14 @@
   <data name="Ok" xml:space="preserve">
     <value>D'ACCORD</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe :</value>
+  </data>
   <data name="Peek" xml:space="preserve">
     <value>COUP D'OEIL</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port :</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
     <value>Reconnexion automatique après déconnexion</value>
@@ -267,8 +291,17 @@
   <data name="StartupSettings" xml:space="preserve">
     <value>Paramètres de démarrage</value>
   </data>
+  <data name="TargetTopic" xml:space="preserve">
+    <value>Sujet cible :</value>
+  </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>VRAI RMS</value>
+  </data>
+  <data name="UseLogin" xml:space="preserve">
+    <value>Utiliser la connexion</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Nom d'utilisateur :</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version :</value>

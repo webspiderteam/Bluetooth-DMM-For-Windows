@@ -79,6 +79,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use MAC Adress as Sub Directory.
+        /// </summary>
+        public static string AddMacAdress {
+            get {
+                return ResourceManager.GetString("AddMacAdress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advanced Settings.
         /// </summary>
         public static string AdvencedSettings {
@@ -178,6 +187,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client ID :.
+        /// </summary>
+        public static string ClientID {
+            get {
+                return ResourceManager.GetString("ClientID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connect.
         /// </summary>
         public static string Connect {
@@ -264,6 +282,24 @@ namespace BluetoothDMM.Properties {
         public static string DontConnect {
             get {
                 return ResourceManager.GetString("DontConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable MQTT Client.
+        /// </summary>
+        public static string EnableMQTT {
+            get {
+                return ResourceManager.GetString("EnableMQTT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypted.
+        /// </summary>
+        public static string Encrypted {
+            get {
+                return ResourceManager.GetString("Encrypted", resourceCulture);
             }
         }
         
@@ -385,6 +421,24 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MQTT Server Adress :.
+        /// </summary>
+        public static string MQTTAdress {
+            get {
+                return ResourceManager.GetString("MQTTAdress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MQTT Settings.
+        /// </summary>
+        public static string MQTTSettings {
+            get {
+                return ResourceManager.GetString("MQTTSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
         public static string Name {
@@ -412,11 +466,29 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password :.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PEEK.
         /// </summary>
         public static string Peek {
             get {
                 return ResourceManager.GetString("Peek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port :.
+        /// </summary>
+        public static string Port {
+            get {
+                return ResourceManager.GetString("Port", resourceCulture);
             }
         }
         
@@ -511,11 +583,38 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Target Topic :.
+        /// </summary>
+        public static string TargetTopic {
+            get {
+                return ResourceManager.GetString("TargetTopic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TRUE RMS.
         /// </summary>
         public static string TrueRMS {
             get {
                 return ResourceManager.GetString("TrueRMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Login.
+        /// </summary>
+        public static string UseLogin {
+            get {
+                return ResourceManager.GetString("UseLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username :.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         

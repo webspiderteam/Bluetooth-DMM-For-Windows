@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,Σχετικά με
 AboutSoftware,Σχετικά με το λογισμικό
+AddMacAdress,Χρησιμοποιήστε τη διεύθυνση MAC ως υποκατάλογο
 AdvencedSettings,Προηγμένες ρυθμίσεις
 AlwaysonTop,Πάντα στην κορυφή
 AnalogDisplatONStart,Ανοίξτε την αναλογική οθόνη κατά την εκκίνηση
@@ -11,6 +12,8 @@ AutoRange,Αυτόματο εύρος
 AvailableString,Μία από τις συσκευές σας είναι διαθέσιμη για σύνδεση.
 ChangeName,Αλλαγή ονόματος συσκευής
 ChartON,Ανοίξτε το γράφημα δεδομένων κατά την εκκίνηση
+ClearChart,Καθαρό διάγραμμα
+ClientID,Ταυτότητα πελάτη :
 Connect,Συνδέω-συωδεομαι
 Connected,συνδεδεμένος
 ConnectToDevice,Σύνδεση στη Συσκευή
@@ -21,6 +24,8 @@ DevicePicker,Επιλογέας συσκευής
 Disconnected,ασύνδετος
 DontAsk,Μην ρωτάς ξανά. Αυτόματη σύνδεση.
 DontConnect,Μην Συνδεθείτε
+EnableMQTT,Ενεργοποίηση MQTT Client
+Encrypted,Κρυπτογραφημένο
 ExportData,Εξαγωγή δεδομένων
 ImportData,Εισαγωγή δεδομένων
 InRush,ΕΙΣΡΟΗ
@@ -34,10 +39,14 @@ Max,ΜΕΓΙΣΤΗ
 Menu,ΜΕΝΟΥ
 Min,MIN
 MinimizeToTray,Πάντα ελαχιστοποίηση στο δίσκο
+MQTTAdress,Διεύθυνση διακομιστή MQTT:
+MQTTSettings,Ρυθμίσεις MQTT
 Name,Ονομα:
 NotConnected,Μη συνδεδεμένο
 Ok,Εντάξει
+Password,Κωδικός πρόσβασης :
 Peek,ΚΡΥΦΟΚΟΙΤΑΓΜΑ
+Port,Λιμάνι :
 Reconnect,Αυτόματη επανασύνδεση μετά την αποσύνδεση
 RemoveAll,Κατάργηση όλων των συσκευών
 RemoveDevice,Αφαίρεση της συσκευής
@@ -48,9 +57,10 @@ SavePosition,Αποθήκευση θέσης και μεγέθους παραθ�
 SearchingDevices,Αναζήτηση για συσκευές Bluetooth...
 Settings,Ρυθμίσεις
 StartupSettings,Ρυθμίσεις εκκίνησης
+TargetTopic,Θέμα στόχου:
 TrueRMS,ΑΛΗΘΙΝΗ RMS
+UseLogin,Χρησιμοποιήστε τη σύνδεση
+UserName,Όνομα χρήστη:
 Version,Εκδοχή :
 WantToConnect,Θέλετε να συνδεθείτε;
 ZoomandFitData,Ζουμ και προσαρμογή δεδομένων
-
-

@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,À propos de
 AboutSoftware,À propos du logiciel
+AddMacAdress,Utiliser l'adresse MAC comme sous-répertoire
 AdvencedSettings,Réglages avancés
 AlwaysonTop,Toujours au top
 AnalogDisplatONStart,Ouvrir l'affichage analogique au démarrage
@@ -11,6 +12,8 @@ AutoRange,Gamme automatique
 AvailableString,Un de vos appareils est disponible pour se connecter.
 ChangeName,Modifier le nom de l'appareil
 ChartON,Ouvrir le graphique de données au démarrage
+ClearChart,Effacer le graphique
+ClientID,Identité du client :
 Connect,Relier
 Connected,lié
 ConnectToDevice,Se connecter à l'appareil
@@ -21,6 +24,8 @@ DevicePicker,Sélecteur de périphérique
 Disconnected,débranché
 DontAsk,Ne demandez plus. Connectez-vous automatiquement.
 DontConnect,Ne pas se connecter
+EnableMQTT,Activer le client MQTT
+Encrypted,Crypté
 ExportData,Exporter des données
 ImportData,Importer des données
 InRush,APPROCHE
@@ -34,10 +39,14 @@ Max,MAX
 Menu,MENU
 Min,MIN
 MinimizeToTray,Toujours réduire dans la barre d'état
+MQTTAdress,Adresse du serveur MQTT :
+MQTTSettings,Paramètres MQTT
 Name,Nom:
 NotConnected,Pas connecté
 Ok,D'ACCORD
+Password,Mot de passe :
 Peek,COUP D'OEIL
+Port,Port :
 Reconnect,Reconnexion automatique après déconnexion
 RemoveAll,Supprimer tous les appareils
 RemoveDevice,Enlevez l'appareil
@@ -48,9 +57,10 @@ SavePosition,Enregistrer la position et la taille de la fenêtre
 SearchingDevices,Recherche d'appareils Bluetooth...
 Settings,Réglages
 StartupSettings,Paramètres de démarrage
+TargetTopic,Sujet cible :
 TrueRMS,VRAI RMS
+UseLogin,Utiliser la connexion
+UserName,Nom d'utilisateur :
 Version,Version :
 WantToConnect,Voulez-vous vous connecter ?
 ZoomandFitData,Données de zoom et d'ajustement
-
-

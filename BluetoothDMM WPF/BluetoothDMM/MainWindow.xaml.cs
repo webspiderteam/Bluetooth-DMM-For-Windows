@@ -19,6 +19,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using uPLibrary.Networking.M2Mqtt;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 
@@ -99,7 +100,6 @@ namespace BluetoothDMM
             OnTopON.Visibility = (Properties.Settings.Default.Ontop ? Visibility.Visible : Visibility.Hidden);
             //System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             LV.SelectionChanged += LstOnSelectionChanced;
-
             //Chart Startup initialization
             plt = wpfPlot1.Plot;
             plt.Layout(10, 0, 0, 50, 0);
@@ -109,12 +109,11 @@ namespace BluetoothDMM
             plt.XAxis.MinimumTickSpacing(5);
             plt.YAxis.MinimumTickSpacing(0.0001);
             plt.Margins(0.1, 0.2);
-
             ChartSetup();
             wpfPlot1.Plot.YAxis2.LockLimits(true);
             wpfPlot1.Configuration.LockVerticalAxis = true;
             wpfPlot1.Refresh();
-            
+
             CustomDialog.PreviewMouseMove += new MouseEventHandler(CustomDialog_MouseMove);
             AboutDialog.PreviewMouseMove += new MouseEventHandler(CustomDialog_MouseMove);
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
@@ -165,7 +164,40 @@ namespace BluetoothDMM
             TrayContextMenu.MenuItems.Add("E&xit",Exit_Click);
             m_notifyIcon.ContextMenu = TrayContextMenu;
             m_notifyIcon.Click += new EventHandler(NotifyIcon_Click);
+            get_MQTT_Settings();
+            if (MQTTSetup.MQTTEnabled)
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        mqttClient = new MqttClient(MQTTSetup.BrokerAddress, MQTTSetup.BrokerPort, MQTTSetup.isEncrypted, null, null, MQTTSetup.isEncrypted ? MqttSslProtocols.SSLv3 : MqttSslProtocols.None);
+                        mqttClient.shouldReconnect = true;
+                        if (MQTTSetup.UseLogin)
+                            mqttClient.Connect(MQTTSetup.ClientId, MQTTSetup.Username, MQTTSetup.Password);
+                        else
+                            mqttClient.Connect(MQTTSetup.ClientId);
+                    }
+                    catch (Exception ex)
+                    {
+                    //MQTT Connection Error
+                    d("MQTT Connection Error");
+                    }
+                });
 
+        }
+
+        private void get_MQTT_Settings()
+        {
+            MQTTSetup.MQTTEnabled = Properties.MQTT.Default.MQTTEnabled;
+            MQTTSetup.addMac = Properties.MQTT.Default.addMac;
+            MQTTSetup.BrokerAddress = Properties.MQTT.Default.BrokerAddress;
+            MQTTSetup.BrokerPort = Properties.MQTT.Default.BrokerPort;
+            MQTTSetup.ClientId = Properties.MQTT.Default.ClientId;
+            MQTTSetup.isEncrypted = Properties.MQTT.Default.isEncrypted;
+            MQTTSetup.Password = Properties.MQTT.Default.Password;
+            MQTTSetup.Topic = Properties.MQTT.Default.Topic;
+            MQTTSetup.UseLogin = Properties.MQTT.Default.UseLogin;
+            MQTTSetup.Username = Properties.MQTT.Default.Username;
         }
 
         private void ChartSetup()
@@ -201,6 +233,7 @@ namespace BluetoothDMM
         private WindowState m_storedWindowState = WindowState.Normal;
         private Point Startpoint;
         private string ResultDialog;
+        private MqttClient mqttClient;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -291,6 +324,8 @@ namespace BluetoothDMM
                 Properties.Settings.Default.WindowPosition = new System.Drawing.Point((int)Top, (int)Left);
                 Properties.Settings.Default.Save();
             }
+            if (mqttClient!=null && mqttClient.IsConnected)
+                mqttClient.Disconnect();
             m_notifyIcon.Dispose();
             m_notifyIcon = null;
         }
@@ -344,26 +379,35 @@ namespace BluetoothDMM
         {
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);
             bool exCondition = MyGattCDataSymbol.Text == "" && MyGattCDataACDC.Text == "";
-            if (Is_Connected.IsChecked == true && GotFirstData && !exCondition)
+            if (Is_Connected.IsChecked == true && GotFirstData )
             {
-                signalPlot.IsVisible = true;
-
-                if (MyGattCDataSymbol.Text != OldSymbol || MyGattCDataACDC.Text != OldACDC)
+                if (!exCondition)
                 {
-                    if (nextDataIndex > 1)
-                        AddVLine();
-                    OldACDC = MyGattCDataACDC.Text;
-                    OldSymbol = MyGattCDataSymbol.Text;
+                    signalPlot.IsVisible = true;
+                    if (MyGattCDataSymbol.Text != OldSymbol || MyGattCDataACDC.Text != OldACDC)
+                    {
+                        if (nextDataIndex > 1)
+                            AddVLine();
+                        OldACDC = MyGattCDataACDC.Text;
+                        OldSymbol = MyGattCDataSymbol.Text;
+                    }
+                    gattData[nextDataIndex] = doublevalue;
+                    signalPlot.MaxRenderIndex = nextDataIndex;
+                    if (!wpfPlot1.IsMouseOver)
+                    {
+                        txt.IsVisible = false;
+                        FitChart(nextDataIndex - ZoomScale, nextDataIndex);
+                    }
+                    wpfPlot1.Refresh();
+                    nextDataIndex += 1;
                 }
-                gattData[nextDataIndex] = doublevalue;
-                signalPlot.MaxRenderIndex = nextDataIndex;
-                if (!wpfPlot1.IsMouseOver)
+                if (mqttClient != null && mqttClient.IsConnected)
                 {
-                    txt.IsVisible = false;
-                    FitChart(nextDataIndex - ZoomScale, nextDataIndex);
+                    string Mac = "";
+                    if (MQTTSetup.addMac)
+                        Mac = "/" + SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_");
+                    mqttClient.Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes($"{MyGattCData.Text}:{MyGattCDataSymbol.Text}:{MyGattCDataACDC.Text}"));
                 }
-                wpfPlot1.Refresh();
-                nextDataIndex += 1;
             }
         }
         
@@ -382,6 +426,10 @@ namespace BluetoothDMM
                     Is_Connected.IsChecked = true;
                     dispatcherTimer.Start();
                     Connected = 1;
+                    if (mqttClient != null && mqttClient.IsConnected)
+                    {
+                        mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes("Connected:"+SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_") + ":" + MQTTSetup.addMac.ToString()));
+                    }
                 }
                 else
                 {
@@ -391,6 +439,10 @@ namespace BluetoothDMM
                     Is_Connected.IsChecked = false;
                     if (Properties.Settings.Default.Reconnect)
                         Connected = 0;
+                    if (mqttClient != null && mqttClient.IsConnected)
+                    {
+                        mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes("Disconnected:" + SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")));
+                    }
                 }
             });
         }
@@ -675,6 +727,29 @@ namespace BluetoothDMM
                     }
                     else
                         TxtStatus.Text = Properties.Resources.NotConnected;
+                }
+                if (Properties.MQTT.Default.MQTTEnabled)
+                {
+                    get_MQTT_Settings();
+                    if (mqttClient != null && mqttClient.IsConnected)
+                        mqttClient.Disconnect();
+                    Task.Run(() =>
+                    {
+                        try
+                        {
+                            mqttClient = new MqttClient(MQTTSetup.BrokerAddress, MQTTSetup.BrokerPort, MQTTSetup.isEncrypted, null, null, MQTTSetup.isEncrypted ? MqttSslProtocols.SSLv3 : MqttSslProtocols.None);
+                            mqttClient.shouldReconnect = true;
+                            if (MQTTSetup.UseLogin)
+                                mqttClient.Connect(MQTTSetup.ClientId, MQTTSetup.Username, MQTTSetup.Password);
+                            else
+                                mqttClient.Connect(MQTTSetup.ClientId);
+                        }
+                        catch (Exception ex)
+                        {
+                            //MQTT Connection Error
+                            d("MQTT Connection Error");
+                        }
+                    });
                 }
                 _heartRateMonitor.LogData = Properties.Settings.Default.LogData;
             }

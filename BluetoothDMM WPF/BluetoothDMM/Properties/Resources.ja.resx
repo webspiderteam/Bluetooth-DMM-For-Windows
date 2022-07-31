@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>ソフトウェアについて</value>
   </data>
+  <data name="AddMacAdress" xml:space="preserve">
+    <value>MAC アドレスをサブディレクトリとして使用する</value>
+  </data>
   <data name="AdvencedSettings" xml:space="preserve">
     <value>高度な設定</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="ClearChart" xml:space="preserve">
     <value>明確なチャート</value>
   </data>
+  <data name="ClientID" xml:space="preserve">
+    <value>クライアントID ：</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>接続</value>
   </data>
@@ -185,6 +191,12 @@
   </data>
   <data name="DontConnect" xml:space="preserve">
     <value>接続しないでください</value>
+  </data>
+  <data name="EnableMQTT" xml:space="preserve">
+    <value>MQTT クライアントを有効にする</value>
+  </data>
+  <data name="Encrypted" xml:space="preserve">
+    <value>暗号化</value>
   </data>
   <data name="ExportData" xml:space="preserve">
     <value>データのエクスポート</value>
@@ -225,6 +237,12 @@
   <data name="MinimizeToTray" xml:space="preserve">
     <value>常にトレイを最小化する</value>
   </data>
+  <data name="MQTTAdress" xml:space="preserve">
+    <value>MQTT サーバーアドレス:</value>
+  </data>
+  <data name="MQTTSettings" xml:space="preserve">
+    <value>MQTT 設定</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>名前：</value>
   </data>
@@ -234,8 +252,14 @@
   <data name="Ok" xml:space="preserve">
     <value>わかった</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>パスワード:</value>
+  </data>
   <data name="Peek" xml:space="preserve">
     <value>ピーク</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>ポート ：</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
     <value>切断後の自動再接続</value>
@@ -267,8 +291,17 @@
   <data name="StartupSettings" xml:space="preserve">
     <value>スタートアップ設定</value>
   </data>
+  <data name="TargetTopic" xml:space="preserve">
+    <value>対象トピック：</value>
+  </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>真のRMS</value>
+  </data>
+  <data name="UseLogin" xml:space="preserve">
+    <value>ログインを使用</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>ユーザー名 :</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>バージョン ：</value>

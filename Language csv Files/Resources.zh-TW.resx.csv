@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,關於
 AboutSoftware,關於軟件
+AddMacAdress,使用 MAC 地址作為子目錄
 AdvencedSettings,高級設置
 AlwaysonTop,總在最前面
 AnalogDisplatONStart,啟動時打開模擬顯示
@@ -11,6 +12,8 @@ AutoRange,自動量程
 AvailableString,您的設備之一可以連接。
 ChangeName,更改設備名稱
 ChartON,啟動時打開數據圖表
+ClearChart,清除圖表
+ClientID,客戶編號：
 Connect,連接
 Connected,連接的
 ConnectToDevice,連接到設備
@@ -21,6 +24,8 @@ DevicePicker,設備選擇器
 Disconnected,斷開連接
 DontAsk,不要再問了。自動連接。
 DontConnect,不要連接
+EnableMQTT,啟用 MQTT 客戶端
+Encrypted,加密
 ExportData,導出數據
 ImportData,導入數據
 InRush,浪湧
@@ -34,10 +39,14 @@ Max,最大限度
 Menu,菜單
 Min,最小
 MinimizeToTray,始終最小化到托盤
+MQTTAdress,MQTT 服務器地址：
+MQTTSettings,MQTT 設置
 Name,姓名：
 NotConnected,未連接
 Ok,好的
+Password,密碼 ：
 Peek,窺視
+Port,港口 ：
 Reconnect,斷線後自動重連
 RemoveAll,刪除所有設備
 RemoveDevice,刪除設備
@@ -48,9 +57,10 @@ SavePosition,保存窗口位置和大小
 SearchingDevices,正在搜索藍牙設備...
 Settings,設置
 StartupSettings,啟動設置
+TargetTopic,目標主題：
 TrueRMS,真有效值
+UseLogin,使用登錄
+UserName,用戶名 ：
 Version,版本 ：
 WantToConnect,你想連接嗎？
 ZoomandFitData,縮放和擬合數據
-
-

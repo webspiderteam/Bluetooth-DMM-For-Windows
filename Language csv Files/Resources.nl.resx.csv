@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,Over
 AboutSoftware,Over software
+AddMacAdress,MAC-adres gebruiken als submap
 AdvencedSettings,Geavanceerde instellingen
 AlwaysonTop,Altijd bovenop
 AnalogDisplatONStart,Analoge weergave openen bij opstarten
@@ -11,6 +12,8 @@ AutoRange,Automatisch bereik
 AvailableString,Een van uw apparaten is beschikbaar om verbinding te maken.
 ChangeName,Apparaatnaam wijzigen
 ChartON,Gegevenskaart openen bij opstarten
+ClearChart,Kaart wissen
+ClientID,Klant identificatie :
 Connect,Aansluiten
 Connected,verbonden
 ConnectToDevice,Verbinding maken met apparaat
@@ -21,6 +24,8 @@ DevicePicker,Apparaatkiezer
 Disconnected,verbinding verbroken
 DontAsk,Niet meer vragen. Automatisch verbinden.
 DontConnect,Geen verbinding maken
+EnableMQTT,MQTT-client inschakelen
+Encrypted,versleuteld
 ExportData,Exportgegevens
 ImportData,Data importeren
 InRush,INRUSH
@@ -34,10 +39,14 @@ Max,MAX
 Menu,MENU
 Min,MIN
 MinimizeToTray,Altijd minimaliseren tot lade
+MQTTAdress,MQTT-serveradres:
+MQTTSettings,MQTT-instellingen
 Name,Naam:
 NotConnected,Niet verbonden
 Ok,Oké
+Password,Wachtwoord :
 Peek,KIJKJE
+Port,Poort :
 Reconnect,Automatisch opnieuw verbinden na verbreken
 RemoveAll,Alle apparaten verwijderen
 RemoveDevice,Verwijder apparaat
@@ -48,9 +57,10 @@ SavePosition,Vensterpositie en -grootte opslaan
 SearchingDevices,Zoeken naar Bluetooth-apparaten...
 Settings,Instellingen
 StartupSettings,Opstartinstellingen
+TargetTopic,Doelonderwerp:
 TrueRMS,TRUE RMS
+UseLogin,Gebruik Inloggen
+UserName,Gebruikersnaam :
 Version,Versie :
 WantToConnect,Wil je verbinden?
 ZoomandFitData,Gegevens zoomen en aanpassen
-
-

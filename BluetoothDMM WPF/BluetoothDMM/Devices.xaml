@@ -28,9 +28,9 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="button" Content="{lex:LocText ChangeName}" HorizontalAlignment="Left" Margin="591,49,0,0" VerticalAlignment="Top" Width="128" Height="35" Click="Button_Click"/>
-        <Button x:Name="button1" Content="{lex:LocText RemoveDevice}" HorizontalAlignment="Left" Margin="591,92,0,0" VerticalAlignment="Top" Width="128" Height="35" Click="Button1_Click"/>
-        <Button x:Name="button2" Content="{lex:LocText RemoveAll}" HorizontalAlignment="Left" Margin="591,134,0,0" VerticalAlignment="Top" Width="128" Height="35" Click="Button2_Click"/>
+        <Button x:Name="button" Content="{lex:LocText ChangeName}" HorizontalAlignment="Left" Margin="591,49,0,0" VerticalAlignment="Top" Width="160" Height="35" Click="Button_Click"/>
+        <Button x:Name="button1" Content="{lex:LocText RemoveDevice}" HorizontalAlignment="Left" Margin="591,92,0,0" VerticalAlignment="Top" Width="160" Height="35" Click="Button1_Click"/>
+        <Button x:Name="button2" Content="{lex:LocText RemoveAll}" HorizontalAlignment="Left" Margin="591,134,0,0" VerticalAlignment="Top" Width="160" Height="35" Click="Button2_Click"/>
         <Button x:Name="button3" Content="{lex:LocText Save}" HorizontalAlignment="Left" Margin="670,349,0,0" VerticalAlignment="Top" Width="87" Height="37" Click="Button3_Click"/>
 
 

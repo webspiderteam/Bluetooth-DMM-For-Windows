@@ -35,6 +35,7 @@ namespace BluetoothDMM
             checkBox7.IsChecked = Properties.Settings.Default.MinimizeTray;
             checkBox41.IsChecked = Properties.Settings.Default.ADisplay;
             checkBox9.IsChecked = Properties.Settings.Default.AskOnConnect;
+            MQTTEnabled.IsChecked = Properties.MQTT.Default.MQTTEnabled;
             DeviceListC = deviceListC;
             if (rkApp.GetValue("BluetoothDMM") == null)
             {
@@ -69,6 +70,8 @@ namespace BluetoothDMM
             Properties.Settings.Default.ADisplay = checkBox41.IsChecked == true;
             Properties.Settings.Default.AskOnConnect = checkBox9.IsChecked == true;
             Properties.Settings.Default.Save();
+            Properties.MQTT.Default.MQTTEnabled = MQTTEnabled.IsChecked == true;
+            Properties.MQTT.Default.Save();
             //Properties.Settings.Default.WindowSize = new System.Drawing.Size(0,0);
             //Properties.Settings.Default.WindowPosition = new System.Drawing.Size(0, 0);
             if ((bool)checkBox8.IsChecked)
@@ -92,6 +95,15 @@ namespace BluetoothDMM
                 Topmost = this.Topmost
             };
             var result = DeviceListEditor.ShowDialog();
+        }
+
+        private void MQTTSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var MqttSettings = new MQTT_Settings()
+            {
+                Topmost = this.Topmost
+            };
+            var result = MqttSettings.ShowDialog();
         }
     }
     public sealed class CountryIdToFlagImageSourceConverter : IValueConverter

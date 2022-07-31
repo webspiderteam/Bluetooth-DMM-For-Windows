@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>О программном обеспечении</value>
   </data>
+  <data name="AddMacAdress" xml:space="preserve">
+    <value>Использовать MAC-адрес в качестве подкаталога</value>
+  </data>
   <data name="AdvencedSettings" xml:space="preserve">
     <value>Расширенные настройки</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="ClearChart" xml:space="preserve">
     <value>Очистить диаграмму</value>
   </data>
+  <data name="ClientID" xml:space="preserve">
+    <value>ID клиента :</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Соединять</value>
   </data>
@@ -185,6 +191,12 @@
   </data>
   <data name="DontConnect" xml:space="preserve">
     <value>Не подключать</value>
+  </data>
+  <data name="EnableMQTT" xml:space="preserve">
+    <value>Включить MQTT-клиент</value>
+  </data>
+  <data name="Encrypted" xml:space="preserve">
+    <value>Зашифровано</value>
   </data>
   <data name="ExportData" xml:space="preserve">
     <value>Экспорт данных</value>
@@ -225,6 +237,12 @@
   <data name="MinimizeToTray" xml:space="preserve">
     <value>Всегда сворачивать в трей</value>
   </data>
+  <data name="MQTTAdress" xml:space="preserve">
+    <value>Адрес MQTT-сервера:</value>
+  </data>
+  <data name="MQTTSettings" xml:space="preserve">
+    <value>Настройки MQTT</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Имя:</value>
   </data>
@@ -234,8 +252,14 @@
   <data name="Ok" xml:space="preserve">
     <value>ХОРОШО</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль :</value>
+  </data>
   <data name="Peek" xml:space="preserve">
     <value>PEEK</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Порт:</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
     <value>Автоматическое повторное подключение после отключения</value>
@@ -267,8 +291,17 @@
   <data name="StartupSettings" xml:space="preserve">
     <value>Параметры запуска</value>
   </data>
+  <data name="TargetTopic" xml:space="preserve">
+    <value>Целевая тема:</value>
+  </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>ИСТИННОЕ СКЗ</value>
+  </data>
+  <data name="UseLogin" xml:space="preserve">
+    <value>Использовать логин</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Имя пользователя :</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Версия:</value>

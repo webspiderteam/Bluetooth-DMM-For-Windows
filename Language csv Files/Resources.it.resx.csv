@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,Di
 AboutSoftware,A proposito di software
+AddMacAdress,Usa l'indirizzo MAC come sottodirectory
 AdvencedSettings,Impostazioni avanzate
 AlwaysonTop,Sempre in cima
 AnalogDisplatONStart,Aprire il display analogico all'avvio
@@ -11,6 +12,8 @@ AutoRange,Intervallo automatico
 AvailableString,Uno dei tuoi dispositivi è disponibile per la connessione.
 ChangeName,Cambia nome dispositivo
 ChartON,Apri il grafico dei dati all'avvio
+ClearChart,Cancella grafico
+ClientID,Identificativo cliente :
 Connect,Collegare
 Connected,collegato
 ConnectToDevice,Connetti al dispositivo
@@ -21,6 +24,8 @@ DevicePicker,Selezione dispositivo
 Disconnected,disconnesso
 DontAsk,Non chiedere di nuovo. Connetti automaticamente.
 DontConnect,Non connetterti
+EnableMQTT,Abilita client MQTT
+Encrypted,Crittografato
 ExportData,Esporta dati
 ImportData,Importa dati
 InRush,INRUSH
@@ -34,10 +39,14 @@ Max,MASSIMO
 Menu,MENÙ
 Min,MIN
 MinimizeToTray,Riduci sempre a icona nel vassoio
+MQTTAdress,Indirizzo del server MQTT:
+MQTTSettings,Impostazioni MQTT
 Name,Nome:
 NotConnected,Non collegata
 Ok,OK
+Password,Parola d'ordine :
 Peek,SBIRCIARE
+Port,Porto:
 Reconnect,Riconnessione automatica dopo la disconnessione
 RemoveAll,Rimuovi tutti i dispositivi
 RemoveDevice,Rimuovi dispositivo
@@ -48,9 +57,10 @@ SavePosition,Salva posizione e dimensione della finestra
 SearchingDevices,Ricerca di dispositivi Bluetooth...
 Settings,Impostazioni
 StartupSettings,Impostazioni di avvio
+TargetTopic,Argomento di destinazione:
 TrueRMS,VERO RMS
+UseLogin,Usa Accesso
+UserName,Nome utente:
 Version,Versione:
 WantToConnect,Vuoi Connetterti?
 ZoomandFitData,Ingrandisci e adatta i dati
-
-

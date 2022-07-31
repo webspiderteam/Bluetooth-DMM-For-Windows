@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>Über das Programm</value>
   </data>
+  <data name="AddMacAdress" xml:space="preserve">
+    <value>Verwenden Sie die MAC-Adresse als Unterverzeichnis</value>
+  </data>
   <data name="AdvencedSettings" xml:space="preserve">
     <value>Erweiterte Einstellungen</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="ClearChart" xml:space="preserve">
     <value>Diagramm löschen</value>
   </data>
+  <data name="ClientID" xml:space="preserve">
+    <value>Kunden ID :</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Verbinden</value>
   </data>
@@ -185,6 +191,12 @@
   </data>
   <data name="DontConnect" xml:space="preserve">
     <value>Nicht verbinden</value>
+  </data>
+  <data name="EnableMQTT" xml:space="preserve">
+    <value>MQTT-Client aktivieren</value>
+  </data>
+  <data name="Encrypted" xml:space="preserve">
+    <value>Verschlüsselt</value>
   </data>
   <data name="ExportData" xml:space="preserve">
     <value>Daten exportieren</value>
@@ -225,6 +237,12 @@
   <data name="MinimizeToTray" xml:space="preserve">
     <value>Programm minimieren</value>
   </data>
+  <data name="MQTTAdress" xml:space="preserve">
+    <value>Adresse des MQTT-Servers:</value>
+  </data>
+  <data name="MQTTSettings" xml:space="preserve">
+    <value>MQTT-Einstellungen</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name:</value>
   </data>
@@ -234,8 +252,14 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort :</value>
+  </data>
   <data name="Peek" xml:space="preserve">
     <value>SPİTZE</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Hafen :</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
     <value>Automatisch Wiederverbinden nach Trennung</value>
@@ -267,8 +291,17 @@
   <data name="StartupSettings" xml:space="preserve">
     <value>Starteinstellungen</value>
   </data>
+  <data name="TargetTopic" xml:space="preserve">
+    <value>Zielthema:</value>
+  </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>TrueRMS</value>
+  </data>
+  <data name="UseLogin" xml:space="preserve">
+    <value>Anmeldung verwenden</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Nutzername :</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>

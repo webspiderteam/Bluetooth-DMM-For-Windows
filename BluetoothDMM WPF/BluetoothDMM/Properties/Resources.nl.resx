@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>Over software</value>
   </data>
+  <data name="AddMacAdress" xml:space="preserve">
+    <value>MAC-adres gebruiken als submap</value>
+  </data>
   <data name="AdvencedSettings" xml:space="preserve">
     <value>Geavanceerde instellingen</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="ClearChart" xml:space="preserve">
     <value>Kaart wissen</value>
   </data>
+  <data name="ClientID" xml:space="preserve">
+    <value>Klant identificatie :</value>
+  </data>
   <data name="Connect" xml:space="preserve">
     <value>Aansluiten</value>
   </data>
@@ -185,6 +191,12 @@
   </data>
   <data name="DontConnect" xml:space="preserve">
     <value>Geen verbinding maken</value>
+  </data>
+  <data name="EnableMQTT" xml:space="preserve">
+    <value>MQTT-client inschakelen</value>
+  </data>
+  <data name="Encrypted" xml:space="preserve">
+    <value>versleuteld</value>
   </data>
   <data name="ExportData" xml:space="preserve">
     <value>Exportgegevens</value>
@@ -225,6 +237,12 @@
   <data name="MinimizeToTray" xml:space="preserve">
     <value>Altijd minimaliseren tot lade</value>
   </data>
+  <data name="MQTTAdress" xml:space="preserve">
+    <value>MQTT-serveradres:</value>
+  </data>
+  <data name="MQTTSettings" xml:space="preserve">
+    <value>MQTT-instellingen</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Naam:</value>
   </data>
@@ -234,8 +252,14 @@
   <data name="Ok" xml:space="preserve">
     <value>Oké</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Wachtwoord :</value>
+  </data>
   <data name="Peek" xml:space="preserve">
     <value>KIJKJE</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Poort :</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
     <value>Automatisch opnieuw verbinden na verbreken</value>
@@ -267,8 +291,17 @@
   <data name="StartupSettings" xml:space="preserve">
     <value>Opstartinstellingen</value>
   </data>
+  <data name="TargetTopic" xml:space="preserve">
+    <value>Doelonderwerp:</value>
+  </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>TRUE RMS</value>
+  </data>
+  <data name="UseLogin" xml:space="preserve">
+    <value>Gebruik Inloggen</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Gebruikersnaam :</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versie :</value>
