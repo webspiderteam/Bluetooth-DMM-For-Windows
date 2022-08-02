@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>關於軟件</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
   <data name="AddMacAdress" xml:space="preserve">
     <value>使用 MAC 地址作為子目錄</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>由...製作</value>
+  </data>
+  <data name="CSVFirst" xml:space="preserve">
+    <value>將 CSV 設置為默認導出</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>數據圖表</value>
@@ -240,6 +246,9 @@
   <data name="MQTTAdress" xml:space="preserve">
     <value>MQTT 服務器地址：</value>
   </data>
+  <data name="MQTTDataFormat" xml:space="preserve">
+    <value>MQTT 數據值格式</value>
+  </data>
   <data name="MQTTSettings" xml:space="preserve">
     <value>MQTT 設置</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>斷線後自動重連</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>消除</value>
+  </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>刪除所有設備</value>
   </data>
@@ -275,6 +287,9 @@
   </data>
   <data name="RunStartup" xml:space="preserve">
     <value>在 Windows 啟動時運行</value>
+  </data>
+  <data name="SampleOutput" xml:space="preserve">
+    <value>樣本輸出：</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>節省</value>
@@ -302,6 +317,9 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>用戶名 ：</value>
+  </data>
+  <data name="Values" xml:space="preserve">
+    <value>價值觀</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>版本 ：</value>

@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,À propos de
 AboutSoftware,À propos du logiciel
+Add,Ajouter
 AddMacAdress,Utiliser l'adresse MAC comme sous-répertoire
 AdvencedSettings,Réglages avancés
 AlwaysonTop,Toujours au top
@@ -18,6 +19,7 @@ Connect,Relier
 Connected,lié
 ConnectToDevice,Se connecter à l'appareil
 CreatedBy,Créé par
+CSVFirst,Définir CSV par défaut pour l'exportation
 DataChart,Graphique de données
 DeviceManager,Gérer les appareils
 DevicePicker,Sélecteur de périphérique
@@ -40,6 +42,7 @@ Menu,MENU
 Min,MIN
 MinimizeToTray,Toujours réduire dans la barre d'état
 MQTTAdress,Adresse du serveur MQTT :
+MQTTDataFormat,Format des valeurs de données MQTT
 MQTTSettings,Paramètres MQTT
 Name,Nom:
 NotConnected,Pas connecté
@@ -48,10 +51,12 @@ Password,Mot de passe :
 Peek,COUP D'OEIL
 Port,Port :
 Reconnect,Reconnexion automatique après déconnexion
+Remove,Retirer
 RemoveAll,Supprimer tous les appareils
 RemoveDevice,Enlevez l'appareil
 ResetView,Réinitialiser la vue
 RunStartup,S'éxécute au démarrage Windows
+SampleOutput,Exemple de sortie :
 Save,sauvegarder
 SavePosition,Enregistrer la position et la taille de la fenêtre
 SearchingDevices,Recherche d'appareils Bluetooth...
@@ -61,6 +66,7 @@ TargetTopic,Sujet cible :
 TrueRMS,VRAI RMS
 UseLogin,Utiliser la connexion
 UserName,Nom d'utilisateur :
+Values,Valeurs
 Version,Version :
 WantToConnect,Voulez-vous vous connecter ?
 ZoomandFitData,Données de zoom et d'ajustement

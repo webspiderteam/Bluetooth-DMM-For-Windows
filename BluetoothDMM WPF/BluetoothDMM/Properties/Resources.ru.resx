@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>О программном обеспечении</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавлять</value>
+  </data>
   <data name="AddMacAdress" xml:space="preserve">
     <value>Использовать MAC-адрес в качестве подкаталога</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Сделано</value>
+  </data>
+  <data name="CSVFirst" xml:space="preserve">
+    <value>Установите CSV по умолчанию для экспорта</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>Диаграмма данных</value>
@@ -240,6 +246,9 @@
   <data name="MQTTAdress" xml:space="preserve">
     <value>Адрес MQTT-сервера:</value>
   </data>
+  <data name="MQTTDataFormat" xml:space="preserve">
+    <value>Формат значений данных MQTT</value>
+  </data>
   <data name="MQTTSettings" xml:space="preserve">
     <value>Настройки MQTT</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Автоматическое повторное подключение после отключения</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Удалять</value>
+  </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>Удалить все устройства</value>
   </data>
@@ -275,6 +287,9 @@
   </data>
   <data name="RunStartup" xml:space="preserve">
     <value>Запуск при запуске Windows</value>
+  </data>
+  <data name="SampleOutput" xml:space="preserve">
+    <value>Пример вывода:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Сохранять</value>
@@ -302,6 +317,9 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Имя пользователя :</value>
+  </data>
+  <data name="Values" xml:space="preserve">
+    <value>Ценности</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Версия:</value>

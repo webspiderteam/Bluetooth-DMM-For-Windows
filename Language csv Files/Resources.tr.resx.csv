@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,Hakkında
 AboutSoftware,Yazılım Hakkında
+Add,Ekle
 AddMacAdress,MAC Adresini Alt Dizin Olarak Kullan
 AdvencedSettings,Gelişmiş Ayarlar
 AlwaysonTop,Her zaman üstte
@@ -17,7 +18,8 @@ ClientID,İstemci Kimliği :
 Connect,Bağlan
 Connected,Bağlandı
 ConnectToDevice,Cihaza Bağlan
-CreatedBy,Tarafından yaratıldı
+CreatedBy,Yapımcı :
+CSVFirst,Dışa Aktarma için CSV'yi varsayılana ayarla
 DataChart,Veri Grafiği
 DeviceManager,Cihazları Yönet
 DevicePicker,Cihaz Seçici
@@ -40,6 +42,7 @@ Menu,MENÜ
 Min,MIN
 MinimizeToTray,Daima Tepsiye Küçült
 MQTTAdress,MQTT Sunucu Adresi :
+MQTTDataFormat,MQTT Veri Değerleri Formatı
 MQTTSettings,MQTT Ayarları
 Name,Ad:
 NotConnected,Bağlı değil
@@ -48,10 +51,12 @@ Password,Şifre :
 Peek,TEPE
 Port,Bağlantı Noktası :
 Reconnect,Bağlantı Kesildikten Sonra Otomatik Olarak Yeniden Bağlan
+Remove,Kaldır
 RemoveAll,Tüm Cihazları Kaldır
 RemoveDevice,Aygıtı kaldır
 ResetView,Görünümü Sıfırla
 RunStartup,Windows başlangıcında çalıştır
+SampleOutput,Örnek Çıktı:
 Save,Kaydet
 SavePosition,Pencere Konumunu ve Boyutunu Kaydet
 SearchingDevices,Bluetooth Cihazları aranıyor...
@@ -61,6 +66,7 @@ TargetTopic,Hedef Konu :
 TrueRMS,TRUE RMS
 UseLogin,Girişi Kullan
 UserName,Kullanıcı adı :
+Values,Değerler
 Version,Sürüm :
 WantToConnect,Bağlanmak istiyor musunuz?
 ZoomandFitData,Yakınlaştır ve Verileri Sığdır

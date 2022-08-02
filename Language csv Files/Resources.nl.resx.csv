@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,Over
 AboutSoftware,Over software
+Add,Toevoegen
 AddMacAdress,MAC-adres gebruiken als submap
 AdvencedSettings,Geavanceerde instellingen
 AlwaysonTop,Altijd bovenop
@@ -18,6 +19,7 @@ Connect,Aansluiten
 Connected,verbonden
 ConnectToDevice,Verbinding maken met apparaat
 CreatedBy,Gemaakt door
+CSVFirst,Stel CSV in op standaard voor Export
 DataChart,Gegevensgrafiek:
 DeviceManager,Apparaten beheren
 DevicePicker,Apparaatkiezer
@@ -40,6 +42,7 @@ Menu,MENU
 Min,MIN
 MinimizeToTray,Altijd minimaliseren tot lade
 MQTTAdress,MQTT-serveradres:
+MQTTDataFormat,Indeling MQTT-gegevenswaarden
 MQTTSettings,MQTT-instellingen
 Name,Naam:
 NotConnected,Niet verbonden
@@ -48,10 +51,12 @@ Password,Wachtwoord :
 Peek,KIJKJE
 Port,Poort :
 Reconnect,Automatisch opnieuw verbinden na verbreken
+Remove,Verwijderen
 RemoveAll,Alle apparaten verwijderen
 RemoveDevice,Verwijder apparaat
 ResetView,Weergave resetten
 RunStartup,Uitvoeren bij opstarten van Windows
+SampleOutput,Voorbeelduitvoer:
 Save,Opslaan
 SavePosition,Vensterpositie en -grootte opslaan
 SearchingDevices,Zoeken naar Bluetooth-apparaten...
@@ -61,6 +66,7 @@ TargetTopic,Doelonderwerp:
 TrueRMS,TRUE RMS
 UseLogin,Gebruik Inloggen
 UserName,Gebruikersnaam :
+Values,Waarden
 Version,Versie :
 WantToConnect,Wil je verbinden?
 ZoomandFitData,Gegevens zoomen en aanpassen

@@ -142,5 +142,29 @@ namespace BluetoothDMM.Properties {
                 this["Username"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Time
+""Time"":""</string>
+  <string>Device
+""Device"":""</string>
+  <string>Value(string)
+""ValueS"":""</string>
+  <string>Range
+""Range"":""</string>
+  <string>Current
+""Current"":""</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection SelectedDataList {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["SelectedDataList"]));
+            }
+            set {
+                this["SelectedDataList"] = value;
+            }
+        }
     }
 }

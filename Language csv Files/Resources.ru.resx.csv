@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,О
 AboutSoftware,О программном обеспечении
+Add,Добавлять
 AddMacAdress,Использовать MAC-адрес в качестве подкаталога
 AdvencedSettings,Расширенные настройки
 AlwaysonTop,Всегда на вершине
@@ -18,6 +19,7 @@ Connect,Соединять
 Connected,связано
 ConnectToDevice,Подключиться к устройству
 CreatedBy,Сделано
+CSVFirst,Установите CSV по умолчанию для экспорта
 DataChart,Диаграмма данных
 DeviceManager,Управление устройствами
 DevicePicker,Выбор устройства
@@ -40,6 +42,7 @@ Menu,МЕНЮ
 Min,МИН.
 MinimizeToTray,Всегда сворачивать в трей
 MQTTAdress,Адрес MQTT-сервера:
+MQTTDataFormat,Формат значений данных MQTT
 MQTTSettings,Настройки MQTT
 Name,Имя:
 NotConnected,Не подключен
@@ -48,10 +51,12 @@ Password,Пароль :
 Peek,PEEK
 Port,Порт:
 Reconnect,Автоматическое повторное подключение после отключения
+Remove,Удалять
 RemoveAll,Удалить все устройства
 RemoveDevice,Удалить устройство
 ResetView,Сбросить вид
 RunStartup,Запуск при запуске Windows
+SampleOutput,Пример вывода:
 Save,Сохранять
 SavePosition,Сохранить положение и размер окна
 SearchingDevices,Поиск устройств Bluetooth...
@@ -61,6 +66,7 @@ TargetTopic,Целевая тема:
 TrueRMS,ИСТИННОЕ СКЗ
 UseLogin,Использовать логин
 UserName,Имя пользователя :
+Values,Ценности
 Version,Версия:
 WantToConnect,Вы хотите подключиться?
 ZoomandFitData,Масштабирование и подгонка данных

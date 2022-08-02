@@ -173,6 +173,7 @@ namespace BluetoothDMM
             m_notifyIcon.Click += new EventHandler(NotifyIcon_Click);
             get_MQTT_Settings();
             if (MQTTSetup.MQTTEnabled)
+            {
                 Task.Run(() =>
                 {
                     try
@@ -186,11 +187,23 @@ namespace BluetoothDMM
                     }
                     catch (Exception ex)
                     {
-                    //MQTT Connection Error
-                    d("MQTT Connection Error");
+                        //MQTT Connection Error
+                        d("MQTT Connection Error");
                     }
                 });
+                Get_DataList();
+            }
+        }
 
+        private void Get_DataList()
+        {
+            SelectedDatas = new Dictionary<string, string>(Properties.MQTT.Default.SelectedDataList.Count);
+            foreach (var item in Properties.MQTT.Default.SelectedDataList)
+            {
+                string[] row = item.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                SelectedDatas.Add(row[0], row[1]);
+                
+            }
         }
 
         private void get_MQTT_Settings()
@@ -241,6 +254,8 @@ namespace BluetoothDMM
         private Point Startpoint;
         private string ResultDialog;
         private MqttClient mqttClient;
+        private RateChangedEventArgs GattDatas;
+        private Dictionary<string, string> SelectedDatas;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -348,6 +363,7 @@ namespace BluetoothDMM
         {
             await RunOnUiThread(() =>
             {
+                
                 d("Got new measurement: " + arg.MyGattCData);
                 GotFirstData = true;
                 //textBox.Text = arg.MyGattCData;
@@ -406,23 +422,61 @@ namespace BluetoothDMM
                         FitChart(nextDataIndex - ZoomScale, nextDataIndex);
                     }
                     wpfPlot1.Refresh();
-                    nextDataIndex += 1;
+                    nextDataIndex += 1; 
                 }
                 if (mqttClient != null && mqttClient.IsConnected)
                 {
                     string Mac = "";
                     if (MQTTSetup.addMac)
                         Mac = "/" + SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_");
-                    mqttClient.Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
-                        $"{{ Time:\"{DateTime.Now}\"," +
-                        $"Device:\"{SelectedDeviceName}\" ," +
-                        $"Value:\"{MyGattCData.Text}\", " +
-                        $"Range:\"{MyGattCDataSymbol.Text}\", " +
-                        $"Current:\"{MyGattCDataACDC.Text}\"}}"));
+                    mqttClient.Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(Create_MQTTString()));
                 }
             }
         }
-        
+
+        private string Create_MQTTString()
+        {
+            string[] Strings = new string[SelectedDatas.Count];
+            foreach (var (item,index) in SelectedDatas.Select((n, i) => (n, i)))
+            {
+                switch (item.Key)
+                {
+                    case "Time": Strings[index]=item.Value + DateTime.Now +"\"";break;
+                    case "Device": Strings[index]=item.Value + SelectedDeviceName + "\""; break;
+                    case "Value(string)": Strings[index]=item.Value + MyGattCData.Text + "\""; break;
+                    case "Value(float)": Strings[index]=item.Value + doublevalue; break;
+                    case "Range": Strings[index]=item.Value + MyGattCDataSymbol.Text + "\""; break;
+                    case "Current": Strings[index]=item.Value + MyGattCDataACDC.Text + "\""; break;
+                    case "AutoRange(Boolean)": Strings[index]=item.Value + AutoRange.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "TrueRMS(Boolean)": Strings[index]=item.Value + True_RMS.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "Max(Boolean)": Strings[index]=item.Value + MyGattCDataMax.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "Min(Boolean)": Strings[index]=item.Value + MyGattCDataMin.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "Peek(Boolean)": Strings[index]=item.Value + MyGattCDataPeek.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "InRush(Boolean)": Strings[index]=item.Value + InRush.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "Buzz(Boolean)": Strings[index]=item.Value + MyGattCDataContinuity.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "Diode(Boolean)": Strings[index]=item.Value + MyGattCDataDiode.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "Battery(Boolean)": Strings[index]=item.Value + MyGattCDataBattery.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "HV(Boolean)": Strings[index]=item.Value + MyGattCDataHV.Visibility.Equals(Visibility.Visible) + "\""; break;
+                    case "Rel(Boolean)": Strings[index]=item.Value + MyGattCDataRel + "\""; break;
+                    case "All Booleans":
+                        string allString = (AutoRange.Visibility.Equals(Visibility.Visible) ? "AUTORANGE," : string.Empty) +
+                            (True_RMS.Visibility.Equals(Visibility.Visible) ? "TRUERMS," : string.Empty) +
+                            (MyGattCDataMax.Visibility.Equals(Visibility.Visible) ? "MAX," : string.Empty) +
+                            (MyGattCDataMin.Visibility.Equals(Visibility.Visible) ? "MIN," : string.Empty) +
+                            (MyGattCDataPeek.Visibility.Equals(Visibility.Visible) ? "PEEK," : string.Empty) +
+                            (InRush.Visibility.Equals(Visibility.Visible) ? "INRUSH," : string.Empty) +
+                            (MyGattCDataContinuity.Visibility.Equals(Visibility.Visible) ? "BUZZ," : string.Empty) +
+                            (MyGattCDataDiode.Visibility.Equals(Visibility.Visible) ? "DIODE," : string.Empty) +
+                            ((bool)Battery.IsChecked ? "BATT," : string.Empty) +
+                            (MyGattCDataHV.Visibility.Equals(Visibility.Visible) ? "HV," : string.Empty) +
+                            (MyGattCDataRel.Visibility.Equals(Visibility.Visible) ? "REL," : string.Empty);
+                        Strings[index]= item.Value + (allString.Length>0? allString.Substring(0,allString.Length-1):string.Empty) + "\""; 
+                        break;
+                }
+            }
+            return "{ " + string.Join(", ", Strings) + " }";
+        }
+
         private async void HrDeviceOnDeviceConnectionStatusChanged(object sender, ConnectionStatusChangedEventArgs args)
         {
             d("Current connection status is: " + args.IsConnected);
@@ -441,9 +495,9 @@ namespace BluetoothDMM
                     if (mqttClient != null && mqttClient.IsConnected)
                     {
                         mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
-                            $"{{Status: \"Connected\", " +
-                            $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                            $"UseMAC: \"{MQTTSetup.addMac.ToString()}\" }}"));
+                            $"{{\"Status\": \"Connected\", " +
+                            $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
+                            $"\"UseMAC\": \"{MQTTSetup.addMac.ToString()}\" }}"));
                     }
                 }
                 else
@@ -457,8 +511,8 @@ namespace BluetoothDMM
                     if (mqttClient != null && mqttClient.IsConnected)
                     {
                         mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
-                            $"{{Status: \"Disconnected\", " +
-                            $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\"}}"));
+                            $"{{\"Status\": \"Disconnected\", " +
+                            $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\"}}"));
                     }
                 }
             });
@@ -748,6 +802,7 @@ namespace BluetoothDMM
                 if (Properties.MQTT.Default.MQTTEnabled)
                 {
                     get_MQTT_Settings();
+                    Get_DataList();
                     if (mqttClient != null && mqttClient.IsConnected)
                         mqttClient.Disconnect();
                     Task.Run(() =>
@@ -760,12 +815,12 @@ namespace BluetoothDMM
                                 mqttClient.Connect(MQTTSetup.ClientId, MQTTSetup.Username, MQTTSetup.Password);
                             else
                                 mqttClient.Connect(MQTTSetup.ClientId);
-                            if (mqttClient != null && mqttClient.IsConnected)
+                            if (mqttClient != null && mqttClient.IsConnected && Connected==1)
                             {
                                 mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
-                                    $"{{ Status: \"Connected\", " +
-                                    $"MAC: \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                                    $"UseMAC: \"{MQTTSetup.addMac.ToString()}\"}}"));
+                                    $"{{ \"Status\": \"Connected\", " +
+                                    $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
+                                    $"\"UseMAC\": \"{MQTTSetup.addMac.ToString()}\"}}"));
                             }
                         }
                         catch (Exception ex)
@@ -1046,10 +1101,12 @@ namespace BluetoothDMM
         {
             dispatcherTimer.Stop();
             //File.AppendAllText("debug.txt", "start export" + System.Environment.NewLine);
-            SaveFileDialog saveFileDialog = new SaveFileDialog
-            {
-                Filter = "DMM Chart Data file (*.dcd)|*.dcd|CSV file (*.csv)|*.csv"
-            };
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (Properties.Settings.Default.CSVFirst)
+                saveFileDialog.Filter = "CSV file (*.csv)|*.csv|DMM Chart Data file (*.dcd)|*.dcd";
+            else
+                saveFileDialog.Filter = "DMM Chart Data file (*.dcd)|*.dcd|CSV file (*.csv)|*.csv";
+
             var result = saveFileDialog.ShowDialog();
             var extension = Path.GetExtension(saveFileDialog.FileName);
             if (result == true && nextDataIndex > 0)

@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>Over software</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Toevoegen</value>
+  </data>
   <data name="AddMacAdress" xml:space="preserve">
     <value>MAC-adres gebruiken als submap</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Gemaakt door</value>
+  </data>
+  <data name="CSVFirst" xml:space="preserve">
+    <value>Stel CSV in op standaard voor Export</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>Gegevensgrafiek:</value>
@@ -240,6 +246,9 @@
   <data name="MQTTAdress" xml:space="preserve">
     <value>MQTT-serveradres:</value>
   </data>
+  <data name="MQTTDataFormat" xml:space="preserve">
+    <value>Indeling MQTT-gegevenswaarden</value>
+  </data>
   <data name="MQTTSettings" xml:space="preserve">
     <value>MQTT-instellingen</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Automatisch opnieuw verbinden na verbreken</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>Alle apparaten verwijderen</value>
   </data>
@@ -275,6 +287,9 @@
   </data>
   <data name="RunStartup" xml:space="preserve">
     <value>Uitvoeren bij opstarten van Windows</value>
+  </data>
+  <data name="SampleOutput" xml:space="preserve">
+    <value>Voorbeelduitvoer:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Opslaan</value>
@@ -302,6 +317,9 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Gebruikersnaam :</value>
+  </data>
+  <data name="Values" xml:space="preserve">
+    <value>Waarden</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Versie :</value>

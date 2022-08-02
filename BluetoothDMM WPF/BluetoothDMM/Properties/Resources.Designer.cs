@@ -79,6 +79,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use MAC Adress as Sub Directory.
         /// </summary>
         public static string AddMacAdress {
@@ -228,6 +237,15 @@ namespace BluetoothDMM.Properties {
         public static string CreatedBy {
             get {
                 return ResourceManager.GetString("CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set CSV to default for Export.
+        /// </summary>
+        public static string CSVFirst {
+            get {
+                return ResourceManager.GetString("CSVFirst", resourceCulture);
             }
         }
         
@@ -430,6 +448,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MQTT Data Values Format.
+        /// </summary>
+        public static string MQTTDataFormat {
+            get {
+                return ResourceManager.GetString("MQTTDataFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MQTT Settings.
         /// </summary>
         public static string MQTTSettings {
@@ -502,6 +529,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove All Devices.
         /// </summary>
         public static string RemoveAll {
@@ -534,6 +570,15 @@ namespace BluetoothDMM.Properties {
         public static string RunStartup {
             get {
                 return ResourceManager.GetString("RunStartup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sample Output:.
+        /// </summary>
+        public static string SampleOutput {
+            get {
+                return ResourceManager.GetString("SampleOutput", resourceCulture);
             }
         }
         
@@ -615,6 +660,15 @@ namespace BluetoothDMM.Properties {
         public static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Values.
+        /// </summary>
+        public static string Values {
+            get {
+                return ResourceManager.GetString("Values", resourceCulture);
             }
         }
         

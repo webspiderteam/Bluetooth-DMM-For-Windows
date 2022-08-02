@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,Σχετικά με
 AboutSoftware,Σχετικά με το λογισμικό
+Add,Προσθήκη
 AddMacAdress,Χρησιμοποιήστε τη διεύθυνση MAC ως υποκατάλογο
 AdvencedSettings,Προηγμένες ρυθμίσεις
 AlwaysonTop,Πάντα στην κορυφή
@@ -18,6 +19,7 @@ Connect,Συνδέω-συωδεομαι
 Connected,συνδεδεμένος
 ConnectToDevice,Σύνδεση στη Συσκευή
 CreatedBy,Δημιουργήθηκε από
+CSVFirst,Ορίστε το CSV ως προεπιλογή για Εξαγωγή
 DataChart,Διάγραμμα δεδομένων
 DeviceManager,Διαχείριση Συσκευών
 DevicePicker,Επιλογέας συσκευής
@@ -40,6 +42,7 @@ Menu,ΜΕΝΟΥ
 Min,MIN
 MinimizeToTray,Πάντα ελαχιστοποίηση στο δίσκο
 MQTTAdress,Διεύθυνση διακομιστή MQTT:
+MQTTDataFormat,Μορφή τιμών δεδομένων MQTT
 MQTTSettings,Ρυθμίσεις MQTT
 Name,Ονομα:
 NotConnected,Μη συνδεδεμένο
@@ -48,10 +51,12 @@ Password,Κωδικός πρόσβασης :
 Peek,ΚΡΥΦΟΚΟΙΤΑΓΜΑ
 Port,Λιμάνι :
 Reconnect,Αυτόματη επανασύνδεση μετά την αποσύνδεση
+Remove,Αφαιρώ
 RemoveAll,Κατάργηση όλων των συσκευών
 RemoveDevice,Αφαίρεση της συσκευής
 ResetView,Επαναφορά προβολής
 RunStartup,Εκτέλεση κατά την εκκίνηση των Windows
+SampleOutput,Δείγμα εξόδου:
 Save,Αποθηκεύσετε
 SavePosition,Αποθήκευση θέσης και μεγέθους παραθύρου
 SearchingDevices,Αναζήτηση για συσκευές Bluetooth...
@@ -61,6 +66,7 @@ TargetTopic,Θέμα στόχου:
 TrueRMS,ΑΛΗΘΙΝΗ RMS
 UseLogin,Χρησιμοποιήστε τη σύνδεση
 UserName,Όνομα χρήστη:
+Values,Αξίες
 Version,Εκδοχή :
 WantToConnect,Θέλετε να συνδεθείτε;
 ZoomandFitData,Ζουμ και προσαρμογή δεδομένων

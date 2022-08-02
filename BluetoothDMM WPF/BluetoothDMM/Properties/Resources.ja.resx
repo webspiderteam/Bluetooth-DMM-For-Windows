@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>ソフトウェアについて</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>追加</value>
+  </data>
   <data name="AddMacAdress" xml:space="preserve">
     <value>MAC アドレスをサブディレクトリとして使用する</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>によって作成された</value>
+  </data>
+  <data name="CSVFirst" xml:space="preserve">
+    <value>CSV をエクスポートのデフォルトに設定する</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>データチャート</value>
@@ -240,6 +246,9 @@
   <data name="MQTTAdress" xml:space="preserve">
     <value>MQTT サーバーアドレス:</value>
   </data>
+  <data name="MQTTDataFormat" xml:space="preserve">
+    <value>MQTT データ値の形式</value>
+  </data>
   <data name="MQTTSettings" xml:space="preserve">
     <value>MQTT 設定</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>切断後の自動再接続</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>削除する</value>
+  </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>すべてのデバイスを削除する</value>
   </data>
@@ -275,6 +287,9 @@
   </data>
   <data name="RunStartup" xml:space="preserve">
     <value>Windowsスタートアップで実行</value>
+  </data>
+  <data name="SampleOutput" xml:space="preserve">
+    <value>サンプル出力:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>保存</value>
@@ -302,6 +317,9 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>ユーザー名 :</value>
+  </data>
+  <data name="Values" xml:space="preserve">
+    <value>値</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>バージョン ：</value>

@@ -189,5 +189,17 @@ namespace BluetoothDMM.Properties {
                 this["CallUpgrade"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CSVFirst {
+            get {
+                return ((bool)(this["CSVFirst"]));
+            }
+            set {
+                this["CSVFirst"] = value;
+            }
+        }
     }
 }

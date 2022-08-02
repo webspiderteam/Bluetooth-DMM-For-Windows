@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>O oprogramowaniu</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Dodać</value>
+  </data>
   <data name="AddMacAdress" xml:space="preserve">
     <value>Użyj adresu MAC jako podkatalogu</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Stworzone przez</value>
+  </data>
+  <data name="CSVFirst" xml:space="preserve">
+    <value>Ustaw domyślny plik CSV dla eksportu</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>Wykres danych</value>
@@ -240,6 +246,9 @@
   <data name="MQTTAdress" xml:space="preserve">
     <value>Adres serwera MQTT :</value>
   </data>
+  <data name="MQTTDataFormat" xml:space="preserve">
+    <value>Format wartości danych MQTT</value>
+  </data>
   <data name="MQTTSettings" xml:space="preserve">
     <value>Ustawienia MQTT</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Automatyczne ponowne łączenie po rozłączeniu</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Usunąć</value>
+  </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>Usuń wszystkie urządzenia</value>
   </data>
@@ -275,6 +287,9 @@
   </data>
   <data name="RunStartup" xml:space="preserve">
     <value>Uruchom na starcie systemu Windows</value>
+  </data>
+  <data name="SampleOutput" xml:space="preserve">
+    <value>Przykładowe dane wyjściowe:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Zapisz</value>
@@ -302,6 +317,9 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Nazwa użytkownika :</value>
+  </data>
+  <data name="Values" xml:space="preserve">
+    <value>Wartości</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Wersja :</value>

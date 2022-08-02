@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,حول
 AboutSoftware,حول البرمجيات
+Add,يضيف
 AddMacAdress,استخدم عنوان MAC كدليل فرعي
 AdvencedSettings,إعدادات متقدمة
 AlwaysonTop,دائما في القمة
@@ -18,6 +19,7 @@ Connect,الاتصال
 Connected,متصل
 ConnectToDevice,الاتصال بالجهاز
 CreatedBy,انشأ من قبل
+CSVFirst,اضبط CSV على الإعداد الافتراضي للتصدير
 DataChart,مخطط البيانات
 DeviceManager,إدارة الأجهزة
 DevicePicker,منتقي الجهاز
@@ -40,6 +42,7 @@ Menu,قائمة
 Min,دقيقة
 MinimizeToTray,تصغير دائمًا إلى الدرج
 MQTTAdress,عنوان خادم MQTT:
+MQTTDataFormat,تنسيق قيم بيانات MQTT
 MQTTSettings,إعدادات MQTT
 Name,اسم:
 NotConnected,غير متصل
@@ -48,10 +51,12 @@ Password,كلمة المرور :
 Peek,نظرة خاطفة
 Port,ميناء :
 Reconnect,إعادة الاتصال التلقائي بعد قطع الاتصال
+Remove,إزالة
 RemoveAll,قم بإزالة كافة الأجهزة
 RemoveDevice,إنزع الجهاز
 ResetView,إعادة عرض
 RunStartup,تشغيل عند بدء التشغيل ويندوز
+SampleOutput,إخراج العينة:
 Save,يحفظ
 SavePosition,حفظ وضع النافذة وحجمها
 SearchingDevices,جاري البحث عن أجهزة Bluetooth ...
@@ -61,6 +66,7 @@ TargetTopic,الموضوع الهدف:
 TrueRMS,صحيح RMS
 UseLogin,استخدم تسجيل الدخول
 UserName,اسم المستخدم :
+Values,قيم
 Version,إصدار :
 WantToConnect,هل تريد الاتصال؟
 ZoomandFitData,تكبير وتناسب البيانات

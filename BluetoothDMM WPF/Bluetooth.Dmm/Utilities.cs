@@ -443,7 +443,8 @@ namespace HeartRateLE.Bluetooth
                         Debug.WriteLine(String.Format("NewVal {0} at {1}", newValue, DateTime.Now.ToString()));
                         if (LogData)
                         {
-                            File.AppendAllText("log.txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
+                            var dateValue = DateTime.Today.ToString("yyyy-MM-dd");
+                            File.AppendAllText("log-"+ dateValue + ".txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
                             
                             //File.AppendAllText("logbinary.txt", newValue + System.Environment.NewLine);
                         }

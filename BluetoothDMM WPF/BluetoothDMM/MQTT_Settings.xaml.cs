@@ -32,5 +32,12 @@ namespace BluetoothDMM
             Properties.MQTT.Default.Save();
             DialogResult = true;
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            var datatypes = new MQTTDataFormat();
+            datatypes.Topmost = this.Topmost;
+            datatypes.ShowDialog();
+        }
     }
 }

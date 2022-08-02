@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,關於
 AboutSoftware,關於軟件
+Add,添加
 AddMacAdress,使用 MAC 地址作為子目錄
 AdvencedSettings,高級設置
 AlwaysonTop,總在最前面
@@ -18,6 +19,7 @@ Connect,連接
 Connected,連接的
 ConnectToDevice,連接到設備
 CreatedBy,由...製作
+CSVFirst,將 CSV 設置為默認導出
 DataChart,數據圖表
 DeviceManager,管理設備
 DevicePicker,設備選擇器
@@ -40,6 +42,7 @@ Menu,菜單
 Min,最小
 MinimizeToTray,始終最小化到托盤
 MQTTAdress,MQTT 服務器地址：
+MQTTDataFormat,MQTT 數據值格式
 MQTTSettings,MQTT 設置
 Name,姓名：
 NotConnected,未連接
@@ -48,10 +51,12 @@ Password,密碼 ：
 Peek,窺視
 Port,港口 ：
 Reconnect,斷線後自動重連
+Remove,消除
 RemoveAll,刪除所有設備
 RemoveDevice,刪除設備
 ResetView,重置視圖
 RunStartup,在 Windows 啟動時運行
+SampleOutput,樣本輸出：
 Save,節省
 SavePosition,保存窗口位置和大小
 SearchingDevices,正在搜索藍牙設備...
@@ -61,6 +66,7 @@ TargetTopic,目標主題：
 TrueRMS,真有效值
 UseLogin,使用登錄
 UserName,用戶名 ：
+Values,價值觀
 Version,版本 ：
 WantToConnect,你想連接嗎？
 ZoomandFitData,縮放和擬合數據

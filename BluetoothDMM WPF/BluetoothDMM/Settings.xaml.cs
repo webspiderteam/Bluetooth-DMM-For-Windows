@@ -35,6 +35,7 @@ namespace BluetoothDMM
             checkBox7.IsChecked = Properties.Settings.Default.MinimizeTray;
             checkBox41.IsChecked = Properties.Settings.Default.ADisplay;
             checkBox9.IsChecked = Properties.Settings.Default.AskOnConnect;
+            checkBox10.IsChecked = Properties.Settings.Default.CSVFirst;
             MQTTEnabled.IsChecked = Properties.MQTT.Default.MQTTEnabled;
             DeviceListC = deviceListC;
             if (rkApp.GetValue("BluetoothDMM") == null)
@@ -69,6 +70,7 @@ namespace BluetoothDMM
             Properties.Settings.Default.Remember = checkBox4.IsChecked == true;
             Properties.Settings.Default.ADisplay = checkBox41.IsChecked == true;
             Properties.Settings.Default.AskOnConnect = checkBox9.IsChecked == true;
+            Properties.Settings.Default.CSVFirst = checkBox10.IsChecked == true;
             Properties.Settings.Default.Save();
             Properties.MQTT.Default.MQTTEnabled = MQTTEnabled.IsChecked == true;
             Properties.MQTT.Default.Save();

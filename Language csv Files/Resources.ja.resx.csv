@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,約
 AboutSoftware,ソフトウェアについて
+Add,追加
 AddMacAdress,MAC アドレスをサブディレクトリとして使用する
 AdvencedSettings,高度な設定
 AlwaysonTop,常にトップに
@@ -18,6 +19,7 @@ Connect,接続
 Connected,接続済み
 ConnectToDevice,デバイスに接続する
 CreatedBy,によって作成された
+CSVFirst,CSV をエクスポートのデフォルトに設定する
 DataChart,データチャート
 DeviceManager,デバイスの管理
 DevicePicker,デバイスピッカー
@@ -40,6 +42,7 @@ Menu,メニュー
 Min,MIN
 MinimizeToTray,常にトレイを最小化する
 MQTTAdress,MQTT サーバーアドレス:
+MQTTDataFormat,MQTT データ値の形式
 MQTTSettings,MQTT 設定
 Name,名前：
 NotConnected,接続されていません
@@ -48,10 +51,12 @@ Password,パスワード:
 Peek,ピーク
 Port,ポート ：
 Reconnect,切断後の自動再接続
+Remove,削除する
 RemoveAll,すべてのデバイスを削除する
 RemoveDevice,デバイスを削除
 ResetView,表示方法をリセットする
 RunStartup,Windowsスタートアップで実行
+SampleOutput,サンプル出力:
 Save,保存
 SavePosition,ウィンドウの位置とサイズを保存する
 SearchingDevices,Bluetoothデバイスを検索しています...
@@ -61,6 +66,7 @@ TargetTopic,対象トピック：
 TrueRMS,真のRMS
 UseLogin,ログインを使用
 UserName,ユーザー名 :
+Values,値
 Version,バージョン ：
 WantToConnect,接続しますか？
 ZoomandFitData,データのズームとフィット

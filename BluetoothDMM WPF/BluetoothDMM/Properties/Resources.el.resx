@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>Σχετικά με το λογισμικό</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Προσθήκη</value>
+  </data>
   <data name="AddMacAdress" xml:space="preserve">
     <value>Χρησιμοποιήστε τη διεύθυνση MAC ως υποκατάλογο</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Δημιουργήθηκε από</value>
+  </data>
+  <data name="CSVFirst" xml:space="preserve">
+    <value>Ορίστε το CSV ως προεπιλογή για Εξαγωγή</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>Διάγραμμα δεδομένων</value>
@@ -240,6 +246,9 @@
   <data name="MQTTAdress" xml:space="preserve">
     <value>Διεύθυνση διακομιστή MQTT:</value>
   </data>
+  <data name="MQTTDataFormat" xml:space="preserve">
+    <value>Μορφή τιμών δεδομένων MQTT</value>
+  </data>
   <data name="MQTTSettings" xml:space="preserve">
     <value>Ρυθμίσεις MQTT</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Αυτόματη επανασύνδεση μετά την αποσύνδεση</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Αφαιρώ</value>
+  </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>Κατάργηση όλων των συσκευών</value>
   </data>
@@ -275,6 +287,9 @@
   </data>
   <data name="RunStartup" xml:space="preserve">
     <value>Εκτέλεση κατά την εκκίνηση των Windows</value>
+  </data>
+  <data name="SampleOutput" xml:space="preserve">
+    <value>Δείγμα εξόδου:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Αποθηκεύσετε</value>
@@ -302,6 +317,9 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Όνομα χρήστη:</value>
+  </data>
+  <data name="Values" xml:space="preserve">
+    <value>Αξίες</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Εκδοχή :</value>

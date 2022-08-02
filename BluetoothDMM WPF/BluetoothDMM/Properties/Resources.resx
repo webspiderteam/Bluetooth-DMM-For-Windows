@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>About Software</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="AddMacAdress" xml:space="preserve">
     <value>Use MAC Adress as Sub Directory</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Created By</value>
+  </data>
+  <data name="CSVFirst" xml:space="preserve">
+    <value>Set CSV to default for Export</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>Data Chart</value>
@@ -240,6 +246,9 @@
   <data name="MQTTAdress" xml:space="preserve">
     <value>MQTT Server Adress :</value>
   </data>
+  <data name="MQTTDataFormat" xml:space="preserve">
+    <value>MQTT Data Values Format</value>
+  </data>
   <data name="MQTTSettings" xml:space="preserve">
     <value>MQTT Settings</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Auto Reconnect after Disconnection</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>Remove All Devices</value>
   </data>
@@ -275,6 +287,9 @@
   </data>
   <data name="RunStartup" xml:space="preserve">
     <value>Run on Windows Startup</value>
+  </data>
+  <data name="SampleOutput" xml:space="preserve">
+    <value>Sample Output:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -302,6 +317,9 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Username :</value>
+  </data>
+  <data name="Values" xml:space="preserve">
+    <value>Values</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version :</value>

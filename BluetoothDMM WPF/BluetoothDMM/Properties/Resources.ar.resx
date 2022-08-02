@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>حول البرمجيات</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>يضيف</value>
+  </data>
   <data name="AddMacAdress" xml:space="preserve">
     <value>استخدم عنوان MAC كدليل فرعي</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>انشأ من قبل</value>
+  </data>
+  <data name="CSVFirst" xml:space="preserve">
+    <value>اضبط CSV على الإعداد الافتراضي للتصدير</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>مخطط البيانات</value>
@@ -240,6 +246,9 @@
   <data name="MQTTAdress" xml:space="preserve">
     <value>عنوان خادم MQTT:</value>
   </data>
+  <data name="MQTTDataFormat" xml:space="preserve">
+    <value>تنسيق قيم بيانات MQTT</value>
+  </data>
   <data name="MQTTSettings" xml:space="preserve">
     <value>إعدادات MQTT</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>إعادة الاتصال التلقائي بعد قطع الاتصال</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>إزالة</value>
+  </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>قم بإزالة كافة الأجهزة</value>
   </data>
@@ -275,6 +287,9 @@
   </data>
   <data name="RunStartup" xml:space="preserve">
     <value>تشغيل عند بدء التشغيل ويندوز</value>
+  </data>
+  <data name="SampleOutput" xml:space="preserve">
+    <value>إخراج العينة:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>يحفظ</value>
@@ -302,6 +317,9 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>اسم المستخدم :</value>
+  </data>
+  <data name="Values" xml:space="preserve">
+    <value>قيم</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>إصدار :</value>

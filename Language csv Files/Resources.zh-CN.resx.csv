@@ -1,6 +1,7 @@
 ﻿KEY,Value
 About,关于
 AboutSoftware,关于软件
+Add,添加
 AddMacAdress,使用 MAC 地址作为子目录
 AdvencedSettings,高级设置
 AlwaysonTop,总在最前面
@@ -18,6 +19,7 @@ Connect,连接
 Connected,连接的
 ConnectToDevice,连接到设备
 CreatedBy,由...制作
+CSVFirst,将 CSV 设置为默认导出
 DataChart,数据图表
 DeviceManager,管理设备
 DevicePicker,设备选择器
@@ -40,6 +42,7 @@ Menu,菜单
 Min,最小
 MinimizeToTray,始终最小化到托盘
 MQTTAdress,MQTT 服务器地址：
+MQTTDataFormat,MQTT 数据值格式
 MQTTSettings,MQTT 设置
 Name,姓名：
 NotConnected,未连接
@@ -48,10 +51,12 @@ Password,密码 ：
 Peek,窥视
 Port,港口 ：
 Reconnect,断线后自动重连
+Remove,消除
 RemoveAll,删除所有设备
 RemoveDevice,删除设备
 ResetView,重置视图
 RunStartup,在 Windows 启动时运行
+SampleOutput,样本输出：
 Save,节省
 SavePosition,保存窗口位置和大小
 SearchingDevices,正在搜索蓝牙设备...
@@ -61,6 +66,7 @@ TargetTopic,目标主题：
 TrueRMS,真有效值
 UseLogin,使用登录
 UserName,用户名 ：
+Values,价值观
 Version,版本 ：
 WantToConnect,你想连接吗？
 ZoomandFitData,缩放和拟合数据

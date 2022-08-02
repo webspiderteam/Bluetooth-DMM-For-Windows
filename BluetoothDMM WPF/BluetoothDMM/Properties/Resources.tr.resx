@@ -123,6 +123,9 @@
   <data name="AboutSoftware" xml:space="preserve">
     <value>Yazılım Hakkında</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
   <data name="AddMacAdress" xml:space="preserve">
     <value>MAC Adresini Alt Dizin Olarak Kullan</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Yapımcı :</value>
+  </data>
+  <data name="CSVFirst" xml:space="preserve">
+    <value>Dışa Aktarma için CSV'yi varsayılana ayarla</value>
   </data>
   <data name="DataChart" xml:space="preserve">
     <value>Veri Grafiği</value>
@@ -240,6 +246,9 @@
   <data name="MQTTAdress" xml:space="preserve">
     <value>MQTT Sunucu Adresi :</value>
   </data>
+  <data name="MQTTDataFormat" xml:space="preserve">
+    <value>MQTT Veri Değerleri Formatı</value>
+  </data>
   <data name="MQTTSettings" xml:space="preserve">
     <value>MQTT Ayarları</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Bağlantı Kesildikten Sonra Otomatik Olarak Yeniden Bağlan</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
   <data name="RemoveAll" xml:space="preserve">
     <value>Tüm Cihazları Kaldır</value>
   </data>
@@ -275,6 +287,9 @@
   </data>
   <data name="RunStartup" xml:space="preserve">
     <value>Windows başlangıcında çalıştır</value>
+  </data>
+  <data name="SampleOutput" xml:space="preserve">
+    <value>Örnek Çıktı:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Kaydet</value>
@@ -302,6 +317,9 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Kullanıcı adı :</value>
+  </data>
+  <data name="Values" xml:space="preserve">
+    <value>Değerler</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Sürüm :</value>

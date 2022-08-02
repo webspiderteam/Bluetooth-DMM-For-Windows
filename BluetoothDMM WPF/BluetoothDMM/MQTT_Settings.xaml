@@ -37,5 +37,6 @@
                 <TextBlock Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=chkAddMac}" Text="\ AA_BB_CC_DD_EE_FF"/>
             </InlineUIContainer>
         </TextBlock>
+        <Button x:Name="button" Content="{lex:LocText Values}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84" Margin="315,189,0,0" Click="button_Click" Height="30"/>
     </Grid>
 </Window>
