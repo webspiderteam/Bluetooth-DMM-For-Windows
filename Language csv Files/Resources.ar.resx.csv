@@ -29,6 +29,7 @@ DontConnect,لا تتصل
 EnableMQTT,تفعيل عميل MQTT
 Encrypted,مشفر
 ExportData,تصدير البيانات
+Help,مساعدة
 ImportData,بيانات الاستيراد
 InRush,تدفق
 IsAvailable,متاح!
@@ -68,5 +69,6 @@ UseLogin,استخدم تسجيل الدخول
 UserName,اسم المستخدم :
 Values,قيم
 Version,إصدار :
+View,رأي
 WantToConnect,هل تريد الاتصال؟
 ZoomandFitData,تكبير وتناسب البيانات

@@ -26,11 +26,13 @@ namespace BluetoothDMM
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            DeviceListC.Remove(((KeyValuePair<string, string>)listBox.SelectedValue).Key);
-            listBox.SelectedIndex = -1;
-            listBox.Items.Refresh();
-            //Debug.WriteLine(((System.Collections.Generic.KeyValuePair<string, string>)listBox.SelectedValue).Key);
-            
+            if (listBox.SelectedItems.Count > 0)
+            {
+                DeviceListC.Remove(((KeyValuePair<string, string>)listBox.SelectedValue).Key);
+                listBox.SelectedIndex = -1;
+                listBox.Items.Refresh();
+                //Debug.WriteLine(((System.Collections.Generic.KeyValuePair<string, string>)listBox.SelectedValue).Key);
+            }
         }
 
         private void Button2_Click(object sender, RoutedEventArgs e)
@@ -42,17 +44,21 @@ namespace BluetoothDMM
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var a = ((System.Collections.Generic.KeyValuePair<string, string>)listBox.SelectedValue).Value;
-            EditBox.Text = a;
-            Renamer.IsOpen = true;
+            if (listBox.SelectedItems.Count > 0)
+            {
+                var a = ((KeyValuePair<string, string>)listBox.SelectedValue).Value;
+                EditBox.Text = a;
+                Key.Text = ((KeyValuePair<string, string>)listBox.SelectedValue).Key;
+                Renamer.IsOpen = true;
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (EditBox.Text.Length > 0)
             {
-                DeviceListC[((KeyValuePair<string, string>)listBox.SelectedValue).Key]=EditBox.Text;
-               
+                DeviceListC[Key.Text]=EditBox.Text;
+                Key.Text = "";
                 listBox.Items.Refresh();
                 Renamer.IsOpen = false;
             }

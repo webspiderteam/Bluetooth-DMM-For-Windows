@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -40,6 +41,7 @@ namespace BluetoothDMM
         public static Dictionary<string, string> iDeviceListC;
         private string GattValue;
         private double doublevalue;
+        private string ValueF;
         private System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         private bool DevicePickerActive = false;
         private readonly Plot plt;
@@ -107,6 +109,7 @@ namespace BluetoothDMM
             OnTopON.Visibility = (Properties.Settings.Default.Ontop ? Visibility.Visible : Visibility.Hidden);
             //System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             LV.SelectionChanged += LstOnSelectionChanced;
+            LVView.SelectionChanged += LstOnSelectionChanced;
             //Chart Startup initialization
             plt = wpfPlot1.Plot;
             plt.Layout(10, 0, 0, 50, 0);
@@ -256,6 +259,7 @@ namespace BluetoothDMM
         private MqttClient mqttClient;
         private RateChangedEventArgs GattDatas;
         private Dictionary<string, string> SelectedDatas;
+        private bool trick;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -383,8 +387,11 @@ namespace BluetoothDMM
                 MyGattCDataHV.Visibility = Bool_to_Vis(arg.MyGattCDataHV);
                 MyGattCDataRel.Visibility = Bool_to_Vis(arg.MyGattCDataRel);
                 GattValue = arg.MyGattCData;
-                try { doublevalue = Convert.ToDouble(GattValue,CultureInfo.InvariantCulture); }
-                catch { }//doublevalue = 0;}
+                try { 
+                    doublevalue = Convert.ToDouble(GattValue,CultureInfo.InvariantCulture);
+                    ValueF = doublevalue.ToString();
+                }
+                catch { ValueF = "null"; }//doublevalue = 0;}
                 if (GattValue != null)
                 {
                     var result = Math.Abs(doublevalue).ToString().Split(new string[] { ".", " " }, StringSplitOptions.RemoveEmptyEntries);
@@ -444,7 +451,7 @@ namespace BluetoothDMM
                     case "Time": Strings[index]=item.Value + DateTime.Now +"\"";break;
                     case "Device": Strings[index]=item.Value + SelectedDeviceName + "\""; break;
                     case "Value(string)": Strings[index]=item.Value + MyGattCData.Text + "\""; break;
-                    case "Value(float)": Strings[index]=item.Value + doublevalue; break;
+                    case "Value(float)": Strings[index]=item.Value + ValueF; break;
                     case "Range": Strings[index]=item.Value + MyGattCDataSymbol.Text + "\""; break;
                     case "Current": Strings[index]=item.Value + MyGattCDataACDC.Text + "\""; break;
                     case "AutoRange(Boolean)": Strings[index]=item.Value + AutoRange.Visibility.Equals(Visibility.Visible) + "\""; break;
@@ -459,18 +466,18 @@ namespace BluetoothDMM
                     case "HV(Boolean)": Strings[index]=item.Value + MyGattCDataHV.Visibility.Equals(Visibility.Visible) + "\""; break;
                     case "Rel(Boolean)": Strings[index]=item.Value + MyGattCDataRel + "\""; break;
                     case "All Booleans":
-                        string allString = (AutoRange.Visibility.Equals(Visibility.Visible) ? "AUTORANGE," : string.Empty) +
-                            (True_RMS.Visibility.Equals(Visibility.Visible) ? "TRUERMS," : string.Empty) +
-                            (MyGattCDataMax.Visibility.Equals(Visibility.Visible) ? "MAX," : string.Empty) +
-                            (MyGattCDataMin.Visibility.Equals(Visibility.Visible) ? "MIN," : string.Empty) +
-                            (MyGattCDataPeek.Visibility.Equals(Visibility.Visible) ? "PEEK," : string.Empty) +
-                            (InRush.Visibility.Equals(Visibility.Visible) ? "INRUSH," : string.Empty) +
-                            (MyGattCDataContinuity.Visibility.Equals(Visibility.Visible) ? "BUZZ," : string.Empty) +
-                            (MyGattCDataDiode.Visibility.Equals(Visibility.Visible) ? "DIODE," : string.Empty) +
-                            ((bool)Battery.IsChecked ? "BATT," : string.Empty) +
-                            (MyGattCDataHV.Visibility.Equals(Visibility.Visible) ? "HV," : string.Empty) +
-                            (MyGattCDataRel.Visibility.Equals(Visibility.Visible) ? "REL," : string.Empty);
-                        Strings[index]= item.Value + (allString.Length>0? allString.Substring(0,allString.Length-1):string.Empty) + "\""; 
+                        string allString = "[ " + (AutoRange.Visibility.Equals(Visibility.Visible) ? "\"AUTORANGE\"," : string.Empty) +
+                            (True_RMS.Visibility.Equals(Visibility.Visible) ? "\"TRUERMS\"," : string.Empty) +
+                            (MyGattCDataMax.Visibility.Equals(Visibility.Visible) ? "\"MAX\"," : string.Empty) +
+                            (MyGattCDataMin.Visibility.Equals(Visibility.Visible) ? "\"MIN\"," : string.Empty) +
+                            (MyGattCDataPeek.Visibility.Equals(Visibility.Visible) ? "\"PEEK\"," : string.Empty) +
+                            (InRush.Visibility.Equals(Visibility.Visible) ? "\"INRUSH\"," : string.Empty) +
+                            (MyGattCDataContinuity.Visibility.Equals(Visibility.Visible) ? "\"BUZZ\"," : string.Empty) +
+                            (MyGattCDataDiode.Visibility.Equals(Visibility.Visible) ? "\"DIODE\"," : string.Empty) +
+                            ((bool)Battery.IsChecked ? "\"BATT\"," : string.Empty) +
+                            (MyGattCDataHV.Visibility.Equals(Visibility.Visible) ? "\"HV\"," : string.Empty) +
+                            (MyGattCDataRel.Visibility.Equals(Visibility.Visible) ? "\"REL\"," : string.Empty);
+                        Strings[index]= item.Value + allString.Substring(0,allString.Length-1) + " ]\""; 
                         break;
                 }
             }
@@ -654,10 +661,11 @@ namespace BluetoothDMM
 
         private async void LstOnSelectionChanced(object sender, SelectionChangedEventArgs e)
         {
-            var Sender = ((System.Windows.FrameworkElement)((System.Windows.Controls.Primitives.Selector)sender).SelectedItem);
-            if (LV.SelectedIndex != -1)
+            var SItem = ((System.Windows.FrameworkElement)((System.Windows.Controls.Primitives.Selector)sender).SelectedItem);
+            var LVs = sender as ListView;
+            if (LVs.SelectedIndex != -1)
             {
-                if (Sender.Name == "ConnectTo")
+                if (SItem.Name == "ConnectTo")
                 {
                     var devicePicker = new DevicePicker(DeviceListC);
                     DevicePickerActive = true;
@@ -690,14 +698,24 @@ namespace BluetoothDMM
                     }
                     DevicePickerActive = false;
                 }
-                else if (Sender.Name == "Chart")
+                else if (SItem.Name == "Chart")
                     _OnChart();
-                else if (Sender.Name == "OnTop")
+                else if (SItem.Name == "OnTop")
                     _OnTop();
-                else if (Sender.Name == "ADisplay")
+                else if (SItem.Name == "ADisplay")
                     _ADisplay();
-                else if (Sender.Name == "About")
-                    AboutDialog.IsOpen=true;
+                else if (SItem.Name == "Settings")
+                {
+                    if (trick)
+                    {
+                        Properties.Settings.Default.SVGIcon = !Properties.Settings.Default.SVGIcon;
+                        Properties.Settings.Default.Save();
+                    }
+                    trick = false;
+                    SettingBtn_Click(null, null);
+                }
+                else if (SItem.Name == "About")
+                    AboutDialog.IsOpen = true;
                 LV.SelectedIndex = -1;
                 Tg_Btn.IsChecked = false;
             }
@@ -1164,10 +1182,12 @@ namespace BluetoothDMM
                         int pairs_i = 0;
                         foreach (var (value, index) in ChartData.Select((v, i) => (v, i)))
                         {
+                            var oValue = value;
                             string Value = keyValuePairs.ElementAt(pairs_i).Value.Replace('*', ' ');
                             var resultval = Value.Split(new string[] { "\n", " " }, StringSplitOptions.RemoveEmptyEntries);
                             string s1;
                             string s2;
+                            string s3;
                             if (resultval.Length == 2)
                             {
                                 s1 = resultval[0];
@@ -1179,9 +1199,23 @@ namespace BluetoothDMM
                                 s2 = resultval[0];
                             }
                             else { s1 = s2 = " "; }
+                            s3 = s2;
+                            if (s2.Length > 1 && !(s2 == "Hz" || s2 == "°C" || s2 == "°F"))
+                            {
+                                var pre = s2.Substring(0, 1);
+                                switch (pre)
+                                {
+                                    case "n": oValue = oValue / 1000000000; break;
+                                    case "µ": oValue = oValue / 1000000; break;
+                                    case "m": oValue = oValue / 1000; break;
+                                    case "k": oValue = oValue * 1000; break;
+                                    case "M": oValue = oValue * 1000000; break;
+                                }
+                                s3 = s3.Substring(1);
+                            }
                             if (index == keyValuePairs.ElementAt(pairs_i).Key)
                                 pairs_i++;
-                            createText[index + 1] = $"{index},{s1},{value},{s2}";
+                            createText[index + 1] = $"{index},{s1},{value},{s2},{oValue},{s3}";
                         }
                         File.WriteAllLines(saveFileDialog.FileName, createText, System.Text.Encoding.UTF8);
                     }
@@ -1314,6 +1348,41 @@ namespace BluetoothDMM
             wpfPlot1.Configuration.LockVerticalAxis = true;
             wpfPlot1.Refresh();
             SettingPopup.IsOpen = false;
+        }
+
+        private void ViewMenu_MouseMove(object sender, MouseEventArgs e)
+        {
+            MyPopupViewSub.IsOpen = true;
+            MyPopup.StaysOpen = true;
+        }
+
+        private void MyPopupViewSub_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (!(ViewMenu.IsMouseOver || MyPopupViewSub.IsMouseOver))
+            {
+                MyPopupViewSub.IsOpen = false;
+                MyPopup.StaysOpen = false;
+            }
+        }
+
+        private void Settings_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
+                trick = (e.KeyStates==KeyStates.Down);
+        }
+    }
+    public class Boolean2VisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool boolValue = !(bool)value;
+            boolValue = (parameter != null) ? !boolValue : boolValue;
+            return boolValue ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

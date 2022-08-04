@@ -6,7 +6,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BluetoothDMM"
         Style="{DynamicResource CustomWindowStyle}"
-        
         mc:Ignorable="d"
         Title="{lex:LocText DeviceManager}" Height="416.73" Width="786.389" WindowStyle="None">
     <Window.Resources>
@@ -33,8 +32,6 @@
         <Button x:Name="button2" Content="{lex:LocText RemoveAll}" HorizontalAlignment="Left" Margin="591,134,0,0" VerticalAlignment="Top" Width="160" Height="35" Click="Button2_Click"/>
         <Button x:Name="button3" Content="{lex:LocText Save}" HorizontalAlignment="Left" Margin="670,349,0,0" VerticalAlignment="Top" Width="87" Height="37" Click="Button3_Click"/>
 
-
-
         <Popup x:Name="Renamer"
                        StaysOpen="False" 
                        AllowsTransparency="True"
@@ -48,11 +45,10 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBox  Margin="15,10,20,10" x:Name="EditBox" FontSize="18" Height="40" Width="300" Text="sdads" VerticalContentAlignment="Center"/>
                         <Button Width="50" Height="30" Content="{lex:LocText Ok}" Click="Button_Click_1"/>
+                        <TextBlock x:Name="Key"  Visibility="Collapsed"/>
                     </StackPanel>
                 </Grid>
             </Border>
-
-
         </Popup>
     </Grid>
 </Window>

@@ -29,6 +29,7 @@ DontConnect,不要连接
 EnableMQTT,启用 MQTT 客户端
 Encrypted,加密
 ExportData,导出数据
+Help,帮助
 ImportData,导入数据
 InRush,浪涌
 IsAvailable,可用！
@@ -68,5 +69,6 @@ UseLogin,使用登录
 UserName,用户名 ：
 Values,价值观
 Version,版本 ：
+View,看法
 WantToConnect,你想连接吗？
 ZoomandFitData,缩放和拟合数据

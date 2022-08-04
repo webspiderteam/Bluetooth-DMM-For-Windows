@@ -29,6 +29,7 @@ DontConnect,Bağlanma
 EnableMQTT,MQTT İstemcisini Etkinleştir
 Encrypted,Şifreli
 ExportData,Verileri Dışa Aktar
+Help,Yardım
 ImportData,Verileri İçe Aktar
 InRush,HAREKET
 IsAvailable, müsait!
@@ -68,5 +69,6 @@ UseLogin,Girişi Kullan
 UserName,Kullanıcı adı :
 Values,Değerler
 Version,Sürüm :
+View,Görünüm
 WantToConnect,Bağlanmak istiyor musunuz?
 ZoomandFitData,Yakınlaştır ve Verileri Sığdır

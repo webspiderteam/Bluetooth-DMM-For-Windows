@@ -207,6 +207,9 @@
   <data name="ExportData" xml:space="preserve">
     <value>Daten exportieren</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
   <data name="ImportData" xml:space="preserve">
     <value>Daten importieren</value>
   </data>
@@ -323,6 +326,9 @@
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Aussicht</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>Möchten Sie sich verbinden?</value>

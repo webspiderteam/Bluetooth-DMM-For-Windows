@@ -29,6 +29,7 @@ DontConnect,接続しないでください
 EnableMQTT,MQTT クライアントを有効にする
 Encrypted,暗号化
 ExportData,データのエクスポート
+Help,ヘルプ
 ImportData,データのインポート
 InRush,突入電流
 IsAvailable,利用可能です！
@@ -68,5 +69,6 @@ UseLogin,ログインを使用
 UserName,ユーザー名 :
 Values,値
 Version,バージョン ：
+View,意見
 WantToConnect,接続しますか？
 ZoomandFitData,データのズームとフィット

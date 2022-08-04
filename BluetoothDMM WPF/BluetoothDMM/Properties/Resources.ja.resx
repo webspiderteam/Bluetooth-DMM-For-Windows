@@ -207,6 +207,9 @@
   <data name="ExportData" xml:space="preserve">
     <value>データのエクスポート</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>ヘルプ</value>
+  </data>
   <data name="ImportData" xml:space="preserve">
     <value>データのインポート</value>
   </data>
@@ -323,6 +326,9 @@
   </data>
   <data name="Version" xml:space="preserve">
     <value>バージョン ：</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>意見</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>接続しますか？</value>

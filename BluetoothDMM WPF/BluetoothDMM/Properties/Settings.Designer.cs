@@ -201,5 +201,17 @@ namespace BluetoothDMM.Properties {
                 this["CSVFirst"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SVGIcon {
+            get {
+                return ((bool)(this["SVGIcon"]));
+            }
+            set {
+                this["SVGIcon"] = value;
+            }
+        }
     }
 }

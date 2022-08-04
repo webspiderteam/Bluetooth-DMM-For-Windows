@@ -207,6 +207,9 @@
   <data name="ExportData" xml:space="preserve">
     <value>Εξαγωγή δεδομένων</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>Βοήθεια</value>
+  </data>
   <data name="ImportData" xml:space="preserve">
     <value>Εισαγωγή δεδομένων</value>
   </data>
@@ -323,6 +326,9 @@
   </data>
   <data name="Version" xml:space="preserve">
     <value>Εκδοχή :</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Θέα</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>Θέλετε να συνδεθείτε;</value>

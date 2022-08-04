@@ -29,6 +29,7 @@ DontConnect,Nicht verbinden
 EnableMQTT,MQTT-Client aktivieren
 Encrypted,Verschlüsselt
 ExportData,Daten exportieren
+Help,Hilfe
 ImportData,Daten importieren
 InRush,Einschaltstrom 
 IsAvailable,ist verfügbar!
@@ -68,5 +69,6 @@ UseLogin,Anmeldung verwenden
 UserName,Nutzername :
 Values,Werte
 Version,Version
+View,Aussicht
 WantToConnect,Möchten Sie sich verbinden?
 ZoomandFitData,Ansicht einpassen

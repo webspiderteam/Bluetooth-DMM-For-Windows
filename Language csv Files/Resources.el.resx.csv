@@ -29,6 +29,7 @@ DontConnect,Μην Συνδεθείτε
 EnableMQTT,Ενεργοποίηση MQTT Client
 Encrypted,Κρυπτογραφημένο
 ExportData,Εξαγωγή δεδομένων
+Help,Βοήθεια
 ImportData,Εισαγωγή δεδομένων
 InRush,ΕΙΣΡΟΗ
 IsAvailable,είναι διαθέσιμο!
@@ -68,5 +69,6 @@ UseLogin,Χρησιμοποιήστε τη σύνδεση
 UserName,Όνομα χρήστη:
 Values,Αξίες
 Version,Εκδοχή :
+View,Θέα
 WantToConnect,Θέλετε να συνδεθείτε;
 ZoomandFitData,Ζουμ και προσαρμογή δεδομένων

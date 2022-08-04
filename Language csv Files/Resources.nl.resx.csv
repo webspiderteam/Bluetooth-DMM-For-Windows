@@ -29,6 +29,7 @@ DontConnect,Geen verbinding maken
 EnableMQTT,MQTT-client inschakelen
 Encrypted,versleuteld
 ExportData,Exportgegevens
+Help,Helpen
 ImportData,Data importeren
 InRush,INRUSH
 IsAvailable,is beschikbaar!
@@ -68,5 +69,6 @@ UseLogin,Gebruik Inloggen
 UserName,Gebruikersnaam :
 Values,Waarden
 Version,Versie :
+View,Visie
 WantToConnect,Wil je verbinden?
 ZoomandFitData,Gegevens zoomen en aanpassen
