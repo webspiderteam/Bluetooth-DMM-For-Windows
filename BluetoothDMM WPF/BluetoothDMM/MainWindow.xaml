@@ -177,12 +177,19 @@
                     <StackPanel Orientation="Vertical" Height="135" Width="480" Margin="0,25,0,0" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Assets/Logo.ico" Width="100"/>
-                            <StackPanel Margin="10,15,0,0">
+                            <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
                                 <TextBlock Text="Bluetooth DMM for Windows" FontWeight="Bold" />
 
                                 <TextBlock><Run  Text="{lex:LocText CreatedBy}" /><Run Text=" "/><Run Text=" WebSpiderTeam"/></TextBlock>
                                 <TextBlock><Run Text="{lex:LocText Version}"/><Run Text=" "/><Run Text="{Binding Text, ElementName=version}"/></TextBlock>
                                 <TextBlock><Hyperlink RequestNavigate="HandleLinkClick" NavigateUri="https://github.com/webspiderteam/Bluetooth-DMM-For-Windows"><Run Text="github.com/WebSpiderTeam/Bluetooth-DMM-For-Windows" /></Hyperlink></TextBlock>
+                                <TextBlock>
+                                    <Run Text="Special Thanks to "/>
+                                    <Hyperlink RequestNavigate="HandleLinkClick" NavigateUri="https://github.com/ludwich66">
+                                        <Run Text="ludwich66 on Github" />
+                                    </Hyperlink>
+                                </TextBlock>
+
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
