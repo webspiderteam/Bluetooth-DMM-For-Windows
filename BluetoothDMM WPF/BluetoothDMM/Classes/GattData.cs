@@ -41,7 +41,7 @@ namespace BluetoothDMM
             Add(new MQTT_DataFormat { Key = "Battery(Boolean)", KeyPreview = "\"Batt\":\"True\"", Value = "\"Batt\":\"" });
             Add(new MQTT_DataFormat { Key = "HV(Boolean)", KeyPreview = "\"HV\":\"True\"", Value = "\"HV\":\"" });
             Add(new MQTT_DataFormat { Key = "Rel(Boolean)", KeyPreview = "\"Rel\":\"True\"", Value = "\"Rel\":\"" });
-            Add(new MQTT_DataFormat { Key = "All Booleans", KeyPreview = "\"Symbols\":\"TRUERMS,PEEK,AUTORANGE\"", Value = "\"Symbols\":\"" });
+            Add(new MQTT_DataFormat { Key = "All Booleans", KeyPreview = "\"Symbols\":[\"TRUERMS\",\"PEEK\",\"AUTORANGE\"]", Value = "\"Symbols\":" });
 
             
         }

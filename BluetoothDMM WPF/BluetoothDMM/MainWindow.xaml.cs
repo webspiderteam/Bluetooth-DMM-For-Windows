@@ -477,7 +477,7 @@ namespace BluetoothDMM
                             ((bool)Battery.IsChecked ? "\"BATT\"," : string.Empty) +
                             (MyGattCDataHV.Visibility.Equals(Visibility.Visible) ? "\"HV\"," : string.Empty) +
                             (MyGattCDataRel.Visibility.Equals(Visibility.Visible) ? "\"REL\"," : string.Empty);
-                        Strings[index]= item.Value + allString.Substring(0,allString.Length-1) + " ]\""; 
+                        Strings[index]= item.Value + allString.Substring(0,allString.Length-1) + " ]"; 
                         break;
                 }
             }
@@ -1375,6 +1375,7 @@ namespace BluetoothDMM
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            // to invert use ConverterParameter = '1'
             bool boolValue = !(bool)value;
             boolValue = (parameter != null) ? !boolValue : boolValue;
             return boolValue ? Visibility.Visible : Visibility.Collapsed;
