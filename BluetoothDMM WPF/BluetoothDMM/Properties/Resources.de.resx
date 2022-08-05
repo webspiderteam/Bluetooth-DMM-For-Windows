@@ -133,7 +133,7 @@
     <value>Erweiterte Einstellungen</value>
   </data>
   <data name="AlwaysonTop" xml:space="preserve">
-    <value>Fenster i. Vordergrund </value>
+    <value>Fenster im Vordergrund </value>
   </data>
   <data name="AnalogDisplatONStart" xml:space="preserve">
     <value>Analoganzeige beim Start öffnen</value>
@@ -142,7 +142,7 @@
     <value>Analoge Anzeige</value>
   </data>
   <data name="AskBeforeConnect" xml:space="preserve">
-    <value>Nachfragen; vor dem Verbinden</value>
+    <value>Nachfragen,  vor dem Verbinden</value>
   </data>
   <data name="AutoConnectKnown" xml:space="preserve">
     <value>Bekannte Geräte beim Start automatisch verbinden</value>
@@ -163,7 +163,7 @@
     <value>Diagramm löschen</value>
   </data>
   <data name="ClientID" xml:space="preserve">
-    <value>Kunden ID :</value>
+    <value>Kunden ID:</value>
   </data>
   <data name="Connect" xml:space="preserve">
     <value>Verbinden</value>
@@ -241,13 +241,13 @@
     <value>MENÜ</value>
   </data>
   <data name="Min" xml:space="preserve">
-    <value>MİN</value>
+    <value>MIN</value>
   </data>
   <data name="MinimizeToTray" xml:space="preserve">
     <value>Programm minimieren</value>
   </data>
   <data name="MQTTAdress" xml:space="preserve">
-    <value>Adresse des MQTT-Servers:</value>
+    <value>Adresse des MQTT-Servers/Brokers:</value>
   </data>
   <data name="MQTTDataFormat" xml:space="preserve">
     <value>Format der MQTT-Datenwerte</value>
@@ -268,10 +268,10 @@
     <value>Passwort :</value>
   </data>
   <data name="Peek" xml:space="preserve">
-    <value>SPİTZE</value>
+    <value>SPITZE</value>
   </data>
   <data name="Port" xml:space="preserve">
-    <value>Hafen :</value>
+    <value>Port :</value>
   </data>
   <data name="Reconnect" xml:space="preserve">
     <value>Automatisch Wiederverbinden nach Trennung</value>
@@ -319,7 +319,7 @@
     <value>Anmeldung verwenden</value>
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>Nutzername :</value>
+    <value>Nutzername:</value>
   </data>
   <data name="Values" xml:space="preserve">
     <value>Werte</value>
@@ -328,7 +328,7 @@
     <value>Version</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>Aussicht</value>
+    <value>Ansicht</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>Möchten Sie sich verbinden?</value>
