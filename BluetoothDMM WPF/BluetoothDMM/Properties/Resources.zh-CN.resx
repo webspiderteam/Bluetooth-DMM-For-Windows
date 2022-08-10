@@ -159,6 +159,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>启动时打开数据图表</value>
   </data>
+  <data name="CleanWhitespace" xml:space="preserve">
+    <value>清除值（字符串）中的空格（不必要的空格）</value>
+  </data>
   <data name="ClearChart" xml:space="preserve">
     <value>清除图表</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>真有效值</value>
+  </data>
+  <data name="UseComa" xml:space="preserve">
+    <value>使用昏迷“，”而不是点“。”在值（字符串）</value>
   </data>
   <data name="UseLogin" xml:space="preserve">
     <value>使用登录</value>

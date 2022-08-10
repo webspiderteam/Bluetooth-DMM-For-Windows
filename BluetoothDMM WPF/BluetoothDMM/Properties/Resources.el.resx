@@ -159,6 +159,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Ανοίξτε το γράφημα δεδομένων κατά την εκκίνηση</value>
   </data>
+  <data name="CleanWhitespace" xml:space="preserve">
+    <value>Καθαρίστε κενά (περιττά κενά) στο Value(string)</value>
+  </data>
   <data name="ClearChart" xml:space="preserve">
     <value>Καθαρό διάγραμμα</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>ΑΛΗΘΙΝΗ RMS</value>
+  </data>
+  <data name="UseComa" xml:space="preserve">
+    <value>Χρησιμοποιήστε Coma "," αντί για Dot "." σε Τιμή (συμβολοσειρά)</value>
   </data>
   <data name="UseLogin" xml:space="preserve">
     <value>Χρησιμοποιήστε τη σύνδεση</value>

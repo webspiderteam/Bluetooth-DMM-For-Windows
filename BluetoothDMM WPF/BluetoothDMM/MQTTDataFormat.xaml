@@ -7,20 +7,20 @@
         xmlns:local="clr-namespace:BluetoothDMM"
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
-        Title="{lex:LocText MQTTDataFormat}" Height="427.872" Width="425" ResizeMode="NoResize" WindowStyle="ToolWindow">
+        Title="{lex:LocText MQTTDataFormat}" Height="470.273" Width="425" ResizeMode="NoResize" WindowStyle="ToolWindow">
     <Window.Resources>
         <local:DataList  x:Key="gDataList"/>
         <local:SelectedDataList x:Key="sDataList"/>
     </Window.Resources>
     <Grid>
-        
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="90"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Column="0" x:Name="listBox" Margin="20,50,0,120" ItemsSource="{StaticResource ResourceKey=gDataList}" >
+            <ListBox Grid.Column="0" x:Name="listBox" Margin="20,50,0,150" ItemsSource="{StaticResource ResourceKey=gDataList}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Key}" />
@@ -42,7 +42,7 @@
                 </Button>
             </StackPanel>
 
-            <ListBox Grid.Column="2" x:Name="listBox1" Margin="0,50,40,120" ItemsSource="{StaticResource ResourceKey=sDataList}">
+            <ListBox Grid.Column="2" x:Name="listBox1" Margin="0,50,40,150" ItemsSource="{StaticResource ResourceKey=sDataList}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Key}" />
@@ -50,16 +50,18 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Grid.Column="2" x:Name="btnUp" Content="↑" FontSize="22" Height="25" Padding="0,-5" VerticalContentAlignment="Top" FontWeight="ExtraBold" Margin="135,121,10,169" Click="btnUp_Click"/>
-            <Button Grid.Column="2" x:Name="btnDown" Content="↓" FontSize="22" Height="25" Padding="0,-5" VerticalContentAlignment="Top" FontWeight="ExtraBold" Margin="135,148,10,126" RenderTransformOrigin="0.435,-0.016" Click="btnDown_Click"/>
+            <Button Grid.Column="2" x:Name="btnUp" Content="↑" FontSize="22" Height="25" Padding="0,-5" VerticalContentAlignment="Top" FontWeight="ExtraBold" Margin="0,170,10,218" Click="btnUp_Click" HorizontalAlignment="Right" Width="18"/>
+            <Button Grid.Column="2" x:Name="btnDown" Content="↓" FontSize="22" Height="25" Padding="0,-5" VerticalContentAlignment="Top" FontWeight="ExtraBold" Margin="0,204,10,182" RenderTransformOrigin="0.435,-0.016" Click="btnDown_Click" HorizontalAlignment="Right" Width="18"/>
 
         </Grid>
 
-        <TextBlock  VerticalAlignment="Bottom" Margin="10,60" TextWrapping="WrapWithOverflow">
+        <TextBlock  VerticalAlignment="Bottom" Margin="10,0,10,95" TextWrapping="WrapWithOverflow">
             <Run Text="{lex:LocText SampleOutput}"/>
             <LineBreak/>
             <Run x:Name="txtSampleOutput" Text="{}{}"/>
         </TextBlock>
-        <Button x:Name="btnSave" Content="{lex:LocText Save}" Margin="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Height="35" Click="btnSave_Click"/>
+        <Button x:Name="btnSave" Content="{lex:LocText Save}" Margin="20,15" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Height="35" Click="btnSave_Click"/>
+        <CheckBox x:Name="chkUseComa" Content="{lex:LocText UseComa}" Margin="10,0,0,75" Height="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="397" Unchecked="chkUseComa_Unchecked" Checked="chkUseComa_Unchecked"/>
+        <CheckBox x:Name="chkCleanWhitespace" Content="{lex:LocText CleanWhitespace}" Margin="10,0,0,55" Height="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="397"/>
     </Grid>
 </Window>

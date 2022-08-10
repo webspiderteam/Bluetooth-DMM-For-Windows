@@ -166,5 +166,29 @@ namespace BluetoothDMM.Properties {
                 this["SelectedDataList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseComa {
+            get {
+                return ((bool)(this["UseComa"]));
+            }
+            set {
+                this["UseComa"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CleanWhitespace {
+            get {
+                return ((bool)(this["CleanWhitespace"]));
+            }
+            set {
+                this["CleanWhitespace"] = value;
+            }
+        }
     }
 }

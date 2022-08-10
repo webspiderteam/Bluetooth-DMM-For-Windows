@@ -159,6 +159,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Gegevenskaart openen bij opstarten</value>
   </data>
+  <data name="CleanWhitespace" xml:space="preserve">
+    <value>Ruim witruimten op (onnodige spaties) in Waarde (tekenreeks)</value>
+  </data>
   <data name="ClearChart" xml:space="preserve">
     <value>Kaart wissen</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>TRUE RMS</value>
+  </data>
+  <data name="UseComa" xml:space="preserve">
+    <value>Gebruik Coma "," in plaats van Punt "." in Waarde (tekenreeks)</value>
   </data>
   <data name="UseLogin" xml:space="preserve">
     <value>Gebruik Inloggen</value>

@@ -159,6 +159,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Ouvrir le graphique de données au démarrage</value>
   </data>
+  <data name="CleanWhitespace" xml:space="preserve">
+    <value>Nettoyer les espaces blancs (espaces inutiles) dans Value(string)</value>
+  </data>
   <data name="ClearChart" xml:space="preserve">
     <value>Effacer le graphique</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>VRAI RMS</value>
+  </data>
+  <data name="UseComa" xml:space="preserve">
+    <value>Utilisez Coma "," au lieu de Point "." dans Valeur (chaîne)</value>
   </data>
   <data name="UseLogin" xml:space="preserve">
     <value>Utiliser la connexion</value>

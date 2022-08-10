@@ -159,6 +159,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Otwórz wykres danych przy starcie</value>
   </data>
+  <data name="CleanWhitespace" xml:space="preserve">
+    <value>Wyczyść białe spacje (niepotrzebne spacje) w Value(string)</value>
+  </data>
   <data name="ClearChart" xml:space="preserve">
     <value>Wyczyść wykres</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>PRAWDZIWE RMS</value>
+  </data>
+  <data name="UseComa" xml:space="preserve">
+    <value>Użyj przecinka "," zamiast kropki "." w wartości (ciąg)</value>
   </data>
   <data name="UseLogin" xml:space="preserve">
     <value>Użyj logowania</value>

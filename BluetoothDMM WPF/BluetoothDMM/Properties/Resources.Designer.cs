@@ -187,6 +187,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean whitespaces (unnecessery spaces)  in Value(string).
+        /// </summary>
+        public static string CleanWhitespace {
+            get {
+                return ResourceManager.GetString("CleanWhitespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear Chart.
         /// </summary>
         public static string ClearChart {
@@ -651,6 +660,15 @@ namespace BluetoothDMM.Properties {
         public static string TrueRMS {
             get {
                 return ResourceManager.GetString("TrueRMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Coma &quot;,&quot; instead of Dot &quot;.&quot; in Value(string).
+        /// </summary>
+        public static string UseComa {
+            get {
+                return ResourceManager.GetString("UseComa", resourceCulture);
             }
         }
         

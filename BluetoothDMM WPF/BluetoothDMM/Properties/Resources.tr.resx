@@ -159,6 +159,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Başlangıçta Veri Grafiği'ni Aç</value>
   </data>
+  <data name="CleanWhitespace" xml:space="preserve">
+    <value>Value(string) içindeki boşlukları (gereksiz boşlukları) temizleyin</value>
+  </data>
   <data name="ClearChart" xml:space="preserve">
     <value>Grafiği Temizle</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>TRUE RMS</value>
+  </data>
+  <data name="UseComa" xml:space="preserve">
+    <value>Value(string)'de Nokta "." yerine Virgül "," kullanın." </value>
   </data>
   <data name="UseLogin" xml:space="preserve">
     <value>Girişi Kullan</value>

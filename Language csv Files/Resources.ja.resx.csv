@@ -13,6 +13,7 @@ AutoRange,オートレンジ
 AvailableString,お使いのデバイスの1つが接続可能です。
 ChangeName,デバイス名の変更
 ChartON,起動時にデータチャートを開く
+CleanWhitespace,Value(string) の空白 (不要なスペース) を消去します
 ClearChart,明確なチャート
 ClientID,クライアントID ：
 Connect,接続
@@ -65,6 +66,7 @@ Settings,設定
 StartupSettings,スタートアップ設定
 TargetTopic,対象トピック：
 TrueRMS,真のRMS
+UseComa,ドット "." の代わりにコンマ "," を使用します。 in 値(文字列)
 UseLogin,ログインを使用
 UserName,ユーザー名 :
 Values,値

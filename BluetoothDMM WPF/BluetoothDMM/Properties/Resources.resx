@@ -159,6 +159,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>Open Data Chart on Startup</value>
   </data>
+  <data name="CleanWhitespace" xml:space="preserve">
+    <value>Clean whitespaces (unnecessery spaces)  in Value(string)</value>
+  </data>
   <data name="ClearChart" xml:space="preserve">
     <value>Clear Chart</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>TRUE RMS</value>
+  </data>
+  <data name="UseComa" xml:space="preserve">
+    <value>Use Coma "," instead of Dot "." in Value(string)</value>
   </data>
   <data name="UseLogin" xml:space="preserve">
     <value>Use Login</value>

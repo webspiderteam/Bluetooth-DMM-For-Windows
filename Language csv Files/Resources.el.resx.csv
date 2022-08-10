@@ -13,6 +13,7 @@ AutoRange,Αυτόματο εύρος
 AvailableString,Μία από τις συσκευές σας είναι διαθέσιμη για σύνδεση.
 ChangeName,Αλλαγή ονόματος συσκευής
 ChartON,Ανοίξτε το γράφημα δεδομένων κατά την εκκίνηση
+CleanWhitespace,Καθαρίστε κενά (περιττά κενά) στο Value(string)
 ClearChart,Καθαρό διάγραμμα
 ClientID,Ταυτότητα πελάτη :
 Connect,Συνδέω-συωδεομαι
@@ -65,6 +66,7 @@ Settings,Ρυθμίσεις
 StartupSettings,Ρυθμίσεις εκκίνησης
 TargetTopic,Θέμα στόχου:
 TrueRMS,ΑΛΗΘΙΝΗ RMS
+UseComa,Χρησιμοποιήστε Coma "," αντί για Dot "." σε Τιμή (συμβολοσειρά)
 UseLogin,Χρησιμοποιήστε τη σύνδεση
 UserName,Όνομα χρήστη:
 Values,Αξίες

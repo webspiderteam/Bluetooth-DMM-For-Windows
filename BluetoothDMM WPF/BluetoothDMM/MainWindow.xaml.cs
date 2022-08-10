@@ -490,13 +490,16 @@ namespace BluetoothDMM
         private string Create_MQTTString()
         {
             string[] Strings = new string[SelectedDatas.Count];
+            string ValueS = Properties.MQTT.Default.UseComa ? MyGattCData.Text.Replace('.', ',') : MyGattCData.Text;
+            if (Properties.MQTT.Default.CleanWhitespace)
+                ValueS = ValueS.Trim();
             foreach (var (item,index) in SelectedDatas.Select((n, i) => (n, i)))
             {
                 switch (item.Key)
                 {
                     case "Time": Strings[index]=item.Value + Convert.ToString(DateTime.Now, CultureInfo.InvariantCulture) + "\"";break;
                     case "Device": Strings[index]=item.Value + SelectedDeviceName + "\""; break;
-                    case "sValue(string)": Strings[index]=item.Value + MyGattCData.Text + "\""; break;
+                    case "sValue(string)": Strings[index]=item.Value + ValueS + "\""; break;
                     case "sValue(float)": Strings[index]=item.Value + Convert.ToString(ValueF, CultureInfo.InvariantCulture); break;
                     case "Range": Strings[index]=item.Value + MyGattCDataSymbol.Text + "\""; break;
                     case "Current": Strings[index]=item.Value + MyGattCDataACDC.Text + "\""; break;
@@ -1288,8 +1291,6 @@ namespace BluetoothDMM
                                 pairs_i++;
                             createText[index + 1] = $"{index},{s1},{Convert.ToString(value, CultureInfo.InvariantCulture)},{s2},{Convert.ToString(oValue, CultureInfo.InvariantCulture)},{s3}";
                         }
-                        var a=OldACDC;
-                        a=OldSymbol;
                         File.WriteAllLines(saveFileDialog.FileName, createText, System.Text.Encoding.UTF8);
                     }
                     catch (Exception ex)

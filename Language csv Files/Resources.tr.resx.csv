@@ -13,6 +13,7 @@ AutoRange,Otomatik Aralık
 AvailableString,Cihazlarınızdan biri bağlanmak için müsait.
 ChangeName,Cihaz Adını Değiştir
 ChartON,Başlangıçta Veri Grafiği'ni Aç
+CleanWhitespace,Value(string) içindeki boşlukları (gereksiz boşlukları) temizleyin
 ClearChart,Grafiği Temizle
 ClientID,İstemci Kimliği :
 Connect,Bağlan
@@ -65,6 +66,7 @@ Settings,Ayarlar
 StartupSettings,Başlangıç ​​Ayarları
 TargetTopic,Hedef Konu :
 TrueRMS,TRUE RMS
+UseComa,Nokta "" yerine Koma "," kullanın." Değerde(dize)
 UseLogin,Girişi Kullan
 UserName,Kullanıcı adı :
 Values,Değerler

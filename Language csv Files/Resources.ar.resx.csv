@@ -13,6 +13,7 @@ AutoRange,نطاق السيارات
 AvailableString,أحد أجهزتك متاح للاتصال.
 ChangeName,تغيير اسم الجهاز
 ChartON,افتح مخطط البيانات عند بدء التشغيل
+CleanWhitespace,تنظيف المسافات البيضاء (مسافات غير ضرورية) في القيمة (سلسلة)
 ClearChart,مسح الرسم البياني
 ClientID,معرف العميل:
 Connect,الاتصال
@@ -65,6 +66,7 @@ Settings,إعدادات
 StartupSettings,إعدادات البدء
 TargetTopic,الموضوع الهدف:
 TrueRMS,صحيح RMS
+UseComa,استخدم Coma "،" بدلاً من Dot "." في القيمة (سلسلة نصية)
 UseLogin,استخدم تسجيل الدخول
 UserName,اسم المستخدم :
 Values,قيم

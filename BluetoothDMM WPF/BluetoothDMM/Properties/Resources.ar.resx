@@ -159,6 +159,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>افتح مخطط البيانات عند بدء التشغيل</value>
   </data>
+  <data name="CleanWhitespace" xml:space="preserve">
+    <value>تنظيف المسافات البيضاء (مسافات غير ضرورية) في القيمة (سلسلة)</value>
+  </data>
   <data name="ClearChart" xml:space="preserve">
     <value>مسح الرسم البياني</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>صحيح RMS</value>
+  </data>
+  <data name="UseComa" xml:space="preserve">
+    <value>استخدم Coma "،" بدلاً من Dot "." في القيمة (سلسلة نصية)</value>
   </data>
   <data name="UseLogin" xml:space="preserve">
     <value>استخدم تسجيل الدخول</value>

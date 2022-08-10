@@ -28,6 +28,8 @@ namespace BluetoothDMM
             selectedDataList.CollectionChanged -= SelectedDataList_CollectionChanged;
             selectedDataList.CollectionChanged += SelectedDataList_CollectionChanged;
             SelectedDataList_CollectionChanged(null, null);
+            chkCleanWhitespace.IsChecked = Properties.MQTT.Default.CleanWhitespace;
+            chkUseComa.IsChecked= Properties.MQTT.Default.UseComa;
         }
 
         private void SelectedDataList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -36,7 +38,7 @@ namespace BluetoothDMM
             bool first = true;
             foreach (var item in selectedDataList)
             {
-                sample += (first ? "" : ", ") + item.KeyPreview;
+                sample += (first ? "" : ", ") + (Properties.MQTT.Default.UseComa? item.KeyPreview.Replace('.',','):item.KeyPreview);
                 first = false;
             }
             sample += "}";
@@ -93,8 +95,16 @@ namespace BluetoothDMM
             {
                 Properties.MQTT.Default.SelectedDataList.Add(item.Key + "\n" + item.Value);
             }
+            Properties.MQTT.Default.CleanWhitespace = (bool)chkCleanWhitespace.IsChecked;
+            Properties.MQTT.Default.UseComa = (bool)chkUseComa.IsChecked;
             Properties.MQTT.Default.Save();
             DialogResult = true;
+        }
+
+        private void chkUseComa_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Properties.MQTT.Default.UseComa = (bool)chkUseComa.IsChecked;
+            SelectedDataList_CollectionChanged(null, null);
         }
     }
 }

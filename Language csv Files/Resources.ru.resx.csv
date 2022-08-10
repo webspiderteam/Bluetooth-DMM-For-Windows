@@ -13,6 +13,7 @@ AutoRange,Автоматический диапазон
 AvailableString,Одно из ваших устройств доступно для подключения.
 ChangeName,Изменить имя устройства
 ChartON,Диаграмма открытых данных при запуске
+CleanWhitespace,Очистить пробелы (ненужные пробелы) в Value(string)
 ClearChart,Очистить диаграмму
 ClientID,ID клиента :
 Connect,Соединять
@@ -65,6 +66,7 @@ Settings,Настройки
 StartupSettings,Параметры запуска
 TargetTopic,Целевая тема:
 TrueRMS,ИСТИННОЕ СКЗ
+UseComa,Используйте запятую "," вместо точки "." в значении (строка)
 UseLogin,Использовать логин
 UserName,Имя пользователя :
 Values,Ценности

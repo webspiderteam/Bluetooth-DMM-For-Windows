@@ -13,6 +13,7 @@ AutoRange,自动量程
 AvailableString,您的设备之一可以连接。
 ChangeName,更改设备名称
 ChartON,启动时打开数据图表
+CleanWhitespace,清除值（字符串）中的空格（不必要的空格）
 ClearChart,清除图表
 ClientID,客户编号：
 Connect,连接
@@ -65,6 +66,7 @@ Settings,设置
 StartupSettings,启动设置
 TargetTopic,目标主题：
 TrueRMS,真有效值
+UseComa,使用昏迷“，”而不是点“。”在值（字符串）
 UseLogin,使用登录
 UserName,用户名 ：
 Values,价值观

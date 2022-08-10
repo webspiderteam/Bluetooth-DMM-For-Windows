@@ -7,12 +7,13 @@ AdvencedSettings,Erweiterte Einstellungen
 AlwaysonTop,Fenster im Vordergrund 
 AnalogDisplatONStart,Analoganzeige beim Start öffnen
 AnalogDisplay,Analoge Anzeige
-AskBeforeConnect,Nachfragen; vor dem Verbinden
+AskBeforeConnect,Nachfragen,  vor dem Verbinden
 AutoConnectKnown,Bekannte Geräte beim Start automatisch verbinden
 AutoRange,Auto-Range
 AvailableString,Eines Ihrer Geräte ist zum Verbinden verfügbar.
 ChangeName,Gerätenamen ändern
 ChartON,Datendiagramm beim Start öffnen
+CleanWhitespace,Saubere Leerzeichen (unnötige Leerzeichen) in Value(string)
 ClearChart,Diagramm löschen
 ClientID,Kunden ID:
 Connect,Verbinden
@@ -65,6 +66,7 @@ Settings,Einstellungen
 StartupSettings,Starteinstellungen
 TargetTopic,Zielthema:
 TrueRMS,TrueRMS
+UseComa,Verwenden Sie Koma "," anstelle von Punkt "." in Wert (Zeichenfolge)
 UseLogin,Anmeldung verwenden
 UserName,Nutzername:
 Values,Werte

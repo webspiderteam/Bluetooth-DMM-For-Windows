@@ -159,6 +159,9 @@
   <data name="ChartON" xml:space="preserve">
     <value>起動時にデータチャートを開く</value>
   </data>
+  <data name="CleanWhitespace" xml:space="preserve">
+    <value>Value(string) の空白 (不要なスペース) を消去します</value>
+  </data>
   <data name="ClearChart" xml:space="preserve">
     <value>明確なチャート</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="TrueRMS" xml:space="preserve">
     <value>真のRMS</value>
+  </data>
+  <data name="UseComa" xml:space="preserve">
+    <value>ドット "." の代わりにコンマ "," を使用します。 in 値(文字列)</value>
   </data>
   <data name="UseLogin" xml:space="preserve">
     <value>ログインを使用</value>

@@ -13,6 +13,7 @@ AutoRange,Zakres automatyczny
 AvailableString,Jedno z Twoich urządzeń jest dostępne do połączenia.
 ChangeName,Zmień nazwę urządzenia
 ChartON,Otwórz wykres danych przy starcie
+CleanWhitespace,Wyczyść białe spacje (niepotrzebne spacje) w Value(string)
 ClearChart,Wyczyść wykres
 ClientID,Identyfikator klienta :
 Connect,Połącz
@@ -65,6 +66,7 @@ Settings,Ustawienia
 StartupSettings,Ustawienia uruchamiania
 TargetTopic,Temat docelowy :
 TrueRMS,PRAWDZIWE RMS
+UseComa,Użyj przecinka "," zamiast kropki "." w wartości (ciąg)
 UseLogin,Użyj logowania
 UserName,Nazwa użytkownika :
 Values,Wartości

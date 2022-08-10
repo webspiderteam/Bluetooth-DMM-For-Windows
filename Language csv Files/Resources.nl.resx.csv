@@ -13,6 +13,7 @@ AutoRange,Automatisch bereik
 AvailableString,Een van uw apparaten is beschikbaar om verbinding te maken.
 ChangeName,Apparaatnaam wijzigen
 ChartON,Gegevenskaart openen bij opstarten
+CleanWhitespace,Ruim witruimten op (onnodige spaties) in Waarde (tekenreeks)
 ClearChart,Kaart wissen
 ClientID,Klant identificatie :
 Connect,Aansluiten
@@ -65,6 +66,7 @@ Settings,Instellingen
 StartupSettings,Opstartinstellingen
 TargetTopic,Doelonderwerp:
 TrueRMS,TRUE RMS
+UseComa,Gebruik Coma "," in plaats van Punt "." in Waarde (tekenreeks)
 UseLogin,Gebruik Inloggen
 UserName,Gebruikersnaam :
 Values,Waarden

@@ -13,6 +13,7 @@ AutoRange,Intervallo automatico
 AvailableString,Uno dei tuoi dispositivi è disponibile per la connessione.
 ChangeName,Cambia nome dispositivo
 ChartON,Apri il grafico dei dati all'avvio
+CleanWhitespace,Pulisci gli spazi bianchi (spazi non necessari) in Value(string)
 ClearChart,Cancella grafico
 ClientID,Identificativo cliente :
 Connect,Collegare
@@ -65,6 +66,7 @@ Settings,Impostazioni
 StartupSettings,Impostazioni di avvio
 TargetTopic,Argomento di destinazione:
 TrueRMS,VERO RMS
+UseComa,Usa Coma "," invece di Punto "." in Valore(stringa)
 UseLogin,Usa Accesso
 UserName,Nome utente:
 Values,I valori
