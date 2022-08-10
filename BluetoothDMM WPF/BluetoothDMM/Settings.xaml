@@ -10,7 +10,7 @@
         lex:ResxLocalizationProvider.DefaultDictionary="Resources"
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
-        Title="{lex:LocText Settings}" Height="556.552" Width="484.146" WindowStyle="None">
+        Title="{lex:LocText Settings}" Height="556.552" Width="484.146" WindowStyle="ToolWindow">
     <Window.Resources>
         <local:CountryIdToFlagImageSourceConverter x:Key="CountryIdToFlagImageSourceConverter"/>
     </Window.Resources>

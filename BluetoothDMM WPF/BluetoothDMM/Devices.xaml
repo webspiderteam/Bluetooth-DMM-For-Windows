@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:BluetoothDMM"
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
-        Title="{lex:LocText DeviceManager}" Height="416.73" Width="786.389" WindowStyle="None">
+        Title="{lex:LocText DeviceManager}" Height="416.73" Width="786.389" WindowStyle="ToolWindow">
     <Window.Resources>
         <local:IDtoMac_Converter x:Key="IDtoMac_Converter"/>
     </Window.Resources>

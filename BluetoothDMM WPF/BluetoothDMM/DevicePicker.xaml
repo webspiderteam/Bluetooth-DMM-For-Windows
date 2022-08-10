@@ -4,7 +4,7 @@
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Style="{DynamicResource CustomWindowStyle}"
+        Style="{DynamicResource CustomWindowStyle}" WindowStyle="ToolWindow"
         mc:Ignorable="d"
         Title="{lex:LocText DevicePicker}" Height="490.415" Width="562.94" HorizontalAlignment="Center"  >
 

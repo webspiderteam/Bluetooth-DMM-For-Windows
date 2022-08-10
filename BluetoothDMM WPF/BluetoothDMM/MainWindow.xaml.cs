@@ -116,18 +116,17 @@ namespace BluetoothDMM
             plt.Style(ScottPlot.Style.Black);
             plt.Style(figureBackground: System.Drawing.Color.Transparent);
             plt.SetAxisLimits(0, 30);
-            plt.XAxis.MinimumTickSpacing(5);
+            //plt.XAxis.MinimumTickSpacing(5);
             plt.YAxis.MinimumTickSpacing(0.0001);
             plt.Margins(0.1, 0.2);
             ChartSetup();
+            
             wpfPlot1.Plot.YAxis2.LockLimits(true);
             wpfPlot1.Configuration.LockVerticalAxis = true;
             wpfPlot1.Refresh();
-
             CustomDialog.PreviewMouseMove += new MouseEventHandler(CustomDialog_MouseMove);
             AboutDialog.PreviewMouseMove += new MouseEventHandler(CustomDialog_MouseMove);
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-
             DataContext = this;
             _heartRateMonitor = new HeartRateLE.Bluetooth.HeartRateMonitor
             {
@@ -159,7 +158,6 @@ namespace BluetoothDMM
                 //Reconnect();
             }
             else { Tg_Btn.IsChecked = true; }
-
             onLoad = true;
             m_notifyIcon = new System.Windows.Forms.NotifyIcon
             {
@@ -197,7 +195,43 @@ namespace BluetoothDMM
                 Get_DataList();
             }
         }
+        DependencyObject FindVisualTreeRoot(DependencyObject initial)
+        {
+            DependencyObject current = initial;
+            DependencyObject result = initial;
 
+            while (current != null)
+            {
+                result = current;
+                if (current is Visual || current is System.Windows.Media.Media3D.Visual3D)
+                {
+                    current = VisualTreeHelper.GetParent(current);
+                }
+                else
+                {
+                    // If we're in Logical Land then we must walk 
+                    // up the logical tree until we find a 
+                    // Visual/Visual3D to get us back to Visual Land.
+                    current = LogicalTreeHelper.GetParent(current);
+                }
+            }
+            
+            var aa=VisualTreeHelper.GetChild(this,0);
+
+            return result;
+        }
+        static public void EnumVisual(Visual myVisual)
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(myVisual); i++)
+            {
+                // Retrieve child visual at specified index value.
+                Visual childVisual = (Visual)VisualTreeHelper.GetChild(myVisual, i);
+                // Do processing of the child visual object.
+
+                // Enumerate children of the child visual object.
+                EnumVisual(childVisual);
+            }
+        }
         private void Get_DataList()
         {
             SelectedDatas = new Dictionary<string, string>(Properties.MQTT.Default.SelectedDataList.Count);
@@ -223,14 +257,26 @@ namespace BluetoothDMM
             MQTTSetup.Username = Properties.MQTT.Default.Username;
         }
 
+        static string customTickFormatter(double position)
+        {
+            TimeSpan result = TimeSpan.FromSeconds(position);
+            if (position < 3600)
+                return result.ToString("m':'ss");
+            else if (position<3600*24)
+                return result.ToString("h':'m':'ss");
+            else
+                return result.ToString("d'-'h':'m':'ss");
+        }
+
         private void ChartSetup()
         {
             gattData = new double[1_000_000];
-            signalPlot = plt.AddSignal(gattData, sampleRate, color: System.Drawing.Color.White);
+            signalPlot = plt.PlotSignal(gattData, sampleRate, color: System.Drawing.Color.White);
+            plt.XAxis.TickLabelFormat(customTickFormatter);
             signalPlot.YAxisIndex = 0;
             signalPlot.LineWidth = 2;
             signalPlot.MarkerSize = 3;
-
+            
             signalPlot.IsVisible = false;
             HighlightedPoint = plt.AddPoint(0, 0);
             HighlightedPoint.Color = System.Drawing.Color.Yellow;
@@ -394,7 +440,7 @@ namespace BluetoothDMM
                 catch { ValueF = "null"; }//doublevalue = 0;}
                 if (GattValue != null)
                 {
-                    var result = Math.Abs(doublevalue).ToString().Split(new string[] { ".", " " }, StringSplitOptions.RemoveEmptyEntries);
+                    var result = Convert.ToString(Math.Abs(doublevalue), CultureInfo.InvariantCulture).Split(new string[] { ".", " " }, StringSplitOptions.RemoveEmptyEntries);
                     double maxvalue = 6 * Math.Pow(10, result[0].Length - 1);
                     double currentValue = Math.Abs(doublevalue);
                     if (maxvalue < currentValue )
@@ -448,10 +494,10 @@ namespace BluetoothDMM
             {
                 switch (item.Key)
                 {
-                    case "Time": Strings[index]=item.Value + DateTime.Now +"\"";break;
+                    case "Time": Strings[index]=item.Value + Convert.ToString(DateTime.Now, CultureInfo.InvariantCulture) + "\"";break;
                     case "Device": Strings[index]=item.Value + SelectedDeviceName + "\""; break;
-                    case "Value(string)": Strings[index]=item.Value + MyGattCData.Text + "\""; break;
-                    case "Value(float)": Strings[index]=item.Value + ValueF; break;
+                    case "sValue(string)": Strings[index]=item.Value + MyGattCData.Text + "\""; break;
+                    case "sValue(float)": Strings[index]=item.Value + Convert.ToString(ValueF, CultureInfo.InvariantCulture); break;
                     case "Range": Strings[index]=item.Value + MyGattCDataSymbol.Text + "\""; break;
                     case "Current": Strings[index]=item.Value + MyGattCDataACDC.Text + "\""; break;
                     case "AutoRange(Boolean)": Strings[index]=item.Value + AutoRange.Visibility.Equals(Visibility.Visible) + "\""; break;
@@ -648,7 +694,7 @@ namespace BluetoothDMM
         
         private System.Windows.Visibility Bool_to_Vis(bool txt)
         {
-            if (txt) { return Visibility.Visible; } else { return Visibility.Collapsed; }
+            if (txt) { return Visibility.Visible; } else { return Visibility.Hidden; }
         }
 
         private async Task RunOnUiThread(Action a)
@@ -1147,7 +1193,19 @@ namespace BluetoothDMM
                                 VlineList.Add(pba);
                         }
                     }
-                    byte sbe = SymbolToByte((MyGattCDataACDC.Text == "" ? string.Empty : "  " + MyGattCDataACDC.Text + " * \n") + "  " + MyGattCDataSymbol.Text + " *  ");
+                    string acdc;
+                    string sym;
+                    if (MyGattCDataACDC.Text == "" && MyGattCDataSymbol.Text == "")
+                    {
+                        sym = OldSymbol;
+                        acdc = OldACDC + " * \n";
+                    }
+                    else
+                    {
+                        acdc = MyGattCDataACDC.Text == "" ? string.Empty : ("  " + MyGattCDataACDC.Text + " * \n");
+                        sym = MyGattCDataSymbol.Text;
+                    }
+                    byte sbe = SymbolToByte(acdc + "  " + sym + " *  ");
                     VlineList.Add(sbe);
                     byte[] pbe = BitConverter.GetBytes((int)plt.GetDataLimits().XMax);
                     foreach (var pba in pbe)
@@ -1163,7 +1221,7 @@ namespace BluetoothDMM
                     {
                         double[] ChartData = gattData.Take((int)plt.GetDataLimits().XMax + 1).ToArray();
                         string[] createText = new string[(int)plt.GetDataLimits().XMax + 2];
-                        createText[0] = "Time,CurrentType,Value,Symbol";
+                        createText[0] = "Time,CurrentType,sValue,Symbol,BaseVal,BaseSym";
                         var plottablelist = plt.GetPlottables();
                         Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
                         foreach (var plotT in plottablelist)
@@ -1176,15 +1234,27 @@ namespace BluetoothDMM
                                 keyValuePairs.Add(pb, sb);
                             }
                         }
-                        string sbe = (MyGattCDataACDC.Text == "" ? string.Empty : "  " + MyGattCDataACDC.Text + " * \n") + "  " + MyGattCDataSymbol.Text + " *  ";
+                        string acdc;
+                        string sym;
+                        if(MyGattCDataACDC.Text=="" && MyGattCDataSymbol.Text=="")
+                        {
+                            sym = OldSymbol;
+                            acdc = OldACDC + " * \n";
+                        }
+                        else
+                        {
+                            acdc = MyGattCDataACDC.Text == "" ? string.Empty : ("  " + MyGattCDataACDC.Text + " * \n");
+                            sym = MyGattCDataSymbol.Text;
+                        }
+                        string sbe = acdc + "  " + sym + " *  ";
                         int pbe = (int)plt.GetDataLimits().XMax;
                         keyValuePairs.Add(pbe, sbe);
                         int pairs_i = 0;
                         foreach (var (value, index) in ChartData.Select((v, i) => (v, i)))
                         {
                             var oValue = value;
-                            string Value = keyValuePairs.ElementAt(pairs_i).Value.Replace('*', ' ');
-                            var resultval = Value.Split(new string[] { "\n", " " }, StringSplitOptions.RemoveEmptyEntries);
+                            string sValue = keyValuePairs.ElementAt(pairs_i).Value.Replace('*', ' ');
+                            var resultval = sValue.Split(new string[] { "\n", " " }, StringSplitOptions.RemoveEmptyEntries);
                             string s1;
                             string s2;
                             string s3;
@@ -1200,6 +1270,7 @@ namespace BluetoothDMM
                             }
                             else { s1 = s2 = " "; }
                             s3 = s2;
+
                             if (s2.Length > 1 && !(s2 == "Hz" || s2 == "°C" || s2 == "°F"))
                             {
                                 var pre = s2.Substring(0, 1);
@@ -1215,8 +1286,10 @@ namespace BluetoothDMM
                             }
                             if (index == keyValuePairs.ElementAt(pairs_i).Key)
                                 pairs_i++;
-                            createText[index + 1] = $"{index},{s1},{value},{s2},{oValue},{s3}";
+                            createText[index + 1] = $"{index},{s1},{Convert.ToString(value, CultureInfo.InvariantCulture)},{s2},{Convert.ToString(oValue, CultureInfo.InvariantCulture)},{s3}";
                         }
+                        var a=OldACDC;
+                        a=OldSymbol;
                         File.WriteAllLines(saveFileDialog.FileName, createText, System.Text.Encoding.UTF8);
                     }
                     catch (Exception ex)
@@ -1322,6 +1395,7 @@ namespace BluetoothDMM
             if (this.WindowState == WindowState.Minimized && ResultDialog=="Button1")
                 NotifyIcon_Click(null, null);
             Properties.Settings.Default.AskOnConnect = (bool)!DontAsk.IsChecked;
+            Properties.Settings.Default.Save();
         }
 
         private void CustomDialog_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -1370,7 +1444,48 @@ namespace BluetoothDMM
             if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
                 trick = (e.KeyStates==KeyStates.Down);
         }
+
+        private void Display_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Tg_Btn.IsMouseOver || Display.IsMouseOver || this.IsMouseOver || REghZy.Themes.Controls.Titlebarr.IsMouseOver)
+            {
+                Draggable = true;
+                REghZy.Themes.Controls.Titlebarr.Visibility = Visibility.Visible;
+                Tg_Btn.Visibility = Visibility.Visible;
+                TxtStatus.Visibility = Visibility.Visible;
+            }
+            else if(IsActive)
+            {
+                //foreach (UIElement tb in FindVisualChilds<UIElement>(this))
+                //{
+                //    // do something with tb here
+                //    if (tb.IsMouseDirectlyOver)
+                //        d(tb.GetValue(NameProperty) + tb.IsMouseOver.ToString());
+                //}
+                REghZy.Themes.Controls.Titlebarr.Visibility = Visibility.Hidden;
+                Tg_Btn.Visibility = Visibility.Hidden;
+                TxtStatus.Visibility = Visibility.Hidden;
+            }
+
+        }
+        public static IEnumerable<T> FindVisualChilds<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj == null) yield return (T)Enumerable.Empty<T>();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+            {
+                DependencyObject ithChild = VisualTreeHelper.GetChild(depObj, i);
+                if (ithChild == null) continue;
+                if (ithChild is T t) yield return t;
+                foreach (T childOfChild in FindVisualChilds<T>(ithChild)) yield return childOfChild;
+            }
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            MinHeight = Display.ActualHeight + 50;
+        }
     }
+
     public class Boolean2VisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -1378,7 +1493,7 @@ namespace BluetoothDMM
             // to invert use ConverterParameter = '1'
             bool boolValue = !(bool)value;
             boolValue = (parameter != null) ? !boolValue : boolValue;
-            return boolValue ? Visibility.Visible : Visibility.Collapsed;
+            return boolValue ? Visibility.Visible : Visibility.Hidden;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

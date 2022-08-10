@@ -9,7 +9,7 @@
         x:Class="BluetoothDMM.MQTT_Settings"
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
-        Title="{lex:LocText MQTTSettings}" Height="337.264" Width="425" ResizeMode="NoResize" WindowStyle="None">
+        Title="{lex:LocText MQTTSettings}" Height="337.264" Width="425" ResizeMode="NoResize" WindowStyle="ToolWindow">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>

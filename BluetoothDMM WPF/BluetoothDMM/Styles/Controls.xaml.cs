@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Data;
 
@@ -6,6 +7,8 @@ namespace REghZy.Themes
 {
     public partial class Controls
     {
+        public static UIElement Titlebarr { get; set; }
+
         private void CloseWindow_Event(object sender, RoutedEventArgs e)
         {
             if (e.Source != null)
@@ -23,6 +26,7 @@ namespace REghZy.Themes
             if (e.Source != null)
                 try { MinimizeWind(Window.GetWindow((FrameworkElement)e.Source)); }
                 catch { }
+            
         }
 
         public void CloseWind(Window window) => window.Close();
@@ -32,8 +36,19 @@ namespace REghZy.Themes
                 window.WindowState = WindowState.Normal;
             else if (window.WindowState == WindowState.Normal)
                 window.WindowState = WindowState.Maximized;
+            
         }
         public void MinimizeWind(Window window) => window.WindowState = WindowState.Minimized;
+
+        private void titlebar_Initialized(object sender, EventArgs e)
+        {
+            Titlebarr = sender as UIElement;
+        }
+
+        private void title_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            Debug.WriteLine("title");
+        }
     }
 
     class windowStyleConverter : IValueConverter

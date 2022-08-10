@@ -141,6 +141,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Arc.cs" />
     <Compile Include="Classes\GattData.cs" />
+    <Compile Include="Classes\VisibilityAnimation.cs" />
     <Compile Include="Data Viewer.xaml.cs">
       <DependentUpon>Data Viewer.xaml</DependentUpon>
     </Compile>
