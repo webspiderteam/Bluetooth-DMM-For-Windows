@@ -27,6 +27,8 @@ namespace BluetoothDMM
             Add(new MQTT_DataFormat { Key = "Time", KeyPreview = "\"Time\":\"01.01.2022 12:12:00\"", Value = "\"Time\":\"" });
             Add(new MQTT_DataFormat { Key = "Value(string)", KeyPreview = "\"ValueS\":\"-10.00\"", Value = "\"ValueS\":\"" });
             Add(new MQTT_DataFormat { Key = "Value(float)", KeyPreview = "\"ValueF\":-10.00", Value = "\"ValueF\":" });
+            Add(new MQTT_DataFormat { Key = "BaseValue(double)", KeyPreview = "\"BaseVal\":-0.010", Value = "\"BaseVal\":" });
+            Add(new MQTT_DataFormat { Key = "BaseSym", KeyPreview = "\"BaseSym\":\"V\"", Value = "\"BaseSym\":\"" });
             Add(new MQTT_DataFormat { Key = "Range", KeyPreview = "\"Range\":\"mV\"", Value = "\"Range\":\"" });
             Add(new MQTT_DataFormat { Key = "Current", KeyPreview = "\"Current\":\"DC\"", Value = "\"Current\":\"" });
             Add(new MQTT_DataFormat { Key = "Device", KeyPreview = "\"Device\":\"Bluetooth DMM\"", Value = "\"Device\":\"" });

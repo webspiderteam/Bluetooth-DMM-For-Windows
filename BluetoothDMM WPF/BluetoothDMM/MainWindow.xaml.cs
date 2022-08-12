@@ -435,7 +435,7 @@ namespace BluetoothDMM
                 GattValue = arg.MyGattCData;
                 try { 
                     doublevalue = Convert.ToDouble(GattValue,CultureInfo.InvariantCulture);
-                    ValueF = doublevalue.ToString();
+                    ValueF = Convert.ToString(doublevalue, CultureInfo.InvariantCulture);
                 }
                 catch { ValueF = "null"; }//doublevalue = 0;}
                 if (GattValue != null)
@@ -493,14 +493,31 @@ namespace BluetoothDMM
             string ValueS = Properties.MQTT.Default.UseComa ? MyGattCData.Text.Replace('.', ',') : MyGattCData.Text;
             if (Properties.MQTT.Default.CleanWhitespace)
                 ValueS = ValueS.Trim();
+            var oValue = doublevalue;
+            var BaseSym = MyGattCDataSymbol.Text;
+            if (MyGattCDataSymbol.Text.Length > 1 && !(MyGattCDataSymbol.Text == "Hz" || MyGattCDataSymbol.Text == "°C" || MyGattCDataSymbol.Text == "°F"))
+            {
+                var pre = MyGattCDataSymbol.Text.Substring(0, 1);
+                switch (pre)
+                {
+                    case "n": oValue = oValue / 1000000000; break;
+                    case "µ": oValue = oValue / 1000000; break;
+                    case "m": oValue = oValue / 1000; break;
+                    case "k": oValue = oValue * 1000; break;
+                    case "M": oValue = oValue * 1000000; break;
+                }
+                BaseSym = BaseSym.Substring(1);
+            }
             foreach (var (item,index) in SelectedDatas.Select((n, i) => (n, i)))
             {
                 switch (item.Key)
                 {
                     case "Time": Strings[index]=item.Value + Convert.ToString(DateTime.Now, CultureInfo.InvariantCulture) + "\"";break;
                     case "Device": Strings[index]=item.Value + SelectedDeviceName + "\""; break;
-                    case "sValue(string)": Strings[index]=item.Value + ValueS + "\""; break;
-                    case "sValue(float)": Strings[index]=item.Value + Convert.ToString(ValueF, CultureInfo.InvariantCulture); break;
+                    case "Value(string)": Strings[index]=item.Value + ValueS + "\""; break;
+                    case "Value(float)": Strings[index]=item.Value + Convert.ToString(ValueF, CultureInfo.InvariantCulture); break;
+                    case "BaseValue(double)": Strings[index] = item.Value + (ValueF == "null" ? "null" :Convert.ToString(oValue, CultureInfo.InvariantCulture)); break;
+                    case "BaseSym": Strings[index] = item.Value + BaseSym + "\""; break;
                     case "Range": Strings[index]=item.Value + MyGattCDataSymbol.Text + "\""; break;
                     case "Current": Strings[index]=item.Value + MyGattCDataACDC.Text + "\""; break;
                     case "AutoRange(Boolean)": Strings[index]=item.Value + AutoRange.Visibility.Equals(Visibility.Visible) + "\""; break;
