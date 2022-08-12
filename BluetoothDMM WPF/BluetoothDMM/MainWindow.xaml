@@ -113,7 +113,7 @@
         <local:Boolean2VisibilityConverter x:Key="Boolean2VisibilityConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Popup x:Name="CustomDialog"
                        StaysOpen="True" 
                        Opened="CustomDialog_Opened"

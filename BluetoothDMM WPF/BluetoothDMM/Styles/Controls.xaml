@@ -452,16 +452,17 @@
                 <ControlTemplate TargetType="{x:Type Window}">
                     <Grid>
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <Grid x:Name="title">
+                            
+                            <Grid x:Name="title" Margin="0,1,0,0">
                                 <AdornerDecorator Margin="0,0,0,0" >
                                     <ContentPresenter />
                                 </AdornerDecorator>
                                 <Grid  Height="30" x:Name="titlebar"  classes:VisibilityAnimation.AnimationType="Fade" Background="#60202020" VerticalAlignment="Top" Margin="0" Initialized="titlebar_Initialized" >
-                                    <DockPanel Margin="0,0,30,0">
+                                    <DockPanel Margin="0,0,30,0" MouseMove="DockPanel_MouseMove">
                                         <Image HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,4,0,0" Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Height="24" />
                                         <TextBlock Margin="5,3" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextWrapping="NoWrap" FontSize="11" Width="Auto" Foreground="{TemplateBinding Foreground}" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="1" TextAlignment="Left" />
                                     </DockPanel>
-                                    <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <Button x:Name="btnMinimize" Background="Transparent" BorderBrush="Transparent" Width="40" VerticalContentAlignment="Bottom" WindowChrome.IsHitTestVisibleInChrome="True" Click="Minimize_Event">
                                             <Rectangle Width="10" VerticalAlignment="Center" Margin="1 -24 0 0" Stroke="{DynamicResource AREghZyBrush.Glyph.Static}" StrokeThickness="2" />
                                         </Button>

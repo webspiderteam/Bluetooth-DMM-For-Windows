@@ -45,9 +45,9 @@ namespace REghZy.Themes
             Titlebarr = sender as UIElement;
         }
 
-        private void title_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        private void DockPanel_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            Debug.WriteLine("title");
+            Debug.WriteLine("test");
         }
     }
 

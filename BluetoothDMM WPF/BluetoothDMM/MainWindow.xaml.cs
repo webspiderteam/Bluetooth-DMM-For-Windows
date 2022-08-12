@@ -306,6 +306,7 @@ namespace BluetoothDMM
         private RateChangedEventArgs GattDatas;
         private Dictionary<string, string> SelectedDatas;
         private bool trick;
+        private UIElement mTitlebar;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -1340,6 +1341,7 @@ namespace BluetoothDMM
         {
             if (onLoad)
             {
+                mTitlebar = REghZy.Themes.Controls.Titlebarr;
                 await SearchDevices();
                 if (Properties.Settings.Default.ChartOn )
                 {
@@ -1465,22 +1467,22 @@ namespace BluetoothDMM
 
         private void Display_MouseMove(object sender, MouseEventArgs e)
         {
-            if (Tg_Btn.IsMouseOver || Display.IsMouseOver || this.IsMouseOver || REghZy.Themes.Controls.Titlebarr.IsMouseOver)
+            if (Tg_Btn.IsMouseOver || Display.IsMouseOver || mTitlebar.IsMouseOver || this.IsMouseOver)
             {
                 Draggable = true;
-                REghZy.Themes.Controls.Titlebarr.Visibility = Visibility.Visible;
+                mTitlebar.Visibility = Visibility.Visible;
                 Tg_Btn.Visibility = Visibility.Visible;
                 TxtStatus.Visibility = Visibility.Visible;
             }
-            else if(IsActive)
+            else
             {
-                //foreach (UIElement tb in FindVisualChilds<UIElement>(this))
-                //{
-                //    // do something with tb here
-                //    if (tb.IsMouseDirectlyOver)
-                //        d(tb.GetValue(NameProperty) + tb.IsMouseOver.ToString());
-                //}
-                REghZy.Themes.Controls.Titlebarr.Visibility = Visibility.Hidden;
+                foreach (UIElement tb in FindVisualChilds<UIElement>(this))
+                {
+                    // do something with tb here
+                    if (tb.IsMouseOver)
+                        d(tb.GetValue(NameProperty) + tb.IsMouseOver.ToString());
+                }
+                mTitlebar.Visibility = Visibility.Hidden;
                 Tg_Btn.Visibility = Visibility.Hidden;
                 TxtStatus.Visibility = Visibility.Hidden;
             }
