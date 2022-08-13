@@ -274,7 +274,7 @@ namespace BluetoothDMM
             signalPlot = plt.PlotSignal(gattData, sampleRate, color: System.Drawing.Color.White);
             plt.XAxis.TickLabelFormat(customTickFormatter);
             signalPlot.YAxisIndex = 0;
-            signalPlot.LineWidth = 2;
+            signalPlot.LineWidth = 1;
             signalPlot.MarkerSize = 3;
             
             signalPlot.IsVisible = false;
@@ -307,6 +307,9 @@ namespace BluetoothDMM
         private Dictionary<string, string> SelectedDatas;
         private bool trick;
         private UIElement mTitlebar;
+        private FrameworkElement mGrid;
+        private FrameworkElement mBorder;
+        private bool wStateChanged;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -321,6 +324,7 @@ namespace BluetoothDMM
                 }
                 else
                     m_storedWindowState = WindowState;
+            wStateChanged = true;
         }
 
         private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs args)
@@ -783,7 +787,7 @@ namespace BluetoothDMM
                 }
                 else if (SItem.Name == "About")
                     AboutDialog.IsOpen = true;
-                LV.SelectedIndex = -1;
+                LVs.SelectedIndex = -1;
                 Tg_Btn.IsChecked = false;
             }
         }
@@ -823,16 +827,11 @@ namespace BluetoothDMM
         {
             if (aDisplay.Visibility==Visibility.Visible)
             {
-                TxtStatus.Margin = new Thickness(0, 10, 0, 0);
-                Display.Margin = new Thickness(0, 5, 0, 0);
                 aDisplay.Visibility = Visibility.Collapsed;
                 ADisplayON.Visibility = Visibility.Hidden;
             }
             else
             {
-                
-                TxtStatus.Margin= new Thickness(0, -70, 0, 0);
-                Display.Margin= new Thickness(0, 45, 0, 0);
                 aDisplay.Visibility = Visibility.Visible;
                 ADisplayON.Visibility = Visibility.Visible;
             }
@@ -1467,6 +1466,7 @@ namespace BluetoothDMM
 
         private void Display_MouseMove(object sender, MouseEventArgs e)
         {
+            d(" " + Tg_Btn.IsMouseOver + Display.IsMouseOver + this.IsMouseOver);
             if (Tg_Btn.IsMouseOver || Display.IsMouseOver || mTitlebar.IsMouseOver || this.IsMouseOver)
             {
                 Draggable = true;
@@ -1502,7 +1502,9 @@ namespace BluetoothDMM
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            MinHeight = Display.ActualHeight + 50;
+            if (!wStateChanged)
+                MinHeight = Display.ActualHeight;
+            wStateChanged = false;
         }
     }
 

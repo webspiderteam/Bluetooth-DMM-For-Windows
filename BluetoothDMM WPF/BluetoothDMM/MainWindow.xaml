@@ -15,8 +15,7 @@
         Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="None" 
         Title="Bluetooth DMM" Height="172" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center" 
         Activated="Window_Activated" MouseDown="Window_MouseDown" StateChanged="OnStateChanged" 
-        SizeChanged="Window_SizeChanged"
-        IsVisibleChanged="OnIsVisibleChanged" 
+        IsVisibleChanged="OnIsVisibleChanged" SizeChanged="Window_SizeChanged"
     >
     <Window.Resources>
         <!--// Toggle Button Style Template //-->
@@ -304,13 +303,18 @@
                 </Popup>
             </Grid>
 
-            <Viewbox x:Name="Display" Grid.Row="0" HorizontalAlignment="Stretch" Margin="5,5,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both" MouseMove="Display_MouseMove" MouseLeave="Display_MouseMove">
+            <Viewbox x:Name="Display" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,0,-15" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both" MouseMove="Display_MouseMove" MouseLeave="Display_MouseMove">
 
                 <Grid>
-                    <TextBlock x:Name="TxtStatus" TextWrapping="Wrap" FontSize="20" Height="40" Text="{lex:LocText NotConnected}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                    <Grid x:Name="aDisplay" Margin="0,-35,0,0" Visibility="Collapsed" >
-                        <TextBlock  Width="1100" />
-                        <Viewbox Width="700" HorizontalAlignment="Stretch" Margin="0,10,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="TxtStatus" Grid.Row="0" TextWrapping="Wrap" FontSize="20" Text="{lex:LocText NotConnected}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,-20"/>
+                    <Border>
+                    <Grid x:Name="aDisplay" Grid.Row="0" Margin="0,30,0,-110" Visibility="Collapsed" >
+
+                        <Viewbox Width="620" HorizontalAlignment="Stretch" Margin="0,10,0,0" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
                             <Grid>
 
                                 <StackPanel Height="55" Width="270" Margin="0,0,0,0">
@@ -339,26 +343,27 @@
                             </Grid>
                         </Viewbox>
                     </Grid>
-                    <Viewbox Stretch="Uniform" HorizontalAlignment="Center" Height="60" Margin="0,27,0,220" VerticalAlignment="Bottom" Width="320">
+                    </Border>
+                    <Viewbox Stretch="Uniform" Grid.Row="1" HorizontalAlignment="Center" Height="60" Margin="0,27,0,220" VerticalAlignment="Bottom" Width="320">
                         <TextBlock x:Name="AutoRange" Visibility="Visible" VerticalAlignment="Top" Height="60" TextWrapping="Wrap" Text="{lex:LocText AutoRange}"  FontSize="44" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
                     </Viewbox>
-                    <TextBlock x:Name="MyGattCData" HorizontalAlignment="Center" Height="262" Margin="0,10,30,0" TextWrapping="WrapWithOverflow" Text="----" VerticalAlignment="Top" Width="700" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
-                    <TextBlock x:Name="True_RMS" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="350,0,0,0" TextWrapping="Wrap" Text="{lex:LocText TrueRMS}" VerticalAlignment="Bottom" Width="250" FontSize="40" FontWeight="Bold"/>
-                    <TextBlock x:Name="InRush" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="-300,70,0,0" TextWrapping="Wrap" Text="{lex:LocText InRush}" VerticalAlignment="Bottom" Width="200" FontSize="40" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCDataACDC" HorizontalAlignment="Left" Height="70" Margin="80,175,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="85" FontSize="60" FontWeight="Bold" TextAlignment="Right"/>
-                    <TextBlock x:Name="MyGattCDataMin" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,0" TextWrapping="Wrap" Text="{lex:LocText Min}" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCDataMax" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,0" TextWrapping="Wrap" Text="{lex:LocText Max}" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
-                    <TextBlock x:Name="MyGattCDataPeek" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,0" TextWrapping="Wrap" Text="{lex:LocText Peek}" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
-                    <Viewbox x:Name="MyGattCDataDiode" Visibility="Hidden" Margin="-60,10,0,0" Stretch="Fill" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock x:Name="MyGattCData" Grid.Row="1" HorizontalAlignment="Center" Height="262" Margin="0,10,30,0" TextWrapping="WrapWithOverflow" Text="----" VerticalAlignment="Top" Width="700" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
+                    <TextBlock x:Name="True_RMS" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="350,0,0,0" TextWrapping="Wrap" Text="{lex:LocText TrueRMS}" VerticalAlignment="Bottom" Width="250" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="InRush" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="-300,70,0,0" TextWrapping="Wrap" Text="{lex:LocText InRush}" VerticalAlignment="Bottom" Width="200" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCDataACDC" Grid.Row="1" HorizontalAlignment="Left" Height="70" Margin="80,175,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="85" FontSize="60" FontWeight="Bold" TextAlignment="Right"/>
+                    <TextBlock x:Name="MyGattCDataMin" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,0" TextWrapping="Wrap" Text="{lex:LocText Min}" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCDataMax" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,0" TextWrapping="Wrap" Text="{lex:LocText Max}" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCDataPeek" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,0" TextWrapping="Wrap" Text="{lex:LocText Peek}" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
+                    <Viewbox x:Name="MyGattCDataDiode" Grid.Row="1" Visibility="Hidden" Margin="-60,10,0,0" Stretch="Fill" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <Path Fill="White" Data="m 185.09961,79.863281 -0.26563,27.749999 -0.26562,27.75 -3.74219,0.3086 -3.74219,0.31054 -6.2207,-1.59375 -6.2207,-1.59375 -14.37696,-6.94336 -14.37695,-6.94531 -26.46875,-15.12891 -26.468748,-15.128902 -0.458984,0.457031 -0.458985,0.458984 -1.080078,22.398437 -1.080078,22.40039 -1.152344,0.73438 -1.152344,0.73437 -31.867187,0.0156 -31.867188,0.0156 0.716797,7.75 0.71875,7.75 0.34961,0.36524 0.349609,0.36718 29.800781,0.9336 29.798828,0.93359 2.148438,0.44336 2.146484,0.44336 0.632813,13.75586 0.632812,13.75781 0.71875,7.70899 0.720703,7.71093 15.5,-9.09375 15.500001,-9.0957 12.75195,-7.31836 12.75,-7.31641 8.67774,-4.06836 8.67773,-4.0664 5.7168,-1.48047 5.71484,-1.48047 h 8.60547 8.60547 v 26 26 h 9.5 9.5 v -26 -26 h 36.5 36.5 v -9 -9 h -34.91797 -34.91797 l -1.58203,-0.60742 -1.58203,-0.60742 V 107.25586 79.863281 h -9.48438 z"/>
                     </Viewbox>
-                    <Viewbox x:Name="MyGattCDataRel" Visibility="Hidden" Margin="20,180,0,0" Stretch="Uniform" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Viewbox x:Name="MyGattCDataRel" Grid.Row="1" Visibility="Hidden" Margin="20,180,0,0" Stretch="Uniform" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Path Fill="White" Data="M509.775,481.154L275.109,11.82c-7.862-15.724-30.3-15.724-38.162,0L2.28,481.154c-7.092,14.185,3.222,30.874,19.081,30.874h469.333C506.553,512.028,516.868,495.338,509.775,481.154z M55.879,469.361L256.028,69.064l200.149,400.297H55.879z"/>
                     </Viewbox>
-                    <Viewbox x:Name="MyGattCDataHV" Visibility="Hidden" Margin="75,100,0,0" Stretch="Uniform" Width="64" Height="64" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Viewbox x:Name="MyGattCDataHV" Grid.Row="1" Visibility="Hidden" Margin="75,100,0,0" Stretch="Uniform" Width="64" Height="64" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Path Fill="White" Data="m 207.523,560.316 c 0,0 194.42,-421.925 194.444,-421.986 l 10.79,-23.997 c -41.824,12.02 -135.271,34.902 -135.57,35.833 C 286.96,122.816 329.017,0 330.829,0 290.853,0 250.877,0 210.902,0 L 198.735,57.938 147.559,267.933 282.75,231.127 Z"/>
                     </Viewbox>
-                    <Viewbox x:Name="MyGattCDataContinuity" Visibility="Hidden" Margin="130,22,0,0" Stretch="Fill" Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                    <Viewbox x:Name="MyGattCDataContinuity" Grid.Row="1" Visibility="Hidden" Margin="130,22,0,0" Stretch="Fill" Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
                         <Viewbox.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -375,7 +380,7 @@
                             <Path Margin="-60,-80" Stretch="None" Fill="White" Data="m 92.318377,149.69095 -0.887417,-1.04659 c -1.024559,-1.20835 -3.014187,-2.59582 -4.212333,-2.9375 -1.176883,-0.33562 -3.241526,-0.29177 -4.33046,0.092 -1.31958,0.46502 -2.980835,1.65114 -3.921585,2.79998 -0.443142,0.54117 -0.867268,0.98394 -0.942499,0.98394 -0.07523,0 -0.481839,-0.48566 -0.90357,-1.07923 l -0.766787,-1.07922 0.460444,-0.67102 c 0.823918,-1.20073 3.007738,-3.05157 4.366838,-3.701 0.717449,-0.34283 1.905755,-0.73092 2.640682,-0.86245 3.17151,-0.56755 6.806294,1.01965 9.237051,4.03355 0.803177,0.99586 0.889503,1.17821 0.704254,1.48765 -0.260412,0.38208 -0.107783,0.16196 -0.429203,0.57318 l -0.417094,0.60354 c -0.571004,0.74994 -0.626193,0.6548 -0.598321,0.80321 z"/>
                         </Grid>
                     </Viewbox>
-                    <Viewbox x:Name="MyGattCDataBluetooth" Margin="0,95,90,0" Height="80" Width="50" Stretch="Uniform" HorizontalAlignment="Right" VerticalAlignment="Top" OpacityMask="Black">
+                    <Viewbox x:Name="MyGattCDataBluetooth" Grid.Row="1" Margin="0,95,90,0" Height="80" Width="50" Stretch="Uniform" HorizontalAlignment="Right" VerticalAlignment="Top" OpacityMask="Black">
                         <Path Fill="White" Data="M 25.41,11.41 14,0 H 12 V 15.17 L 2.83,6 0,8.83 11.17,20 0,31.17 2.83,34 12,24.83 V 40 h 2 L 25.41,28.59 16.83,20 Z M 16,7.66 19.76,11.42 16,15.17 Z M 19.76,28.59 16,32.34 v -7.52 z">
                             <Path.Style>
                                 <Style TargetType="{x:Type Path}">
@@ -404,7 +409,7 @@
                             </Path.Effect>
                         </Path>
                     </Viewbox>
-                    <Viewbox x:Name="MyGattCDataBattery" Margin="5,110,90,0" Height="50" Width="80" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" OpacityMask="Black">
+                    <Viewbox x:Name="MyGattCDataBattery" Grid.Row="1" Margin="5,110,90,0" Height="50" Width="80" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" OpacityMask="Black">
                         <Path Opacity="0" Fill="Red" Data="m 10.1,256 h 381.1 c 5.5,0 9.9,-4.5 9.9,-10 V 192 H 438 c 5.6,0 10.1,-4.5 10.1,-10 V 74 c 0,-5.5 -4.5,-10 -10.1,-10 H 401 V 10 C 401,4.5 396.7,0 391.1,0 H 10.1 C 4.5,0 0,4.5 0,10 v 236 c 0,5.5 4.5,10 10.1,10 z M 369,32 v 32 32 h 32.2 14.8 v 64 H 401.2 369 v 32 32 H 192 L 160,32 Z">
                             <Path.Style>
                                 <Style TargetType="{x:Type Path}">
@@ -433,7 +438,7 @@
                             </Path.Effect>
                         </Path>
                     </Viewbox>
-                    <TextBlock x:Name="MyGattCDataSymbol" HorizontalAlignment="Right" Height="87" Margin="800,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171" FontSize="72" FontWeight="Bold"/>
+                    <TextBlock x:Name="MyGattCDataSymbol" Grid.Row="1" HorizontalAlignment="Right" Height="87" Margin="800,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171" FontSize="72" FontWeight="Bold"/>
                 </Grid>
             </Viewbox>
 

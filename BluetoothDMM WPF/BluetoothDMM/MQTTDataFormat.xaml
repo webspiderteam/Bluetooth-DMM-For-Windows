@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:BluetoothDMM"
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
-        Title="{lex:LocText MQTTDataFormat}" Height="470.273" Width="425" ResizeMode="NoResize" WindowStyle="ToolWindow">
+        Title="{lex:LocText MQTTDataFormat}" Height="470.273" Width="470" ResizeMode="NoResize" WindowStyle="ToolWindow">
     <Window.Resources>
         <local:DataList  x:Key="gDataList"/>
         <local:SelectedDataList x:Key="sDataList"/>
@@ -17,7 +17,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="110"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <ListBox Grid.Column="0" x:Name="listBox" Margin="20,50,0,150" ItemsSource="{StaticResource ResourceKey=gDataList}" >
@@ -28,13 +28,13 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <StackPanel Grid.Column="1" Margin="0" >
-                <Button  x:Name="btnAdd" Width="75" Height="30" Margin="0,136,0,0"  Click="btnAdd_Click">
+                <Button  x:Name="btnAdd" Width="95" Height="30" Margin="0,136,0,0"  Click="btnAdd_Click">
                     <TextBlock>
             <Run Text="{lex:LocText Add}"/>
             <Run Text=">"/>
                     </TextBlock>
                 </Button>
-                <Button  x:Name="btnRemove" Width="75" Height="30" Margin="0,13,0,0" Click="btnRemove_Click">
+                <Button  x:Name="btnRemove" Width="95" Height="30" Margin="0,13,0,0" Click="btnRemove_Click">
                     <TextBlock>
             <Run Text="&lt;"/>
             <Run Text="{lex:LocText Remove}"/>
@@ -50,16 +50,17 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Grid.Column="2" x:Name="btnUp" Content="↑" FontSize="22" Height="25" Padding="0,-5" VerticalContentAlignment="Top" FontWeight="ExtraBold" Margin="0,170,10,218" Click="btnUp_Click" HorizontalAlignment="Right" Width="18"/>
-            <Button Grid.Column="2" x:Name="btnDown" Content="↓" FontSize="22" Height="25" Padding="0,-5" VerticalContentAlignment="Top" FontWeight="ExtraBold" Margin="0,204,10,182" RenderTransformOrigin="0.435,-0.016" Click="btnDown_Click" HorizontalAlignment="Right" Width="18"/>
+            <Button Grid.Column="2" x:Name="btnUp" Content="↑" FontSize="22" Height="25" Padding="0,-5" VerticalContentAlignment="Top" FontWeight="ExtraBold" Margin="0,80,10,218" Click="btnUp_Click" HorizontalAlignment="Right" Width="18"/>
+            <Button Grid.Column="2" x:Name="btnDown" Content="↓" FontSize="22" Height="25" Padding="0,-5" VerticalContentAlignment="Top" FontWeight="ExtraBold" Margin="0,104,10,182" RenderTransformOrigin="0.435,-0.016" Click="btnDown_Click" HorizontalAlignment="Right" Width="18"/>
 
         </Grid>
-
-        <TextBlock  VerticalAlignment="Bottom" Margin="10,0,10,95" TextWrapping="WrapWithOverflow">
+        <ScrollViewer Height="50" Margin="10,147,10,95" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto">
+            <TextBlock    TextWrapping="WrapWithOverflow">
             <Run Text="{lex:LocText SampleOutput}"/>
             <LineBreak/>
             <Run x:Name="txtSampleOutput" Text="{}{}"/>
-        </TextBlock>
+            </TextBlock>
+        </ScrollViewer>
         <Button x:Name="btnSave" Content="{lex:LocText Save}" Margin="20,15" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Height="35" Click="btnSave_Click"/>
         <CheckBox x:Name="chkUseComa" Content="{lex:LocText UseComa}" Margin="10,0,0,75" Height="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="397" Unchecked="chkUseComa_Unchecked" Checked="chkUseComa_Unchecked"/>
         <CheckBox x:Name="chkCleanWhitespace" Content="{lex:LocText CleanWhitespace}" Margin="10,0,0,55" Height="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="397"/>
