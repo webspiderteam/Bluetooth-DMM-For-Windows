@@ -12,10 +12,10 @@
         lex:ResxLocalizationProvider.DefaultDictionary="Resources"
         PreviewKeyDown="Settings_KeyDown" KeyUp="Settings_KeyDown"
         d:DataContext="d:DesignInstance local:MainWindow" 
-        Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="None" 
+        Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="SingleBorderWindow" 
         Title="Bluetooth DMM" Height="172" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center" 
         Activated="Window_Activated" MouseDown="Window_MouseDown" StateChanged="OnStateChanged" 
-        IsVisibleChanged="OnIsVisibleChanged" SizeChanged="Window_SizeChanged"
+        IsVisibleChanged="OnIsVisibleChanged" SizeChanged="Window_SizeChanged" MouseLeave="Display_MouseMove" MouseEnter="Display_MouseMove"
     >
     <Window.Resources>
         <!--// Toggle Button Style Template //-->
@@ -303,7 +303,7 @@
                 </Popup>
             </Grid>
 
-            <Viewbox x:Name="Display" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,0,-15" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both" MouseMove="Display_MouseMove" MouseLeave="Display_MouseMove">
+            <Viewbox x:Name="Display" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,0,-15" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -675,7 +675,7 @@
                 </StackPanel>
             </Grid>
         </Popup>
-        <ToggleButton x:Name="Tg_Btn" classes:VisibilityAnimation.AnimationType="Fade" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,36,0,0" Height="20" Width="20" BorderThickness="0" Style="{StaticResource tb_style}" Unchecked="Tg_Btn_Unchecked" Checked="Tg_Btn_Checked" MouseMove="Display_MouseMove">
+        <ToggleButton x:Name="Tg_Btn" classes:VisibilityAnimation.AnimationType="Fade" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,36,0,0" Height="20" Width="20" BorderThickness="0" Style="{StaticResource tb_style}" Unchecked="Tg_Btn_Unchecked" Checked="Tg_Btn_Checked">
             <!--// Toggle button default background image //-->
             <ToggleButton.Background>
                 <ImageBrush ImageSource="Assets/tgBtn_default.png"/>

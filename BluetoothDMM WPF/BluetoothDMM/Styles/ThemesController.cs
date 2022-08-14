@@ -2,36 +2,29 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace REghZy.Themes
-{
-    public static class ThemesController
-    {
+namespace REghZy.Themes {
+    public static class ThemesController {
         public static ThemeType CurrentTheme { get; set; }
 
-        private static ResourceDictionary ThemeDictionary
-        {
+        private static ResourceDictionary ThemeDictionary {
             get => Application.Current.Resources.MergedDictionaries[0];
             set => Application.Current.Resources.MergedDictionaries[0] = value;
         }
 
-        private static ResourceDictionary ControlColours
-        {
+        private static ResourceDictionary ControlColours {
             get => Application.Current.Resources.MergedDictionaries[1];
             set => Application.Current.Resources.MergedDictionaries[1] = value;
         }
 
-        private static ResourceDictionary Controls
-        {
+        private static ResourceDictionary Controls {
             get => Application.Current.Resources.MergedDictionaries[2];
             set => Application.Current.Resources.MergedDictionaries[2] = value;
         }
 
-        public static void SetTheme(ThemeType theme)
-        {
+        public static void SetTheme(ThemeType theme) {
             string themeName = theme.GetName();
             CurrentTheme = theme;
-            if (string.IsNullOrEmpty(themeName))
-            {
+            if (string.IsNullOrEmpty(themeName)) {
                 return;
             }
 
@@ -40,13 +33,11 @@ namespace REghZy.Themes
             Controls = new ResourceDictionary() { Source = new Uri("Themes/Controls.xaml", UriKind.Relative) };
         }
 
-        public static object GetResource(object key)
-        {
+        public static object GetResource(object key) {
             return ThemeDictionary[key];
         }
 
-        public static SolidColorBrush GetBrush(string name)
-        {
+        public static SolidColorBrush GetBrush(string name) {
             return GetResource(name) is SolidColorBrush brush ? brush : new SolidColorBrush(Colors.White);
         }
     }

@@ -274,8 +274,8 @@ namespace BluetoothDMM
             signalPlot = plt.PlotSignal(gattData, sampleRate, color: System.Drawing.Color.White);
             plt.XAxis.TickLabelFormat(customTickFormatter);
             signalPlot.YAxisIndex = 0;
-            signalPlot.LineWidth = 1;
-            signalPlot.MarkerSize = 3;
+            signalPlot.LineWidth = 1.5;
+            signalPlot.MarkerSize = 2;
             
             signalPlot.IsVisible = false;
             HighlightedPoint = plt.AddPoint(0, 0);
@@ -1466,8 +1466,7 @@ namespace BluetoothDMM
 
         private void Display_MouseMove(object sender, MouseEventArgs e)
         {
-            d(" " + Tg_Btn.IsMouseOver + Display.IsMouseOver + this.IsMouseOver);
-            if (Tg_Btn.IsMouseOver || Display.IsMouseOver || mTitlebar.IsMouseOver || this.IsMouseOver)
+            if (e.RoutedEvent.Name == "MouseEnter")
             {
                 Draggable = true;
                 mTitlebar.Visibility = Visibility.Visible;

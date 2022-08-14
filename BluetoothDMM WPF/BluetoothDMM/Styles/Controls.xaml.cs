@@ -1,81 +1,37 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Data;
+﻿using System.Windows;
 
-namespace REghZy.Themes
-{
-    public partial class Controls
-    {
-        public static UIElement Titlebarr { get; set; }
+namespace REghZy.Themes {
+    public partial class Controls {
+        public static FrameworkElement Titlebarr { get; private set; }
 
-        private void CloseWindow_Event(object sender, RoutedEventArgs e)
-        {
+        private void CloseWindow_Event(object sender, RoutedEventArgs e) {
             if (e.Source != null)
                 try { CloseWind(Window.GetWindow((FrameworkElement)e.Source)); }
                 catch { }
         }
-        private void AutoMinimize_Event(object sender, RoutedEventArgs e)
-        {
+        private void AutoMinimize_Event(object sender, RoutedEventArgs e) {
             if (e.Source != null)
                 try { MaximizeRestore(Window.GetWindow((FrameworkElement)e.Source)); }
                 catch { }
         }
-        private void Minimize_Event(object sender, RoutedEventArgs e)
-        {
+        private void Minimize_Event(object sender, RoutedEventArgs e) {
             if (e.Source != null)
                 try { MinimizeWind(Window.GetWindow((FrameworkElement)e.Source)); }
                 catch { }
-            
         }
 
         public void CloseWind(Window window) => window.Close();
-        public void MaximizeRestore(Window window)
-        {
+        public void MaximizeRestore(Window window) {
             if (window.WindowState == WindowState.Maximized)
                 window.WindowState = WindowState.Normal;
             else if (window.WindowState == WindowState.Normal)
                 window.WindowState = WindowState.Maximized;
-            
         }
         public void MinimizeWind(Window window) => window.WindowState = WindowState.Minimized;
 
-        private void titlebar_Initialized(object sender, EventArgs e)
+        private void titlebar_Initialized(object sender, System.EventArgs e)
         {
-            Titlebarr = sender as UIElement;
-        }
-
-        private void DockPanel_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            Debug.WriteLine("test");
+            Titlebarr = sender as FrameworkElement;
         }
     }
-
-    class windowStyleConverter : IValueConverter
-    {
-        public string tmp;
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-
-            tmp = value.ToString();
-            if (value.ToString() == "None")
-            {
-                return Visibility.Collapsed;
-            }
-            else
-            {
-                return Visibility.Visible;
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            //bool married = System.Convert.ToBoolean(value);
-            if (value.ToString() == "None")
-                return Visibility.Collapsed;
-            else
-                return Visibility.Visible;
-        }
-    }
-
 }
