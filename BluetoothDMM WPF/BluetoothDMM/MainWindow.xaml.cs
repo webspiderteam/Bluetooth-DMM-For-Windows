@@ -490,6 +490,8 @@ namespace BluetoothDMM
                     mqttClient.Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(Create_MQTTString()));
                 }
             }
+            if (GotFirstData)
+                TxtStatus.IsEnabled = false;
         }
 
         private string Create_MQTTString()
@@ -558,8 +560,12 @@ namespace BluetoothDMM
         private async void HrDeviceOnDeviceConnectionStatusChanged(object sender, ConnectionStatusChangedEventArgs args)
         {
             d("Current connection status is: " + args.IsConnected);
+            
             await RunOnUiThread(async () =>
             {
+                if (TxtStatus.IsEnabled)
+                    TxtStatus.IsEnabled = false;
+                TxtStatus.IsEnabled = true;
                 bool connected = args.IsConnected;
                 if (connected)
                 {
@@ -567,9 +573,9 @@ namespace BluetoothDMM
                     TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Connected;
                     //TxtBattery.Text = String.Format("battery level: {0}%", device.BatteryPercent);
                     MyGattCDataBluetooth.Visibility = Visibility.Visible;
-                    Is_Connected.IsChecked = true;
                     dispatcherTimer.Start();
                     Connected = 1;
+                    Is_Connected.IsChecked = true;
                     if (mqttClient != null && mqttClient.IsConnected)
                     {
                         mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
@@ -581,6 +587,7 @@ namespace BluetoothDMM
                 else
                 {
                     TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Disconnected;
+                    TxtStatus.IsEnabled=true;
                     TxtBattery.Text = "battery level: --";
                     dispatcherTimer.Stop();
                     Is_Connected.IsChecked = false;
@@ -593,7 +600,9 @@ namespace BluetoothDMM
                             $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\"}}"));
                     }
                 }
+                
             });
+
         }
 
         private async Task SearchDevices()
@@ -1472,20 +1481,22 @@ namespace BluetoothDMM
                 mTitlebar.Visibility = Visibility.Visible;
                 Tg_Btn.Visibility = Visibility.Visible;
                 TxtStatus.Visibility = Visibility.Visible;
+                TxtStatus.IsEnabled = true;
+                //TxtStatus.Opacity = 0.90;
             }
             else
             {
-                foreach (UIElement tb in FindVisualChilds<UIElement>(this))
-                {
-                    // do something with tb here
-                    if (tb.IsMouseOver)
-                        d(tb.GetValue(NameProperty) + tb.IsMouseOver.ToString());
-                }
+                //foreach (UIElement tb in FindVisualChilds<UIElement>(this))
+                //{
+                //    // do something with tb here
+                //    if (tb.IsMouseOver)
+                //        d(tb.GetValue(NameProperty) + tb.IsMouseOver.ToString());
+                //}
                 mTitlebar.Visibility = Visibility.Hidden;
                 Tg_Btn.Visibility = Visibility.Hidden;
-                TxtStatus.Visibility = Visibility.Hidden;
+                TxtStatus.IsEnabled = false;
+                //TxtStatus.Opacity = 0.0;
             }
-
         }
         public static IEnumerable<T> FindVisualChilds<T>(DependencyObject depObj) where T : DependencyObject
         {

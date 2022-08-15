@@ -310,7 +310,39 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock x:Name="TxtStatus" Grid.Row="0" TextWrapping="Wrap" FontSize="20" Text="{lex:LocText NotConnected}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,-20"/>
+                    <TextBlock x:Name="TxtStatus" Grid.Row="0" TextWrapping="Wrap" FontSize="20" Text="{lex:LocText NotConnected}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,-20" IsEnabled="False">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard x:Name="FadeInS">
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"  BeginTime="0:0:10.0"
+                                                                    To="0" Duration="0:0:0.5" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard x:Name="FadeOutS">
+                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                    To="1" Duration="0:0:0.5" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                            
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                    
+                                </Style.Triggers>
+                                <Style.Setters>
+                                    <Setter Property="Visibility" Value="Visible">
+                                        
+                                    </Setter>
+                                </Style.Setters>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <Border>
                     <Grid x:Name="aDisplay" Grid.Row="0" Margin="0,30,0,-110" Visibility="Collapsed" >
 
