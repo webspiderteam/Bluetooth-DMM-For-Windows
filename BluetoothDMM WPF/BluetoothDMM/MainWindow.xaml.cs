@@ -284,7 +284,7 @@ namespace BluetoothDMM
             HighlightedPoint.MarkerShape = ScottPlot.MarkerShape.openCircle;
             HighlightedPoint.IsVisible = false;
 
-            txt = plt.AddTooltip("Data", 0, 0);
+            txt = plt.AddTooltip("No Data", 0, 0);
             txt.Font.Color = System.Drawing.Color.White;
             txt.FillColor = System.Drawing.Color.FromArgb(190, 107, 126, 243);
             txt.BorderWidth = 1;
@@ -1524,8 +1524,15 @@ namespace BluetoothDMM
         {
             // to invert use ConverterParameter = '1'
             bool boolValue = !(bool)value;
-            boolValue = (parameter != null) ? !boolValue : boolValue;
-            return boolValue ? Visibility.Visible : Visibility.Hidden;
+
+            int param = parameter != null ? int.Parse(parameter.ToString(), NumberStyles.AllowLeadingSign) : 0;
+            if (param < 0)
+                boolValue = !boolValue;
+
+            if (Math.Abs(param) == 1)
+                return boolValue ? Visibility.Visible : Visibility.Collapsed;
+            else
+                return boolValue ? Visibility.Visible : Visibility.Hidden;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

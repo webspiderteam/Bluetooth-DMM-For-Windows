@@ -15,7 +15,7 @@
         Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="SingleBorderWindow" 
         Title="Bluetooth DMM" Height="172" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center" 
         Activated="Window_Activated" MouseDown="Window_MouseDown" StateChanged="OnStateChanged" 
-        IsVisibleChanged="OnIsVisibleChanged" SizeChanged="Window_SizeChanged" MouseLeave="Display_MouseMove" MouseEnter="Display_MouseMove"
+        IsVisibleChanged="OnIsVisibleChanged" SizeChanged="Window_SizeChanged" MouseLeave="Display_MouseMove" MouseEnter="Display_MouseMove" Tag="None"
     >
     <Window.Resources>
         <!--// Toggle Button Style Template //-->
@@ -478,7 +478,7 @@
         <CheckBox x:Name="Is_Connected" Visibility="Hidden" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Battery" Visibility="Hidden" IsChecked="False" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
 
-        <Popup StaysOpen="False" Width="240" Height="245" x:Name="MyPopup" Closed="MyPopup_Closed"  >
+        <Popup StaysOpen="True" Width="230" Height="245" x:Name="MyPopup" Closed="MyPopup_Closed"  >
             <Grid x:Name="nav_pnl" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240" Height="400" Background="#2E333A">
 
                 <StackPanel x:Name="st_pnl">
@@ -534,7 +534,7 @@
                         <!--// Connect to Device //-->
                         <ListViewItem x:Name="ConnectTo" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0">
                             <StackPanel Orientation="Horizontal" Margin="0,-18,0,0" Width="230">
-                                <Image Source="Assets/Bt_con.png" Height="28" Width="28" Margin="12,0,0,0" Visibility="{Binding SVGIcon, Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" />
+                                <Image Source="Assets/Bt_con.png" Height="28" Width="28" Margin="12,0,0,0" Visibility="{Binding SVGIcon,ConverterParameter='1', Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" />
                                 <Viewbox Width="38" Visibility="{Binding SVGIcon, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Margin="2,-45,0,0" Stretch="Uniform">
                                     <Path Fill="Wheat"  Data="m 370.337,793.014 62.155,54.895 -80.942,71.493 H 322.927 V 834.89 l -62.456,55.16 -20.251,-17.872 82.707,-73.035 v -12.261 l -82.707,-73.059 20.251,-17.872 62.456,55.16 v -84.512 h 28.623 l 80.942,71.505 -62.155,54.895 z m -18.789,19.139 v 71.505 l 40.472,-35.747 z m 0,-38.301 40.472,-35.744 -40.472,-35.746 v 71.506 z m 92.622,37.744 c -5.694,0 -11.153,-1.996 -15.179,-5.554 -4.024,-3.556 -6.287,-8.377 -6.287,-13.406 0,-5.029 2.263,-9.851 6.287,-13.406 4.026,-3.555 9.486,-5.553 15.179,-5.553 5.695,0 11.155,1.997 15.18,5.553 4.025,3.555 6.287,8.377 6.287,13.406 0,5.029 -2.262,9.851 -6.287,13.406 -4.025,3.558 -9.485,5.554 -15.18,5.554 z m -186.049,0 c -5.695,0 -11.154,-1.996 -15.179,-5.554 -4.025,-3.556 -6.288,-8.377 -6.288,-13.406 0,-5.029 2.263,-9.851 6.288,-13.406 4.025,-3.555 9.485,-5.553 15.179,-5.553 5.694,0 11.154,1.997 15.18,5.553 4.024,3.555 6.287,8.377 6.287,13.406 0,5.029 -2.263,9.851 -6.287,13.406 -4.026,3.558 -9.486,5.554 -15.18,5.554 z M 472.5,590.375 h -245 c -22.039,0.027 -43.168,8.793 -58.75,24.375 -15.582,15.582 -24.348,36.711 -24.375,58.75 v 245 c 0.027,22.039 8.793,43.168 24.375,58.75 15.582,15.582 36.711,24.348 58.75,24.375 h 245 c 22.039,-0.027 43.168,-8.793 58.75,-24.375 15.582,-15.582 24.348,-36.711 24.375,-58.75 v -245 c -0.028,-22.039 -8.793,-43.168 -24.375,-58.75 -15.582,-15.582 -36.711,-24.348 -58.75,-24.375 z m 56.875,328.12 c -0.02,15.078 -6.016,29.535 -16.68,40.195 -10.66,10.664 -25.117,16.66 -40.195,16.68 h -245 c -15.078,-0.02 -29.535,-6.016 -40.195,-16.68 -10.664,-10.66 -16.66,-25.117 -16.68,-40.195 v -245 c 0.019,-15.078 6.015,-29.535 16.68,-40.195 10.66,-10.664 25.117,-16.66 40.195,-16.68 h 245 c 15.078,0.019 29.535,6.015 40.195,16.68 10.664,10.66 16.66,25.117 16.68,40.195 z">
                                         <Path.Effect>
@@ -548,7 +548,7 @@
                         <!--// View Menu //-->
                         <ListViewItem x:Name="ViewMenu" HorizontalAlignment="Left" Margin="0,0,0,0" Height="30" MouseMove="ViewMenu_MouseMove" MouseLeave="MyPopupViewSub_MouseLeave">
                             <StackPanel Orientation="Horizontal" Margin="0,-18,0,0" Width="230">
-                                <Image Source="Assets/view.png" Width="28" Margin="12,0,0,0" Visibility="{Binding SVGIcon, Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" >
+                                <Image Source="Assets/view.png" Width="28" Margin="12,0,0,0" Visibility="{Binding SVGIcon,ConverterParameter='1', Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" >
                                     <Image.Effect>
                                         <DropShadowEffect Color="Black" Direction="-90" ShadowDepth="0" BlurRadius="7" Opacity="0.5"/>
                                     </Image.Effect>
@@ -570,7 +570,7 @@
                         <!--// Settings //-->
                         <ListViewItem x:Name="Settings" HorizontalAlignment="Left" Margin="0,0,0,0" Height="30">
                             <StackPanel Orientation="Horizontal" Margin="0,-18,0,0" Width="230">
-                                <Image Visibility="{Binding SVGIcon, Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/img_setting.png" Width="28" Margin="12,0,0,0">
+                                <Image Visibility="{Binding SVGIcon,ConverterParameter='1', Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/img_setting.png" Width="28" Margin="12,0,0,0">
                                     <Image.Effect>
                                         <DropShadowEffect Color="Black" Direction="-90" ShadowDepth="0" BlurRadius="7" Opacity="1"/>
                                     </Image.Effect>
@@ -587,7 +587,7 @@
                         </ListViewItem>
                         <ListViewItem x:Name="About" HorizontalAlignment="Left" Margin="0,0,0,0" Height="30">
                             <StackPanel Orientation="Horizontal" Margin="0,-18,0,0" Width="230">
-                                <Image Visibility="{Binding SVGIcon, Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/Information.png" Width="28" Margin="12,0,0,0">
+                                <Image Visibility="{Binding SVGIcon,ConverterParameter='1', Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/Information.png" Width="28" Margin="12,0,0,0">
                                     <Image.Effect>
                                         <DropShadowEffect Color="Black" Direction="-90" ShadowDepth="0" BlurRadius="7" Opacity="0.5"/>
                                     </Image.Effect>
@@ -621,7 +621,7 @@
                MouseMove="ViewMenu_MouseMove"
                        MouseLeave="MyPopupViewSub_MouseLeave"
                        PopupAnimation="Fade">
-            <Grid x:Name="nav_pnlView" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240" Height="95" Background="#2E333A">
+            <Grid x:Name="nav_pnlView" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="95" Background="#2E333A">
                 <StackPanel x:Name="st_pnlView">
                     <ListView x:Name="LVView" Background="Transparent" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <!--// Listview items style template //-->
@@ -650,7 +650,7 @@
                         <!--// Data Chart //-->
                         <ListViewItem x:Name="Chart" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" >
                             <StackPanel Orientation="Horizontal" Margin="0,-18,0,0" Width="230">
-                                <Image Visibility="{Binding SVGIcon, Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/line_chart.png" Width="28" Height="28" Margin="12,0,0,0">
+                                <Image Visibility="{Binding SVGIcon,ConverterParameter='1', Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/line_chart.png" Width="28" Height="28" Margin="12,0,0,0">
                                     <Image.Effect>
                                         <DropShadowEffect Color="Yellow" Direction="-90" ShadowDepth="0" BlurRadius="15" Opacity="1"/>
                                     </Image.Effect>
@@ -662,13 +662,13 @@
                                         </Path.Effect>
                                     </Path>
                                 </Viewbox>
-                                <TextBlock Text="{lex:LocText DataChart}" Width="120" Height="30" Margin="25,10,0,0"/>
+                                <TextBlock Text="{lex:LocText DataChart}" Width="125" Height="30" Margin="25,10,0,0"/>
                                 <Image x:Name="ChartON" Visibility="Hidden" Source="Assets/done.png" Width="16" Height="16" HorizontalAlignment="Right" Margin="0,0,10,0"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="ADisplay" HorizontalAlignment="Left" Margin="0,0,0,0" Height="30">
                             <StackPanel Orientation="Horizontal" Margin="0,-18,0,0" Width="230">
-                                <Image Visibility="{Binding SVGIcon, Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/ADisplay.png" Width="28" Margin="12,0,0,0">
+                                <Image Visibility="{Binding SVGIcon,ConverterParameter='1', Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/ADisplay.png" Width="28" Margin="12,0,0,0">
                                     <Image.Effect>
                                         <DropShadowEffect Color="white" Direction="-90" ShadowDepth="0" BlurRadius="7" Opacity="1"/>
                                     </Image.Effect>
@@ -680,14 +680,14 @@
                                         </Path.Effect>
                                     </Path>
                                 </Viewbox>
-                                <TextBlock Text="{lex:LocText AnalogDisplay}" Width="120" Height="30" Margin="25,10,0,0"/>
+                                <TextBlock Text="{lex:LocText AnalogDisplay}" Width="125" Height="30" Margin="25,10,0,0"/>
                                 <Image x:Name="ADisplayON" Visibility="Hidden" Source="Assets/done.png" Width="16" Height="16" HorizontalAlignment="Right" Margin="0,0,10,0"/>
                             </StackPanel>
                         </ListViewItem>
                         <!--// Always on top //-->
                         <ListViewItem x:Name="OnTop" HorizontalAlignment="Left" Margin="0,0,0,0" Height="30">
                             <StackPanel Orientation="Horizontal" Margin="0,-18,0,0" Width="230">
-                                <Image Visibility="{Binding SVGIcon, Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/ontop.png" Width="28" Margin="12,0,0,0">
+                                <Image Visibility="{Binding SVGIcon,ConverterParameter='1', Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, Source={x:Static settings:Settings.Default}}" Source="Assets/ontop.png" Width="28" Margin="12,0,0,0">
                                     <Image.Effect>
                                         <DropShadowEffect Color="white" Direction="-90" ShadowDepth="0" BlurRadius="7" Opacity="1"/>
                                     </Image.Effect>
@@ -699,7 +699,7 @@
                                         </Path.Effect>
                                     </Path>
                                 </Viewbox>
-                                <TextBlock Text="{lex:LocText AlwaysonTop}" Width="120" Height="30" Margin="25,10,0,0"/>
+                                <TextBlock Text="{lex:LocText AlwaysonTop}" Width="125" Height="30" Margin="25,10,0,0"/>
                                 <Image x:Name="OnTopON" Visibility="Hidden" Source="Assets/done.png" Width="16" Height="16" HorizontalAlignment="Right" Margin="0,0,10,0"/>
                             </StackPanel>
                         </ListViewItem>

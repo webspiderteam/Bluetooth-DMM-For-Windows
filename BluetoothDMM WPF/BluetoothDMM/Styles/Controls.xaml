@@ -444,13 +444,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
-                    <Grid  WindowChrome.IsHitTestVisibleInChrome="True">
+                    <Grid x:Name="wGrid">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <Grid>
-                                <AdornerDecorator Margin="0,0,0,0">
+                                <AdornerDecorator x:Name="wAdoner" Margin="0,0,0,0">
                                     <ContentPresenter />
                                 </AdornerDecorator>
-                                <Grid  WindowChrome.IsHitTestVisibleInChrome="True" Height="30"  x:Name="titlebar" classes:VisibilityAnimation.AnimationType="Fade" Background="#60202020" VerticalAlignment="Top" Margin="0" Initialized="titlebar_Initialized">
+                                <Grid Height="30"  x:Name="titlebar" classes:VisibilityAnimation.AnimationType="Fade" Background="#60202020" VerticalAlignment="Top" Margin="0" Initialized="titlebar_Initialized">
                                     <DockPanel Margin="0,0,130,0">
                                         <Image HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,4,0,0" Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Height="24" />
                                         <TextBlock  Margin="5,3" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextWrapping="NoWrap" FontSize="11" Width="Auto" Foreground="{TemplateBinding Foreground}" Text="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="1" TextAlignment="Left" />
@@ -490,9 +490,21 @@
                         <Trigger Property="WindowStyle" Value="None">
                             <Setter TargetName="titlebar" Property="Visibility" Value="Hidden"></Setter>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsActive" Value="False" />
+                                <Condition Property="Tag" Value="{x:Null}"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{DynamicResource Window.Static.Background}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
                         <Trigger Property="WindowStyle" Value="ToolWindow">
                             <Setter TargetName="btnRestore" Property="Visibility" Value="Collapsed"></Setter>
                             <Setter TargetName="btnMinimize" Property="Visibility" Value="Collapsed"></Setter>
+                        </Trigger>
+                        <Trigger Property="Tag" Value="None">
+                            <Setter TargetName="wGrid" Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"></Setter>
                         </Trigger>
                         <Trigger Property="WindowState" Value="Normal">
                             <Setter TargetName="btnRestore" Property="Content">

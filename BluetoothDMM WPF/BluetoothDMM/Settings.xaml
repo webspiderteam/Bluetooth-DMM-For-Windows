@@ -10,28 +10,28 @@
         lex:ResxLocalizationProvider.DefaultDictionary="Resources"
         Style="{DynamicResource CustomWindowStyle}"
         mc:Ignorable="d"
-        Title="{lex:LocText Settings}" Height="556.552" Width="484.146" WindowStyle="ToolWindow">
+        Title="{lex:LocText Settings}" Height="591" Width="484.146" WindowStyle="ToolWindow">
     <Window.Resources>
         <local:CountryIdToFlagImageSourceConverter x:Key="CountryIdToFlagImageSourceConverter"/>
     </Window.Resources>
     <Grid>
-        <CheckBox x:Name="checkBox1" Content="{lex:LocText AutoConnectKnown}"  HorizontalAlignment="Left" Height="34" Margin="56,65,0,0" VerticalAlignment="Top" Width="400"/>
-        <CheckBox x:Name="checkBox2" Content="{lex:LocText ChartON}" HorizontalAlignment="Left" Height="34" Margin="56,157,0,0" VerticalAlignment="Top" Width="400"/>
-        <CheckBox x:Name="checkBox3" Content="{lex:LocText AlwaysonTop}" HorizontalAlignment="Left" Height="34" Margin="56,187,0,0" VerticalAlignment="Top" Width="400"/>
-        <CheckBox x:Name="checkBox41" Content="{lex:LocText AnalogDisplatONStart}" HorizontalAlignment="Left" Height="34" Margin="56,217,0,0" VerticalAlignment="Top" Width="400" MinWidth="200"/>
-        <CheckBox x:Name="checkBox5" Content="{lex:LocText LogRaw}" HorizontalAlignment="Left" Height="34" Margin="56,305,0,0" VerticalAlignment="Top" Width="400" IsChecked="True"/>
-        <CheckBox x:Name="checkBox6" Content="{lex:LocText Reconnect}" HorizontalAlignment="Left" Height="29" Margin="56,339,0,0" VerticalAlignment="Top" Width="400" IsChecked="True"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="18" Margin="33,53,0,0" Text="{lex:LocText StartupSettings}" VerticalAlignment="Top" Width="300"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Height="18" Margin="33,292,0,0" Text="{lex:LocText AdvencedSettings}" VerticalAlignment="Top" Width="300"/>
-        <Button x:Name="button" Content="{lex:LocText Save}" HorizontalAlignment="Left" Height="29" Margin="359,497,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click"/>
-        <CheckBox x:Name="checkBox4" Content="{lex:LocText SavePosition}" HorizontalAlignment="Left" Height="34" Margin="56,247,0,0" VerticalAlignment="Top" Width="400" MinWidth="200"/>
-        <CheckBox x:Name="checkBox7" Content="{lex:LocText MinimizeToTray}" HorizontalAlignment="Left" Height="29" Margin="56,372,0,0" VerticalAlignment="Top" Width="400" IsChecked="True"/>
-        <CheckBox x:Name="checkBox8" Content="{lex:LocText RunStartup}" HorizontalAlignment="Left" Height="29" Margin="56,407,0,0" VerticalAlignment="Top" Width="300" IsChecked="True"/>
-        <CheckBox x:Name="checkBox9" Content="{lex:LocText AskBeforeConnect}" HorizontalAlignment="Left" Height="34" Margin="56,125,0,0" VerticalAlignment="Top" Width="400"/>
-        <Button x:Name="button1" Content="{lex:LocText ManageKnown}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="229,99,0,0" Height="26" Click="Button1_Click" IsEnabled="{Binding IsChecked, ElementName=checkBox1}"/>
+        <CheckBox x:Name="checkBox1" Content="{lex:LocText AutoConnectKnown}"  HorizontalAlignment="Left" Height="34" Margin="56,93,0,0" VerticalAlignment="Top" Width="400"/>
+        <CheckBox x:Name="checkBox2" Content="{lex:LocText ChartON}" HorizontalAlignment="Left" Height="34" Margin="56,183,0,0" VerticalAlignment="Top" Width="400"/>
+        <CheckBox x:Name="checkBox3" Content="{lex:LocText AlwaysonTop}" HorizontalAlignment="Left" Height="34" Margin="56,213,0,0" VerticalAlignment="Top" Width="400"/>
+        <CheckBox x:Name="checkBox41" Content="{lex:LocText AnalogDisplatONStart}" HorizontalAlignment="Left" Height="34" Margin="56,243,0,0" VerticalAlignment="Top" Width="400"/>
+        <CheckBox x:Name="checkBox5" Content="{lex:LocText LogRaw}" HorizontalAlignment="Left" Height="34" Margin="56,331,0,0" VerticalAlignment="Top" Width="400" IsChecked="True"/>
+        <CheckBox x:Name="checkBox6" Content="{lex:LocText Reconnect}" HorizontalAlignment="Left" Height="29" Margin="56,363,0,0" VerticalAlignment="Top" Width="400" IsChecked="True"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="18" Margin="33,81,0,0" Text="{lex:LocText StartupSettings}" VerticalAlignment="Top" Width="300"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Height="18" Margin="33,318,0,0" Text="{lex:LocText AdvencedSettings}" VerticalAlignment="Top" Width="300"/>
+        <Button x:Name="button" Content="{lex:LocText Save}" HorizontalAlignment="Left" Height="29" Margin="359,525,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click"/>
+        <CheckBox x:Name="checkBox4" Content="{lex:LocText SavePosition}" HorizontalAlignment="Left" Height="34" Margin="56,274,0,0" VerticalAlignment="Top" Width="400" MinWidth="200"/>
+        <CheckBox x:Name="checkBox7" Content="{lex:LocText MinimizeToTray}" HorizontalAlignment="Left" Height="29" Margin="56,394,0,0" VerticalAlignment="Top" Width="400" IsChecked="True"/>
+        <CheckBox x:Name="checkBox8" Content="{lex:LocText RunStartup}" HorizontalAlignment="Left" Height="29" Margin="56,425,0,0" VerticalAlignment="Top" Width="300" IsChecked="True"/>
+        <CheckBox x:Name="checkBox9" Content="{lex:LocText AskBeforeConnect}" HorizontalAlignment="Left" Height="34" Margin="56,153,0,0" VerticalAlignment="Top" Width="400"/>
+        <Button x:Name="button1" Content="{lex:LocText ManageKnown}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="80,127,0,0" Height="26" Click="Button1_Click" IsEnabled="{Binding IsChecked, ElementName=checkBox1}"/>
         <ComboBox x:Name="comboBox" ItemsSource="{Binding Source={x:Static lex:LocalizeDictionary.Instance}, Path=MergedAvailableCultures}"
                   SelectedItem="{Binding Source={x:Static lex:LocalizeDictionary.Instance}, Path=Culture}"
-                  HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="158,27,0,0">
+                  HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="58,49,0,0">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -42,8 +42,8 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <TextBlock x:Name="textBlockl" HorizontalAlignment="Left" Height="18" Margin="33,27,0,0" Text="{lex:LocText Language}" VerticalAlignment="Top" Width="120"/>
-        <CheckBox x:Name="MQTTEnabled" Content="{lex:LocText EnableMQTT}" HorizontalAlignment="Left" Height="29" Margin="56,468,0,0" VerticalAlignment="Top" Width="300" IsChecked="True"/>
-        <Button x:Name="MQTTSettings" Content="{lex:LocText MQTTSettings}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="56,502,0,0" Height="24" RenderTransformOrigin="0.504,0.149" IsEnabled="{Binding IsChecked, ElementName=MQTTEnabled}" Click="MQTTSettings_Click"/>
-        <CheckBox x:Name="checkBox10" Content="{lex:LocText CSVFirst}" HorizontalAlignment="Left" Height="29" Margin="56,437,0,0" VerticalAlignment="Top" Width="300" IsChecked="True"/>
+        <CheckBox x:Name="MQTTEnabled" Content="{lex:LocText EnableMQTT}" HorizontalAlignment="Left" Height="29" Margin="56,486,0,0" VerticalAlignment="Top" Width="300" IsChecked="True"/>
+        <Button x:Name="MQTTSettings" Content="{lex:LocText MQTTSettings}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Margin="80,520,0,0" Height="24" RenderTransformOrigin="0.504,0.149" IsEnabled="{Binding IsChecked, ElementName=MQTTEnabled}" Click="MQTTSettings_Click"/>
+        <CheckBox x:Name="checkBox10" Content="{lex:LocText CSVFirst}" HorizontalAlignment="Left" Height="29" Margin="56,455,0,0" VerticalAlignment="Top" Width="300" IsChecked="True"/>
     </Grid>
 </Window>
