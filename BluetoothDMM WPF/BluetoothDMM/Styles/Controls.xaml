@@ -444,10 +444,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
-                    <Grid x:Name="wGrid">
+                    <Grid>
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <Grid>
-                                <AdornerDecorator x:Name="wAdoner" Margin="0,0,0,0">
+                            <Grid x:Name="wGrid">
+                                <AdornerDecorator x:Name="wAdoner" Margin="0">
                                     <ContentPresenter />
                                 </AdornerDecorator>
                                 <Grid Height="30"  x:Name="titlebar" classes:VisibilityAnimation.AnimationType="Fade" Background="#60202020" VerticalAlignment="Top" Margin="0" Initialized="titlebar_Initialized">

@@ -187,6 +187,7 @@
 
                                 <TextBlock><Run  Text="{lex:LocText CreatedBy}" /><Run Text=" "/><Run Text=" WebSpiderTeam"/></TextBlock>
                                 <TextBlock><Run Text="{lex:LocText Version}"/><Run Text=" "/><Run Text="{Binding Text, ElementName=version}"/></TextBlock>
+                                <TextBlock Text="For help please visit wiki on Github Page"/>
                                 <TextBlock><Hyperlink RequestNavigate="HandleLinkClick" NavigateUri="https://github.com/webspiderteam/Bluetooth-DMM-For-Windows"><Run Text="github.com/WebSpiderTeam/Bluetooth-DMM-For-Windows" /></Hyperlink></TextBlock>
                                 <TextBlock>
                                     <Run Text="Special Thanks to "/>

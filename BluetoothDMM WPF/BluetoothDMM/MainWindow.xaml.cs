@@ -1375,7 +1375,7 @@ namespace BluetoothDMM
             Draggable = true;
         }
 
-        private void CustomDialog_MouseMove(object sender, MouseEventArgs e)
+        private async void CustomDialog_MouseMove(object sender, MouseEventArgs e)
         {
             Draggable = false;
             var uiElement = (Popup)sender;
@@ -1510,10 +1510,11 @@ namespace BluetoothDMM
             }
         }
 
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        private async void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (!wStateChanged)
-                MinHeight = Display.ActualHeight;
+            
+            if (!wStateChanged && Height < Display.ActualHeight)
+                Height = Display.ActualHeight;
             wStateChanged = false;
         }
     }
