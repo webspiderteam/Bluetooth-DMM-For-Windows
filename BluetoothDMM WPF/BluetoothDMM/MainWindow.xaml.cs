@@ -33,7 +33,6 @@ namespace BluetoothDMM
     public partial class MainWindow : Window
     {
         private System.Windows.Forms.NotifyIcon m_notifyIcon;
-        private System.Windows.Forms.ContextMenu TrayContextMenu;
         private HeartRateLE.Bluetooth.HeartRateMonitor _heartRateMonitor;
         public string SelectedDeviceId { get; private set; }
         public string SelectedDeviceName { get; private set; }
@@ -167,10 +166,7 @@ namespace BluetoothDMM
                 Icon = new System.Drawing.Icon(Application.GetResourceStream(new Uri("pack://application:,,,/BluetoothDMM;component/Assets/Logo.ico")).Stream),
                 Visible = true
             };
-            TrayContextMenu = new System.Windows.Forms.ContextMenu();
-            TrayContextMenu.MenuItems.Add("&Show App", NotifyIcon_Click);
-            TrayContextMenu.MenuItems.Add("E&xit",Exit_Click);
-            m_notifyIcon.ContextMenu = TrayContextMenu;
+            m_notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(); //TrayContextMenu;
             m_notifyIcon.Click += new EventHandler(NotifyIcon_Click);
             get_MQTT_Settings();
             if (MQTTSetup.MQTTEnabled)
@@ -189,12 +185,13 @@ namespace BluetoothDMM
                     catch (Exception ex)
                     {
                         //MQTT Connection Error
-                        d("MQTT Connection Error");
+                        d("MQTT Connection Error" + ex.Message);
                     }
                 });
                 Get_DataList();
             }
         }
+
         DependencyObject FindVisualTreeRoot(DependencyObject initial)
         {
             DependencyObject current = initial;
@@ -271,7 +268,7 @@ namespace BluetoothDMM
         private void ChartSetup()
         {
             gattData = new double[1_000_000];
-            signalPlot = plt.PlotSignal(gattData, sampleRate, color: System.Drawing.Color.White);
+            signalPlot = plt.AddSignal(gattData, sampleRate, color: System.Drawing.Color.White);
             plt.XAxis.TickLabelFormat(customTickFormatter);
             signalPlot.YAxisIndex = 0;
             signalPlot.LineWidth = 1.5;
@@ -294,21 +291,13 @@ namespace BluetoothDMM
             txt.IsVisible = false;
         }
 
-        private void Exit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private WindowState m_storedWindowState = WindowState.Normal;
         private Point Startpoint;
         private string ResultDialog;
         private MqttClient mqttClient;
-        private RateChangedEventArgs GattDatas;
         private Dictionary<string, string> SelectedDatas;
         private bool trick;
         private UIElement mTitlebar;
-        private FrameworkElement mGrid;
-        private FrameworkElement mBorder;
         private bool wStateChanged;
 
         private void OnStateChanged(object sender, EventArgs args)
@@ -334,10 +323,30 @@ namespace BluetoothDMM
 
         private void NotifyIcon_Click(object sender, EventArgs e)
         {
+            System.Windows.Forms.MouseEventArgs mouseArgs = e as System.Windows.Forms.MouseEventArgs;
+            if (mouseArgs != null)
+            {
+                if (mouseArgs.Button == System.Windows.Forms.MouseButtons.Left)
+                {
+                    Show_Click(null, null);
+                } else if (mouseArgs.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    ContextMenu menu = (ContextMenu)aDisplay.FindResource("cMenu");//This sentence is to find resources (you can write the menu style there)
+                    menu.IsOpen = true;
+                }
+                
+            }
+        }
+        private void Show_Click(object sender, RoutedEventArgs e)
+        {
             Show();
             WindowState = m_storedWindowState;
         }
 
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
         private void CheckTrayIcon()
         {
             ShowTrayIcon(!IsVisible);
@@ -561,7 +570,7 @@ namespace BluetoothDMM
         {
             d("Current connection status is: " + args.IsConnected);
             
-            await RunOnUiThread(async () =>
+            await RunOnUiThread(() =>
             {
                 if (TxtStatus.IsEnabled)
                     TxtStatus.IsEnabled = false;
@@ -605,7 +614,7 @@ namespace BluetoothDMM
 
         }
 
-        private async Task SearchDevices()
+        private Task SearchDevices()
         {
             iDeviceListC = new Dictionary<string, string>();
             try
@@ -618,14 +627,14 @@ namespace BluetoothDMM
                         if (DeviceListC.ContainsKey(args.Device.Id))
                             iDeviceListC.Remove(args.Device.Id);
                         //Debug.WriteLine($"Added {args.Device.Name} Connected: {args.Device.Id} IsConnectable: {(args.Device.Properties.ContainsKey("System.Devices.Aep.Bluetooth.Le.IsConnectable") ? (bool)args.Device.Properties["System.Devices.Aep.Bluetooth.Le.IsConnectable"] : false)}");
-                        if (DeviceListC.ContainsKey(args.Device.Id)  && (args.Device.Properties.ContainsKey("System.Devices.Aep.Bluetooth.Le.IsConnectable") && (bool)args.Device.Properties["System.Devices.Aep.Bluetooth.Le.IsConnectable"]))
+                        if (DeviceListC.ContainsKey(args.Device.Id)  && args.Device.Properties.ContainsKey("System.Devices.Aep.Bluetooth.Le.IsConnectable") && (bool)args.Device.Properties["System.Devices.Aep.Bluetooth.Le.IsConnectable"])
                         {
                             SelectedDeviceId = args.Device.Id;
                             SelectedDeviceName = DeviceListC[args.Device.Id];
                             //Debug.WriteLine($"Added {args.Device.Name} Connected : {args.Device.IsConnected}" + "IsConnectable");
                             Connected = 2;
                             string result;
-                            if ((bool)Properties.Settings.Default.AskOnConnect)
+                            if (Properties.Settings.Default.AskOnConnect)
                                 result = await ShowCustomDialog(SelectedDeviceName);
                             else
                                 result = "Button1";
@@ -657,7 +666,7 @@ namespace BluetoothDMM
                             //Debug.WriteLine($"Added {args.Device.Name} Connected : {args.Device.IsConnected}" + "IsConnectable");
                             Connected = 2;
                             string result;
-                            if ((bool)Properties.Settings.Default.AskOnConnect)
+                            if (Properties.Settings.Default.AskOnConnect)
                                 result = await ShowCustomDialog(SelectedDeviceName);
                             else
                                 result = "Button1";
@@ -691,12 +700,13 @@ namespace BluetoothDMM
             }
             catch (ArgumentException ex) { Debug.WriteLine("MainSearch" + ex.Message); }
             Debug.WriteLine("Device Enumeration Stopped?");
+            return Task.CompletedTask;
         }
 
         private async Task<string> ShowCustomDialog(string DeviceName)
         {
             ResultDialog = "0";
-            await RunOnUiThread(async () =>
+            await RunOnUiThread(() =>
             {
                 CustomDialogHeader.Text = DeviceName;
                 CustomDialog.IsOpen = true;
@@ -1333,7 +1343,7 @@ namespace BluetoothDMM
 
         private void Window_MouseDown(Object sender, MouseButtonEventArgs e)
         {
-            if (Draggable)
+            if (Draggable && e.LeftButton==MouseButtonState.Pressed)
                 this.DragMove();
         }
         
@@ -1375,7 +1385,7 @@ namespace BluetoothDMM
             Draggable = true;
         }
 
-        private async void CustomDialog_MouseMove(object sender, MouseEventArgs e)
+        private void CustomDialog_MouseMove(object sender, MouseEventArgs e)
         {
             Draggable = false;
             var uiElement = (Popup)sender;
@@ -1421,7 +1431,7 @@ namespace BluetoothDMM
             ResultDialog = ((System.Windows.FrameworkElement)sender).Name;
             CustomDialog.IsOpen = false;
             if (this.WindowState == WindowState.Minimized && ResultDialog=="Button1")
-                NotifyIcon_Click(null, null);
+                Show_Click(null, null);
             Properties.Settings.Default.AskOnConnect = (bool)!DontAsk.IsChecked;
             Properties.Settings.Default.Save();
         }
@@ -1510,7 +1520,7 @@ namespace BluetoothDMM
             }
         }
 
-        private async void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             
             if (!wStateChanged && Height < Display.ActualHeight)

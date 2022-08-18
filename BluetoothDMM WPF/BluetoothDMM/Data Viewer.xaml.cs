@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,10 +15,6 @@ namespace BluetoothDMM
     /// </summary>
     public partial class DataViewer : Window
     {
-        public string SelectedDeviceId { get; private set; }
-
-        public string SelectedDeviceName { get; private set; }
-        private System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         private readonly Plot plt;
         private readonly Tooltip txt;
         public double[] gattData = new double[1_000_000];
@@ -29,8 +24,6 @@ namespace BluetoothDMM
         private double LastHighlightedIndex = -1;
         private int nextDataIndex;
         private int ZoomScale = 30;
-        private string OldACDC;
-        private string OldSymbol;
 
         public DataViewer(double[] ImportedData, byte[] vLinesS, int[] VLinesX)
         {
@@ -154,18 +147,6 @@ namespace BluetoothDMM
         {
             Debug.WriteLine(txt);
         }
-        private System.Windows.Visibility Bool_to_Vis(bool txt)
-        {
-            if (txt) { return Visibility.Visible; } else { return Visibility.Collapsed; }
-        }
-
-        private async Task RunOnUiThread(Action a)
-        {
-            await this.Dispatcher.InvokeAsync(() =>
-           {
-               a();
-           });
-        }
 
         private void wpfPlot1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -204,12 +185,6 @@ namespace BluetoothDMM
 
                 wpfPlot1.Render();
             }
-
-            // update the GUI to describe the highlighted point
-            double mouseX = e.GetPosition(this).X;
-            double mouseY = e.GetPosition(this).Y;
-            //label1.Content = $"Closest point to ({mouseX:N2}, {mouseY:N2}) " +
-            //   $"is index {pointIndex} ({pointX:N2}, {pointY:N2})";
         }
 
         private static string[] SymbolToText(string Value)
@@ -291,27 +266,6 @@ namespace BluetoothDMM
             }
         }
 
-        private void addVLine()
-        {
-            var vline = plt.AddVerticalLine(nextDataIndex - 1);
-            vline.YAxisIndex = 1;
-            vline.LineWidth = 2;
-            var axes = plt.GetAxisLimits(0, 1);
-
-            int yHigh = (int)axes.YMax;
-            var txtvline1 = plt.AddText((OldACDC == "" ? string.Empty : "  " + OldACDC + " * \n") + "  " + OldSymbol + " *  ", nextDataIndex - 1, yHigh);
-            txtvline1.YAxisIndex = 1;
-            txtvline1.BorderColor = System.Drawing.Color.White;   // controls whether anything can be dragged
-            txtvline1.BorderSize = 1; // controls whether points can be dragged horizontally 
-            txtvline1.PixelOffsetX = -50;
-            txtvline1.PixelOffsetY = -5;
-            txtvline1.BackgroundFill = true;
-            txtvline1.BackgroundColor = System.Drawing.Color.FromArgb(190, 107, 126, 243);
-            txtvline1.FontBold = true;
-            txtvline1.FontSize = 12;// controls whether points can be dragged vertically
-            txtvline1.Font.Color = System.Drawing.Color.White;
-
-        }
         private void wpfPlot1_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             var axes = plt.GetAxisLimits();
@@ -349,12 +303,5 @@ namespace BluetoothDMM
             wpfPlot1.Refresh();
             SettingPopup.IsOpen = false;
         }
-
-
-        private void window_Activated(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
