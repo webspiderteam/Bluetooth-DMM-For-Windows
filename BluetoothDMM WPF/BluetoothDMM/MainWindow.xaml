@@ -11,8 +11,8 @@
         lex:ResxLocalizationProvider.DefaultAssembly="BluetoothDMM"
         lex:ResxLocalizationProvider.DefaultDictionary="Resources"
         PreviewKeyDown="Settings_KeyDown" KeyUp="Settings_KeyDown"
-        d:DataContext="d:DesignInstance local:MainWindow" 
-        Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="SingleBorderWindow" 
+        d:DataContext="d:DesignInstance local:MainWindow" AllowsTransparency="True"
+        Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="None" 
         Title="Bluetooth DMM" Height="172" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center" 
         Activated="Window_Activated" MouseDown="Window_MouseDown" StateChanged="OnStateChanged" 
         IsVisibleChanged="OnIsVisibleChanged" SizeChanged="Window_SizeChanged" MouseLeave="Display_MouseMove" MouseEnter="Display_MouseMove" Tag="None"
@@ -132,6 +132,9 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
     <Grid x:Name="MainGrid">
+        <Grid.Effect>
+            <BlurEffect Radius="1" KernelType="Gaussian"/>
+        </Grid.Effect>
         <Popup x:Name="CustomDialog"
                        StaysOpen="True" 
                        Opened="CustomDialog_Opened"
@@ -325,7 +328,6 @@
             </Grid>
 
             <Viewbox x:Name="Display" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,0,-15" Stretch="Uniform" VerticalAlignment="Top" StretchDirection="Both">
-
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>

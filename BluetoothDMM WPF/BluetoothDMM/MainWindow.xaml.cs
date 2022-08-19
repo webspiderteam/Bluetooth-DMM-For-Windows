@@ -134,7 +134,7 @@ namespace BluetoothDMM
             // we should always monitor the connection status
             _heartRateMonitor.ConnectionStatusChanged -= HrDeviceOnDeviceConnectionStatusChanged;
             _heartRateMonitor.ConnectionStatusChanged += HrDeviceOnDeviceConnectionStatusChanged;
-
+            
             //// we can create value parser and listen for parsed values of given characteristic
             //HrParser.ConnectWithCharacteristic(HrDevice.HeartRate.HeartRateMeasurement);
             _heartRateMonitor.RateChanged -= HrParserOnValueChanged;
