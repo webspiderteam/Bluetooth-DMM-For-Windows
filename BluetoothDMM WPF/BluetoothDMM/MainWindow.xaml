@@ -15,7 +15,7 @@
         Style="{DynamicResource CustomWindowStyle}" mc:Ignorable="d" WindowStyle="None" 
         Title="Bluetooth DMM" Height="172" Width="550" HorizontalAlignment="Center" VerticalAlignment="Center" 
         Activated="Window_Activated" MouseDown="Window_MouseDown" StateChanged="OnStateChanged" 
-        IsVisibleChanged="OnIsVisibleChanged" SizeChanged="Window_SizeChanged" MouseLeave="Display_MouseMove" MouseEnter="Display_MouseMove" Tag="None"
+        IsVisibleChanged="OnIsVisibleChanged" SizeChanged="Window_SizeChanged" MouseLeave="Display_MouseMove" MouseEnter="Display_MouseMove" Tag="None" MouseMove="Window_MouseMove"
     >
     <Window.Resources>
         <!--// Toggle Button Style Template //-->
@@ -142,93 +142,93 @@
                        Placement="AbsolutePoint"
                        Height="190" Width="400"
                        Margin="0,0,0,0"
-                       PopupAnimation="Fade" MouseLeave="CustomDialog_MouseLeave" PreviewMouseLeftButtonDown="CustomDialog_PreviewMouseLeftButtonDown" MouseLeftButtonUp="CustomDialog_MouseLeftButtonUp">
-            <Border x:Name="DialogBorder" CornerRadius="8" Background="Black" BorderThickness="2" Height="190" Width="400">
-                <Border.BorderBrush>
-                    <LinearGradientBrush EndPoint="0,0" MappingMode="Absolute" StartPoint="0,200">
-                        <GradientStop Color="#00000000" Offset="0.569"/>
-                        <GradientStop Color="White" Offset="0.986"/>
-                        <GradientStop Color="#FFFBFBFB"/>
-                        <GradientStop Color="#52515151" Offset="0.015"/>
-                    </LinearGradientBrush>
-                </Border.BorderBrush>
-                <Grid>
-                    <Border Background="Red" Height="28" Width="396" VerticalAlignment="Top" CornerRadius="8,8,0,0">
-                        <TextBlock FontSize="14" Margin="15,5">
-                            <TextBlock.Effect>
-                                <DropShadowEffect BlurRadius="9" ShadowDepth="1"/>
-                            </TextBlock.Effect><Run x:Name="CustomDialogHeader" Text="" /><Run Text=" "/><Run Text="{lex:LocText IsAvailable}"/></TextBlock>
-                    </Border>
-                    <StackPanel Orientation="Vertical" Height="135" Width="360" Margin="0,25,0,0" >
-                        <Viewbox >
-                            <TextBlock FontSize="18" Height="70" TextWrapping="Wrap"><Run Text="{lex:LocText AvailableString}"/><LineBreak/><Run Text="{lex:LocText WantToConnect}"/></TextBlock>
-                        </Viewbox>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button x:Name="Button1" Width="95" Height="32" FontSize="14" Content="{lex:LocText Connect}" Margin="5" Click="Button_Click" />
-                            <Button x:Name="Button2" Width="105" Height="32" FontSize="14" Content="Open New" Margin="5" Click="Button_Click" Visibility="Collapsed" />
-                            <Button x:Name="Button3" Width="105" Height="32" FontSize="14" Content="{lex:LocText DontConnect}" Click="Button_Click" Margin="5"/>
+                       PopupAnimation="Fade" MouseDown="PopupDialog_MouseDown" PreviewMouseUp="PopupDialog_PreviewMouseUp">
+            <Canvas>
+                <Thumb Width="0" Height="0" DragDelta="Thumb_DragDelta"/>
+                <Border x:Name="DialogBorder" CornerRadius="8" Background="Black" BorderThickness="2" Height="190" Width="400">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0,0" MappingMode="Absolute" StartPoint="0,200">
+                            <GradientStop Color="#00000000" Offset="0.569"/>
+                            <GradientStop Color="White" Offset="0.986"/>
+                            <GradientStop Color="#FFFBFBFB"/>
+                            <GradientStop Color="#52515151" Offset="0.015"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Grid>
+                        <Border Background="Red" Height="28" Width="396" VerticalAlignment="Top" CornerRadius="8,8,0,0">
+                            <TextBlock FontSize="14" Margin="15,5">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect BlurRadius="9" ShadowDepth="1"/>
+                                </TextBlock.Effect><Run x:Name="CustomDialogHeader" Text="" /><Run Text=" "/><Run Text="{lex:LocText IsAvailable}"/></TextBlock>
+                        </Border>
+                        <StackPanel Orientation="Vertical" Height="135" Width="360" Margin="0,25,0,0" >
+                            <Viewbox >
+                                <TextBlock FontSize="18" Height="70" TextWrapping="Wrap"><Run Text="{lex:LocText AvailableString}"/><LineBreak/><Run Text="{lex:LocText WantToConnect}"/></TextBlock>
+                            </Viewbox>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button x:Name="Button1" Width="95" Height="32" FontSize="14" Content="{lex:LocText Connect}" Margin="5" Click="Button_Click" />
+                                <Button x:Name="Button2" Width="105" Height="32" FontSize="14" Content="Open New" Margin="5" Click="Button_Click" Visibility="Collapsed" />
+                                <Button x:Name="Button3" Width="105" Height="32" FontSize="14" Content="{lex:LocText DontConnect}" Click="Button_Click" Margin="5"/>
+                            </StackPanel>
+                            <CheckBox x:Name="DontAsk" Content="{lex:LocText DontAsk}" Height="20" Unchecked="DontAsk_Unchecked" Checked="DontAsk_Unchecked"/>
                         </StackPanel>
-
-                        <CheckBox x:Name="DontAsk" Content="{lex:LocText DontAsk}" Height="20" Unchecked="DontAsk_Unchecked" Checked="DontAsk_Unchecked"/>
-                    </StackPanel>
-                    
-                </Grid>
-            </Border>
-
-
+                    </Grid>
+                </Border>
+            </Canvas>
         </Popup>
-        <Popup x:Name="AboutDialog"
+        <Popup x:Name="AboutDialog" 
                        StaysOpen="True" 
                        Opened="CustomDialog_Opened"
                        AllowsTransparency="True"
                        Placement="AbsolutePoint"
                        Height="190" Width="520"
                        Margin="0,0,0,0"
-                       PopupAnimation="Fade" MouseLeave="CustomDialog_MouseLeave" PreviewMouseLeftButtonDown="CustomDialog_PreviewMouseLeftButtonDown" MouseLeftButtonUp="CustomDialog_MouseLeftButtonUp">
-            <Border x:Name="AboutDialogBorder" CornerRadius="8" Background="Black" BorderThickness="2" Height="190" Width="520">
-                <Border.BorderBrush>
-                    <LinearGradientBrush EndPoint="0,0" MappingMode="Absolute" StartPoint="0,200">
-                        <GradientStop Color="#00000000" Offset="0.569"/>
-                        <GradientStop Color="White" Offset="0.986"/>
-                        <GradientStop Color="#FFFBFBFB"/>
-                        <GradientStop Color="#52515151" Offset="0.015"/>
-                    </LinearGradientBrush>
-                </Border.BorderBrush>
-                <Grid>
-                    <Border Background="Red" Height="28" Width="516" VerticalAlignment="Top" CornerRadius="8,8,0,0">
-                        <TextBlock x:Name="AboutDialogHeader" Text="{lex:LocText AboutSoftware}" FontSize="14" Margin="15,5">
-                            <TextBlock.Effect>
-                                <DropShadowEffect BlurRadius="9" ShadowDepth="1"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
-                    </Border>
-                    <StackPanel Orientation="Vertical" Height="135" Width="480" Margin="0,25,0,0" >
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Assets/Logo.ico" Width="100"/>
-                            <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
-                                <TextBlock Text="Bluetooth DMM for Windows" FontWeight="Bold" />
+                       PopupAnimation="Fade" MouseDown="PopupDialog_MouseDown" PreviewMouseUp="PopupDialog_PreviewMouseUp">
+            <Canvas>
+                <Thumb Width="0" Height="0" DragDelta="Thumb_DragDelta"/>
+                <Border x:Name="AboutDialogBorder" CornerRadius="8" Background="Black" BorderThickness="2" Height="190" Width="520">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0,0" MappingMode="Absolute" StartPoint="0,200">
+                            <GradientStop Color="#00000000" Offset="0.569"/>
+                            <GradientStop Color="White" Offset="0.986"/>
+                            <GradientStop Color="#FFFBFBFB"/>
+                            <GradientStop Color="#52515151" Offset="0.015"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Grid>
+                        <Border Background="Red" Height="28" Width="516" VerticalAlignment="Top" CornerRadius="8,8,0,0">
+                            <TextBlock x:Name="AboutDialogHeader" Text="{lex:LocText AboutSoftware}" FontSize="14" Margin="15,5">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect BlurRadius="9" ShadowDepth="1"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                        </Border>
+                        <StackPanel Orientation="Vertical" Height="135" Width="480" Margin="0,25,0,0" >
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Assets/Logo.ico" Width="100"/>
+                                <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock Text="Bluetooth DMM for Windows" FontWeight="Bold" />
 
-                                <TextBlock><Run  Text="{lex:LocText CreatedBy}" /><Run Text=" "/><Run Text=" WebSpiderTeam"/></TextBlock>
-                                <TextBlock><Run Text="{lex:LocText Version}"/><Run Text=" "/><Run Text="{Binding Text, ElementName=version}"/></TextBlock>
-                                <TextBlock Text="For help please visit wiki on Github Page"/>
-                                <TextBlock><Hyperlink RequestNavigate="HandleLinkClick" NavigateUri="https://github.com/webspiderteam/Bluetooth-DMM-For-Windows"><Run Text="github.com/WebSpiderTeam/Bluetooth-DMM-For-Windows" /></Hyperlink></TextBlock>
-                                <TextBlock>
+                                    <TextBlock><Run  Text="{lex:LocText CreatedBy}" /><Run Text=" "/><Run Text=" WebSpiderTeam"/></TextBlock>
+                                    <TextBlock><Run Text="{lex:LocText Version}"/><Run Text=" "/><Run Text="{Binding Text, ElementName=version}"/></TextBlock>
+                                    <TextBlock Text="For help please visit wiki on Github Page"/>
+                                    <TextBlock><Hyperlink RequestNavigate="HandleLinkClick" NavigateUri="https://github.com/webspiderteam/Bluetooth-DMM-For-Windows"><Run Text="github.com/WebSpiderTeam/Bluetooth-DMM-For-Windows" /></Hyperlink></TextBlock>
+                                    <TextBlock>
                                     <Run Text="Special Thanks to "/>
                                     <Hyperlink RequestNavigate="HandleLinkClick" NavigateUri="https://github.com/ludwich66">
                                         <Run Text="ludwich66 on Github" />
                                     </Hyperlink>
-                                </TextBlock>
+                                    </TextBlock>
 
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button x:Name="Ok" Width="95" Height="32" FontSize="14" Content="Ok" Margin="5" Click="Ok_Click" />
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button x:Name="Ok" Width="95" Height="32" FontSize="14" Content="Ok" Margin="5" Click="Ok_Click" />
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </Border>
-
-
+                    </Grid>
+                </Border>
+            </Canvas>
         </Popup>
 
         <Grid x:Name="grid">
@@ -441,21 +441,21 @@
                         </Grid>
                     </Viewbox>
                     <Viewbox x:Name="MyGattCDataBluetooth" Grid.Row="1" Margin="0,95,90,0" Height="80" Width="50" Stretch="Uniform" HorizontalAlignment="Right" VerticalAlignment="Top" OpacityMask="Black">
-                        <Path Fill="White" Data="M 25.41,11.41 14,0 H 12 V 15.17 L 2.83,6 0,8.83 11.17,20 0,31.17 2.83,34 12,24.83 V 40 h 2 L 25.41,28.59 16.83,20 Z M 16,7.66 19.76,11.42 16,15.17 Z M 19.76,28.59 16,32.34 v -7.52 z">
+                        <Path CacheMode="BitmapCache" Fill="White" Data="M 25.41,11.41 14,0 H 12 V 15.17 L 2.83,6 0,8.83 11.17,20 0,31.17 2.83,34 12,24.83 V 40 h 2 L 25.41,28.59 16.83,20 Z M 16,7.66 19.76,11.42 16,15.17 Z M 19.76,28.59 16,32.34 v -7.52 z">
                             <Path.Style>
                                 <Style TargetType="{x:Type Path}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsChecked, ElementName=Is_Connected}" Value="false">
                                             <DataTrigger.EnterActions>
                                                 <BeginStoryboard>
-                                                    <Storyboard>
+                                                    <Storyboard Timeline.DesiredFrameRate="8" RenderOptions.CachingHint="Cache" RenderOptions.BitmapScalingMode="LowQuality">
                                                         <DoubleAnimation Storyboard.TargetProperty='Opacity' From='0' To='1' Duration='0:0:1' AutoReverse='True' RepeatBehavior='Forever'/>
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </DataTrigger.EnterActions>
                                             <DataTrigger.ExitActions>
                                                 <BeginStoryboard>
-                                                    <Storyboard FillBehavior='Stop'>
+                                                    <Storyboard FillBehavior='Stop' Timeline.DesiredFrameRate="8">
                                                         <DoubleAnimation Storyboard.TargetProperty='Opacity' To='1' Duration='0:0:0.5'/>
                                                     </Storyboard>
                                                 </BeginStoryboard>
@@ -465,7 +465,7 @@
                                 </Style>
                             </Path.Style>
                             <Path.Effect>
-                                <DropShadowEffect BlurRadius="20" RenderingBias="Quality"/>
+                                <DropShadowEffect BlurRadius="20" RenderingBias="Performance"/>
                             </Path.Effect>
                         </Path>
                     </Viewbox>
@@ -503,7 +503,7 @@
             </Viewbox>
 
         </Grid>
-        <CheckBox x:Name="Is_Connected" Visibility="Hidden" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Is_Connected" IsChecked="False" Visibility="Hidden" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Battery" Visibility="Hidden" IsChecked="False" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
 
         <Popup StaysOpen="True" Width="230" Height="245" x:Name="MyPopup" Closed="MyPopup_Closed"  >

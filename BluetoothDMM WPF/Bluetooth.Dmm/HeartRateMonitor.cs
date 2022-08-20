@@ -245,7 +245,7 @@ namespace HeartRateLE.Bluetooth
         /// Disconnects the current BLE heart rate device.
         /// </summary>
         /// <returns></returns>
-        public async Task DisconnectAsync()
+        public Task DisconnectAsync()
         {
             if (_heartRateDevice != null)
             {
@@ -291,7 +291,9 @@ namespace HeartRateLE.Bluetooth
 
                 //DeviceConnectionStatusChanged(null, null);
             }
+            return Task.CompletedTask;
         }
+
         private void DeviceConnectionStatusChanged(BluetoothLEDevice sender, object args)
         {
             var result = new ConnectionStatusChangedEventArgs()

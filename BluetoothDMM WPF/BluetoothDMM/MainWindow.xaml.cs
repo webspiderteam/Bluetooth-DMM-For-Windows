@@ -123,8 +123,6 @@ namespace BluetoothDMM
             wpfPlot1.Plot.YAxis2.LockLimits(true);
             wpfPlot1.Configuration.LockVerticalAxis = true;
             wpfPlot1.Refresh();
-            CustomDialog.PreviewMouseMove += new MouseEventHandler(CustomDialog_MouseMove);
-            AboutDialog.PreviewMouseMove += new MouseEventHandler(CustomDialog_MouseMove);
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             DataContext = this;
             _heartRateMonitor = new HeartRateLE.Bluetooth.HeartRateMonitor
@@ -142,7 +140,7 @@ namespace BluetoothDMM
             if (Properties.Settings.Default.ADisplay)
             {
                 aDisplay.Visibility = Visibility.Collapsed;
-                _ADisplay();
+                DoADisplay();
             }
             Connected = 1;
             //Properties.Settings.Default.DeviceID.Clear();
@@ -164,11 +162,11 @@ namespace BluetoothDMM
                 BalloonTipTitle = "Minimized to Tray",
                 Text = "Bluetooth DMM",
                 Icon = new System.Drawing.Icon(Application.GetResourceStream(new Uri("pack://application:,,,/BluetoothDMM;component/Assets/Logo.ico")).Stream),
-                Visible = true
+                Visible = true,
+                ContextMenu = new System.Windows.Forms.ContextMenu() //TrayContextMenu;
             };
-            m_notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(); //TrayContextMenu;
             m_notifyIcon.Click += new EventHandler(NotifyIcon_Click);
-            get_MQTT_Settings();
+            Get_MQTT_Settings();
             if (MQTTSetup.MQTTEnabled)
             {
                 Task.Run(() =>
@@ -192,43 +190,7 @@ namespace BluetoothDMM
             }
         }
 
-        DependencyObject FindVisualTreeRoot(DependencyObject initial)
-        {
-            DependencyObject current = initial;
-            DependencyObject result = initial;
 
-            while (current != null)
-            {
-                result = current;
-                if (current is Visual || current is System.Windows.Media.Media3D.Visual3D)
-                {
-                    current = VisualTreeHelper.GetParent(current);
-                }
-                else
-                {
-                    // If we're in Logical Land then we must walk 
-                    // up the logical tree until we find a 
-                    // Visual/Visual3D to get us back to Visual Land.
-                    current = LogicalTreeHelper.GetParent(current);
-                }
-            }
-            
-            var aa=VisualTreeHelper.GetChild(this,0);
-
-            return result;
-        }
-        static public void EnumVisual(Visual myVisual)
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(myVisual); i++)
-            {
-                // Retrieve child visual at specified index value.
-                Visual childVisual = (Visual)VisualTreeHelper.GetChild(myVisual, i);
-                // Do processing of the child visual object.
-
-                // Enumerate children of the child visual object.
-                EnumVisual(childVisual);
-            }
-        }
         private void Get_DataList()
         {
             SelectedDatas = new Dictionary<string, string>(Properties.MQTT.Default.SelectedDataList.Count);
@@ -240,7 +202,7 @@ namespace BluetoothDMM
             }
         }
 
-        private void get_MQTT_Settings()
+        private void Get_MQTT_Settings()
         {
             MQTTSetup.MQTTEnabled = Properties.MQTT.Default.MQTTEnabled;
             MQTTSetup.addMac = Properties.MQTT.Default.addMac;
@@ -254,7 +216,7 @@ namespace BluetoothDMM
             MQTTSetup.Username = Properties.MQTT.Default.Username;
         }
 
-        static string customTickFormatter(double position)
+        static string CustomTickFormatter(double position)
         {
             TimeSpan result = TimeSpan.FromSeconds(position);
             if (position < 3600)
@@ -269,7 +231,7 @@ namespace BluetoothDMM
         {
             gattData = new double[1_000_000];
             signalPlot = plt.AddSignal(gattData, sampleRate, color: System.Drawing.Color.White);
-            plt.XAxis.TickLabelFormat(customTickFormatter);
+            plt.XAxis.TickLabelFormat(CustomTickFormatter);
             signalPlot.YAxisIndex = 0;
             signalPlot.LineWidth = 1.5;
             signalPlot.MarkerSize = 2;
@@ -292,7 +254,6 @@ namespace BluetoothDMM
         }
 
         private WindowState m_storedWindowState = WindowState.Normal;
-        private Point Startpoint;
         private string ResultDialog;
         private MqttClient mqttClient;
         private Dictionary<string, string> SelectedDatas;
@@ -323,18 +284,18 @@ namespace BluetoothDMM
 
         private void NotifyIcon_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MouseEventArgs mouseArgs = e as System.Windows.Forms.MouseEventArgs;
-            if (mouseArgs != null)
+            if (e is System.Windows.Forms.MouseEventArgs mouseArgs)
             {
                 if (mouseArgs.Button == System.Windows.Forms.MouseButtons.Left)
                 {
                     Show_Click(null, null);
-                } else if (mouseArgs.Button == System.Windows.Forms.MouseButtons.Right)
+                }
+                else if (mouseArgs.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     ContextMenu menu = (ContextMenu)aDisplay.FindResource("cMenu");//This sentence is to find resources (you can write the menu style there)
                     menu.IsOpen = true;
                 }
-                
+
             }
         }
         private void Show_Click(object sender, RoutedEventArgs e)
@@ -516,11 +477,11 @@ namespace BluetoothDMM
                 var pre = MyGattCDataSymbol.Text.Substring(0, 1);
                 switch (pre)
                 {
-                    case "n": oValue = oValue / 1000000000; break;
-                    case "µ": oValue = oValue / 1000000; break;
-                    case "m": oValue = oValue / 1000; break;
-                    case "k": oValue = oValue * 1000; break;
-                    case "M": oValue = oValue * 1000000; break;
+                    case "n": oValue /= 1000000000; break;
+                    case "µ": oValue /= 1000000; break;
+                    case "m": oValue /= 1000; break;
+                    case "k": oValue *= 1000; break;
+                    case "M": oValue *= 1000000; break;
                 }
                 BaseSym = BaseSym.Substring(1);
             }
@@ -590,7 +551,7 @@ namespace BluetoothDMM
                         mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
                             $"{{\"Status\": \"Connected\", " +
                             $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                            $"\"UseMAC\": \"{MQTTSetup.addMac.ToString()}\" }}"));
+                            $"\"UseMAC\": \"{MQTTSetup.addMac}\" }}"));
                     }
                 }
                 else
@@ -789,11 +750,11 @@ namespace BluetoothDMM
                     DevicePickerActive = false;
                 }
                 else if (SItem.Name == "Chart")
-                    _OnChart();
+                    DoOnChart();
                 else if (SItem.Name == "OnTop")
-                    _OnTop();
+                    DoOnTop();
                 else if (SItem.Name == "ADisplay")
-                    _ADisplay();
+                    DoADisplay();
                 else if (SItem.Name == "Settings")
                 {
                     if (trick)
@@ -810,7 +771,7 @@ namespace BluetoothDMM
                 Tg_Btn.IsChecked = false;
             }
         }
-        private void _OnChart()
+        private void DoOnChart()
         {
             if (TopStackPanel.Visibility == Visibility.Visible)
             {
@@ -828,7 +789,7 @@ namespace BluetoothDMM
             }
         }
         
-        private void _OnTop()
+        private void DoOnTop()
         {
             if (this.Topmost)
             {
@@ -842,7 +803,7 @@ namespace BluetoothDMM
             }
         }
         
-        private void _ADisplay()
+        private void DoADisplay()
         {
             if (aDisplay.Visibility==Visibility.Visible)
             {
@@ -882,7 +843,7 @@ namespace BluetoothDMM
                 if (Properties.Settings.Default.ADisplay)
                 {
                     aDisplay.Visibility = Visibility.Collapsed;
-                    _ADisplay();
+                    DoADisplay();
                 }
                 if (Properties.Settings.Default.Reconnect && SelectedDeviceId != null && Is_Connected.IsChecked == false)
                     Connected = 0;
@@ -904,7 +865,7 @@ namespace BluetoothDMM
                 }
                 if (Properties.MQTT.Default.MQTTEnabled)
                 {
-                    get_MQTT_Settings();
+                    Get_MQTT_Settings();
                     Get_DataList();
                     if (mqttClient != null && mqttClient.IsConnected)
                         mqttClient.Disconnect();
@@ -923,7 +884,7 @@ namespace BluetoothDMM
                                 mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
                                     $"{{ \"Status\": \"Connected\", " +
                                     $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                                    $"\"UseMAC\": \"{MQTTSetup.addMac.ToString()}\"}}"));
+                                    $"\"UseMAC\": \"{MQTTSetup.addMac}\"}}"));
                             }
                         }
                         catch (Exception ex)
@@ -979,12 +940,6 @@ namespace BluetoothDMM
 
                 wpfPlot1.Render();
             }
-
-            // update the GUI to describe the highlighted point
-            //double mouseX = e.GetPosition(this).X;
-            //double mouseY = e.GetPosition(this).Y;
-            //label1.Content = $"Closest point to ({mouseX:N2}, {mouseY:N2}) " +
-            //   $"is index {pointIndex} ({pointX:N2}, {pointY:N2})";
         }
         
         private static string[] SymbolToText(string Value)
@@ -1050,7 +1005,6 @@ namespace BluetoothDMM
                     yHigh = gattData.Skip(DataLow).Take(DataHigh - DataLow + 1).Max();
                 }
                 //set the Y axis limits to the high and low of the range
-                //plt.SetAxisLimitsX(nextDataIndex - 30, nextDataIndex - 0.5);
                 plt.SetAxisLimits(xLow - ZoomScale * 0.02, xLow + ZoomScale + ZoomScale * 0.02, yLow - (yHigh - yLow) * plt.Margins().y, yHigh + (yHigh - yLow) * plt.Margins().y);
             }
         }
@@ -1152,7 +1106,6 @@ namespace BluetoothDMM
             Value = Value.Replace('*', ' ');
             var result = Value.Split(new string[] { "\n", " " }, StringSplitOptions.RemoveEmptyEntries);
 
-            //var result = Value.Split(new string[] { ";" } , StringSplitOptions.RemoveEmptyEntries);
             string s1;
             string s2;
             int final = 0;
@@ -1203,7 +1156,6 @@ namespace BluetoothDMM
         private void Chart_Export_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
-            //File.AppendAllText("debug.txt", "start export" + System.Environment.NewLine);
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             if (Properties.Settings.Default.CSVFirst)
                 saveFileDialog.Filter = "CSV file (*.csv)|*.csv|DMM Chart Data file (*.dcd)|*.dcd";
@@ -1315,11 +1267,11 @@ namespace BluetoothDMM
                                 var pre = s2.Substring(0, 1);
                                 switch (pre)
                                 {
-                                    case "n": oValue = oValue / 1000000000; break;
-                                    case "µ": oValue = oValue / 1000000; break;
-                                    case "m": oValue = oValue / 1000; break;
-                                    case "k": oValue = oValue * 1000; break;
-                                    case "M": oValue = oValue * 1000000; break;
+                                    case "n": oValue /= 1000000000; break;
+                                    case "µ": oValue /= 1000000; break;
+                                    case "m": oValue /= 1000; break;
+                                    case "k": oValue *= 1000; break;
+                                    case "M": oValue *= 1000000; break;
                                 }
                                 s3 = s3.Substring(1);
                             }
@@ -1375,7 +1327,6 @@ namespace BluetoothDMM
                     if (arguments.Length > 1 && arguments[1] == "-m")
                         WindowState = WindowState.Minimized;
                 }
-                //Console.WriteLine("xxxGetCommandLineArgs: {0}", string.Join(", ", arguments));
                 onLoad = false;
             }
         }
@@ -1385,45 +1336,13 @@ namespace BluetoothDMM
             Draggable = true;
         }
 
-        private void CustomDialog_MouseMove(object sender, MouseEventArgs e)
-        {
-            Draggable = false;
-            var uiElement = (Popup)sender;
-            bool controlsnotover = !Button1.IsMouseOver && !Button1.IsMouseOver && !Button1.IsMouseOver && !DontAsk.IsMouseOver;
-            if (e.LeftButton == MouseButtonState.Pressed && controlsnotover)
-            {
-                Point relative = e.GetPosition(null);
-                uiElement.PlacementRectangle = new Rect(relative.X + uiElement.PlacementRectangle.X - Startpoint.X, relative.Y + uiElement.PlacementRectangle.Y - Startpoint.Y, uiElement.Width, uiElement.Height);
-            }
-        }
-
-        private void CustomDialog_MouseLeave(object sender, MouseEventArgs e)
-        {
-            bool controlsnotover = !Button1.IsMouseOver && !Button1.IsMouseOver && !Button1.IsMouseOver && !DontAsk.IsMouseOver;
-            var uiElement = (Popup)sender;
-            if (e.LeftButton == MouseButtonState.Pressed && controlsnotover)
-            {
-                Point relative = e.GetPosition(null);
-                uiElement.PlacementRectangle = new Rect(relative.X + uiElement.PlacementRectangle.X - Startpoint.X, relative.Y + uiElement.PlacementRectangle.Y - Startpoint.Y, uiElement.Width, uiElement.Height);
-            }
-            else
-                Draggable = true;
-        }
-
-        private void CustomDialog_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Startpoint = e.GetPosition(null);
-            if(!Button1.IsMouseOver && !Button2.IsMouseOver && !Button3.IsMouseOver && !DontAsk.IsMouseOver)
-                DialogBorder.Opacity = 0.6;
-        }
-
         private void CustomDialog_Opened(object sender, EventArgs e)
         {
             var uiElement = (Popup)sender;
             DialogBorder.Opacity = 1;
             DontAsk.IsChecked = !Properties.Settings.Default.AskOnConnect;
             uiElement.PlacementRectangle = new Rect((SystemParameters.FullPrimaryScreenWidth - uiElement.Width) / 2,
-         (SystemParameters.FullPrimaryScreenHeight - uiElement.Height) / 2, uiElement.Width, uiElement.Height);
+                                                (SystemParameters.FullPrimaryScreenHeight - uiElement.Height) / 2, uiElement.Width, uiElement.Height);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -1434,11 +1353,6 @@ namespace BluetoothDMM
                 Show_Click(null, null);
             Properties.Settings.Default.AskOnConnect = (bool)!DontAsk.IsChecked;
             Properties.Settings.Default.Save();
-        }
-
-        private void CustomDialog_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            DialogBorder.Opacity = 1;
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)
@@ -1492,31 +1406,13 @@ namespace BluetoothDMM
                 Tg_Btn.Visibility = Visibility.Visible;
                 TxtStatus.Visibility = Visibility.Visible;
                 TxtStatus.IsEnabled = true;
-                //TxtStatus.Opacity = 0.90;
             }
             else
             {
-                //foreach (UIElement tb in FindVisualChilds<UIElement>(this))
-                //{
-                //    // do something with tb here
-                //    if (tb.IsMouseOver)
-                //        d(tb.GetValue(NameProperty) + tb.IsMouseOver.ToString());
-                //}
                 mTitlebar.Visibility = Visibility.Hidden;
                 Tg_Btn.Visibility = Visibility.Hidden;
                 TxtStatus.IsEnabled = false;
                 //TxtStatus.Opacity = 0.0;
-            }
-        }
-        public static IEnumerable<T> FindVisualChilds<T>(DependencyObject depObj) where T : DependencyObject
-        {
-            if (depObj == null) yield return (T)Enumerable.Empty<T>();
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-            {
-                DependencyObject ithChild = VisualTreeHelper.GetChild(depObj, i);
-                if (ithChild == null) continue;
-                if (ithChild is T t) yield return t;
-                foreach (T childOfChild in FindVisualChilds<T>(ithChild)) yield return childOfChild;
             }
         }
 
@@ -1526,6 +1422,44 @@ namespace BluetoothDMM
             if (!wStateChanged && Height < Display.ActualHeight)
                 Height = Display.ActualHeight;
             wStateChanged = false;
+        }
+
+        private void PopupDialog_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var popup = sender as Popup;
+            var enumm = ((Canvas)popup.Child).Children.GetEnumerator();
+            enumm.MoveNext();
+            while (enumm.Current.ToString() != "System.Windows.Controls.Primitives.Thumb")
+                enumm.MoveNext();
+            var tmb = (enumm.Current) as Thumb;
+            ((Canvas)popup.Child).Opacity = 0.6;
+            tmb.RaiseEvent(e);
+        }
+
+        private void Thumb_DragDelta(object sender, DragDeltaEventArgs e)
+        {
+            var tmb = sender as Thumb;
+            var popup = ((System.Windows.FrameworkElement)tmb.Parent).Parent as Popup;
+            popup.HorizontalOffset += e.HorizontalChange;
+            popup.VerticalOffset += e.VerticalChange;
+        }
+
+        private void PopupDialog_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var popup = sender as Popup;
+            ((Canvas)popup.Child).Opacity = 1;
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(mTitlebar.Visibility != Visibility.Visible)
+            {
+                Draggable = true;
+                mTitlebar.Visibility = Visibility.Visible;
+                Tg_Btn.Visibility = Visibility.Visible;
+                TxtStatus.Visibility = Visibility.Visible;
+                TxtStatus.IsEnabled = true;
+            }
         }
     }
 
