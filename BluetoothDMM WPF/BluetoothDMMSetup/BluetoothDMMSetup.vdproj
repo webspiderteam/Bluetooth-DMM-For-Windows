@@ -5717,15 +5717,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:BluetoothDMM For Windows"
-        "ProductCode" = "8:{6821561F-6A19-443F-8E0F-FD3B4D62B3C3}"
-        "PackageCode" = "8:{BE8A47B6-C10E-46FF-A5BE-8EC0CD8653F9}"
+        "ProductCode" = "8:{7377CD39-D0BC-4781-A087-3F31925623A4}"
+        "PackageCode" = "8:{BD0C8873-B273-4E04-A3E8-F3F4E2362282}"
         "UpgradeCode" = "8:{DB0CAFB1-E076-41B0-B7C2-DC4B12320C5B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.19"
+        "ProductVersion" = "8:1.20"
         "Manufacturer" = "8:WebSpiderTeam"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/webspiderteam/Bluetooth-DMM-For-Windows"
@@ -6265,7 +6265,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4F424AFF767A405D81267B7DE768C31D"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5A67DDC5B69E4FC4A664FBC0CFA89449"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -6285,7 +6285,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|Any CPU"
             "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
             "OutputProjectGuid" = "8:{CE863405-A1F9-464D-AEED-E265C8244689}"
             "ShowKeyOutput" = "11:TRUE"
@@ -6321,7 +6321,7 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_856330BD15CD4BBBB3A5353D8E42E559"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9B7FB5E1A5334F3499BF6A383A77D623"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
@@ -6341,7 +6341,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Release|Any CPU"
             "OutputGroupCanonicalName" = "8:LocalizedResourceDlls"
             "OutputProjectGuid" = "8:{B585EF35-DC34-48CE-A070-0BB2095756D4}"
             "ShowKeyOutput" = "11:TRUE"

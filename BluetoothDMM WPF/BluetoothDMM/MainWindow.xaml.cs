@@ -842,12 +842,13 @@ namespace BluetoothDMM
                     Properties.Settings.Default.WindowPosition = new System.Drawing.Point((int)Top, (int)Left);
                     Properties.Settings.Default.Save();
                 }
-
                 if (Properties.Settings.Default.ADisplay)
                 {
                     aDisplay.Visibility = Visibility.Collapsed;
                     DoADisplay();
                 }
+                if (Properties.Settings.Default.ChartOn && TopStackPanel.Visibility != Visibility.Visible)
+                    DoOnChart();
                 if (Properties.Settings.Default.Reconnect && SelectedDeviceId != null && Is_Connected.IsChecked == false)
                     Connected = 0;
                 if (Properties.Settings.Default.ConnectOn)
