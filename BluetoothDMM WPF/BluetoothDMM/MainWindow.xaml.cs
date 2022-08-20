@@ -674,7 +674,10 @@ namespace BluetoothDMM
             });
 
             while (ResultDialog == "0")
+            {
+                await Task.Delay(25);
                 continue;
+            }
             return ResultDialog;
         }
 
