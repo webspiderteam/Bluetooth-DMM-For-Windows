@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BluetoothDMM"
         xmlns:classes="clr-namespace:BluetoothDMM.Classes"
+    xmlns:test="clr-namespace:HeartRateLE.Bluetooth.Events;assembly=Bluetooth.Dmm"
         xmlns:settings="clr-namespace:BluetoothDMM.Properties" x:Class="BluetoothDMM.MainWindow"
         lex:LocalizeDictionary.IncludeInvariantCulture="False"
         lex:ResxLocalizationProvider.DefaultAssembly="BluetoothDMM"
@@ -404,6 +405,9 @@
                         </Viewbox>
                     </Grid>
                     </Border>
+                    <TextBlock x:Name="test" Text="{Binding MyRateChanged.MyGattCData,Mode=OneWay}" FontSize="20">
+                    
+                    </TextBlock>
                     <Viewbox Stretch="Uniform" Grid.Row="1" HorizontalAlignment="Center" Height="60" Margin="0,27,0,220" VerticalAlignment="Bottom" Width="320">
                         <TextBlock x:Name="AutoRange" Visibility="Visible" VerticalAlignment="Top" Height="60" TextWrapping="Wrap" Text="{lex:LocText AutoRange}"  FontSize="44" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
                     </Viewbox>
@@ -506,7 +510,7 @@
         <CheckBox x:Name="Is_Connected" IsChecked="False" Visibility="Hidden" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Battery" Visibility="Hidden" IsChecked="False" Content="CheckBox" HorizontalAlignment="Left" Margin="54,204,0,0" VerticalAlignment="Top"/>
 
-        <Popup StaysOpen="True" Width="230" Height="245" x:Name="MyPopup" Closed="MyPopup_Closed"  >
+        <Popup StaysOpen="False" Width="230" Height="245" x:Name="MyPopup" Closed="MyPopup_Closed"  >
             <Grid x:Name="nav_pnl" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240" Height="400" Background="#2E333A">
 
                 <StackPanel x:Name="st_pnl">

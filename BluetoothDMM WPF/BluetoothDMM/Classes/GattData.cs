@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HeartRateLE.Bluetooth.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,10 +8,7 @@ using System.Threading.Tasks;
 
 namespace BluetoothDMM
 {
-    class GattData
-    {
 
-    }
     public class MQTT_DataFormat
     {
         public string Key { get; set; }
@@ -44,18 +42,12 @@ namespace BluetoothDMM
             Add(new MQTT_DataFormat { Key = "HV(Boolean)", KeyPreview = "\"HV\":\"True\"", Value = "\"HV\":\"" });
             Add(new MQTT_DataFormat { Key = "Rel(Boolean)", KeyPreview = "\"Rel\":\"True\"", Value = "\"Rel\":\"" });
             Add(new MQTT_DataFormat { Key = "All Booleans", KeyPreview = "\"Symbols\":[\"TRUERMS\",\"PEEK\",\"AUTORANGE\"]", Value = "\"Symbols\":" });
-
-            
         }
     }
     public class SelectedDataList
     : ObservableCollection<MQTT_DataFormat>
     {
-        public SelectedDataList()
-            : base()
-        {
-
-        }
+        public SelectedDataList() : base() { }
     }
 
 }

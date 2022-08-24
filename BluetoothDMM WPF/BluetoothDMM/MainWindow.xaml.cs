@@ -26,7 +26,6 @@ using WPFLocalizeExtension.Providers;
 
 namespace BluetoothDMM
 {
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -190,7 +189,6 @@ namespace BluetoothDMM
             }
         }
 
-
         private void Get_DataList()
         {
             SelectedDatas = new Dictionary<string, string>(Properties.MQTT.Default.SelectedDataList.Count);
@@ -277,25 +275,19 @@ namespace BluetoothDMM
             wStateChanged = true;
         }
 
-        private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs args)
-        {
-            CheckTrayIcon();
-        }
+        private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs args) => CheckTrayIcon();
 
         private void NotifyIcon_Click(object sender, EventArgs e)
         {
             if (e is System.Windows.Forms.MouseEventArgs mouseArgs)
             {
                 if (mouseArgs.Button == System.Windows.Forms.MouseButtons.Left)
-                {
                     Show_Click(null, null);
-                }
                 else if (mouseArgs.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     ContextMenu menu = (ContextMenu)aDisplay.FindResource("cMenu");//This sentence is to find resources (you can write the menu style there)
                     menu.IsOpen = true;
                 }
-
             }
         }
         private void Show_Click(object sender, RoutedEventArgs e)
@@ -304,14 +296,8 @@ namespace BluetoothDMM
             WindowState = m_storedWindowState;
         }
 
-        private void Quit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-        private void CheckTrayIcon()
-        {
-            ShowTrayIcon(!IsVisible);
-        }
+        private void Quit_Click(object sender, RoutedEventArgs e) => Close();
+        private void CheckTrayIcon() => ShowTrayIcon(!IsVisible);
 
         private void ShowTrayIcon(bool show)
         {
@@ -336,7 +322,6 @@ namespace BluetoothDMM
         {
             MyPopup.IsOpen = false;
             Tg_Btn.IsChecked = false;
-
         }
 
         private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
@@ -349,12 +334,6 @@ namespace BluetoothDMM
             MyPopup.AllowsTransparency = true;
             MyPopup.PopupAnimation = PopupAnimation.Fade;
             MyPopup.IsOpen = true;
-        }
-
-        private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            MyPopup.IsOpen = false;
-            Tg_Btn.IsChecked = false;
         }
 
         protected async override void OnClosing(CancelEventArgs e)
@@ -388,7 +367,6 @@ namespace BluetoothDMM
         {
             await RunOnUiThread(() =>
             {
-                
                 d("Got new measurement: " + arg.MyGattCData);
                 GotFirstData = true;
                 //textBox.Text = arg.MyGattCData;
@@ -570,9 +548,7 @@ namespace BluetoothDMM
                             $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\"}}"));
                     }
                 }
-                
             });
-
         }
 
         private Task SearchDevices()
@@ -582,7 +558,6 @@ namespace BluetoothDMM
             {
                 deviceWatcher.DeviceAdded += async (watcher, args) =>
                 {
-                    
                     if (Connected==0 && !DevicePickerActive)
                     {
                         if (DeviceListC.ContainsKey(args.Device.Id))
@@ -644,7 +619,6 @@ namespace BluetoothDMM
                                 {
                                     MessageBox.Show(ex.Message);
                                 }
-
                             }
                             else
                             {
@@ -748,7 +722,6 @@ namespace BluetoothDMM
                         }
                         else
                             MessageBox.Show(connectResult.ErrorMessage);
-
                     }
                     DevicePickerActive = false;
                 }
@@ -1032,7 +1005,6 @@ namespace BluetoothDMM
             txtvline1.FontBold = true;
             txtvline1.FontSize = 12;// controls whether points can be dragged vertically
             txtvline1.Font.Color = System.Drawing.Color.White;
-
         }
         
         private void WpfPlot1_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -1046,20 +1018,13 @@ namespace BluetoothDMM
             wpfPlot1.Refresh();
         }
 
-        private void MyPopup_Closed(object sender, EventArgs e)
-        {
-            Tg_Btn.IsChecked = false;
-        }
+        private void MyPopup_Closed(object sender, EventArgs e) => Tg_Btn.IsChecked = false;
 
         private void ChartSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (SettingPopup.IsOpen == false)
-            {
-                SettingPopup.PlacementTarget = sender as UIElement;
-                SettingPopup.IsOpen = true;
-            }
-            else { SettingPopup.IsOpen = false; }
 
+                SettingPopup.PlacementTarget = sender as UIElement;
+                SettingPopup.IsOpen = !SettingPopup.IsOpen;
         }
 
         private void Chart_Reset_Click(object sender, RoutedEventArgs e)
@@ -1335,10 +1300,7 @@ namespace BluetoothDMM
             }
         }
 
-        private void WpfPlot1_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Draggable = true;
-        }
+        private void WpfPlot1_MouseLeave(object sender, MouseEventArgs e) => Draggable = true;
 
         private void CustomDialog_Opened(object sender, EventArgs e)
         {
@@ -1359,15 +1321,9 @@ namespace BluetoothDMM
             Properties.Settings.Default.Save();
         }
 
-        private void Ok_Click(object sender, RoutedEventArgs e)
-        {
-            AboutDialog.IsOpen = false;
-        }
+        private void Ok_Click(object sender, RoutedEventArgs e) => AboutDialog.IsOpen = false;
 
-        private void DontAsk_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Button3.IsEnabled = (bool)!DontAsk.IsChecked;
-        }
+        private void DontAsk_Unchecked(object sender, RoutedEventArgs e) => Button3.IsEnabled = (bool)!DontAsk.IsChecked;
 
         private void ChartClear_Click(object sender, RoutedEventArgs e)
         {
@@ -1484,9 +1440,6 @@ namespace BluetoothDMM
                 return boolValue ? Visibility.Visible : Visibility.Hidden;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }
