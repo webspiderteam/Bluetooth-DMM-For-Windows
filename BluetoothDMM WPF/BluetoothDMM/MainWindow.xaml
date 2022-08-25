@@ -405,9 +405,6 @@
                         </Viewbox>
                     </Grid>
                     </Border>
-                    <TextBlock x:Name="test" Text="{Binding MyRateChanged.MyGattCData,Mode=OneWay}" FontSize="20">
-                    
-                    </TextBlock>
                     <Viewbox Stretch="Uniform" Grid.Row="1" HorizontalAlignment="Center" Height="60" Margin="0,27,0,220" VerticalAlignment="Bottom" Width="320">
                         <TextBlock x:Name="AutoRange" Visibility="Visible" VerticalAlignment="Top" Height="60" TextWrapping="Wrap" Text="{lex:LocText AutoRange}"  FontSize="44" FontStretch="Expanded" TextAlignment="Center" FontWeight="Bold"/>
                     </Viewbox>
