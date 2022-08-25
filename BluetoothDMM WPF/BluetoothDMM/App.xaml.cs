@@ -62,7 +62,7 @@ namespace BluetoothDMM
                 "(if you click Yes you will continue with your work, if you click No the application will close)",
             e.Exception.Message + (e.Exception.InnerException != null ? "\n" +
             e.Exception.InnerException.Message : null));
-            string time= DateTime.Now.ToString("dd-MM-yyyy_HH_mm_ss")
+            string time = DateTime.Now.ToString("dd-MM-yyyy_HH_mm_ss");
             File.AppendAllText("crashlog_" + time + ".txt", "error catch Error: " + e.ToString() + System.Environment.NewLine);
             File.AppendAllText("crashlog_" + time + ".txt", errorMessage + System.Environment.NewLine);
             if (MessageBox.Show(errorMessage, "Application Error", MessageBoxButton.YesNoCancel, MessageBoxImage.Error) == MessageBoxResult.No)
