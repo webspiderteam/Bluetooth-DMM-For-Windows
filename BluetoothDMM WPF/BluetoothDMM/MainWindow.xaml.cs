@@ -2,6 +2,9 @@
 using HeartRateLE.Bluetooth.Events;
 using HeartRateLE.Bluetooth.Schema;
 using Microsoft.Win32;
+using MQTTnet.Client;
+using MQTTnet.Protocol;
+using MQTTnet;
 using ScottPlot;
 using ScottPlot.Plottable;
 using System;
@@ -12,6 +15,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +24,6 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using uPLibrary.Networking.M2Mqtt;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 
@@ -74,28 +77,28 @@ namespace BluetoothDMM
                 LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
             else
             {
-                LocalizeDictionary.Instance.Culture = new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
-                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
+                LocalizeDictionary.Instance.Culture = new CultureInfo(Properties.Settings.Default.Lang);
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(Properties.Settings.Default.Lang);
             }
                 
             var x = WPFLocalizeExtension.Engine.LocalizeDictionary.Instance.MergedAvailableCultures;
             (LocalizeDictionary.Instance.DefaultProvider as ResxLocalizationProvider).SearchCultures =
-                    new List<System.Globalization.CultureInfo>()
+                    new List<CultureInfo>()
                     {
-                                    System.Globalization.CultureInfo.GetCultureInfo("ar"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("de"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("el"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("es"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("fr"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("it"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("ja"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("nl"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("en"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("pl"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("ru"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("tr"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("zh-CN"),
-                                    System.Globalization.CultureInfo.GetCultureInfo("zh-TW")
+                                    CultureInfo.GetCultureInfo("ar"),
+                                    CultureInfo.GetCultureInfo("de"),
+                                    CultureInfo.GetCultureInfo("el"),
+                                    CultureInfo.GetCultureInfo("es"),
+                                    CultureInfo.GetCultureInfo("fr"),
+                                    CultureInfo.GetCultureInfo("it"),
+                                    CultureInfo.GetCultureInfo("ja"),
+                                    CultureInfo.GetCultureInfo("nl"),
+                                    CultureInfo.GetCultureInfo("en"),
+                                    CultureInfo.GetCultureInfo("pl"),
+                                    CultureInfo.GetCultureInfo("ru"),
+                                    CultureInfo.GetCultureInfo("tr"),
+                                    CultureInfo.GetCultureInfo("zh-CN"),
+                                    CultureInfo.GetCultureInfo("zh-TW")
                     };
             version.Text = "V " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0,4);
             if (Properties.Settings.Default.Remember)
@@ -168,24 +171,82 @@ namespace BluetoothDMM
             Get_MQTT_Settings();
             if (MQTTSetup.MQTTEnabled)
             {
-                Task.Run(() =>
-                {
-                    try
-                    {
-                        mqttClient = new MqttClient(MQTTSetup.BrokerAddress, MQTTSetup.BrokerPort, MQTTSetup.isEncrypted, null, null, MQTTSetup.isEncrypted ? MqttSslProtocols.SSLv3 : MqttSslProtocols.None);
-                        mqttClient.shouldReconnect = true;
-                        if (MQTTSetup.UseLogin)
-                            mqttClient.Connect(MQTTSetup.ClientId, MQTTSetup.Username, MQTTSetup.Password);
-                        else
-                            mqttClient.Connect(MQTTSetup.ClientId);
-                    }
-                    catch (Exception ex)
-                    {
-                        //MQTT Connection Error
-                        d("MQTT Connection Error" + ex.Message);
-                    }
-                });
+                Task task = Connect();
                 Get_DataList();
+            }
+        }
+
+        async Task Connect()
+        {
+            //var server = "test.mosquitto.org";
+            //server = "broker.hivemq.com";-
+            var tlsoption = new MqttClientOptionsBuilderTlsParameters();
+            tlsoption.SslProtocol = Properties.MQTT.Default.isEncrypted ? System.Security.Authentication.SslProtocols.Ssl3 : System.Security.Authentication.SslProtocols.None;
+            var mqttFactory = new MqttFactory();
+            client = mqttFactory.CreateMqttClient();
+            var t_options = new MqttClientOptionsBuilder()
+                .WithClientId(Guid.NewGuid().ToString())
+                .WithTcpServer(MQTTSetup.BrokerAddress, MQTTSetup.BrokerPort)
+                .WithTls(tlsoption)
+                .WithCleanSession();
+                //.Build();
+            if (MQTTSetup.UseLogin)
+                t_options = t_options.WithCredentials(MQTTSetup.Username, MQTTSetup.Password);
+            options = t_options.Build();
+            client.ConnectedAsync += Client_ConnectedAsync;
+            client.DisconnectedAsync += Client_DisconnectedAsync;
+            //client.ApplicationMessageReceivedAsync += Client_ApplicationMessageReceivedAsync;
+            try
+            {
+                await client.ConnectAsync(options, CancellationToken.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("MQTT Connection error;\n" + ex.Message +"\nPlease check your MQTT settings!");
+                d("Connection error with " + ex.Message);
+            }
+        }
+
+        private Task Client_DisconnectedAsync(MqttClientDisconnectedEventArgs arg)
+        {
+            Task.Delay(250);
+            if (ReconnectMqtt)
+                client.ConnectAsync(options);
+            d("Mqtt disconnected");
+            //dispatcherTimer.Start();
+            return Task.CompletedTask;
+        }
+        private Task Client_ConnectedAsync(MqttClientConnectedEventArgs arg)
+        {
+            ReconnectMqtt = true;
+            d("Mqtt Connected");
+            if (Connected == 1)
+            {
+                Task task = Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", $"{{ \"Status\": \"Connected\", " +
+                    $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
+                    $"\"UseMAC\": \"{MQTTSetup.addMac}\"}}");
+            }
+            //Subscribe(topic); For posterity
+            return Task.CompletedTask;
+        }
+
+        void Subscribe(string stopic)
+        {
+            var topicFilter = new MqttTopicFilterBuilder()
+                    .WithTopic(stopic)
+                    .Build();
+            client.SubscribeAsync(topicFilter);
+        }
+        async Task Publish(string topic,string msg)
+        {
+            var message = new MqttApplicationMessageBuilder()
+                .WithTopic(topic)
+                .WithPayload(msg)
+                .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
+                .Build();
+            if (client.IsConnected)
+            {
+                await client.PublishAsync(message);
             }
         }
 
@@ -196,7 +257,7 @@ namespace BluetoothDMM
             {
                 string[] row = item.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
                 SelectedDatas.Add(row[0], row[1]);
-                
+
             }
         }
 
@@ -253,11 +314,13 @@ namespace BluetoothDMM
 
         private WindowState m_storedWindowState = WindowState.Normal;
         private string ResultDialog;
-        private MqttClient mqttClient;
         private Dictionary<string, string> SelectedDatas;
         private bool trick;
         private UIElement mTitlebar;
         private bool wStateChanged;
+        IMqttClient client;
+        MqttClientOptions options;
+        private bool ReconnectMqtt;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -350,8 +413,11 @@ namespace BluetoothDMM
                 Properties.Settings.Default.WindowPosition = new System.Drawing.Point((int)Top, (int)Left);
                 Properties.Settings.Default.Save();
             }
-            if (mqttClient!=null && mqttClient.IsConnected)
-                mqttClient.Disconnect();
+            if (client != null && client.IsConnected)
+            {
+                ReconnectMqtt = false;
+                await client.DisconnectAsync();
+            }
             m_notifyIcon.Dispose();
             m_notifyIcon = null;
         }
@@ -430,12 +496,12 @@ namespace BluetoothDMM
                     wpfPlot1.Refresh();
                     nextDataIndex += 1; 
                 }
-                if (mqttClient != null && mqttClient.IsConnected)
+                if (client != null && client.IsConnected)
                 {
                     string Mac = "";
                     if (MQTTSetup.addMac)
                         Mac = "/" + SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_");
-                    mqttClient.Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(Create_MQTTString()));
+                    Task task = Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", Create_MQTTString());
                 }
             }
             if (GotFirstData)
@@ -524,12 +590,12 @@ namespace BluetoothDMM
                     dispatcherTimer.Start();
                     Connected = 1;
                     Is_Connected.IsChecked = true;
-                    if (mqttClient != null && mqttClient.IsConnected)
+                    if (client != null && client.IsConnected)
                     {
-                        mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
-                            $"{{\"Status\": \"Connected\", " +
-                            $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                            $"\"UseMAC\": \"{MQTTSetup.addMac}\" }}"));
+                        Task task = Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}",
+                                            $"{{\"Status\": \"Connected\", " +
+                                            $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
+                                            $"\"UseMAC\": \"{MQTTSetup.addMac}\" }}");
                     }
                 }
                 else
@@ -541,11 +607,11 @@ namespace BluetoothDMM
                     Is_Connected.IsChecked = false;
                     if (Properties.Settings.Default.Reconnect)
                         Connected = 0;
-                    if (mqttClient != null && mqttClient.IsConnected)
+                    if (client != null && client.IsConnected)
                     {
-                        mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
+                        Task task = Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}",
                             $"{{\"Status\": \"Disconnected\", " +
-                            $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\"}}"));
+                            $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\"}}");
                     }
                 }
             });
@@ -806,8 +872,8 @@ namespace BluetoothDMM
                     LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
                 else
                 {
-                    LocalizeDictionary.Instance.Culture = new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
-                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
+                    LocalizeDictionary.Instance.Culture = new CultureInfo(Properties.Settings.Default.Lang);
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(Properties.Settings.Default.Lang);
                 }
                 if (Properties.Settings.Default.Remember)
                 {
@@ -844,25 +910,16 @@ namespace BluetoothDMM
                 {
                     Get_MQTT_Settings();
                     Get_DataList();
-                    if (mqttClient != null && mqttClient.IsConnected)
-                        mqttClient.Disconnect();
+                    if (client != null && client.IsConnected)
+                    {
+                        ReconnectMqtt = false;
+                        client.DisconnectAsync();
+                    }
                     Task.Run(() =>
                     {
                         try
                         {
-                            mqttClient = new MqttClient(MQTTSetup.BrokerAddress, MQTTSetup.BrokerPort, MQTTSetup.isEncrypted, null, null, MQTTSetup.isEncrypted ? MqttSslProtocols.SSLv3 : MqttSslProtocols.None);
-                            mqttClient.shouldReconnect = true;
-                            if (MQTTSetup.UseLogin)
-                                mqttClient.Connect(MQTTSetup.ClientId, MQTTSetup.Username, MQTTSetup.Password);
-                            else
-                                mqttClient.Connect(MQTTSetup.ClientId);
-                            if (mqttClient != null && mqttClient.IsConnected && Connected==1)
-                            {
-                                mqttClient.Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", System.Text.Encoding.UTF8.GetBytes(
-                                    $"{{ \"Status\": \"Connected\", " +
-                                    $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                                    $"\"UseMAC\": \"{MQTTSetup.addMac}\"}}"));
-                            }
+                            Task task = Connect();
                         }
                         catch (Exception ex)
                         {

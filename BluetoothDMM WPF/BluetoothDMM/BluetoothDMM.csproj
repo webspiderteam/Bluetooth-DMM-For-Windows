@@ -74,8 +74,8 @@
     <Reference Include="DotNetProjects.DataVisualization.Toolkit, Version=6.1.94.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetProjects.WpfToolkit.DataVisualization.6.1.94\lib\net40\DotNetProjects.DataVisualization.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="M2Mqtt.Net, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\M2MqttAutoReconnect.4.4.0.1\lib\net462\M2Mqtt.Net.dll</HintPath>
+    <Reference Include="MQTTnet, Version=4.1.0.247, Culture=neutral, PublicKeyToken=fdb7629f2e364a63, processorArchitecture=MSIL">
+      <HintPath>..\packages\MQTTnet.4.1.0.247\lib\net461\MQTTnet.dll</HintPath>
     </Reference>
     <Reference Include="presentationframework.aero2" />
     <Reference Include="ScottPlot, Version=4.1.52.0, Culture=neutral, PublicKeyToken=86698dc10387c39e, processorArchitecture=MSIL">
