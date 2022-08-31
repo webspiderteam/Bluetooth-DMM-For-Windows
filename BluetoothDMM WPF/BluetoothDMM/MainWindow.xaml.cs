@@ -1305,7 +1305,7 @@ namespace BluetoothDMM
                                 pairs_i++;
                             createText[index + 1] = $"{index},{s1},{Convert.ToString(value, CultureInfo.InvariantCulture)},{s2},{Convert.ToString(oValue, CultureInfo.InvariantCulture)},{s3}";
                         }
-                        File.WriteAllLines(saveFileDialog.FileName, createText, System.Text.Encoding.UTF8);
+                        File.WriteAllLines(saveFileDialog.FileName, createText, System.Text.Encoding.Default);
                     }
                     catch (Exception ex)
                     {
