@@ -153,11 +153,20 @@
   <data name="AvailableString" xml:space="preserve">
     <value>您的設備之一可以連接。</value>
   </data>
+  <data name="ChangeLog" xml:space="preserve">
+    <value>更改日誌</value>
+  </data>
   <data name="ChangeName" xml:space="preserve">
     <value>更改設備名稱</value>
   </data>
   <data name="ChartON" xml:space="preserve">
     <value>啟動時打開數據圖表</value>
+  </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>檢查更新</value>
+  </data>
+  <data name="CheckUpdatesStartup" xml:space="preserve">
+    <value>檢查啟動時的更新</value>
   </data>
   <data name="CleanWhitespace" xml:space="preserve">
     <value>清除值（字符串）中的空格（不必要的空格）</value>
@@ -183,6 +192,9 @@
   <data name="CSVFirst" xml:space="preserve">
     <value>將 CSV 設置為默認導出</value>
   </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>當前版本</value>
+  </data>
   <data name="DataChart" xml:space="preserve">
     <value>數據圖表</value>
   </data>
@@ -201,14 +213,23 @@
   <data name="DontConnect" xml:space="preserve">
     <value>不要連接</value>
   </data>
+  <data name="DownloadLinks" xml:space="preserve">
+    <value>下載鏈接：</value>
+  </data>
   <data name="EnableMQTT" xml:space="preserve">
     <value>啟用 MQTT 客戶端</value>
   </data>
   <data name="Encrypted" xml:space="preserve">
     <value>加密</value>
   </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>獲取數據時出錯...</value>
+  </data>
   <data name="ExportData" xml:space="preserve">
     <value>導出數據</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>通用設置</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>幫助</value>
@@ -224,6 +245,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>語</value>
+  </data>
+  <data name="LatestVersion" xml:space="preserve">
+    <value>最新版本</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
     <value>可用設備列表：</value>
@@ -263,6 +287,9 @@
   </data>
   <data name="NotConnected" xml:space="preserve">
     <value>未連接</value>
+  </data>
+  <data name="NoUpdatesAvail" xml:space="preserve">
+    <value>恭喜！你有最新版本。</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>好的</value>
@@ -318,6 +345,9 @@
   <data name="TrueRMS" xml:space="preserve">
     <value>真有效值</value>
   </data>
+  <data name="Updates" xml:space="preserve">
+    <value>更新</value>
+  </data>
   <data name="UseComa" xml:space="preserve">
     <value>使用昏迷“，”而不是點“。”在值（字符串）</value>
   </data>
@@ -335,6 +365,9 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>看法</value>
+  </data>
+  <data name="ViewSettings" xml:space="preserve">
+    <value>查看設置</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>你想連接嗎？</value>

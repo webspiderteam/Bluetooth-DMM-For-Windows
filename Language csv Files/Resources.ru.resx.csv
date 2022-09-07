@@ -11,8 +11,11 @@ AskBeforeConnect,Спросите перед подключением
 AutoConnectKnown,Автоматическое подключение известных устройств при запуске
 AutoRange,Автоматический диапазон
 AvailableString,Одно из ваших устройств доступно для подключения.
+ChangeLog,Журнал изменений
 ChangeName,Изменить имя устройства
 ChartON,Диаграмма открытых данных при запуске
+CheckUpdates,Проверить обновления
+CheckUpdatesStartup,Проверять обновления при запуске
 CleanWhitespace,Очистить пробелы (ненужные пробелы) в Value(string)
 ClearChart,Очистить диаграмму
 ClientID,ID клиента :
@@ -21,20 +24,25 @@ Connected,связано
 ConnectToDevice,Подключиться к устройству
 CreatedBy,Сделано
 CSVFirst,Установите CSV по умолчанию для экспорта
+CurrentVersion,Текущая версия
 DataChart,Диаграмма данных
 DeviceManager,Управление устройствами
 DevicePicker,Выбор устройства
 Disconnected,отключен
 DontAsk,Не спрашивайте снова. Подключаться автоматически.
 DontConnect,Не подключать
+DownloadLinks,Ссылки для скачивания:
 EnableMQTT,Включить MQTT-клиент
 Encrypted,Зашифровано
+ErrorGettingData,Ошибка при получении данных...
 ExportData,Экспорт данных
+GeneralSettings,общие настройки
 Help,Помощь
 ImportData,Импорт данных
 InRush,НАГРУЗКА
 IsAvailable,доступен!
 Language,Язык
+LatestVersion,Последняя версия
 ListAvailDevices,Список доступных устройств:
 LogRaw,Лог необработанных данных
 ManageDevices,Управление Bluetooth-устройствами
@@ -48,6 +56,7 @@ MQTTDataFormat,Формат значений данных MQTT
 MQTTSettings,Настройки MQTT
 Name,Имя:
 NotConnected,Не подключен
+NoUpdatesAvail,Поздравляем! У вас последняя версия.
 Ok,ХОРОШО
 Password,Пароль :
 Peek,PEEK
@@ -66,11 +75,13 @@ Settings,Настройки
 StartupSettings,Параметры запуска
 TargetTopic,Целевая тема:
 TrueRMS,ИСТИННОЕ СКЗ
+Updates,Обновления
 UseComa,Используйте запятую "," вместо точки "." в значении (строка)
 UseLogin,Использовать логин
 UserName,Имя пользователя :
 Values,Ценности
 Version,Версия:
 View,Вид
+ViewSettings,Просмотр настроек
 WantToConnect,Вы хотите подключиться?
 ZoomandFitData,Масштабирование и подгонка данных

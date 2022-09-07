@@ -77,6 +77,9 @@
     <Reference Include="MQTTnet, Version=4.1.0.247, Culture=neutral, PublicKeyToken=fdb7629f2e364a63, processorArchitecture=MSIL">
       <HintPath>..\packages\MQTTnet.4.1.0.247\lib\net461\MQTTnet.dll</HintPath>
     </Reference>
+    <Reference Include="Octokit, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Octokit.2.0.1\lib\netstandard2.0\Octokit.dll</HintPath>
+    </Reference>
     <Reference Include="presentationframework.aero2" />
     <Reference Include="ScottPlot, Version=4.1.52.0, Culture=neutral, PublicKeyToken=86698dc10387c39e, processorArchitecture=MSIL">
       <HintPath>..\packages\ScottPlot.4.1.52\lib\net461\ScottPlot.dll</HintPath>
@@ -138,6 +141,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Arc.cs" />
     <Compile Include="Classes\GattData.cs" />
+    <Compile Include="Classes\PublicDatas.cs" />
     <Compile Include="Classes\VisibilityAnimation.cs" />
     <Compile Include="Data Viewer.xaml.cs">
       <DependentUpon>Data Viewer.xaml</DependentUpon>
@@ -164,6 +168,9 @@
     </Compile>
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsNew.xaml.cs">
+      <DependentUpon>SettingsNew.xaml</DependentUpon>
     </Compile>
     <Compile Include="Styles\Controls.xaml.cs">
       <DependentUpon>Controls.xaml</DependentUpon>
@@ -206,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -606,7 +617,9 @@
   <ItemGroup>
     <Resource Include="Assets\view.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Spinner.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

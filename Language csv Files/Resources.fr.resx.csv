@@ -11,8 +11,11 @@ AskBeforeConnect,Demander avant de se connecter
 AutoConnectKnown,Connecter automatiquement les appareils connus au démarrage
 AutoRange,Gamme automatique
 AvailableString,Un de vos appareils est disponible pour se connecter.
+ChangeLog,Journal des modifications
 ChangeName,Modifier le nom de l'appareil
 ChartON,Ouvrir le graphique de données au démarrage
+CheckUpdates,Vérifier les mises à jour
+CheckUpdatesStartup,Vérifier les mises à jour au démarrage
 CleanWhitespace,Nettoyer les espaces blancs (espaces inutiles) dans Value(string)
 ClearChart,Effacer le graphique
 ClientID,Identité du client :
@@ -21,20 +24,25 @@ Connected,lié
 ConnectToDevice,Se connecter à l'appareil
 CreatedBy,Créé par
 CSVFirst,Définir CSV par défaut pour l'exportation
+CurrentVersion,Version actuelle
 DataChart,Graphique de données
 DeviceManager,Gérer les appareils
 DevicePicker,Sélecteur de périphérique
 Disconnected,débranché
 DontAsk,Ne demandez plus. Connectez-vous automatiquement.
 DontConnect,Ne pas se connecter
+DownloadLinks,Liens de téléchargement :
 EnableMQTT,Activer le client MQTT
 Encrypted,Crypté
+ErrorGettingData,Erreur lors de l'obtention des données...
 ExportData,Exporter des données
+GeneralSettings,réglages généraux
 Help,Aider
 ImportData,Importer des données
 InRush,APPROCHE
 IsAvailable,est disponible!
 Language,Langue
+LatestVersion,Dernière version
 ListAvailDevices,Liste des appareils disponibles :
 LogRaw,Journaliser les données brutes
 ManageDevices,Gérer les appareils Bluetooth
@@ -48,6 +56,7 @@ MQTTDataFormat,Format des valeurs de données MQTT
 MQTTSettings,Paramètres MQTT
 Name,Nom:
 NotConnected,Pas connecté
+NoUpdatesAvail,Toutes nos félicitations! Vous avez la dernière version.
 Ok,D'ACCORD
 Password,Mot de passe :
 Peek,COUP D'OEIL
@@ -66,11 +75,13 @@ Settings,Réglages
 StartupSettings,Paramètres de démarrage
 TargetTopic,Sujet cible :
 TrueRMS,VRAI RMS
+Updates,Mises à jour
 UseComa,Utilisez Coma "," au lieu de Point "." dans Valeur (chaîne)
 UseLogin,Utiliser la connexion
 UserName,Nom d'utilisateur :
 Values,Valeurs
 Version,Version :
 View,Voir
+ViewSettings,Paramètres d'affichage
 WantToConnect,Voulez-vous vous connecter ?
 ZoomandFitData,Données de zoom et d'ajustement

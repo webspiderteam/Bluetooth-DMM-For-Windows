@@ -11,8 +11,11 @@ AskBeforeConnect,Zapytaj przed połączeniem
 AutoConnectKnown,Automatyczne łączenie znanych urządzeń podczas uruchamiania
 AutoRange,Zakres automatyczny
 AvailableString,Jedno z Twoich urządzeń jest dostępne do połączenia.
+ChangeLog,Dziennik zmian
 ChangeName,Zmień nazwę urządzenia
 ChartON,Otwórz wykres danych przy starcie
+CheckUpdates,Sprawdź aktualizacje
+CheckUpdatesStartup,Sprawdź aktualizacje podczas uruchamiania
 CleanWhitespace,Wyczyść białe spacje (niepotrzebne spacje) w Value(string)
 ClearChart,Wyczyść wykres
 ClientID,Identyfikator klienta :
@@ -21,20 +24,25 @@ Connected,połączony
 ConnectToDevice,Połącz z urządzeniem
 CreatedBy,Stworzone przez
 CSVFirst,Ustaw domyślny plik CSV dla eksportu
+CurrentVersion,Obecna wersja
 DataChart,Wykres danych
 DeviceManager,Zarządzaj urządzeniami
 DevicePicker,Selektor urządzeń
 Disconnected,niepowiązany
 DontAsk,Nie pytaj ponownie. Połącz automatycznie.
 DontConnect,Nie łącz
+DownloadLinks,Pobierz linki :
 EnableMQTT,Włącz klienta MQTT
 Encrypted,Zaszyfrowane
+ErrorGettingData,Błąd podczas pobierania danych...
 ExportData,Eksportuj dane
+GeneralSettings,Ustawienia główne
 Help,Pomoc
 ImportData,Zaimportować dane
 InRush,NAPÓR
 IsAvailable,jest dostępny!
 Language,Język
+LatestVersion,Ostatnia wersja
 ListAvailDevices,Lista dostępnych urządzeń:
 LogRaw,Zaloguj surowe dane
 ManageDevices,Zarządzaj urządzeniami Bluetooth
@@ -48,6 +56,7 @@ MQTTDataFormat,Format wartości danych MQTT
 MQTTSettings,Ustawienia MQTT
 Name,Nazwa:
 NotConnected,Nie połączony
+NoUpdatesAvail,Gratulacje! Masz ostatnią wersję.
 Ok,OK
 Password,Hasło :
 Peek,ZERKAĆ
@@ -66,11 +75,13 @@ Settings,Ustawienia
 StartupSettings,Ustawienia uruchamiania
 TargetTopic,Temat docelowy :
 TrueRMS,PRAWDZIWE RMS
+Updates,Aktualizacje
 UseComa,Użyj przecinka "," zamiast kropki "." w wartości (ciąg)
 UseLogin,Użyj logowania
 UserName,Nazwa użytkownika :
 Values,Wartości
 Version,Wersja :
 View,Pogląd
+ViewSettings,Ustawienia widoku
 WantToConnect,Chcesz się połączyć?
 ZoomandFitData,Powiększ i dopasuj dane

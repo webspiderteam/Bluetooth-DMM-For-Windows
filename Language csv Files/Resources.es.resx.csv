@@ -11,8 +11,11 @@ AskBeforeConnect,Preguntar antes de conectar
 AutoConnectKnown,Conectar automáticamente dispositivos conocidos al iniciar
 AutoRange,Rango automático
 AvailableString,Uno de sus dispositivos está disponible para conectarse.
+ChangeLog,Registro de cambios
 ChangeName,Cambiar el nombre del dispositivo
 ChartON,Abrir gráfico de datos al inicio
+CheckUpdates,Revisa actualizaciones
+CheckUpdatesStartup,Comprobar actualizaciones en el inicio
 CleanWhitespace,Limpiar espacios en blanco (espacios innecesarios) en Valor (cadena)
 ClearChart,Borrar gráfico
 ClientID,Identificación del cliente :
@@ -21,20 +24,25 @@ Connected,conectado
 ConnectToDevice,Conectar al dispositivo
 CreatedBy,Creado por
 CSVFirst,Establezca CSV como predeterminado para Exportar
+CurrentVersion,Versión actual
 DataChart,Gráfico de datos
 DeviceManager,Administrar dispositivos
 DevicePicker,Selector de dispositivos
 Disconnected,desconectado
 DontAsk,No vuelvas a preguntar. Conectar automáticamente.
 DontConnect,no conectar
+DownloadLinks,Descargar enlaces :
 EnableMQTT,Habilitar cliente MQTT
 Encrypted,encriptado
+ErrorGettingData,Error al obtener datos...
 ExportData,Exportar datos
+GeneralSettings,Configuración general
 Help,Ayuda
 ImportData,Datos de importacion
 InRush,IRRUPCIÓN
 IsAvailable,¡está disponible!
 Language,Idioma
+LatestVersion,Ultima versión
 ListAvailDevices,Lista de dispositivos disponibles:
 LogRaw,Registrar datos sin procesar
 ManageDevices,Administrar dispositivos Bluetooth
@@ -48,6 +56,7 @@ MQTTDataFormat,Formato de valores de datos MQTT
 MQTTSettings,Configuración de MQTT
 Name,Nombre:
 NotConnected,No conectado
+NoUpdatesAvail,¡Felicidades! Tienes la última versión.
 Ok,OK
 Password,Clave :
 Peek,OJEADA
@@ -66,11 +75,13 @@ Settings,Ajustes
 StartupSettings,Configuración de inicio
 TargetTopic,Tema objetivo:
 TrueRMS,RMS VERDADERO
+Updates,Actualizaciones
 UseComa,Use Coma "," en lugar de Punto "." en valor (cadena)
 UseLogin,Usar inicio de sesión
 UserName,Nombre de usuario :
 Values,Valores
 Version,Versión :
 View,Vista
+ViewSettings,Ver configuraciones
 WantToConnect,¿Quieres conectarte?
 ZoomandFitData,Acercar y ajustar datos

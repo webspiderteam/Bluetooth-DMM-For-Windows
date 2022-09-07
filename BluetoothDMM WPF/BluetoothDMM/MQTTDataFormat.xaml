@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BluetoothDMM"
         Style="{DynamicResource CustomWindowStyle}"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Background="#FF3A393A"
         Title="{lex:LocText MQTTDataFormat}" Height="470.273" Width="470" ResizeMode="NoResize" WindowStyle="ToolWindow">
     <Window.Resources>
         <local:DataList  x:Key="gDataList"/>

@@ -153,11 +153,20 @@
   <data name="AvailableString" xml:space="preserve">
     <value>Cihazlarınızdan biri bağlanmak için müsait.</value>
   </data>
+  <data name="ChangeLog" xml:space="preserve">
+    <value>Günlüğü Değiştir</value>
+  </data>
   <data name="ChangeName" xml:space="preserve">
     <value>Cihaz Adını Değiştir</value>
   </data>
   <data name="ChartON" xml:space="preserve">
     <value>Başlangıçta Veri Grafiği'ni Aç</value>
+  </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>Güncellemeleri kontrol et</value>
+  </data>
+  <data name="CheckUpdatesStartup" xml:space="preserve">
+    <value>Başlangıçta Güncellemeleri Kontrol Edin</value>
   </data>
   <data name="CleanWhitespace" xml:space="preserve">
     <value>Value(string) içindeki boşlukları (gereksiz boşlukları) temizleyin</value>
@@ -183,6 +192,9 @@
   <data name="CSVFirst" xml:space="preserve">
     <value>Dışa Aktarma için CSV'yi varsayılana ayarla</value>
   </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>Şimdiki versiyonu</value>
+  </data>
   <data name="DataChart" xml:space="preserve">
     <value>Veri Grafiği</value>
   </data>
@@ -201,14 +213,23 @@
   <data name="DontConnect" xml:space="preserve">
     <value>Bağlanma</value>
   </data>
+  <data name="DownloadLinks" xml:space="preserve">
+    <value>Bağlantılar İndir :</value>
+  </data>
   <data name="EnableMQTT" xml:space="preserve">
     <value>MQTT İstemcisini Etkinleştir</value>
   </data>
   <data name="Encrypted" xml:space="preserve">
     <value>Şifreli</value>
   </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>Veri alınırken hata oluştu...</value>
+  </data>
   <data name="ExportData" xml:space="preserve">
     <value>Verileri Dışa Aktar</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>Genel Ayarlar</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Yardım</value>
@@ -224,6 +245,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Dil</value>
+  </data>
+  <data name="LatestVersion" xml:space="preserve">
+    <value>En son sürüm</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
     <value>Kullanılabilir Cihazların Listesi:</value>
@@ -263,6 +287,9 @@
   </data>
   <data name="NotConnected" xml:space="preserve">
     <value>Bağlı değil</value>
+  </data>
+  <data name="NoUpdatesAvail" xml:space="preserve">
+    <value>Tebrikler! En son sürüme sahipsiniz.</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>TAMAM</value>
@@ -318,6 +345,9 @@
   <data name="TrueRMS" xml:space="preserve">
     <value>TRUE RMS</value>
   </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Güncellemeler</value>
+  </data>
   <data name="UseComa" xml:space="preserve">
     <value>Value(string)'de Nokta "." yerine Virgül "," kullanın." </value>
   </data>
@@ -335,6 +365,9 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>Görünüm</value>
+  </data>
+  <data name="ViewSettings" xml:space="preserve">
+    <value>Görünüm Ayarları</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>Bağlanmak istiyor musunuz?</value>

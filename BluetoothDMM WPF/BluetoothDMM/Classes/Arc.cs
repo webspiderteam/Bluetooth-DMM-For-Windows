@@ -13,7 +13,7 @@ namespace BluetoothDMM
             var Clr = System.Drawing.Color.Yellow;
             Brush myGreenBrush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255,Clr.R,Clr.G,Clr.B));//Color.FromArgb(155, 255, 176, 37));
             myGreenBrush.Freeze();
-
+            
             StrokeProperty.OverrideMetadata(
                 typeof(CircularProgress),
                 new FrameworkPropertyMetadata(myGreenBrush));

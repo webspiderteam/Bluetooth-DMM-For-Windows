@@ -11,8 +11,11 @@ AskBeforeConnect,Bağlanmadan Önce Sor
 AutoConnectKnown,Başlangıçta Bilinen Cihazları Otomatik Olarak Bağlan
 AutoRange,Otomatik Aralık
 AvailableString,Cihazlarınızdan biri bağlanmak için müsait.
+ChangeLog,Günlüğü Değiştir
 ChangeName,Cihaz Adını Değiştir
 ChartON,Başlangıçta Veri Grafiği'ni Aç
+CheckUpdates,Güncellemeleri kontrol et
+CheckUpdatesStartup,Başlangıçta Güncellemeleri Kontrol Edin
 CleanWhitespace,Value(string) içindeki boşlukları (gereksiz boşlukları) temizleyin
 ClearChart,Grafiği Temizle
 ClientID,İstemci Kimliği :
@@ -21,20 +24,25 @@ Connected,Bağlandı
 ConnectToDevice,Cihaza Bağlan
 CreatedBy,Yapımcı :
 CSVFirst,Dışa Aktarma için CSV'yi varsayılana ayarla
+CurrentVersion,Şimdiki versiyonu
 DataChart,Veri Grafiği
 DeviceManager,Cihazları Yönet
 DevicePicker,Cihaz Seçici
 Disconnected,Bağlantı Koptu
 DontAsk,Bir daha sorma. Otomatik Olarak Bağlan.
 DontConnect,Bağlanma
+DownloadLinks,Bağlantılar İndir :
 EnableMQTT,MQTT İstemcisini Etkinleştir
 Encrypted,Şifreli
+ErrorGettingData,Veri alınırken hata oluştu...
 ExportData,Verileri Dışa Aktar
+GeneralSettings,Genel Ayarlar
 Help,Yardım
 ImportData,Verileri İçe Aktar
 InRush,HAREKET
 IsAvailable, müsait!
 Language,Dil
+LatestVersion,En son sürüm
 ListAvailDevices,Kullanılabilir Cihazların Listesi:
 LogRaw,Ham Verileri Günlüğe Kaydet
 ManageDevices,Bluetooth Cihazlarını Yönet
@@ -48,6 +56,7 @@ MQTTDataFormat,MQTT Veri Değerleri Formatı
 MQTTSettings,MQTT Ayarları
 Name,Ad:
 NotConnected,Bağlı değil
+NoUpdatesAvail,Tebrikler! En son sürüme sahipsiniz.
 Ok,TAMAM
 Password,Şifre :
 Peek,TEPE
@@ -66,11 +75,13 @@ Settings,Ayarlar
 StartupSettings,Başlangıç ​​Ayarları
 TargetTopic,Hedef Konu :
 TrueRMS,TRUE RMS
-UseComa,Nokta "" yerine Koma "," kullanın." Değerde(dize)
+Updates,Güncellemeler
+UseComa,Value(string)'de Nokta "." yerine Virgül "," kullanın." 
 UseLogin,Girişi Kullan
 UserName,Kullanıcı adı :
 Values,Değerler
 Version,Sürüm :
 View,Görünüm
+ViewSettings,Ayarları Görüntüle
 WantToConnect,Bağlanmak istiyor musunuz?
 ZoomandFitData,Yakınlaştır ve Verileri Sığdır

@@ -2,9 +2,10 @@
 using HeartRateLE.Bluetooth.Events;
 using HeartRateLE.Bluetooth.Schema;
 using Microsoft.Win32;
+using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Protocol;
-using MQTTnet;
+using Octokit;
 using ScottPlot;
 using ScottPlot.Plottable;
 using System;
@@ -20,12 +21,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
+using Application = System.Windows.Application;
 
 namespace BluetoothDMM
 {
@@ -73,6 +74,38 @@ namespace BluetoothDMM
                 Properties.Settings.Default.Save();
             }
             InitializeComponent();
+            if (Properties.Settings.Default.CheckUpdates)
+            {
+                Task.Run(async () =>
+                {
+                    try
+                    {
+                        GitHubClient client = new GitHubClient(new ProductHeaderValue("BluetoothDMMForWindows"));
+                        
+                        IReadOnlyList<Release> releases = await client.Repository.Release.GetAll("webspiderteam", "Bluetooth-DMM-For-Windows");
+                        Updates.Releases = releases;
+                        var _prefix = "WPFRelease";
+                        //Setup the versions
+                        var tagname = releases[0].TagName;
+                        if (_prefix != "" && tagname.StartsWith(_prefix))
+                            tagname = tagname.Replace(_prefix, "");
+                        Version latestGitHubVersion = new Version(tagname);
+                        Version localVersion = new Version(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, 4)); //Local version. 
+                        //Version localVersion = new Version("1.18.0");
+                        //Compare the Versions
+                        int versionComparison = localVersion.CompareTo(latestGitHubVersion);
+                        if (versionComparison < 0)
+                            await RunOnUiThread(() =>
+                            {
+                                TxtUpdate.IsEnabled = true;
+                            });
+                    }
+                    catch (Exception ex)
+                    {
+                        d("update" + ex.Message);
+                    }
+                });
+            }
             if (Properties.Settings.Default.Lang == "")
                 LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
             else
@@ -584,12 +617,14 @@ namespace BluetoothDMM
                 if (connected)
                 {
                     //var device = await _heartRateMonitor.GetDeviceInfoAsync();
-                    TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Connected;
+                    textDevicename.Text = SelectedDeviceName + " : ";
+                    new WPFLocalizeExtension.Extensions.LocExtension("Connected").SetBinding(textStatus, Run.TextProperty);
                     //TxtBattery.Text = String.Format("battery level: {0}%", device.BatteryPercent);
                     MyGattCDataBluetooth.Visibility = Visibility.Visible;
                     dispatcherTimer.Start();
                     Connected = 1;
                     Is_Connected.IsChecked = true;
+                    TxtUpdate.IsEnabled = false;
                     if (client != null && client.IsConnected)
                     {
                         Task task = Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}",
@@ -600,7 +635,7 @@ namespace BluetoothDMM
                 }
                 else
                 {
-                    TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Disconnected;
+                    new WPFLocalizeExtension.Extensions.LocExtension("Disconnected").SetBinding(textStatus, Run.TextProperty);
                     TxtStatus.IsEnabled=true;
                     TxtBattery.Text = "battery level: --";
                     dispatcherTimer.Stop();
@@ -861,7 +896,7 @@ namespace BluetoothDMM
         
         private void SettingBtn_Click(object sender, RoutedEventArgs e)
         {
-            var Settings = new Settings(DeviceListC)
+            var Settings = new SettingsNew(DeviceListC)//Settings(DeviceListC)
             {
                 Topmost = this.Topmost
             };
@@ -873,7 +908,7 @@ namespace BluetoothDMM
                 else
                 {
                     LocalizeDictionary.Instance.Culture = new CultureInfo(Properties.Settings.Default.Lang);
-                    System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(Properties.Settings.Default.Lang);
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(Properties.Settings.Default.Lang);
                 }
                 if (Properties.Settings.Default.Remember)
                 {
@@ -898,13 +933,8 @@ namespace BluetoothDMM
                     if (SelectedDeviceId != null && DeviceListC.ContainsKey(SelectedDeviceId))
                     {
                         SelectedDeviceName = DeviceListC[SelectedDeviceId];
-                        if (Connected == 1)
-                            TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Connected;
-                        else
-                            TxtStatus.Text = SelectedDeviceName + " : " + Properties.Resources.Disconnected;
+                        textStatus.Text = SelectedDeviceName + " : ";
                     }
-                    else
-                        TxtStatus.Text = Properties.Resources.NotConnected;
                 }
                 if (Properties.MQTT.Default.MQTTEnabled)
                 {
@@ -958,13 +988,13 @@ namespace BluetoothDMM
                         if (pointIndex <= (int)((ScottPlot.Plottable.Text)plotT).X && pointIndex > LastX)
                         {
                             string[] st = SymbolToText(((ScottPlot.Plottable.Text)plotT).Label);
-                            txt.Label = $" {st[0]} {pointY}{st[1]} \n at {pointX} ";
+                            txt.Label = $" {st[0]} {pointY}{st[1]} \n at {CustomTickFormatter(pointX)} "; 
                         }
                         LastX = (int)((ScottPlot.Plottable.Text)plotT).X;
                     }
                 }
                 if (LastX < pointIndex)
-                    txt.Label = $" {MyGattCDataACDC.Text} {pointY}{MyGattCDataSymbol.Text} \n at {pointX} ";
+                    txt.Label = $" {MyGattCDataACDC.Text} {pointY}{MyGattCDataSymbol.Text} \n at {CustomTickFormatter(pointX)} ";
 
                 LastHighlightedIndex = pointIndex;
 
@@ -1478,25 +1508,5 @@ namespace BluetoothDMM
                 TxtStatus.IsEnabled = true;
             }
         }
-    }
-
-    public class Boolean2VisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            // to invert use ConverterParameter = '1'
-            bool boolValue = !(bool)value;
-
-            int param = parameter != null ? int.Parse(parameter.ToString(), NumberStyles.AllowLeadingSign) : 0;
-            if (param < 0)
-                boolValue = !boolValue;
-
-            if (Math.Abs(param) == 1)
-                return boolValue ? Visibility.Visible : Visibility.Collapsed;
-            else
-                return boolValue ? Visibility.Visible : Visibility.Hidden;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

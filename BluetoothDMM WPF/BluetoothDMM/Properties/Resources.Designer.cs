@@ -19,7 +19,7 @@ namespace BluetoothDMM.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -169,6 +169,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Log.
+        /// </summary>
+        public static string ChangeLog {
+            get {
+                return ResourceManager.GetString("ChangeLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Device Name.
         /// </summary>
         public static string ChangeName {
@@ -183,6 +192,24 @@ namespace BluetoothDMM.Properties {
         public static string ChartON {
             get {
                 return ResourceManager.GetString("ChartON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check Updates.
+        /// </summary>
+        public static string CheckUpdates {
+            get {
+                return ResourceManager.GetString("CheckUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check Updates on Startup.
+        /// </summary>
+        public static string CheckUpdatesStartup {
+            get {
+                return ResourceManager.GetString("CheckUpdatesStartup", resourceCulture);
             }
         }
         
@@ -259,6 +286,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Version.
+        /// </summary>
+        public static string CurrentVersion {
+            get {
+                return ResourceManager.GetString("CurrentVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data Chart.
         /// </summary>
         public static string DataChart {
@@ -313,6 +349,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download Links : .
+        /// </summary>
+        public static string DownloadLinks {
+            get {
+                return ResourceManager.GetString("DownloadLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable MQTT Client.
         /// </summary>
         public static string EnableMQTT {
@@ -331,11 +376,29 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while getting Data....
+        /// </summary>
+        public static string ErrorGettingData {
+            get {
+                return ResourceManager.GetString("ErrorGettingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export Data.
         /// </summary>
         public static string ExportData {
             get {
                 return ResourceManager.GetString("ExportData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Settings.
+        /// </summary>
+        public static string GeneralSettings {
+            get {
+                return ResourceManager.GetString("GeneralSettings", resourceCulture);
             }
         }
         
@@ -381,6 +444,15 @@ namespace BluetoothDMM.Properties {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest Version.
+        /// </summary>
+        public static string LatestVersion {
+            get {
+                return ResourceManager.GetString("LatestVersion", resourceCulture);
             }
         }
         
@@ -498,6 +570,15 @@ namespace BluetoothDMM.Properties {
         public static string NotConnected {
             get {
                 return ResourceManager.GetString("NotConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Congratulations! You have the latest version..
+        /// </summary>
+        public static string NoUpdatesAvail {
+            get {
+                return ResourceManager.GetString("NoUpdatesAvail", resourceCulture);
             }
         }
         
@@ -664,6 +745,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updates.
+        /// </summary>
+        public static string Updates {
+            get {
+                return ResourceManager.GetString("Updates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Coma &quot;,&quot; instead of Dot &quot;.&quot; in Value(string).
         /// </summary>
         public static string UseComa {
@@ -714,6 +804,15 @@ namespace BluetoothDMM.Properties {
         public static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Settings.
+        /// </summary>
+        public static string ViewSettings {
+            get {
+                return ResourceManager.GetString("ViewSettings", resourceCulture);
             }
         }
         

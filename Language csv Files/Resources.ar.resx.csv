@@ -11,8 +11,11 @@ AskBeforeConnect,اسأل قبل الاتصال
 AutoConnectKnown,الاتصال التلقائي بالأجهزة المعروفة عند بدء التشغيل
 AutoRange,نطاق السيارات
 AvailableString,أحد أجهزتك متاح للاتصال.
+ChangeLog,سجل التغيير
 ChangeName,تغيير اسم الجهاز
 ChartON,افتح مخطط البيانات عند بدء التشغيل
+CheckUpdates,تفقد التحديث
+CheckUpdatesStartup,تحقق من التحديثات عند بدء التشغيل
 CleanWhitespace,تنظيف المسافات البيضاء (مسافات غير ضرورية) في القيمة (سلسلة)
 ClearChart,مسح الرسم البياني
 ClientID,معرف العميل:
@@ -21,20 +24,25 @@ Connected,متصل
 ConnectToDevice,الاتصال بالجهاز
 CreatedBy,انشأ من قبل
 CSVFirst,اضبط CSV على الإعداد الافتراضي للتصدير
+CurrentVersion,النسخة الحالية
 DataChart,مخطط البيانات
 DeviceManager,إدارة الأجهزة
 DevicePicker,منتقي الجهاز
 Disconnected,انقطع الاتصال
 DontAsk,لا تسأل مرة أخرى. ربط تلقائيا.
 DontConnect,لا تتصل
+DownloadLinks,روابط التحميل:
 EnableMQTT,تفعيل عميل MQTT
 Encrypted,مشفر
+ErrorGettingData,خطأ أثناء إحضار البيانات ...
 ExportData,تصدير البيانات
+GeneralSettings,الاعدادات العامة
 Help,مساعدة
 ImportData,بيانات الاستيراد
 InRush,تدفق
 IsAvailable,متاح!
 Language,لغة
+LatestVersion,احدث اصدار
 ListAvailDevices,قائمة الأجهزة المتاحة:
 LogRaw,تسجيل البيانات الأولية
 ManageDevices,إدارة أجهزة البلوتوث
@@ -48,6 +56,7 @@ MQTTDataFormat,تنسيق قيم بيانات MQTT
 MQTTSettings,إعدادات MQTT
 Name,اسم:
 NotConnected,غير متصل
+NoUpdatesAvail,تهانينا! لديك أحدث نسخة.
 Ok,نعم
 Password,كلمة المرور :
 Peek,نظرة خاطفة
@@ -66,11 +75,13 @@ Settings,إعدادات
 StartupSettings,إعدادات البدء
 TargetTopic,الموضوع الهدف:
 TrueRMS,صحيح RMS
+Updates,التحديثات
 UseComa,استخدم Coma "،" بدلاً من Dot "." في القيمة (سلسلة نصية)
 UseLogin,استخدم تسجيل الدخول
 UserName,اسم المستخدم :
 Values,قيم
 Version,إصدار :
 View,رأي
+ViewSettings,عرض الإعدادات
 WantToConnect,هل تريد الاتصال؟
 ZoomandFitData,تكبير وتناسب البيانات

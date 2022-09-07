@@ -11,8 +11,11 @@ AskBeforeConnect,接続する前に尋ねる
 AutoConnectKnown,起動時に既知のデバイスを自動接続する
 AutoRange,オートレンジ
 AvailableString,お使いのデバイスの1つが接続可能です。
+ChangeLog,変更ログ
 ChangeName,デバイス名の変更
 ChartON,起動時にデータチャートを開く
+CheckUpdates,アップデートをチェック
+CheckUpdatesStartup,起動時に更新を確認する
 CleanWhitespace,Value(string) の空白 (不要なスペース) を消去します
 ClearChart,明確なチャート
 ClientID,クライアントID ：
@@ -21,20 +24,25 @@ Connected,接続済み
 ConnectToDevice,デバイスに接続する
 CreatedBy,によって作成された
 CSVFirst,CSV をエクスポートのデフォルトに設定する
+CurrentVersion,現行版
 DataChart,データチャート
 DeviceManager,デバイスの管理
 DevicePicker,デバイスピッカー
 Disconnected,切断されました
 DontAsk,二度と聞かないでください。自動接続。
 DontConnect,接続しないでください
+DownloadLinks,ダウンロード リンク :
 EnableMQTT,MQTT クライアントを有効にする
 Encrypted,暗号化
+ErrorGettingData,データ取得中にエラーが発生しました...
 ExportData,データのエクスポート
+GeneralSettings,一般設定
 Help,ヘルプ
 ImportData,データのインポート
 InRush,突入電流
 IsAvailable,利用可能です！
 Language,言語
+LatestVersion,最新バージョン
 ListAvailDevices,利用可能なデバイスのリスト：
 LogRaw,生データをログに記録する
 ManageDevices,Bluetoothデバイスを管理する
@@ -48,6 +56,7 @@ MQTTDataFormat,MQTT データ値の形式
 MQTTSettings,MQTT 設定
 Name,名前：
 NotConnected,接続されていません
+NoUpdatesAvail,おめでとう！あなたは最新バージョンを持っています。
 Ok,わかった
 Password,パスワード:
 Peek,ピーク
@@ -66,11 +75,13 @@ Settings,設定
 StartupSettings,スタートアップ設定
 TargetTopic,対象トピック：
 TrueRMS,真のRMS
+Updates,アップデート
 UseComa,ドット "." の代わりにコンマ "," を使用します。 in 値(文字列)
 UseLogin,ログインを使用
 UserName,ユーザー名 :
 Values,値
 Version,バージョン ：
 View,意見
+ViewSettings,設定を表示
 WantToConnect,接続しますか？
 ZoomandFitData,データのズームとフィット

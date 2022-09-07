@@ -108,40 +108,4 @@ namespace BluetoothDMM
             var result = MqttSettings.ShowDialog();
         }
     }
-    public sealed class CountryIdToFlagImageSourceConverter : IValueConverter
-    {
-
-        public object Convert(object value, System.Type targetType, object parameter, CultureInfo culture)
-        {
-        
-            var countryId = value as string;
-
-            if (countryId == null)
-                return null;
-
-            try
-            {
-                var path = $"/Assets/Flags/{countryId.Substring(countryId.Length - 2).ToLower()}.png";
-                var uri = new Uri(path, UriKind.Relative);
-                var resourceStream = Application.GetResourceStream(uri);
-                if (resourceStream == null)
-                    return null;
-
-                var bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.StreamSource = resourceStream.Stream;
-                bitmap.EndInit();
-                return bitmap;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        public object ConvertBack(object value, System.Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
-    }
 }

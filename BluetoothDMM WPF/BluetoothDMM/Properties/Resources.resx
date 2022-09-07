@@ -153,11 +153,20 @@
   <data name="AvailableString" xml:space="preserve">
     <value>One of your device is Available to connect.</value>
   </data>
+  <data name="ChangeLog" xml:space="preserve">
+    <value>Change Log</value>
+  </data>
   <data name="ChangeName" xml:space="preserve">
     <value>Change Device Name</value>
   </data>
   <data name="ChartON" xml:space="preserve">
     <value>Open Data Chart on Startup</value>
+  </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>Check Updates</value>
+  </data>
+  <data name="CheckUpdatesStartup" xml:space="preserve">
+    <value>Check Updates on Startup</value>
   </data>
   <data name="CleanWhitespace" xml:space="preserve">
     <value>Clean whitespaces (unnecessery spaces)  in Value(string)</value>
@@ -183,6 +192,9 @@
   <data name="CSVFirst" xml:space="preserve">
     <value>Set CSV to default for Export</value>
   </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>Current Version</value>
+  </data>
   <data name="DataChart" xml:space="preserve">
     <value>Data Chart</value>
   </data>
@@ -201,14 +213,23 @@
   <data name="DontConnect" xml:space="preserve">
     <value>Don't Connect</value>
   </data>
+  <data name="DownloadLinks" xml:space="preserve">
+    <value>Download Links : </value>
+  </data>
   <data name="EnableMQTT" xml:space="preserve">
     <value>Enable MQTT Client</value>
   </data>
   <data name="Encrypted" xml:space="preserve">
     <value>Encrypted</value>
   </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>Error while getting Data...</value>
+  </data>
   <data name="ExportData" xml:space="preserve">
     <value>Export Data</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>General Settings</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
@@ -224,6 +245,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="LatestVersion" xml:space="preserve">
+    <value>Latest Version</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
     <value>List of Available Devices:</value>
@@ -263,6 +287,9 @@
   </data>
   <data name="NotConnected" xml:space="preserve">
     <value>Not Connected</value>
+  </data>
+  <data name="NoUpdatesAvail" xml:space="preserve">
+    <value>Congratulations! You have the latest version.</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
@@ -318,6 +345,9 @@
   <data name="TrueRMS" xml:space="preserve">
     <value>TRUE RMS</value>
   </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
   <data name="UseComa" xml:space="preserve">
     <value>Use Coma "," instead of Dot "." in Value(string)</value>
   </data>
@@ -335,6 +365,9 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>View</value>
+  </data>
+  <data name="ViewSettings" xml:space="preserve">
+    <value>View Settings</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>Do you Want to Connect?</value>

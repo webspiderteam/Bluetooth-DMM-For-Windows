@@ -1,0 +1,395 @@
+﻿<Window x:Class="BluetoothDMM.SettingsNew"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:BluetoothDMM"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        lex:LocalizeDictionary.IncludeInvariantCulture="False"
+        lex:ResxLocalizationProvider.DefaultAssembly="BluetoothDMM"
+        lex:ResxLocalizationProvider.DefaultDictionary="Resources"
+        xmlns:settings="clr-namespace:BluetoothDMM.Properties"
+        Style="{DynamicResource CustomWindowStyle}"
+        mc:Ignorable="d" Background="#FF3A393A" Topmost="True" Closing="Window_Closing"
+        Title="{lex:LocText Settings}" Height="480" Width="760" MinHeight="480" MinWidth="600" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <local:Boolean2VisibilityConverter x:Key="Boolean2VisibilityConverter"/>
+        <local:CountryIdToFlagImageSourceConverter x:Key="CountryIdToFlagImageSourceConverter"/>
+        <local:IDtoMac_Converter x:Key="IDtoMac_Converter"/>
+        <Path x:Key="MQTTLogo"              Data="M 10.199218,4.9592592e-5 C 4.599224,4.9592592e-5 0,4.5992736 0,10.199268 v 9.900391 c 81.378789,0.240766 150.53946,52.931369 175.00586,125.826171 h 7.25781 v 8.28711 h -4.69726 c 4.39204,15.50625 6.83319,31.8196 6.93359,48.6875 h 8.19922 c 5.69999,-0.1 10.20117,-4.60118 10.20117,-10.20117 V 122.59966 C 179.70041,65.799716 133.00033,20.900029 74.900389,4.9592592e-5 Z M 177.56641,154.21294 c -0.79019,-2.78976 -1.64273,-5.55257 -2.56055,-8.28711 h -27.45703 v 8.28711 h 11.99805 v 36.74414 H 169.8125 V 154.21294 Z M 141.29883,4.9592592e-5 C 153.29882,8.3000406 165.69923,17.798888 176.19922,28.298878 c 9.39999,9.39999 19.00118,21.300792 26.70117,31.800781 v -50 A 10.07,10.07 0 0 0 192.79883,4.9592592e-5 Z M 0,51.00005 v 32.999999 c 47.984355,0.21844 89.421329,28.391741 108.68945,68.972661 v -7.04688 h 34.19532 C 119.8734,90.291109 64.816439,51.00005 0.599609,51.00005 Z m 142.88477,94.92578 c 0.0241,0.0583 0.0463,0.11747 0.0703,0.17578 v -0.17578 z m 0.0703,0.17578 v 8.11133 h -12 v 36.74414 h -10.26563 v -36.74414 h -11.42578 c 6.83473,14.83101 10.75041,31.26247 10.93555,48.58594 h 34.20117 c -0.14354,-20.04835 -4.22237,-39.17236 -11.44531,-56.69727 z m -33.69141,8.11133 c -0.1907,-0.41382 -0.37894,-0.82895 -0.57422,-1.24023 v 1.24023 z M 0,115.00005 v 77.59961 c 0,5.59999 4.599224,10.19922 10.199218,10.19922 h 79.900391 c -0.0562,-3.8948 -0.39051,-7.72187 -0.93555,-11.48242 -0.70892,0.0591 -1.41943,0.12109 -2.15429,0.12109 -3.44452,0 -6.59693,-0.59613 -9.4336,-1.76367 -2.83664,-1.16755 -5.26781,-2.79173 -7.27148,-4.875 -2.02618,-2.06037 -3.57849,-4.50978 -4.68164,-7.30274 -1.10315,-2.79294 -1.66602,-5.83903 -1.66602,-9.08984 0,-3.25082 0.56287,-6.27203 1.66602,-9.08789 1.10315,-2.79295 2.65546,-5.24237 4.68164,-7.30273 0.54527,-0.55448 1.12302,-1.07148 1.72461,-1.5625 -16.34046,-21.51463 -42.251887,-35.45313 -71.42969,-35.45313 z m 72.029299,35.45313 c 1.92476,2.53423 3.70282,5.18183 5.35156,7.91601 0.12535,-0.16426 0.24381,-0.33663 0.37695,-0.49219 1.05812,-1.23623 2.36261,-2.17595 3.91602,-2.83984 1.55341,-0.66391 3.33329,-0.98438 5.31445,-0.98438 1.98117,0 3.73668,0.32047 5.26758,0.98438 1.53088,0.66389 2.83641,1.60361 3.89453,2.83984 1.08063,1.23622 1.8903,2.7456 2.45313,4.53125 0.56282,1.78566 0.85547,3.80085 0.85547,6.02149 0,2.24352 -0.27013,4.25925 -0.85547,6.04492 -0.58534,1.78564 -1.39501,3.29503 -2.45313,4.53125 -1.05812,1.23623 -2.36365,2.19883 -3.89453,2.83984 -1.41442,0.60449 -3.00549,0.9105 -4.75586,0.96289 0.68904,2.78784 1.24623,5.6249 1.66406,8.50782 0.22497,-0.0188 0.46125,-0.017 0.6836,-0.0391 0.92305,-0.11447 1.82211,-0.2524 2.72265,-0.43554 l 5.49414,6.27343 c 0.76546,0.91572 1.64222,1.51098 2.632821,1.8086 0.99057,0.2976 2.09482,0.45703 3.31054,0.45703 h 8.44141 l -11.21094,-12.45313 c 1.3733,-1.03018 2.61077,-2.19814 3.69141,-3.54882 1.10314,-1.3278 2.0051,-2.79288 2.74804,-4.34961 0.74292,-1.55673 1.30569,-3.22801 1.71094,-5.01367 0.38271,-1.78565 0.58399,-3.64004 0.58399,-5.58594 0,-3.25082 -0.53944,-6.27151 -1.64258,-9.06446 -1.10314,-2.81583 -2.65647,-5.2443 -4.66016,-7.30468 -2.00366,-2.06037 -4.413341,-3.68456 -7.250001,-4.875 -2.83665,-1.19044 -5.96565,-1.78516 -9.41015,-1.78516 -3.46703,0 -6.59693,0.59418 -9.4336,1.76172 -2.07327,0.85334 -3.91302,1.95743 -5.54687,3.29102 z m 15.4707,32.35546 c -2.1548,-8.71823 -5.59363,-16.93458 -10.11914,-24.43945 -0.87079,1.1411 -1.56643,2.4781 -2.07813,4.03906 -0.56281,1.78566 -0.85546,3.77796 -0.85546,6.02149 0,2.24352 0.29265,4.25925 0.85546,6.04492 0.56282,1.78564 1.37446,3.29503 2.45508,4.53125 1.05812,1.23623 2.36261,2.17593 3.91602,2.83984 1.55341,0.641 3.31078,0.98438 5.31445,0.98438 0.17526,0 0.33971,-0.0163 0.51172,-0.0215 z M 11.636718,145.94927 h 9.003907 c 0.337705,0 0.630231,0.0457 0.90039,0.16016 0.27016,0.11446 0.495576,0.25153 0.720703,0.48046 0.202625,0.20603 0.428235,0.52683 0.63086,0.91602 l 11.392578,22.86914 c 0.382719,0.77836 0.786268,1.58071 1.146484,2.42773 0.38272,0.84704 0.744328,1.71655 1.082031,2.60938 a 33.612155,34.179329 0 0 1 1.101563,-2.65625 c 0.382718,-0.84703 0.788129,-1.69287 1.193359,-2.49414 L 50.15625,147.50591 c 0.202614,-0.38919 0.405731,-0.6871 0.630859,-0.91602 0.202624,-0.20604 0.44859,-0.366 0.71875,-0.48046 0.270152,-0.11447 0.564649,-0.16016 0.902344,-0.16016 h 9.003906 v 45.00781 h -9.050781 v -25.91601 c 0,-1.25912 0.06907,-2.60907 0.18164,-4.07422 L 40.8125,184.11138 c -0.360215,0.73257 -0.855036,1.25927 -1.462891,1.64844 -0.607854,0.36629 -1.327275,0.54882 -2.115234,0.54882 H 35.83789 c -0.787959,0 -1.486812,-0.18253 -2.117187,-0.54882 -0.607847,-0.36629 -1.102683,-0.91587 -1.462891,-1.64844 L 20.439453,160.94341 c 0.09005,0.73257 0.134654,1.44266 0.179687,2.15234 0.04507,0.70968 0.06641,1.37354 0.06641,1.96875 v 25.89258 h -9.048829 z" />
+        <Path x:Key="StartupSettingsLogo"   Data="m 170.667,179.123 c 0,-4.71 -3.823,-8.533 -8.533,-8.533 h -76.8 c -11.682,0 -34.133,10.812 -34.133,25.6 v 238.933 c 0,4.71 3.823,8.533 8.533,8.533 h 392.533 c 4.71,0 8.533,-3.823 8.533,-8.533 V 196.19 c 0,-13.158 -12.442,-25.6 -25.6,-25.6 h -85.333 c -4.71,0 -8.533,3.823 -8.533,8.533 0,4.71 3.823,8.533 8.533,8.533 H 435.2 c 3.831,0 8.533,4.702 8.533,8.533 v 230.4 H 68.267 L 68.216,196.624 c 1.05,-3.004 11.631,-8.969 17.118,-8.969 h 76.8 c 4.71,0.002 8.533,-3.821 8.533,-8.532 z M 153.6,298.59 c 0,4.71 3.823,8.533 8.533,8.533 h 25.6 v 8.533 c 0,4.71 3.823,8.533 8.533,8.533 4.71,0 8.533,-3.823 8.533,-8.533 v -8.533 h 17.067 c 4.71,0 8.533,-3.823 8.533,-8.533 0,-4.71 -3.823,-8.533 -8.533,-8.533 h -51.2 v -8.533 c 0,-25.148 8.61,-35.686 17.724,-46.848 8.064,-9.882 16.41,-20.104 16.41,-38.485 v -85.333 c 0,-29.79 14.02,-44.595 15.087,-45.739 L 256,21.786 292.591,65.647 c 0.589,0.614 14.609,15.42 14.609,45.21 v 85.333 c 0,18.381 8.346,28.604 16.41,38.485 9.114,11.162 17.724,21.7 17.724,46.848 v 8.533 h -51.2 c -4.71,0 -8.533,3.823 -8.533,8.533 0,4.71 3.823,8.533 8.533,8.533 H 307.2 v 8.533 c 0,4.71 3.823,8.533 8.533,8.533 4.71,0 8.533,-3.823 8.533,-8.533 v -8.533 h 25.6 c 4.71,0 8.533,-3.823 8.533,-8.533 v -17.067 c 0,-31.232 -11.955,-45.875 -21.564,-57.643 -7.296,-8.934 -12.57,-15.394 -12.57,-27.691 v -85.333 c 0,-37.239 -18.765,-56.431 -19.046,-56.661 l -42.667,-51.2 c -3.243,-3.891 -9.865,-3.891 -13.107,0 L 207.3,53.623 c -0.802,0.802 -19.567,19.994 -19.567,57.233 v 85.333 c 0,12.297 -5.274,18.756 -12.57,27.691 -9.609,11.768 -21.564,26.411 -21.564,57.643 v 17.067 z m 349.867,128 h -8.533 V 179.123 c 0,-21.931 -20.736,-42.667 -42.667,-42.667 h -102.4 c -4.71,0 -8.533,3.823 -8.533,8.533 0,4.71 3.823,8.533 8.533,8.533 h 102.4 c 12.442,0 25.6,13.158 25.6,25.6 v 256 c 0,4.71 3.823,8.533 8.533,8.533 h 8.533 v 25.6 c 0,12.442 -13.158,25.6 -25.6,25.6 H 42.667 c -9.583,0 -19.584,-7.799 -23.68,-17.067 h 450.347 c 4.71,0 8.533,-3.823 8.533,-8.533 0,-4.71 -3.823,-8.533 -8.533,-8.533 H 8.533 c -4.71,0 -8.533,3.823 -8.533,8.533 0,21.931 20.736,42.667 42.667,42.667 h 426.667 c 21.931,0 42.667,-20.736 42.667,-42.667 V 435.122 C 512,430.413 508.177,426.59 503.467,426.59 Z M 25.6,443.657 c 4.71,0 8.533,-3.823 8.533,-8.533 v -256 c 0,-12.442 13.158,-25.6 25.6,-25.6 h 102.4 c 4.71,0 8.533,-3.823 8.533,-8.533 0,-4.71 -3.823,-8.533 -8.533,-8.533 h -102.4 c -21.931,0 -42.667,20.736 -42.667,42.667 v 256 c 0.001,4.709 3.824,8.532 8.534,8.532 z M 247.467,247.39 v 68.267 c 0,4.71 3.823,8.533 8.533,8.533 4.71,0 8.533,-3.823 8.533,-8.533 V 247.39 c 0,-4.71 -3.823,-8.533 -8.533,-8.533 -4.71,0 -8.533,3.822 -8.533,8.533 z m 42.666,-110.933 c 0,-18.825 -15.309,-34.133 -34.133,-34.133 -18.825,0 -34.133,15.309 -34.133,34.133 0,18.824 15.308,34.133 34.133,34.133 18.825,0 34.133,-15.309 34.133,-34.133 z M 256,153.523 c -9.412,0 -17.067,-7.654 -17.067,-17.067 0,-9.412 7.654,-17.067 17.067,-17.067 9.412,0 17.067,7.654 17.067,17.067 0,9.413 -7.655,17.067 -17.067,17.067 z m -68.267,187.734 c -13.107,0 -24.789,7.646 -30.438,18.927 -3.985,-1.229 -8.107,-1.86 -12.228,-1.86 -23.526,0 -42.667,19.14 -42.667,42.667 0,4.71 3.823,8.533 8.533,8.533 4.71,0 8.533,-3.823 8.533,-8.533 0,-14.114 11.486,-25.6 25.6,-25.6 4.523,0 8.917,1.254 13.056,3.729 2.458,1.468 5.478,1.604 8.055,0.367 2.577,-1.229 4.369,-3.669 4.77,-6.502 1.186,-8.354 8.405,-14.66 16.785,-14.66 8.815,0 16.068,6.682 16.87,15.531 0.324,3.627 2.91,6.639 6.434,7.518 3.533,0.879 7.228,-0.572 9.216,-3.627 7.919,-12.16 21.291,-19.422 35.746,-19.422 14.456,0 27.827,7.262 35.746,19.422 1.988,3.055 5.692,4.506 9.216,3.627 3.524,-0.879 6.11,-3.891 6.434,-7.518 0.802,-8.849 8.055,-15.531 16.87,-15.531 8.38,0 15.599,6.306 16.785,14.66 0.401,2.833 2.193,5.274 4.77,6.502 2.586,1.237 5.606,1.101 8.055,-0.367 4.139,-2.475 8.533,-3.729 13.056,-3.729 14.114,0 25.6,11.486 25.6,25.6 0,4.71 3.823,8.533 8.533,8.533 4.71,0 8.533,-3.823 8.533,-8.533 0,-23.526 -19.14,-42.667 -42.667,-42.667 -4.122,0 -8.243,0.631 -12.228,1.86 -5.649,-11.281 -17.331,-18.927 -30.438,-18.927 -11.861,0 -22.306,5.99 -28.399,15.266 -10.82,-9.737 -24.926,-15.266 -39.868,-15.266 -14.942,0 -29.047,5.53 -39.868,15.266 -6.089,-9.276 -16.533,-15.266 -28.395,-15.266 z"/>
+        <Path x:Key="SettingsLogo"          Data="m 360.5,152.5 h -15.2 c -12.4,0 -22.8,-10.7 -22.8,-23.4 0,-6.4 2.7,-12.2 7.5,-16.5 l 9.8,-9.6 c 9.7,-9.6 9.7,-25.3 0,-34.9 L 317.5,46 c -4.4,-4.4 -10.9,-7 -17.5,-7 -6.6,0 -13,2.6 -17.5,7 l -9.4,9.4 c -4.5,5 -10.5,7.7 -17,7.7 -12.8,0 -23.5,-10.4 -23.5,-22.7 V 25.1 C 232.6,11.6 221.7,0 208.1,0 h -30.4 c -13.6,0 -24.4,11.5 -24.4,25.1 v 15.2 c 0,12.3 -10.7,22.7 -23.5,22.7 -6.4,0 -12.3,-2.7 -16.6,-7.4 L 103.5,46 C 99.1,41.5 92.6,39 86,39 79.4,39 73,41.6 68.5,46 L 46,68 c -9.6,9.6 -9.6,25.3 0,34.8 l 9.4,9.4 c 5,4.5 7.8,10.5 7.8,16.9 0,12.8 -10.4,23.4 -22.8,23.4 H 25.2 C 11.5,152.5 0,163.2 0,176.8 v 15.2 15.2 c 0,13.5 11.5,24.3 25.2,24.3 h 15.2 c 12.4,0 22.8,10.7 22.8,23.4 0,6.4 -2.8,12.4 -7.8,16.9 l -9.4,9.3 c -9.6,9.6 -9.6,25.3 0,34.8 l 22.3,22.2 c 4.4,4.5 10.9,7 17.5,7 6.6,0 13,-2.6 17.5,-7 l 9.7,-9.6 c 4.2,-4.7 10.2,-7.4 16.6,-7.4 12.8,0 23.5,10.4 23.5,22.7 V 359 c 0,13.5 10.8,25.1 24.5,25.1 H 208 c 13.6,0 24.4,-11.5 24.4,-25.1 v -15.2 c 0,-12.3 10.7,-22.7 23.5,-22.7 6.4,0 12.4,2.8 17,7.7 l 9.4,9.4 c 4.5,4.4 10.9,7 17.5,7 6.6,0 13,-2.6 17.5,-7 L 339.6,316 c 9.6,-9.6 9.6,-25.3 0,-34.9 l -9.8,-9.6 c -4.8,-4.3 -7.5,-10.2 -7.5,-16.5 0,-12.8 10.4,-23.4 22.8,-23.4 h 15.2 c 13.6,0 23.3,-10.7 23.3,-24.3 V 192 176.8 c 0.2,-13.6 -9.5,-24.3 -23.1,-24.3 z M 272.8,192 v 0 c 0,44.1 -35.7,80 -80,80 -44.3,0 -80,-35.9 -80,-80 v 0 0 c 0,-44.1 35.7,-80 80,-80 44.3,0 80,35.9 80,80 z"/>
+        <Path x:Key="UpdatesLogo"           Data="M 705.48 0 H 110.73 C 49.04 0 0 50.62 0 110.73 V 705.48 C 0 767.17 50.62 816.2 110.73 816.2 h 594.75 c 60.11 0 110.72 -50.62 110.72 -110.72 V 110.73 C 816.2 49.03 765.58 0 705.48 0 Z M 515.66 727.62 H 308.45 c -4.75 0 -9.49 -4.75 -9.49 -9.49 0 -4.74 4.75 -9.49 9.49 -9.49 h 207.21 c 4.75 0 9.49 4.75 9.49 9.49 0 4.74 -3.16 9.49 -9.49 9.49 z m -7.91 -36.38 H 317.94 c -11.07 0 -18.98 -7.91 -18.98 -18.98 0 -11.07 7.91 -18.98 18.98 -18.98 h 189.81 c 11.08 0 18.99 7.91 18.99 18.98 0 9.49 -7.91 18.98 -18.99 18.98 z M 642.21 387.53 H 529.74 c 0.1 1.05 0.15 2.1 0.15 3.17 v 211.96 c -1.58 18.98 -15.82 34.8 -34.8 34.8 H 336.92 c -18.98 0 -34.8 -15.82 -34.8 -34.8 V 390.7 c 0 -1.07 0.06 -2.12 0.15 -3.17 H 196.14 c -23.73 1.58 -36.38 -26.89 -18.99 -44.29 L 400.18 120.21 c 11.07 -11.07 26.89 -11.07 37.96 0 l 223.03 223.03 c 17.41 17.41 4.76 44.29 -18.96 44.29 z"/>
+        <Path x:Key="AdvancedSettingsLogo"  Data="M286.547 465.016c16.843 16.812 81.716 85.279 81.716 85.279l35.968-37.093-56.373-58.248L456.072 340.02s-48.842-47.623-27.468-28.655c20.438-75.903 1.812-160.589-55.842-220.243-57.154-59.186-138.37-78.592-211.337-58.218l123.653 127.715-32.53 125.309-121.06 33.438L7.898 191.618c-19.718 75.436-.969 159.339 56.311 218.556 60.093 62.123 146.621 80.373 222.338 54.842zm412.268 124.215L549.694 736.539l245.932 254.805c20.062 20.812 46.498 31.188 72.872 31.188 26.25 0 52.624-10.375 72.811-31.188 40.249-41.624 40.249-108.997 0-150.62L698.815 589.231zm324.866-427.393L867.06-.001 405.387 477.297l56.373 58.248-276.335 285.616-63.154 33.749-89.217 145.559 22.719 23.562 140.839-92.247 32.655-65.312 276.336-285.554 56.404 58.248 461.674-477.328z"/>
+        <Path x:Key="ViewSettingsLogo"      Data="M 3002.5 2042.9 C 2682.1 1922.2 1993.4 1572.7 1672.9 1366.7 1157 1035.8 668 657.2 287.3 288.9 L 100 107.9 276.9 -62.8 c 376.6 -364.1 898.9 -771.9 1377.4 -1077.8 332.9 -212.2 936.3 -522.2 1265 -651.3 368.3 -143.6 364.1 -145.6 178.9 43.7 -880.1 894.7 -1007 2278.3 -307.9 3341.6 54.1 79.1 178.9 233 280.9 339.2 102 106.1 176.9 193.5 168.5 193.5 -10.4 0 -116.5 -37.4 -237.2 -83.2 z m 3882.6 -72.8 c 187.3 -191.4 407.8 -505.6 516 -740.7 212.2 -462 301.7 -1040.4 231 -1504.4 -83.2 -555.5 -320.4 -1038.3 -713.7 -1452.3 -203.9 -212.2 -208.1 -210.1 162.3 -64.5 892.6 353.7 1901.7 1011.2 2642.5 1729 L 9900 107.9 9723.1 280.6 C 8920 1056.7 7775.6 1778.6 6851.8 2094.9 l -137.3 45.8 z M 4821.1 515.7 c -89.5 -39.5 -210.2 -170.6 -239.3 -255.9 -37.5 -112.4 -14.6 -301.7 45.8 -389.1 129 -191.4 378.7 -255.9 578.4 -147.7 60.3 33.3 129 93.6 162.3 143.6 52 74.9 58.3 104 58.3 241.4 0 135.2 -8.3 166.5 -56.2 239.3 -91.5 133.2 -187.3 185.2 -347.5 191.4 -85.3 4 -162.3 -4.3 -201.8 -23 z m 12.4 1140.2 c 0 -112.4 -25 -191.4 -70.7 -220.6 -12.5 -8.3 -83.2 -35.4 -156 -58.3 -72.8 -25 -187.3 -70.7 -253.8 -106.1 -66.6 -33.3 -141.5 -60.3 -164.4 -60.3 -25 0 -89.5 43.7 -147.7 97.8 l -104 97.8 -116.5 -118.6 -118.6 -116.5 97.8 -104 C 3916.1 942.3 3920.3 898.6 3837.1 746.7 3803.8 688.4 3756 574 3731 497 3668.6 305.6 3633.2 274.4 3466.7 274.4 H 3335.6 V 107.9 -58.6 h 131.1 c 74.9 -2.1 143.6 -12.5 166.5 -29.1 20.8 -16.7 64.5 -102 95.7 -191.4 31.2 -91.6 83.2 -212.2 112.4 -272.6 31.2 -60.3 56.2 -129 56.2 -151.9 0 -25 -43.7 -89.5 -97.8 -147.7 l -97.8 -104 118.6 -116.5 116.5 -118.6 104 97.8 c 122.8 114.4 172.7 120.7 303.8 43.7 49.9 -29.1 168.5 -79.1 262.2 -112.4 93.6 -33.3 172.7 -62.4 174.8 -66.6 33.3 -41.6 52 -118.6 52 -212.2 v -116.5 h 166.2 166.5 v 133.2 c 0 112.3 8.3 139.4 52 185.2 29.1 29.1 87.4 58.3 131.1 66.6 41.6 6.2 154 49.9 247.6 95.7 93.6 43.7 189.3 81.1 214.3 81.1 22.9 0 89.5 -43.7 147.7 -97.8 l 104 -97.8 116.5 118.6 118.6 116.5 -97.8 104 c -116.5 124.8 -120.7 168.5 -37.5 320.4 33.3 58.3 81.1 172.7 106.1 249.7 62.4 191.4 97.8 222.6 264.2 222.6 h 131.1 v 166.5 166.5 h -133.2 c -114.4 0 -139.4 6.2 -185.2 54.1 -29.1 29.1 -58.3 87.4 -66.6 133.2 -8.3 43.7 -50 151.9 -95.7 241.4 -43.7 89.5 -81.2 185.2 -81.2 212.2 0 27.1 39.6 89.5 97.8 151.9 l 97.8 104 -118.6 116.5 -116.5 118.6 -104 -97.8 c -122.7 -114.4 -172.7 -120.7 -303.8 -43.7 -49.9 29.1 -168.5 79.1 -262.1 112.4 -91.6 33.3 -181 77 -197.7 97.8 -16.7 22.9 -27.1 91.5 -29.1 168.5 v 129 H 5000 4833.5 Z m 482.8 -844.8 c 164.4 -77 295.5 -203.9 376.6 -368.3 60.3 -124.8 66.6 -154 66.6 -335 0 -181 -6.3 -210.2 -66.6 -335 -81.1 -164.4 -212.2 -291.3 -376.6 -368.3 -102 -47.9 -145.6 -56.2 -316.3 -56.2 -170.6 0 -214.3 8.3 -316.3 56.2 -449.4 210.2 -597.1 780.3 -301.7 1165.3 91.6 118.6 195.6 197.7 339.2 258 170.6 70.7 422.4 64.5 595.1 -16.7 z m -638.8 1604.2 c -511.9 -74.9 -963.3 -299.6 -1323.3 -661.7 -911.3 -911.3 -911.3 -2380.3 0 -3291.6 1111.1 -1113.2 2989.9 -817.7 3714 582.6 466.1 903 295.4 1985 -424.5 2707 -516 516 -1258.8 765.7 -1966.2 663.7 z m 767.8 -364.1 c 49.9 -49.9 54.1 -70.7 54.1 -214.3 v -158.1 l 120.7 -47.9 c 66.6 -25 129 -45.8 141.5 -45.8 10.4 0 66.6 47.9 122.8 104 85.3 85.3 114.4 104 174.8 104 66.6 0 99.9 -27 349.6 -274.7 251.8 -251.8 276.7 -283 276.7 -349.6 0 -62.4 -18.7 -91.5 -110.3 -183.1 l -112.4 -110.3 54.1 -135.2 52 -133.2 H 6729 c 143.6 0 164.4 -4.2 214.3 -54.1 l 54.1 -56.2 v -387 c -2.1 -270.5 -8.3 -397.4 -27 -420.3 -45.8 -60.3 -114.4 -81.2 -258 -81.2 H 6570.9 L 6523 -512.5 c -25 -66.6 -45.8 -129 -45.8 -141.5 0 -10.4 47.9 -66.6 104 -122.8 85.3 -85.3 104 -114.4 104 -174.8 0 -66.6 -27.1 -99.9 -274.6 -349.6 -251.8 -251.8 -283 -276.7 -349.6 -276.7 -62.4 0 -91.6 18.7 -176.9 104 -56.2 58.3 -110.3 104 -122.8 104 -10.4 0 -72.8 -20.8 -139.4 -43.7 l -122.8 -45.8 v -160.2 c 0 -145.7 -4.2 -166.5 -54.1 -216.4 l -56.2 -54.1 H 5000 4610.9 l -56.2 54.1 c -49.9 49.9 -54.1 70.7 -54.1 216.4 v 160.2 l -133.2 52 -133.2 52 -110.2 -109.7 c -91.5 -93.6 -122.8 -112.4 -185.2 -112.4 -64.5 0 -97.8 27 -347.5 274.7 -251.8 251.7 -276.7 283 -276.7 349.5 0 62.4 18.7 91.6 104 176.9 58.3 56.2 104 112.4 104 122.8 0 12.5 -20.8 74.9 -45.8 141.5 l -47.9 120.7 h -141.5 c -143.6 0 -212.2 20.8 -258 81.2 -18.7 22.9 -25 149.8 -27 420.3 v 387 l 54.1 56.2 c 49.9 47.9 70.7 54.1 214.3 54.1 h 158.1 l 54.1 133.2 54.1 133.2 -110.1 110 c -93.6 91.5 -112.4 122.8 -112.4 185.2 0 64.5 27 97.8 274.7 347.5 251.8 251.7 283 276.7 349.6 276.7 62.4 0 91.5 -18.7 176.9 -104 56.2 -56.2 112.4 -104 122.8 -104 12.5 0 74.9 20.8 141.5 45.8 l 120.7 47.9 v 166.5 c 0 91.5 8.3 176.9 16.6 191.4 33.3 52 131.1 66.6 495.2 66.6 l 376.6 2.1 z"/>
+
+        <Style x:Key="styleTabItemDefault" TargetType="{x:Type TabItem}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border x:Name="rightBorder"
+                        Background="#FF1F1E1F"
+                        BorderThickness="1.2,1,1.2,1"
+                        BorderBrush="#00032A6B">
+                            <Border x:Name="leftBorder"
+                            BorderThickness="1,0,0,0"
+                            BorderBrush="#FF1F1E1F">
+                                <ContentPresenter x:Name="ContentSite"
+                                            ContentSource="Header"
+                                            Grid.Row="1"
+                                            HorizontalAlignment="Stretch"
+                                            Margin="20,4,20,5"
+                                            RecognizesAccessKey="True"
+                                            VerticalAlignment="Center"
+                                            TextBlock.FontSize="14"
+                                            TextBlock.Foreground="#FFFFFF">
+
+                                </ContentPresenter>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="rightBorder"
+                                Property="Background"
+                                Value="#FF303130" />
+                                <Setter TargetName="leftBorder"
+                                Property="BorderThickness"
+                                Value="0" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="styleTabControl" TargetType="{x:Type TabControl}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid KeyboardNavigation.TabNavigation="Local" ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Name="Header"
+                            Background="#FF3A393A"
+                            Grid.Column="0"
+                            Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Background="#FF1F1E1F"
+                                BorderBrush="#FF3A393A"
+                                BorderThickness="1,1,1,1"
+                                CornerRadius="4"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                KeyboardNavigation.TabIndex="1"
+                                Margin="6"
+                                Panel.ZIndex="1">
+                                    <StackPanel Name="HeaderPanel"
+                                        IsItemsHost="True"
+                                        Orientation="Vertical">
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                            <ContentPresenter Grid.Column="1" ContentSource="SelectedContent" Margin="5"
+                                        KeyboardNavigation.DirectionalNavigation="Contained"
+                                        KeyboardNavigation.TabIndex="2"
+                                        KeyboardNavigation.TabNavigation="Local" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl Margin="5,32,10,30" Style="{DynamicResource ResourceKey=styleTabControl}">
+            <TabItem  Style="{DynamicResource ResourceKey=styleTabItemDefault}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="-15,0,0,0">
+                        <Viewbox Width="35" Height="40" Child="{StaticResource SettingsLogo}"/>
+                        <TextBlock Text="{lex:Loc GeneralSettings}" VerticalAlignment="Center" FontSize="12" Foreground="White" Padding="5"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Border IsEnabled="True" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,10" Margin="0,3,5,3">
+                            <StackPanel>
+                                <TextBlock Margin="0,0,0,10"  FontWeight="Bold" Foreground="AntiqueWhite" Text="{lex:Loc GeneralSettings}"/>
+                                <Canvas>
+                                    <TextBlock Margin="0,10,0,10" TextAlignment="Right" Text="{lex:LocText Language}" Width="155"/>
+                                </Canvas>
+                                <ComboBox x:Name="cmbLanguage" Margin="160,10,0,10"  ItemsSource="{Binding Source={x:Static lex:LocalizeDictionary.Instance}, Path=MergedAvailableCultures}"
+                  SelectedItem="{Binding Source={x:Static lex:LocalizeDictionary.Instance}, Path=Culture}"
+                  HorizontalAlignment="Left" VerticalAlignment="Top" Width="220">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{Binding Name, Converter={StaticResource CountryIdToFlagImageSourceConverter}, Mode=OneWay}" Stretch="Uniform" Width="23" Height="18" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Center" />
+                                                <TextBlock Text="{Binding Path=NativeName}" Margin="5,0,0,0" VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <CheckBox Content="{lex:LocText Reconnect}" Margin="160,0,0,10"  IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=Reconnect, Mode=TwoWay}"/>
+                                <CheckBox Content="{lex:LocText AskBeforeConnect}" Margin="160,0,0,10" IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=AskOnConnect, Mode=TwoWay}" />
+                                <CheckBox Content="{lex:LocText MinimizeToTray}"  Margin="160,0,0,10"  IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=MinimizeTray, Mode=TwoWay}"/>
+                                <CheckBox x:Name="chkWStartup" Content="{lex:LocText RunStartup}" Margin="160,0,0,10"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Style="{DynamicResource ResourceKey=styleTabItemDefault}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="-15,0,0,0">
+                        <Viewbox Width="35" Height="40" Child="{StaticResource StartupSettingsLogo}"/>
+                        <TextBlock Text="{lex:LocText StartupSettings}" VerticalAlignment="Center" FontSize="12" Foreground="White" Padding="5"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Border IsEnabled="True" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,10" Margin="0,3,5,3">
+                            <StackPanel>
+                                <TextBlock Margin="0,0,0,10"  FontWeight="Bold" Foreground="AntiqueWhite" Text="{lex:LocText StartupSettings}"/>
+                                <CheckBox Content="{lex:LocText AutoConnectKnown}" Margin="50,5,0,5" IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=ConnectOn, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </Border>
+                        <Border IsEnabled="True" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,10" Margin="0,3,5,3">
+                            <StackPanel>
+                                <TextBlock Margin="0,0,0,10"  FontWeight="Bold" Foreground="AntiqueWhite" Text="{lex:LocText DeviceManager}"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30*"/>
+                                        <ColumnDefinition Width="12*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ListBox x:Name="lstDevices" Height="200" Margin="5,0,5,0" ItemsSource="{Binding DeviceListC}" >
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition SharedSizeGroup="Mac" />
+                                                        <ColumnDefinition SharedSizeGroup="Value" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Margin="2" Text="{Binding Key, Converter={StaticResource IDtoMac_Converter}}" Grid.Column="1"/>
+                                                    <TextBlock Margin="2" Text="{Binding Value}" Grid.Column="0"/>
+                                                    <TextBlock Margin="2" Visibility="Collapsed" Text="{Binding Key}" Grid.Column="0"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                                        <Button Content="{lex:LocText ChangeName}"  Margin="5,5,5,0" Height="25" Click="btnChange_Click"/>
+                                        <Button Content="{lex:LocText RemoveDevice}" Margin="5,5,5,0"  Height="25" Click="btnRemove_Click"/>
+                                        <Button Content="{lex:LocText RemoveAll}"  Margin="5,5,5,0" Height="25" Click="btnRemoveAll_Click"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Style="{DynamicResource ResourceKey=styleTabItemDefault}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="-15,0,0,0">
+                        <Viewbox Width="35" Height="40" Child="{StaticResource AdvancedSettingsLogo}"/>
+                        <TextBlock Text="{lex:LocText AdvencedSettings}" VerticalAlignment="Center" FontSize="12" Foreground="White" Padding="5"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Border IsEnabled="True" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,10" Margin="0,3,5,3">
+                            <StackPanel>
+                                <TextBlock Margin="0,0,0,10"  FontWeight="Bold" Foreground="AntiqueWhite" Text="{lex:LocText AdvencedSettings}"/>
+                                <CheckBox Content="{lex:LocText LogRaw}" Margin="50,5,0,5" IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=LogData, Mode=TwoWay}"/>
+                                <CheckBox Content="{lex:LocText CSVFirst}" Margin="50,5,0,5" IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=CSVFirst, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem  Style="{DynamicResource ResourceKey=styleTabItemDefault}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="-15,0,0,0">
+                        <Viewbox Width="35" Height="40" Child="{StaticResource ViewSettingsLogo}"/>
+                        <TextBlock Text="{lex:Loc ViewSettings}" VerticalAlignment="Center" FontSize="12" Foreground="White" Padding="5"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Border IsEnabled="True" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,10" Margin="0,3,5,3">
+                            <StackPanel>
+                                <TextBlock Margin="0,0,0,10"  FontWeight="Bold" Foreground="AntiqueWhite" Text="{lex:Loc ViewSettings}"/>
+                                <CheckBox Content="{lex:LocText ChartON}" Margin="50,5,0,5" IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=ChartOn, Mode=TwoWay}"/>
+                                <CheckBox Content="{lex:LocText AnalogDisplatONStart}" Margin="50,5,0,5" IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=ADisplay, Mode=TwoWay}"/>
+                                <CheckBox Content="{lex:LocText AlwaysonTop}" Margin="50,5,0,5" IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=Ontop, Mode=TwoWay}"/>
+                                <CheckBox Content="{lex:LocText SavePosition}" Margin="50,5,0,5" IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=Remember, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem  Style="{DynamicResource ResourceKey=styleTabItemDefault}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="-15,0,0,0">
+                        <Viewbox Width="35" Height="40" Child="{StaticResource MQTTLogo}"/>
+                        <TextBlock Text="{lex:LocText MQTTSettings}" VerticalAlignment="Center" FontSize="12" Foreground="White" Padding="5"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Border IsEnabled="True" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,10" Margin="0,3,5,3">
+                            <StackPanel>
+                                <TextBlock Margin="0,0,0,10"  FontWeight="Bold" Foreground="AntiqueWhite" Text="{lex:Loc MQTTSettings}"/>
+                                <CheckBox x:Name="MQTTEnabled" Margin="50,5,0,5" Content="{lex:LocText EnableMQTT}" IsChecked="{Binding Source={x:Static settings:MQTT.Default}, Path=MQTTEnabled, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </Border>
+                        <Border IsEnabled="{Binding IsChecked, ElementName=MQTTEnabled}" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,10" Margin="0,3,5,3">
+                            <StackPanel>
+                                <TextBlock Margin="0,0,0,10"  FontWeight="Bold" Foreground="AntiqueWhite" Text="MQTT Client Connection Settings"/>
+                                <Canvas>
+                                    <TextBlock Margin="0,0,10,0" Text="{lex:LocText MQTTAdress}" Width="155" TextAlignment="Right"/>
+                                </Canvas>
+                                <TextBox HorizontalAlignment="Left" Margin="160,0,0,0" Text="{Binding Source={x:Static settings:MQTT.Default}, Path=BrokerAddress, Mode=TwoWay}"  Width="265"/>
+                                <Canvas>
+                                    <TextBlock Margin="0,10,0,10" Text="{lex:LocText Port}" Width="155" TextAlignment="Right"/>
+                                    <TextBox Margin="160,10,0,10" Text="{Binding Source={x:Static settings:MQTT.Default}, Path=BrokerPort, Mode=TwoWay}" Width="75"/>
+                                </Canvas>
+                                <CheckBox Content="{lex:LocText Encrypted}" Margin="250,10,0,13" IsChecked="{Binding Source={x:Static settings:MQTT.Default}, Path=isEncrypted, Mode=TwoWay}"/>
+                                <CheckBox x:Name="chkUseLogin" Content="{lex:LocText UseLogin}"  Margin="160,0,0,0" IsChecked="{Binding Source={x:Static settings:MQTT.Default}, Path=UseLogin, Mode=TwoWay}"/>
+                                <StackPanel Visibility="{Binding IsChecked, ConverterParameter='-1', Converter={StaticResource Boolean2VisibilityConverter}, ElementName=chkUseLogin}" >
+                                    <Canvas>
+                                        <TextBlock Margin="0,10,0,10" TextAlignment="Right" Text="{lex:LocText UserName}" Width="155" IsEnabled="{Binding IsChecked, ElementName=chkUseLogin}"/>
+                                    </Canvas>
+                                    <TextBox HorizontalAlignment="Left" Margin="160,10,0,0" Text="{Binding Source={x:Static settings:MQTT.Default}, Path=Username, Mode=TwoWay}" Width="265" IsEnabled="{Binding IsChecked, ElementName=chkUseLogin}"/>
+                                    <Canvas>
+                                        <TextBlock Margin="0,10,0,10" TextAlignment="Right" Text="{lex:LocText Password}" Width="155" IsEnabled="{Binding IsChecked, ElementName=chkUseLogin}"/>
+                                    </Canvas>
+                                    <PasswordBox HorizontalAlignment="Left" x:Name="txtPassword" Margin="160,10,0,10" Width="265" IsEnabled="{Binding IsChecked, ElementName=chkUseLogin}"/>
+                                </StackPanel>
+                                <Canvas>
+                                    <TextBlock Margin="0,10,0,10" TextAlignment="Right" Text="{lex:LocText ClientID}" Width="155"/>
+                                </Canvas>
+                                <TextBox x:Name="txtClientID" HorizontalAlignment="Left" Margin="160,10,0,0" Text="{Binding Source={x:Static settings:MQTT.Default}, Path=ClientId, Mode=TwoWay}" Width="265"/>
+                                <Canvas>
+                                    <TextBlock Margin="0,10,0,10" TextAlignment="Right" Text="{lex:LocText TargetTopic}" Width="155"/>
+                                </Canvas>
+                                <TextBox HorizontalAlignment="Left" Margin="160,10,0,0" Text="{Binding Source={x:Static settings:MQTT.Default}, Path=Topic, Mode=TwoWay}" Width="265"/>
+                                <Button HorizontalAlignment="Left" Content="{lex:LocText Values}" Width="84" Margin="160,5,0,0" Click="btnValues_Click" Height="20"/>
+
+                                <CheckBox x:Name="chkAddMac" Content="{lex:LocText AddMacAdress}" Margin="160,10,0,0"  IsChecked="{Binding Source={x:Static settings:MQTT.Default}, Path=addMac, Mode=TwoWay}"/>
+                                <Canvas>
+                                    <TextBlock Width="155" Margin="0,10,0,10" TextAlignment="Right" Text="{lex:LocText ClientID}"/>
+                                </Canvas>
+                                <TextBlock Margin="160,10,0,0">
+                                    <Run Text="{Binding Text, ElementName=txtClientID}"/>
+                                    <InlineUIContainer>
+                                        <TextBlock Visibility="{Binding IsChecked, Converter={StaticResource Boolean2VisibilityConverter},ConverterParameter='-1', ElementName=chkAddMac}" Text="\ AA_BB_CC_DD_EE_FF"/>
+                                    </InlineUIContainer>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Style="{DynamicResource ResourceKey=styleTabItemDefault}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="-15,0,0,0">
+                        <Viewbox Width="35" Height="40" Child="{StaticResource UpdatesLogo}"/>
+                        <TextBlock Text="{lex:Loc Updates}" VerticalAlignment="Center" FontSize="12" Foreground="White" Padding="5"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Border IsEnabled="True" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,10" Margin="0,3,5,3">
+                            <StackPanel>
+                                <TextBlock Margin="0,0,0,10"  FontWeight="Bold" Foreground="AntiqueWhite" Text="{lex:Loc Updates}"/>
+                                <CheckBox Margin="50,0,0,0" Content="{lex:Loc CheckUpdatesStartup}" IsChecked="{Binding Source={x:Static settings:Settings.Default}, Path=CheckUpdates, Mode=TwoWay}"/>
+                                <Canvas>
+                                        <Button x:Name="btnCheckUpdates" Margin="50,10,0,0" Content="{lex:Loc CheckUpdates}" Width="190" Click="Button_Click"/>
+                                </Canvas>
+                                <StackPanel x:Name="pnlBusy" Orientation="Horizontal" Visibility="Hidden">
+                                    <Image Margin="250,0,0,0" Height="26" Source="Assets/Spinner.gif" RenderTransformOrigin="0.5, 0.5">
+                                        <Image.RenderTransform>
+                                            <RotateTransform x:Name="noFreeze" />
+                                        </Image.RenderTransform>
+                                        <Image.Triggers>
+                                            <EventTrigger RoutedEvent="Loaded">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="(Image.RenderTransform).(RotateTransform.Angle)" 
+                                                                         From="0" To="360" Duration="0:0:1.5" RepeatBehavior="Forever" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <TextBlock Margin="5,12,0,10" Text="Checking for Updates. Please wait..." />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="boxLatest" Visibility="Collapsed" MaxHeight="120" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,2" Margin="0,3,5,3" d:Visibility="Visible">
+                            <StackPanel>
+                                <Canvas >
+                                    <TextBlock x:Name="tpcLatest" Margin="0,0,0,0"   Foreground="AntiqueWhite">
+                                        <Run Text="{lex:Loc LatestVersion}" FontWeight="Bold"/>
+                                        <TextBlock Name="txtCurrentVersion"/>
+                                    </TextBlock>
+                                </Canvas>
+                                <StackPanel Name="pnlLinks" Visibility="Hidden" Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <TextBlock Text="{lex:Loc DownloadLinks}" />
+                                    <TextBlock x:Name="txtLinks" Margin="10,0,0,0" Padding="0,0,15,0"/>
+                                </StackPanel>
+                                <ScrollViewer Margin="0,5,0,0" MaxHeight="90" VerticalScrollBarVisibility="Auto">
+                                    <TextBlock x:Name="txtLatest" Margin="50,0,0,3"/>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </Border>
+                        <Border Visibility="Collapsed" x:Name="boxChangeLog" MaxHeight="170" IsEnabled="True" BorderBrush="#FF1F1E1F" BorderThickness="1" CornerRadius="4" Padding="5,5,10,2" Margin="0,3,5,3" d:Visibility="Visible">
+                            <StackPanel>
+                                <TextBlock x:Name="tpcChangeLog" Margin="0,0,0,10"  FontWeight="Bold" Foreground="AntiqueWhite" Text="{lex:Loc ChangeLog}"/>
+                                <ScrollViewer  MaxHeight="135" VerticalScrollBarVisibility="Auto">
+                                    <TextBlock x:Name="txtChangeLog" Margin="50,0,0,3"/>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </Border>
+                        <WebBrowser Name="browser" Visibility="Collapsed"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+        <StackPanel x:Name="vertest" Height="20" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="5" Visibility="Collapsed">
+            <CheckBox x:Name="test" Content="Use Fake Version value:" Margin="2"/>
+            <TextBox  Width="20" x:Name="v1" Text="1" Margin="2"/>
+            <TextBox  Width="20" x:Name="v2" Text="21" Margin="2"/>
+            <TextBox  Width="20" x:Name="v3" Text="0" Margin="2"/>
+        </StackPanel>
+        <Button x:Name="btnSave" Content="{lex:LocText Save}" Width="100" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,10" Click="btnSave_Click"/>
+        <Popup x:Name="Renamer"
+                       StaysOpen="False" 
+                       AllowsTransparency="True"
+                       Placement="Center"
+                       VerticalOffset="-30"
+                       HorizontalOffset="0"
+                       Height="60" Width="400"
+                       PopupAnimation="Fade">
+            <Border CornerRadius="8" Background="Black" Height="60" Width="400">
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox  Margin="15,10,20,10" x:Name="EditBox" FontSize="18" Height="40" Width="300" Text="sdads" VerticalContentAlignment="Center"/>
+                        <Button Width="50" Height="30" Content="{lex:LocText Ok}" Click="btnOk_Click"/>
+                        <TextBlock x:Name="Key"  Visibility="Collapsed"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Popup>
+    </Grid>
+</Window>

@@ -153,11 +153,20 @@
   <data name="AvailableString" xml:space="preserve">
     <value>Jedno z Twoich urządzeń jest dostępne do połączenia.</value>
   </data>
+  <data name="ChangeLog" xml:space="preserve">
+    <value>Dziennik zmian</value>
+  </data>
   <data name="ChangeName" xml:space="preserve">
     <value>Zmień nazwę urządzenia</value>
   </data>
   <data name="ChartON" xml:space="preserve">
     <value>Otwórz wykres danych przy starcie</value>
+  </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>Sprawdź aktualizacje</value>
+  </data>
+  <data name="CheckUpdatesStartup" xml:space="preserve">
+    <value>Sprawdź aktualizacje podczas uruchamiania</value>
   </data>
   <data name="CleanWhitespace" xml:space="preserve">
     <value>Wyczyść białe spacje (niepotrzebne spacje) w Value(string)</value>
@@ -183,6 +192,9 @@
   <data name="CSVFirst" xml:space="preserve">
     <value>Ustaw domyślny plik CSV dla eksportu</value>
   </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>Obecna wersja</value>
+  </data>
   <data name="DataChart" xml:space="preserve">
     <value>Wykres danych</value>
   </data>
@@ -201,14 +213,23 @@
   <data name="DontConnect" xml:space="preserve">
     <value>Nie łącz</value>
   </data>
+  <data name="DownloadLinks" xml:space="preserve">
+    <value>Pobierz linki :</value>
+  </data>
   <data name="EnableMQTT" xml:space="preserve">
     <value>Włącz klienta MQTT</value>
   </data>
   <data name="Encrypted" xml:space="preserve">
     <value>Zaszyfrowane</value>
   </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>Błąd podczas pobierania danych...</value>
+  </data>
   <data name="ExportData" xml:space="preserve">
     <value>Eksportuj dane</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>Ustawienia główne</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Pomoc</value>
@@ -224,6 +245,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Język</value>
+  </data>
+  <data name="LatestVersion" xml:space="preserve">
+    <value>Ostatnia wersja</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
     <value>Lista dostępnych urządzeń:</value>
@@ -263,6 +287,9 @@
   </data>
   <data name="NotConnected" xml:space="preserve">
     <value>Nie połączony</value>
+  </data>
+  <data name="NoUpdatesAvail" xml:space="preserve">
+    <value>Gratulacje! Masz ostatnią wersję.</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
@@ -318,6 +345,9 @@
   <data name="TrueRMS" xml:space="preserve">
     <value>PRAWDZIWE RMS</value>
   </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Aktualizacje</value>
+  </data>
   <data name="UseComa" xml:space="preserve">
     <value>Użyj przecinka "," zamiast kropki "." w wartości (ciąg)</value>
   </data>
@@ -335,6 +365,9 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>Pogląd</value>
+  </data>
+  <data name="ViewSettings" xml:space="preserve">
+    <value>Ustawienia widoku</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>Chcesz się połączyć?</value>

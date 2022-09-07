@@ -153,11 +153,20 @@
   <data name="AvailableString" xml:space="preserve">
     <value>Een van uw apparaten is beschikbaar om verbinding te maken.</value>
   </data>
+  <data name="ChangeLog" xml:space="preserve">
+    <value>Logboek wijzigen</value>
+  </data>
   <data name="ChangeName" xml:space="preserve">
     <value>Apparaatnaam wijzigen</value>
   </data>
   <data name="ChartON" xml:space="preserve">
     <value>Gegevenskaart openen bij opstarten</value>
+  </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>Check updates</value>
+  </data>
+  <data name="CheckUpdatesStartup" xml:space="preserve">
+    <value>Controleer updates bij opstarten</value>
   </data>
   <data name="CleanWhitespace" xml:space="preserve">
     <value>Ruim witruimten op (onnodige spaties) in Waarde (tekenreeks)</value>
@@ -183,6 +192,9 @@
   <data name="CSVFirst" xml:space="preserve">
     <value>Stel CSV in op standaard voor Export</value>
   </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>Huidige versie</value>
+  </data>
   <data name="DataChart" xml:space="preserve">
     <value>Gegevensgrafiek:</value>
   </data>
@@ -201,14 +213,23 @@
   <data name="DontConnect" xml:space="preserve">
     <value>Geen verbinding maken</value>
   </data>
+  <data name="DownloadLinks" xml:space="preserve">
+    <value>Download links :</value>
+  </data>
   <data name="EnableMQTT" xml:space="preserve">
     <value>MQTT-client inschakelen</value>
   </data>
   <data name="Encrypted" xml:space="preserve">
     <value>versleuteld</value>
   </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>Fout bij het ophalen van gegevens...</value>
+  </data>
   <data name="ExportData" xml:space="preserve">
     <value>Exportgegevens</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>Algemene instellingen</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Helpen</value>
@@ -224,6 +245,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Taal</value>
+  </data>
+  <data name="LatestVersion" xml:space="preserve">
+    <value>Laatste versie</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
     <value>Lijst met beschikbare apparaten:</value>
@@ -263,6 +287,9 @@
   </data>
   <data name="NotConnected" xml:space="preserve">
     <value>Niet verbonden</value>
+  </data>
+  <data name="NoUpdatesAvail" xml:space="preserve">
+    <value>Gefeliciteerd! Je hebt de nieuwste versie.</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Oké</value>
@@ -318,6 +345,9 @@
   <data name="TrueRMS" xml:space="preserve">
     <value>TRUE RMS</value>
   </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
   <data name="UseComa" xml:space="preserve">
     <value>Gebruik Coma "," in plaats van Punt "." in Waarde (tekenreeks)</value>
   </data>
@@ -335,6 +365,9 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>Visie</value>
+  </data>
+  <data name="ViewSettings" xml:space="preserve">
+    <value>Laat instellingen zien</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>Wil je verbinden?</value>

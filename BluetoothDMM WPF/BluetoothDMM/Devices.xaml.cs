@@ -78,16 +78,5 @@ namespace BluetoothDMM
             DialogResult = true;
         }
     }
-    public class IDtoMac_Converter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value.ToString().Substring(value.ToString().Length - 17, 17).ToUpper();
-        }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return " ";
-        } 
-    }
 }

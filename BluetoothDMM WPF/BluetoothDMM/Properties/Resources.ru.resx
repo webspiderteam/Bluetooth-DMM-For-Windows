@@ -153,11 +153,20 @@
   <data name="AvailableString" xml:space="preserve">
     <value>Одно из ваших устройств доступно для подключения.</value>
   </data>
+  <data name="ChangeLog" xml:space="preserve">
+    <value>Журнал изменений</value>
+  </data>
   <data name="ChangeName" xml:space="preserve">
     <value>Изменить имя устройства</value>
   </data>
   <data name="ChartON" xml:space="preserve">
     <value>Диаграмма открытых данных при запуске</value>
+  </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>Проверить обновления</value>
+  </data>
+  <data name="CheckUpdatesStartup" xml:space="preserve">
+    <value>Проверять обновления при запуске</value>
   </data>
   <data name="CleanWhitespace" xml:space="preserve">
     <value>Очистить пробелы (ненужные пробелы) в Value(string)</value>
@@ -183,6 +192,9 @@
   <data name="CSVFirst" xml:space="preserve">
     <value>Установите CSV по умолчанию для экспорта</value>
   </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>Текущая версия</value>
+  </data>
   <data name="DataChart" xml:space="preserve">
     <value>Диаграмма данных</value>
   </data>
@@ -201,14 +213,23 @@
   <data name="DontConnect" xml:space="preserve">
     <value>Не подключать</value>
   </data>
+  <data name="DownloadLinks" xml:space="preserve">
+    <value>Ссылки для скачивания:</value>
+  </data>
   <data name="EnableMQTT" xml:space="preserve">
     <value>Включить MQTT-клиент</value>
   </data>
   <data name="Encrypted" xml:space="preserve">
     <value>Зашифровано</value>
   </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>Ошибка при получении данных...</value>
+  </data>
   <data name="ExportData" xml:space="preserve">
     <value>Экспорт данных</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>общие настройки</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Помощь</value>
@@ -224,6 +245,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Язык</value>
+  </data>
+  <data name="LatestVersion" xml:space="preserve">
+    <value>Последняя версия</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
     <value>Список доступных устройств:</value>
@@ -263,6 +287,9 @@
   </data>
   <data name="NotConnected" xml:space="preserve">
     <value>Не подключен</value>
+  </data>
+  <data name="NoUpdatesAvail" xml:space="preserve">
+    <value>Поздравляем! У вас последняя версия.</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>ХОРОШО</value>
@@ -318,6 +345,9 @@
   <data name="TrueRMS" xml:space="preserve">
     <value>ИСТИННОЕ СКЗ</value>
   </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Обновления</value>
+  </data>
   <data name="UseComa" xml:space="preserve">
     <value>Используйте запятую "," вместо точки "." в значении (строка)</value>
   </data>
@@ -335,6 +365,9 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>Вид</value>
+  </data>
+  <data name="ViewSettings" xml:space="preserve">
+    <value>Просмотр настроек</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>Вы хотите подключиться?</value>

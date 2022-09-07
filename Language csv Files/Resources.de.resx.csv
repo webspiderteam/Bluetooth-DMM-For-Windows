@@ -11,8 +11,11 @@ AskBeforeConnect,Nachfragen,  vor dem Verbinden
 AutoConnectKnown,Bekannte Geräte beim Start automatisch verbinden
 AutoRange,Auto-Range
 AvailableString,Eines Ihrer Geräte ist zum Verbinden verfügbar.
+ChangeLog,Änderungsprotokoll
 ChangeName,Gerätenamen ändern
 ChartON,Datendiagramm beim Start öffnen
+CheckUpdates,Auf updates prüfen
+CheckUpdatesStartup,Überprüfen Sie die Updates beim Start
 CleanWhitespace,Saubere Leerzeichen (unnötige Leerzeichen) in Value(string)
 ClearChart,Diagramm löschen
 ClientID,Kunden ID:
@@ -21,20 +24,25 @@ Connected,Verbunden
 ConnectToDevice,Mit Gerät verbinden
 CreatedBy,Erstellt von
 CSVFirst,Legen Sie CSV als Standard für den Export fest
+CurrentVersion,Aktuelle Version
 DataChart,Datendiagramm
 DeviceManager,Geräte verwalten
 DevicePicker,Geräteauswahl
 Disconnected,getrennt
 DontAsk,Ohne Nachfrage automatisch verbinden
 DontConnect,Nicht verbinden
+DownloadLinks,Download links :
 EnableMQTT,MQTT-Client aktivieren
 Encrypted,Verschlüsselt
+ErrorGettingData,Fehler beim Abrufen von Daten...
 ExportData,Daten exportieren
+GeneralSettings,Allgemeine Einstellungen
 Help,Hilfe
 ImportData,Daten importieren
 InRush,Einschaltstrom 
 IsAvailable,ist verfügbar!
 Language,Sprache
+LatestVersion,Letzte Version
 ListAvailDevices,Liste der verfügbaren Geräte:
 LogRaw,Rohdaten protokollieren
 ManageDevices,Bluetooth-Geräte verwalten
@@ -48,6 +56,7 @@ MQTTDataFormat,Format der MQTT-Datenwerte
 MQTTSettings,MQTT-Einstellungen
 Name,Name:
 NotConnected,Nicht verbunden
+NoUpdatesAvail,Herzliche Glückwünsche! Du hast die neueste Version.
 Ok,Ok
 Password,Passwort :
 Peek,SPITZE
@@ -66,11 +75,13 @@ Settings,Einstellungen
 StartupSettings,Starteinstellungen
 TargetTopic,Zielthema:
 TrueRMS,TrueRMS
-UseComa,Verwenden Sie Koma "," anstelle von Punkt "." in Wert (Zeichenfolge)
+Updates,Aktualisierung
+UseComa,Verwenden Sie Koma "," anstelle von Punkt "." in Value(string)
 UseLogin,Anmeldung verwenden
 UserName,Nutzername:
 Values,Werte
 Version,Version
 View,Ansicht
+ViewSettings,Einstellungen anzeigen
 WantToConnect,Möchten Sie sich verbinden?
 ZoomandFitData,Ansicht einpassen

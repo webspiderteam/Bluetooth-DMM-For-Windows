@@ -11,8 +11,11 @@ AskBeforeConnect,连接前询问
 AutoConnectKnown,启动时自动连接已知设备
 AutoRange,自动量程
 AvailableString,您的设备之一可以连接。
+ChangeLog,更改日志
 ChangeName,更改设备名称
 ChartON,启动时打开数据图表
+CheckUpdates,检查更新
+CheckUpdatesStartup,检查启动时的更新
 CleanWhitespace,清除值（字符串）中的空格（不必要的空格）
 ClearChart,清除图表
 ClientID,客户编号：
@@ -21,20 +24,25 @@ Connected,连接的
 ConnectToDevice,连接到设备
 CreatedBy,由...制作
 CSVFirst,将 CSV 设置为默认导出
+CurrentVersion,当前版本
 DataChart,数据图表
 DeviceManager,管理设备
 DevicePicker,设备选择器
 Disconnected,断开连接
 DontAsk,不要再问了。自动连接。
 DontConnect,不要连接
+DownloadLinks,下载链接：
 EnableMQTT,启用 MQTT 客户端
 Encrypted,加密
+ErrorGettingData,获取数据时出错...
 ExportData,导出数据
+GeneralSettings,通用设置
 Help,帮助
 ImportData,导入数据
 InRush,浪涌
 IsAvailable,可用！
 Language,语
+LatestVersion,最新版本
 ListAvailDevices,可用设备列表：
 LogRaw,记录原始数据
 ManageDevices,管理蓝牙设备
@@ -48,6 +56,7 @@ MQTTDataFormat,MQTT 数据值格式
 MQTTSettings,MQTT 设置
 Name,姓名：
 NotConnected,未连接
+NoUpdatesAvail,恭喜！你有最新版本。
 Ok,好的
 Password,密码 ：
 Peek,窥视
@@ -66,11 +75,13 @@ Settings,设置
 StartupSettings,启动设置
 TargetTopic,目标主题：
 TrueRMS,真有效值
+Updates,更新
 UseComa,使用昏迷“，”而不是点“。”在值（字符串）
 UseLogin,使用登录
 UserName,用户名 ：
 Values,价值观
 Version,版本 ：
 View,看法
+ViewSettings,查看设置
 WantToConnect,你想连接吗？
 ZoomandFitData,缩放和拟合数据

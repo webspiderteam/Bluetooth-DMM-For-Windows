@@ -153,11 +153,20 @@
   <data name="AvailableString" xml:space="preserve">
     <value>أحد أجهزتك متاح للاتصال.</value>
   </data>
+  <data name="ChangeLog" xml:space="preserve">
+    <value>سجل التغيير</value>
+  </data>
   <data name="ChangeName" xml:space="preserve">
     <value>تغيير اسم الجهاز</value>
   </data>
   <data name="ChartON" xml:space="preserve">
     <value>افتح مخطط البيانات عند بدء التشغيل</value>
+  </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>تفقد التحديث</value>
+  </data>
+  <data name="CheckUpdatesStartup" xml:space="preserve">
+    <value>تحقق من التحديثات عند بدء التشغيل</value>
   </data>
   <data name="CleanWhitespace" xml:space="preserve">
     <value>تنظيف المسافات البيضاء (مسافات غير ضرورية) في القيمة (سلسلة)</value>
@@ -183,6 +192,9 @@
   <data name="CSVFirst" xml:space="preserve">
     <value>اضبط CSV على الإعداد الافتراضي للتصدير</value>
   </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>النسخة الحالية</value>
+  </data>
   <data name="DataChart" xml:space="preserve">
     <value>مخطط البيانات</value>
   </data>
@@ -201,14 +213,23 @@
   <data name="DontConnect" xml:space="preserve">
     <value>لا تتصل</value>
   </data>
+  <data name="DownloadLinks" xml:space="preserve">
+    <value>روابط التحميل:</value>
+  </data>
   <data name="EnableMQTT" xml:space="preserve">
     <value>تفعيل عميل MQTT</value>
   </data>
   <data name="Encrypted" xml:space="preserve">
     <value>مشفر</value>
   </data>
+  <data name="ErrorGettingData" xml:space="preserve">
+    <value>خطأ أثناء إحضار البيانات ...</value>
+  </data>
   <data name="ExportData" xml:space="preserve">
     <value>تصدير البيانات</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>الاعدادات العامة</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>مساعدة</value>
@@ -224,6 +245,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>لغة</value>
+  </data>
+  <data name="LatestVersion" xml:space="preserve">
+    <value>احدث اصدار</value>
   </data>
   <data name="ListAvailDevices" xml:space="preserve">
     <value>قائمة الأجهزة المتاحة:</value>
@@ -263,6 +287,9 @@
   </data>
   <data name="NotConnected" xml:space="preserve">
     <value>غير متصل</value>
+  </data>
+  <data name="NoUpdatesAvail" xml:space="preserve">
+    <value>تهانينا! لديك أحدث نسخة.</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>نعم</value>
@@ -318,6 +345,9 @@
   <data name="TrueRMS" xml:space="preserve">
     <value>صحيح RMS</value>
   </data>
+  <data name="Updates" xml:space="preserve">
+    <value>التحديثات</value>
+  </data>
   <data name="UseComa" xml:space="preserve">
     <value>استخدم Coma "،" بدلاً من Dot "." في القيمة (سلسلة نصية)</value>
   </data>
@@ -335,6 +365,9 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>رأي</value>
+  </data>
+  <data name="ViewSettings" xml:space="preserve">
+    <value>عرض الإعدادات</value>
   </data>
   <data name="WantToConnect" xml:space="preserve">
     <value>هل تريد الاتصال؟</value>

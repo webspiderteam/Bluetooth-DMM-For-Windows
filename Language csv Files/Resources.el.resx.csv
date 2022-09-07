@@ -11,8 +11,11 @@ AskBeforeConnect,Ρωτήστε πριν συνδεθείτε
 AutoConnectKnown,Αυτόματη σύνδεση γνωστών συσκευών κατά την εκκίνηση
 AutoRange,Αυτόματο εύρος
 AvailableString,Μία από τις συσκευές σας είναι διαθέσιμη για σύνδεση.
+ChangeLog,Αλλαγή αρχείου καταγραφής
 ChangeName,Αλλαγή ονόματος συσκευής
 ChartON,Ανοίξτε το γράφημα δεδομένων κατά την εκκίνηση
+CheckUpdates,Ελέγξτε τις ενημερώσεις
+CheckUpdatesStartup,Ελέγξτε τις ενημερώσεις κατά την εκκίνηση
 CleanWhitespace,Καθαρίστε κενά (περιττά κενά) στο Value(string)
 ClearChart,Καθαρό διάγραμμα
 ClientID,Ταυτότητα πελάτη :
@@ -21,20 +24,25 @@ Connected,συνδεδεμένος
 ConnectToDevice,Σύνδεση στη Συσκευή
 CreatedBy,Δημιουργήθηκε από
 CSVFirst,Ορίστε το CSV ως προεπιλογή για Εξαγωγή
+CurrentVersion,Τρέχουσα έκδοση
 DataChart,Διάγραμμα δεδομένων
 DeviceManager,Διαχείριση Συσκευών
 DevicePicker,Επιλογέας συσκευής
 Disconnected,ασύνδετος
 DontAsk,Μην ρωτάς ξανά. Αυτόματη σύνδεση.
 DontConnect,Μην Συνδεθείτε
+DownloadLinks,Σύνδεσμοι λήψης:
 EnableMQTT,Ενεργοποίηση MQTT Client
 Encrypted,Κρυπτογραφημένο
+ErrorGettingData,Σφάλμα κατά τη λήψη δεδομένων...
 ExportData,Εξαγωγή δεδομένων
+GeneralSettings,Γενικές Ρυθμίσεις
 Help,Βοήθεια
 ImportData,Εισαγωγή δεδομένων
 InRush,ΕΙΣΡΟΗ
 IsAvailable,είναι διαθέσιμο!
 Language,Γλώσσα
+LatestVersion,Τελευταία έκδοση
 ListAvailDevices,Λίστα διαθέσιμων συσκευών:
 LogRaw,Καταγραφή πρωτογενών δεδομένων
 ManageDevices,Διαχείριση Συσκευών Bluetooth
@@ -48,6 +56,7 @@ MQTTDataFormat,Μορφή τιμών δεδομένων MQTT
 MQTTSettings,Ρυθμίσεις MQTT
 Name,Ονομα:
 NotConnected,Μη συνδεδεμένο
+NoUpdatesAvail,Συγχαρητήρια! Έχετε την πιο πρόσφατη έκδοση.
 Ok,Εντάξει
 Password,Κωδικός πρόσβασης :
 Peek,ΚΡΥΦΟΚΟΙΤΑΓΜΑ
@@ -66,11 +75,13 @@ Settings,Ρυθμίσεις
 StartupSettings,Ρυθμίσεις εκκίνησης
 TargetTopic,Θέμα στόχου:
 TrueRMS,ΑΛΗΘΙΝΗ RMS
+Updates,Ενημερώσεις
 UseComa,Χρησιμοποιήστε Coma "," αντί για Dot "." σε Τιμή (συμβολοσειρά)
 UseLogin,Χρησιμοποιήστε τη σύνδεση
 UserName,Όνομα χρήστη:
 Values,Αξίες
 Version,Εκδοχή :
 View,Θέα
+ViewSettings,Προβολή ρυθμίσεων
 WantToConnect,Θέλετε να συνδεθείτε;
 ZoomandFitData,Ζουμ και προσαρμογή δεδομένων

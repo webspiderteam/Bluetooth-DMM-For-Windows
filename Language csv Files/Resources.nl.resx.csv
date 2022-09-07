@@ -11,8 +11,11 @@ AskBeforeConnect,Vragen voordat u verbinding maakt
 AutoConnectKnown,Bekende apparaten automatisch verbinden bij opstarten
 AutoRange,Automatisch bereik
 AvailableString,Een van uw apparaten is beschikbaar om verbinding te maken.
+ChangeLog,Logboek wijzigen
 ChangeName,Apparaatnaam wijzigen
 ChartON,Gegevenskaart openen bij opstarten
+CheckUpdates,Check updates
+CheckUpdatesStartup,Controleer updates bij opstarten
 CleanWhitespace,Ruim witruimten op (onnodige spaties) in Waarde (tekenreeks)
 ClearChart,Kaart wissen
 ClientID,Klant identificatie :
@@ -21,20 +24,25 @@ Connected,verbonden
 ConnectToDevice,Verbinding maken met apparaat
 CreatedBy,Gemaakt door
 CSVFirst,Stel CSV in op standaard voor Export
+CurrentVersion,Huidige versie
 DataChart,Gegevensgrafiek:
 DeviceManager,Apparaten beheren
 DevicePicker,Apparaatkiezer
 Disconnected,verbinding verbroken
 DontAsk,Niet meer vragen. Automatisch verbinden.
 DontConnect,Geen verbinding maken
+DownloadLinks,Download links :
 EnableMQTT,MQTT-client inschakelen
 Encrypted,versleuteld
+ErrorGettingData,Fout bij het ophalen van gegevens...
 ExportData,Exportgegevens
+GeneralSettings,Algemene instellingen
 Help,Helpen
 ImportData,Data importeren
 InRush,INRUSH
 IsAvailable,is beschikbaar!
 Language,Taal
+LatestVersion,Laatste versie
 ListAvailDevices,Lijst met beschikbare apparaten:
 LogRaw,Onbewerkte gegevens loggen
 ManageDevices,Bluetooth-apparaten beheren
@@ -48,6 +56,7 @@ MQTTDataFormat,Indeling MQTT-gegevenswaarden
 MQTTSettings,MQTT-instellingen
 Name,Naam:
 NotConnected,Niet verbonden
+NoUpdatesAvail,Gefeliciteerd! Je hebt de nieuwste versie.
 Ok,Oké
 Password,Wachtwoord :
 Peek,KIJKJE
@@ -66,11 +75,13 @@ Settings,Instellingen
 StartupSettings,Opstartinstellingen
 TargetTopic,Doelonderwerp:
 TrueRMS,TRUE RMS
+Updates,Updates
 UseComa,Gebruik Coma "," in plaats van Punt "." in Waarde (tekenreeks)
 UseLogin,Gebruik Inloggen
 UserName,Gebruikersnaam :
 Values,Waarden
 Version,Versie :
 View,Visie
+ViewSettings,Laat instellingen zien
 WantToConnect,Wil je verbinden?
 ZoomandFitData,Gegevens zoomen en aanpassen

@@ -11,8 +11,11 @@ AskBeforeConnect,Chiedi prima di connetterti
 AutoConnectKnown,Connetti automaticamente i dispositivi noti all'avvio
 AutoRange,Intervallo automatico
 AvailableString,Uno dei tuoi dispositivi è disponibile per la connessione.
+ChangeLog,Registro modifiche
 ChangeName,Cambia nome dispositivo
 ChartON,Apri il grafico dei dati all'avvio
+CheckUpdates,Controlla Aggiornamenti
+CheckUpdatesStartup,Controlla Aggiornamenti all'avvio
 CleanWhitespace,Pulisci gli spazi bianchi (spazi non necessari) in Value(string)
 ClearChart,Cancella grafico
 ClientID,Identificativo cliente :
@@ -21,20 +24,25 @@ Connected,collegato
 ConnectToDevice,Connetti al dispositivo
 CreatedBy,Creato da
 CSVFirst,Imposta CSV come predefinito per Esporta
+CurrentVersion,Versione attuale
 DataChart,Grafico dei dati
 DeviceManager,Gestisci dispositivi
 DevicePicker,Selezione dispositivo
 Disconnected,disconnesso
 DontAsk,Non chiedere di nuovo. Connetti automaticamente.
 DontConnect,Non connetterti
+DownloadLinks,Link per il download:
 EnableMQTT,Abilita client MQTT
 Encrypted,Crittografato
+ErrorGettingData,Errore durante il recupero dei dati...
 ExportData,Esporta dati
+GeneralSettings,impostazioni generali
 Help,Aiuto
 ImportData,Importa dati
 InRush,INRUSH
 IsAvailable,è disponibile!
 Language,Lingua
+LatestVersion,Ultima versione
 ListAvailDevices,Elenco dei dispositivi disponibili:
 LogRaw,Registra dati grezzi
 ManageDevices,Gestisci dispositivi Bluetooth
@@ -48,6 +56,7 @@ MQTTDataFormat,Formato valori dati MQTT
 MQTTSettings,Impostazioni MQTT
 Name,Nome:
 NotConnected,Non collegata
+NoUpdatesAvail,Congratulazioni! Hai l'ultima versione.
 Ok,OK
 Password,Parola d'ordine :
 Peek,SBIRCIARE
@@ -66,11 +75,13 @@ Settings,Impostazioni
 StartupSettings,Impostazioni di avvio
 TargetTopic,Argomento di destinazione:
 TrueRMS,VERO RMS
+Updates,Aggiornamenti
 UseComa,Usa Coma "," invece di Punto "." in Valore(stringa)
 UseLogin,Usa Accesso
 UserName,Nome utente:
 Values,I valori
 Version,Versione:
 View,Visualizzazione
+ViewSettings,Visualizza impostazioni
 WantToConnect,Vuoi Connetterti?
 ZoomandFitData,Ingrandisci e adatta i dati

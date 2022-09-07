@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace BluetoothDMM
 {
-
     public class MQTT_DataFormat
     {
         public string Key { get; set; }
