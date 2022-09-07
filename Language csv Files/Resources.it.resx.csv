@@ -55,6 +55,7 @@ MQTTAdress,Indirizzo del server MQTT:
 MQTTDataFormat,Formato valori dati MQTT
 MQTTSettings,Impostazioni MQTT
 Name,Nome:
+NewVersionAvail,Nuova versione disponibile!
 NotConnected,Non collegata
 NoUpdatesAvail,Congratulazioni! Hai l'ultima versione.
 Ok,OK

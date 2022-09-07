@@ -55,6 +55,7 @@ MQTTAdress,MQTT 服务器地址：
 MQTTDataFormat,MQTT 数据值格式
 MQTTSettings,MQTT 设置
 Name,姓名：
+NewVersionAvail,新版本可用！
 NotConnected,未连接
 NoUpdatesAvail,恭喜！你有最新版本。
 Ok,好的

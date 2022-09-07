@@ -161,7 +161,7 @@
         "Entry"
         {
         "MsmKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
-        "OwnerKey" = "8:_F4A25A417946EE939559DCE22B4A8D3A"
+        "OwnerKey" = "8:_6D36255637DC363B81344B93D6690476"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -394,6 +394,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6D36255637DC363B81344B93D6690476"
+        "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6E9D8119810A35575DA169449131B645"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
@@ -438,12 +444,6 @@
         {
         "MsmKey" = "8:_7EB0BCE9F1A50F53038457D56B8281A5"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7EEA66CECCBC0E4E24448F80AE03625D"
-        "OwnerKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -545,6 +545,12 @@
         "Entry"
         {
         "MsmKey" = "8:_99F2D07E25D8D7851087249E7CB0D3DF"
+        "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9C964A1CAB7D2958A743CB0FF2189601"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -736,6 +742,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_DCFBCD596EF4BB5440CF8BA86688F8DD"
+        "OwnerKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E170DEBDFD04657898C18E02F01EC85D"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
@@ -772,6 +784,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_EE19650265F37175E0EA8B803A9E5AEA"
+        "OwnerKey" = "8:_9C964A1CAB7D2958A743CB0FF2189601"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EEB76159D0F6BBF69A860297DDD59CD0"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
@@ -797,12 +815,6 @@
         "Entry"
         {
         "MsmKey" = "8:_F43BB7396425C01050DFA056B9D745C5"
-        "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F4A25A417946EE939559DCE22B4A8D3A"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -852,6 +864,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_FF600808F7BAE1CD11975D3C51CBBFF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DCFBCD596EF4BB5440CF8BA86688F8DD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -917,7 +935,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F4A25A417946EE939559DCE22B4A8D3A"
+        "OwnerKey" = "8:_6D36255637DC363B81344B93D6690476"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3466,6 +3484,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6D36255637DC363B81344B93D6690476"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Bluetooth.Dmm, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_6D36255637DC363B81344B93D6690476"
+                    {
+                    "Name" = "8:Bluetooth.Dmm.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Bluetooth.Dmm.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6E9D8119810A35575DA169449131B645"
             {
             "AssemblyRegister" = "3:1"
@@ -4193,6 +4242,37 @@
                     }
                 }
             "SourcePath" = "8:System.Linq.Queryable.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9C964A1CAB7D2958A743CB0FF2189601"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Octokit, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9C964A1CAB7D2958A743CB0FF2189601"
+                    {
+                    "Name" = "8:Octokit.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Octokit.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
@@ -5098,6 +5178,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DCFBCD596EF4BB5440CF8BA86688F8DD"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_DCFBCD596EF4BB5440CF8BA86688F8DD"
+                    {
+                    "Name" = "8:System.Numerics.Vectors.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Numerics.Vectors.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E170DEBDFD04657898C18E02F01EC85D"
             {
             "AssemblyRegister" = "3:1"
@@ -5408,37 +5519,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F4A25A417946EE939559DCE22B4A8D3A"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Bluetooth.Dmm, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_F4A25A417946EE939559DCE22B4A8D3A"
-                    {
-                    "Name" = "8:Bluetooth.Dmm.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Bluetooth.Dmm.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F8A92418A45A01F72EDC4C754164F93E"
             {
             "AssemblyRegister" = "3:1"
@@ -5650,15 +5730,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:BluetoothDMM For Windows"
-        "ProductCode" = "8:{252FED20-D56F-4A3B-A2C9-C9047A1D39C6}"
-        "PackageCode" = "8:{0BC41B21-2CAD-4081-9CA3-2622F6938E0D}"
+        "ProductCode" = "8:{52A1AF19-A41C-4630-93EB-0A2044A8E94B}"
+        "PackageCode" = "8:{A9D008B0-91CC-40DA-86DF-0E0E4C4B4DFA}"
         "UpgradeCode" = "8:{DB0CAFB1-E076-41B0-B7C2-DC4B12320C5B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.21"
+        "ProductVersion" = "8:1.22"
         "Manufacturer" = "8:WebSpiderTeam"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/webspiderteam/Bluetooth-DMM-For-Windows"

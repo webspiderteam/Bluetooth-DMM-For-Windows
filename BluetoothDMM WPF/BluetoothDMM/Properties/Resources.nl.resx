@@ -285,6 +285,9 @@
   <data name="Name" xml:space="preserve">
     <value>Naam:</value>
   </data>
+  <data name="NewVersionAvail" xml:space="preserve">
+    <value>Nieuwe versie beschikbaar!</value>
+  </data>
   <data name="NotConnected" xml:space="preserve">
     <value>Niet verbonden</value>
   </data>

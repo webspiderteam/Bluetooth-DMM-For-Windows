@@ -55,6 +55,7 @@ MQTTAdress,Адрес MQTT-сервера:
 MQTTDataFormat,Формат значений данных MQTT
 MQTTSettings,Настройки MQTT
 Name,Имя:
+NewVersionAvail,Доступна новая версия!
 NotConnected,Не подключен
 NoUpdatesAvail,Поздравляем! У вас последняя версия.
 Ok,ХОРОШО

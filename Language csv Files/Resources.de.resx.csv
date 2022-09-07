@@ -55,6 +55,7 @@ MQTTAdress,Adresse des MQTT-Servers/Brokers:
 MQTTDataFormat,Format der MQTT-Datenwerte
 MQTTSettings,MQTT-Einstellungen
 Name,Name:
+NewVersionAvail,Neue Version verfügbar!
 NotConnected,Nicht verbunden
 NoUpdatesAvail,Herzliche Glückwünsche! Du hast die neueste Version.
 Ok,Ok

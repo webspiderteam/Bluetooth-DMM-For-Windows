@@ -285,6 +285,9 @@
   <data name="Name" xml:space="preserve">
     <value>姓名：</value>
   </data>
+  <data name="NewVersionAvail" xml:space="preserve">
+    <value>新版本可用！</value>
+  </data>
   <data name="NotConnected" xml:space="preserve">
     <value>未连接</value>
   </data>

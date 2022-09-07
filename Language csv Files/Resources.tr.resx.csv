@@ -55,6 +55,7 @@ MQTTAdress,MQTT Sunucu Adresi :
 MQTTDataFormat,MQTT Veri Değerleri Formatı
 MQTTSettings,MQTT Ayarları
 Name,Ad:
+NewVersionAvail,Yeni sürüm mevcut!
 NotConnected,Bağlı değil
 NoUpdatesAvail,Tebrikler! En son sürüme sahipsiniz.
 Ok,TAMAM
@@ -82,6 +83,6 @@ UserName,Kullanıcı adı :
 Values,Değerler
 Version,Sürüm :
 View,Görünüm
-ViewSettings,Ayarları Görüntüle
+ViewSettings,Görünüm Ayarları
 WantToConnect,Bağlanmak istiyor musunuz?
 ZoomandFitData,Yakınlaştır ve Verileri Sığdır

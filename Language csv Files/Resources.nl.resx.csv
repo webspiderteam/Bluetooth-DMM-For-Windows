@@ -55,6 +55,7 @@ MQTTAdress,MQTT-serveradres:
 MQTTDataFormat,Indeling MQTT-gegevenswaarden
 MQTTSettings,MQTT-instellingen
 Name,Naam:
+NewVersionAvail,Nieuwe versie beschikbaar!
 NotConnected,Niet verbonden
 NoUpdatesAvail,Gefeliciteerd! Je hebt de nieuwste versie.
 Ok,Oké

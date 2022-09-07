@@ -55,6 +55,7 @@ MQTTAdress,MQTT サーバーアドレス:
 MQTTDataFormat,MQTT データ値の形式
 MQTTSettings,MQTT 設定
 Name,名前：
+NewVersionAvail,新バージョンが登場！
 NotConnected,接続されていません
 NoUpdatesAvail,おめでとう！あなたは最新バージョンを持っています。
 Ok,わかった

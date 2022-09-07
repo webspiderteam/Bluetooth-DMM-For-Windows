@@ -55,6 +55,7 @@ MQTTAdress,عنوان خادم MQTT:
 MQTTDataFormat,تنسيق قيم بيانات MQTT
 MQTTSettings,إعدادات MQTT
 Name,اسم:
+NewVersionAvail,نسخة جديدة متاحة!
 NotConnected,غير متصل
 NoUpdatesAvail,تهانينا! لديك أحدث نسخة.
 Ok,نعم

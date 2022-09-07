@@ -565,6 +565,15 @@ namespace BluetoothDMM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New version available!.
+        /// </summary>
+        public static string NewVersionAvail {
+            get {
+                return ResourceManager.GetString("NewVersionAvail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not Connected.
         /// </summary>
         public static string NotConnected {

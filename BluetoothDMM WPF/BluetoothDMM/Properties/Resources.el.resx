@@ -285,6 +285,9 @@
   <data name="Name" xml:space="preserve">
     <value>Ονομα:</value>
   </data>
+  <data name="NewVersionAvail" xml:space="preserve">
+    <value>Νέα έκδοση διαθέσιμη!</value>
+  </data>
   <data name="NotConnected" xml:space="preserve">
     <value>Μη συνδεδεμένο</value>
   </data>

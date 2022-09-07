@@ -146,16 +146,10 @@
     <Compile Include="Data Viewer.xaml.cs">
       <DependentUpon>Data Viewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Devices.xaml.cs">
-      <DependentUpon>Devices.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MQTTDataFormat.xaml.cs">
       <DependentUpon>MQTTDataFormat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\MQTTSetup.cs" />
-    <Compile Include="MQTT_Settings.xaml.cs">
-      <DependentUpon>MQTT_Settings.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.en.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -165,9 +159,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>MQTT.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsNew.xaml.cs">
       <DependentUpon>SettingsNew.xaml</DependentUpon>
@@ -185,10 +176,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Devices.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -205,14 +192,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MQTTDataFormat.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MQTT_Settings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -55,6 +55,7 @@ MQTTAdress,Διεύθυνση διακομιστή MQTT:
 MQTTDataFormat,Μορφή τιμών δεδομένων MQTT
 MQTTSettings,Ρυθμίσεις MQTT
 Name,Ονομα:
+NewVersionAvail,Νέα έκδοση διαθέσιμη!
 NotConnected,Μη συνδεδεμένο
 NoUpdatesAvail,Συγχαρητήρια! Έχετε την πιο πρόσφατη έκδοση.
 Ok,Εντάξει

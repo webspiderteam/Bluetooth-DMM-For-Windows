@@ -285,6 +285,9 @@
   <data name="Name" xml:space="preserve">
     <value>Ad:</value>
   </data>
+  <data name="NewVersionAvail" xml:space="preserve">
+    <value>Yeni sürüm mevcut!</value>
+  </data>
   <data name="NotConnected" xml:space="preserve">
     <value>Bağlı değil</value>
   </data>
