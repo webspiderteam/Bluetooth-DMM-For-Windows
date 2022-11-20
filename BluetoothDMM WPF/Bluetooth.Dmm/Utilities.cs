@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Security.Cryptography;
 using Windows.Storage.Streams;
@@ -34,7 +33,7 @@ namespace HeartRateLE.Bluetooth
         private static string oldMessage = "";
         private static int line = 0;
         private static byte[] olddata = { 1, 2 };
-
+        private static int MyGattCDataType;
 
         public static async Task<string> ReadCharacteristicValueAsync(List<BluetoothAttribute> characteristics, string characteristicName)
         {
@@ -415,6 +414,7 @@ namespace HeartRateLE.Bluetooth
                         string[] pre_digits = new string[] { "-", ".", ".", "."};
                         string[] digits = new string[] { "", "", "", "" };
                         int dev_type = data[2] ^ datashift[2];
+                        MyGattCDataType = dev_type;
                         if (dev_type != 4)
                         {
                             for (int n = 0; n < 4; n++)
@@ -595,7 +595,8 @@ namespace HeartRateLE.Bluetooth
                                           MyGattCDataACDC,
                                           MyGattCDataBattery,
                                           MyGattCDataHV,
-                                          MyGattCDataRel };
+                                          MyGattCDataRel,
+                                          MyGattCDataType};
             }
             else
             {

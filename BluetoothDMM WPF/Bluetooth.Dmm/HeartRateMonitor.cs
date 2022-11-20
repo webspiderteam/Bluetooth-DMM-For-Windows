@@ -9,6 +9,7 @@ using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.Security.Cryptography;
+using Windows.Storage.Streams;
 
 namespace HeartRateLE.Bluetooth
 {
@@ -217,9 +218,7 @@ namespace HeartRateLE.Bluetooth
                     IsSuccess = false,
                     Message = "Characteristic does not support notify"
                 };
-
             }
-
         }
 
         private async Task<bool> GetDeviceServicesAsync()
@@ -329,7 +328,8 @@ namespace HeartRateLE.Bluetooth
                         MyGattCDataACDC = (string)GattData[11],
                         MyGattCDataBattery = (bool?)GattData[12],
                         MyGattCDataHV = (bool)GattData[13],
-                        MyGattCDataRel = (bool)GattData[14]
+                        MyGattCDataRel = (bool)GattData[14],
+                        MyGattCDataType = (int)GattData[15]
 
                     };
                     olddata = data;
@@ -384,5 +384,41 @@ namespace HeartRateLE.Bluetooth
                 return new Schema.HeartRateDeviceInfo();
             }
         }
+
+        public async Task<CharacteristicResult> WriteGattCommandAsync(byte[] Data)
+        {
+            if (_heartRateDevice != null && _heartRateDevice.ConnectionStatus == BluetoothConnectionStatus.Connected)
+            {
+                if (_heartRateMeasurementCharacteristic.CharacteristicProperties.HasFlag(GattCharacteristicProperties.WriteWithoutResponse))
+                {
+                    IBuffer buffUTF8 = CryptographicBuffer.CreateFromByteArray(Data);
+                    var status = await _heartRateMeasurementCharacteristic.WriteValueAsync(buffUTF8);
+
+                    return new CharacteristicResult()
+                    {
+                        IsSuccess = status == GattCommunicationStatus.Success,
+                        Message = status.ToString()
+                    };
+                }
+                else
+                {
+                    return new CharacteristicResult()
+                    {
+                        IsSuccess = false,
+                        Message = "Characteristic does not support Write"
+                    };
+                }
+            }
+            else
+            {
+                return new CharacteristicResult()
+                {
+                    IsSuccess = false,
+                    Message = "Not Connected to Device"
+                };
+            }
+
+        }
     }
+    
 }

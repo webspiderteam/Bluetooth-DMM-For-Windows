@@ -153,10 +153,15 @@ namespace BluetoothDMM
             //plt.XAxis.MinimumTickSpacing(5);
             plt.YAxis.MinimumTickSpacing(0.0001);
             plt.Margins(0.1, 0.2);
+
             ChartSetup();
             
             wpfPlot1.Plot.YAxis2.LockLimits(true);
             wpfPlot1.Configuration.LockVerticalAxis = true;
+            plt.YAxis.Layout(padding: -10);
+            plt.XAxis.Layout(padding: -10);
+            plt.XAxis2.Layout(0, 5, 6);// removes text from the axis label
+            plt.XAxis2.Ticks(false); // disables tick marks and labels
             wpfPlot1.Refresh();
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             DataContext = this;
@@ -484,6 +489,12 @@ namespace BluetoothDMM
                 Battery.IsChecked = arg.MyGattCDataBattery;
                 MyGattCDataHV.Visibility = Bool_to_Vis(arg.MyGattCDataHV);
                 MyGattCDataRel.Visibility = Bool_to_Vis(arg.MyGattCDataRel);
+                btnMode.Visibility = Bool_to_Vis(arg.MyGattCDataType!=3);
+                if (arg.MyGattCDataType == 4)
+                {
+                    TxtUpdate.Text = "Not TESTTED with this Device Type. Please Contact with us on Github";
+                    TxtUpdate.IsEnabled = true;
+                }
                 GattValue = arg.MyGattCData;
                 try { 
                     doublevalue = Convert.ToDouble(GattValue,CultureInfo.InvariantCulture);
@@ -770,11 +781,8 @@ namespace BluetoothDMM
         }
 
         [Conditional("DEBUG")]
-        private void d(string txt)
-        {
-            Debug.WriteLine(txt);
-        }
-        
+        private void d(string txt) => Debug.WriteLine(txt);
+
         private System.Windows.Visibility Bool_to_Vis(bool txt)
         {
             if (txt) { return Visibility.Visible; } else { return Visibility.Hidden; }
@@ -1440,7 +1448,7 @@ namespace BluetoothDMM
 
         private void Settings_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl)
+            if (e.Key == System.Windows.Input.Key.LeftCtrl || e.Key == System.Windows.Input.Key.RightCtrl)
                 trick = (e.KeyStates==KeyStates.Down);
         }
 
@@ -1507,6 +1515,50 @@ namespace BluetoothDMM
                 TxtStatus.Visibility = Visibility.Visible;
                 TxtStatus.IsEnabled = true;
             }
+        }
+
+        private async void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            string[] hexValuesSplit = EditBox.Text.Split(' ');
+            byte[] GattSendData = new byte[hexValuesSplit.Length];
+            var byt = 0;
+            foreach (string hex in hexValuesSplit)
+            {
+                // Convert the number expressed in base-16 to an integer.
+                int value = Convert.ToInt32(hex, 16);
+                GattSendData[byt] = (byte)value;
+                byt++;
+            }
+            var deviceInfo = await _heartRateMonitor.WriteGattCommandAsync(GattSendData);
+            Debug.WriteLine(deviceInfo.IsSuccess + " " + deviceInfo.Message);
+            MessageBox.Show(deviceInfo.IsSuccess + " " + deviceInfo.Message);
+
+        }
+
+        private async void Commands_Click(object sender, RoutedEventArgs e)
+        {
+            var uiElement = (Button)sender;
+            string[] hexValuesSplit = uiElement.Tag.ToString().Split(' ');
+            byte[] GattSendData = new byte[hexValuesSplit.Length];
+            var byt = 0;
+            foreach (string hex in hexValuesSplit)
+            {
+                // Convert the number expressed in base-16 to an integer.
+                int value = Convert.ToInt32(hex, 16);
+                GattSendData[byt] = (byte)value;
+                byt++;
+            }
+            var deviceInfo = await _heartRateMonitor.WriteGattCommandAsync(GattSendData);
+            Debug.WriteLine(deviceInfo.IsSuccess + " " + deviceInfo.Message);
+            // MessageBox.Show(deviceInfo.IsSuccess + " " + deviceInfo.Message);
+
+        }
+
+        private void btnMode_Click(object sender, RoutedEventArgs e)
+        {
+            CommandsPopup.PlacementTarget = sender as UIElement;
+            CommandsPopup.IsOpen = !CommandsPopup.IsOpen;
+            btnMode.Tag = CommandsPopup.IsOpen.ToString();
         }
     }
 }

@@ -430,7 +430,7 @@
     </Style>
 
     <Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">
-        <Setter Property="Background" Value="Black" /> <!--{DynamicResource Window.Static.Background}-->
+        <Setter Property="Background" Value="{DynamicResource Window.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource Window.Static.Border}" />
         <Setter Property="Foreground" Value="{DynamicResource Window.Static.Foreground}" />
         <Setter Property="BorderThickness" Value="1" />
