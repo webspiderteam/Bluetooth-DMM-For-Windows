@@ -6,7 +6,7 @@ I'm not a pro at C# but I have experience about Programming and I haven't found 
 
 As I said before I'm not pro and also most of BluetoothLe Explorer codes and sources still in here. I just added what i need and hided what I don't need. So they are all there. I haven't cleaned them because some of them is needed somewhere that i didn't realize and the other reason is this is my first experience on Wpf and also UWP and I really can't figured out the structure compeletely. 
 
-For this reasons probably there will not any Update on this project but if there is succestions by you over this project I will try to make them. If you have issues with code I also tyr to fix but I'm not sure I can... and one last thing, as I said before I made this project with my Aneng an9002 and Im not sure its compilable with other same type models. If its not I could try to integrate them by your helps.
+For this reasons probably there will not any Update on this project but if there is succestions by you over this project I will try to make them. If you have issues with code I also tyr to fix but I'm not sure I can... and one last thing, as I said before I made this project with my Aneng AN9002 and Im not sure its compilable with other same type models. If its not I could try to integrate them by your helps.
 
 New Alpha Release is in WPF type and added 10byte protocol that Aneng V05B uses and also another 10byte protocol that Aneng ST207 uses.
 You can download it from releases.
