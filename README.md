@@ -39,9 +39,9 @@ Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  
 
 Aneng AN9002, BSIDE ZT-300AB, ZOYI ZT-300AB, BABATools AD900
 
-Aneng V05B, BSIDE ZT-5B, ZT-5B
+Aneng V05B, BSIDE ZT-5B, ZOYI ZT-5B
 
-Aneng ST207, BSIDE ZT-5BQ, ZT-5566B, ZT-XB
+Aneng ST207, BSIDE ZT-5BQ, ZOYI ZT-5566B
 
 Aneng AN999S, ZOYI ZT-5566S, ZOYI ZT-5566SE
 
