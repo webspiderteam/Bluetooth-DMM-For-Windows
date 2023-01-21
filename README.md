@@ -16,24 +16,19 @@ Link is here that compiled  [https://github.com/webspiderteam/Bluetooth-DMM-For-
 Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  CHANGE 22-NOV-2022
 
 # Screenshots :
+![image](https://user-images.githubusercontent.com/12202733/213878342-bc5ebad9-2219-4b0c-a7c3-68234b268741.png)
 
-![Bluetooth DMM for Windows Main Window with Menu](https://user-images.githubusercontent.com/85828505/181203401-349d8c22-837f-4a36-883f-41ca2881b631.png)
+![image](https://user-images.githubusercontent.com/12202733/213878556-d4757904-3075-4bf1-898d-de4daa37a4a2.png)
 
-![Bluetooth DMM for Windows Main Window](https://user-images.githubusercontent.com/85828505/180448743-e0200384-13cc-494a-a210-c1c77f57c419.png)
+![image](https://user-images.githubusercontent.com/12202733/213878696-64f3eede-e59d-471c-bc2f-a64727eff2a1.png)
 
-![Bluetooth DMM for Windows Connection Window](https://user-images.githubusercontent.com/85828505/180449524-7202afc3-8935-4c3a-a38c-cc5b02f3ba2a.png)
+![image](https://user-images.githubusercontent.com/12202733/213878839-9d4de690-9065-4909-828c-7cc80ab7a69c.png)
 
-![Bluetooth DMM for Windows Connection request](https://user-images.githubusercontent.com/85828505/180449697-e0b7e208-c608-40ab-8d4a-9258311977f9.png)
+![image](https://user-images.githubusercontent.com/12202733/213878854-979688e2-06bf-432d-95cc-90b077ad0a99.png)
 
-![Bluetooth DMM for Windows Settings Window](https://user-images.githubusercontent.com/85828505/181202448-8d710fe5-bc52-4046-b418-0fc60a80e6b2.png)
+![image](https://user-images.githubusercontent.com/12202733/213878862-7a2ce52c-acb5-4f39-8fda-16d92e261974.png)
 
-![Bluetooth DMM for Windows Settings Window Languages](https://user-images.githubusercontent.com/85828505/181203070-85a094d1-33c7-4d5a-8a5a-3aa47cd9a347.png)
 
-![Bluetooth DMM for Windows Settings Window in Deutsch](https://user-images.githubusercontent.com/85828505/181203840-f2448a41-eab6-452a-9e67-062e95ee8af6.png)
-
-![Bluetooth DMM for Windows Device Manager](https://user-images.githubusercontent.com/85828505/180448323-efef630b-3aa8-4300-9195-7e7ce0ec2185.png)
-
-![Bluetooth DMM for Windows Device Manager Renamed Device](https://user-images.githubusercontent.com/85828505/180448485-4bce6f51-190c-4948-8c3e-e679b4ebb7b1.png)
 
 # Supported Devices :
 
