@@ -22,12 +22,15 @@ Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  
 
 ![image](https://user-images.githubusercontent.com/12202733/213878696-64f3eede-e59d-471c-bc2f-a64727eff2a1.png)
 
+![image](https://user-images.githubusercontent.com/12202733/213880602-4740e381-434b-424e-a9c2-e3d632b00341.png)
+
+![image](https://user-images.githubusercontent.com/12202733/213880631-cc251a16-aa6d-4d88-a94c-8158fa8f9093.png)
+
 ![image](https://user-images.githubusercontent.com/12202733/213878839-9d4de690-9065-4909-828c-7cc80ab7a69c.png)
 
 ![image](https://user-images.githubusercontent.com/12202733/213878854-979688e2-06bf-432d-95cc-90b077ad0a99.png)
 
 ![image](https://user-images.githubusercontent.com/12202733/213878862-7a2ce52c-acb5-4f39-8fda-16d92e261974.png)
-
 
 
 # Supported Devices :
