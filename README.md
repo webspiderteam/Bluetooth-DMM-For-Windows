@@ -35,14 +35,6 @@ Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  
 
 # Supported Devices :
 
-Aneng AN9002, BSIDE ZT-300AB, ZOYI ZT-300AB, BABATools AD900
-
-Aneng V05B, BSIDE ZT-5B, ZOYI ZT-5B
-
-Aneng ST207, BSIDE ZT-5BQ, ZOYI ZT-5BQ
-
-Aneng AN999S, ZOYI ZT-5566S, ZOYI ZT-5566SE
-
 |Brand|Small-DMM|Big-DMM|Clamp-DMM|Desk-DMM|
 |:--|:--|:--|:--|:--|
 |Aneng | V05B  | AN9002     | ST207  | AN999S |
