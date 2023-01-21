@@ -61,6 +61,7 @@ namespace BluetoothDMM
         private bool Draggable;
         private int Connected;
         private bool GotFirstData = false;
+        private bool CommandsPopupLastState = false;
         private HeartDeviceWatcher deviceWatcher = new HeartRateLE.Bluetooth.HeartDeviceWatcher(DeviceSelector.BluetoothLe);
 
         public MainWindow()
@@ -359,6 +360,7 @@ namespace BluetoothDMM
         IMqttClient client;
         MqttClientOptions options;
         private bool ReconnectMqtt;
+        private bool Dragged = false;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -471,10 +473,10 @@ namespace BluetoothDMM
         {
             await RunOnUiThread(() =>
             {
-                d("Got new measurement: " + arg.MyGattCData);
+                //d("Got new measurement: " + arg.MyGattCData + arg.MyGattCDataSymbol + arg.MyGattCDataACDC);
                 GotFirstData = true;
                 //textBox.Text = arg.MyGattCData;
-                MyGattCData.FontWeight = arg.MyGattCData.Length > 6 ? FontWeights.SemiBold : FontWeights.Bold;
+                MyGattCData.FontStretch = arg.MyGattCData.Length > 5 ? FontStretches.ExtraCondensed : FontStretches.Condensed;
                 MyGattCData.Text = arg.MyGattCData;
                 MyGattCDataSymbol.Text = arg.MyGattCDataSymbol;
                 MyGattCDataACDC.Text = arg.MyGattCDataACDC;
@@ -490,25 +492,40 @@ namespace BluetoothDMM
                 MyGattCDataHV.Visibility = Bool_to_Vis(arg.MyGattCDataHV);
                 MyGattCDataRel.Visibility = Bool_to_Vis(arg.MyGattCDataRel);
                 btnMode.Visibility = Bool_to_Vis(arg.MyGattCDataType!=3);
-                if (arg.MyGattCDataType == 4)
+#if DEBUG// In debug mode show MODE button
+                btnMode.Visibility = Visibility.Visible;
+#endif
+
+
+
+                if (arg.MyGattCDataType == 5)
                 {
                     TxtUpdate.Text = "Not TESTTED with this Device Type. Please Contact with us on Github";
                     TxtUpdate.IsEnabled = true;
                 }
                 GattValue = arg.MyGattCData;
-                try { 
-                    doublevalue = Convert.ToDouble(GattValue,CultureInfo.InvariantCulture);
+                double dVal = 0;
+                try {
+                    doublevalue = Convert.ToDouble(GattValue, CultureInfo.InvariantCulture);
+                    dVal = doublevalue;
                     ValueF = Convert.ToString(doublevalue, CultureInfo.InvariantCulture);
                 }
-                catch { ValueF = "null"; }//doublevalue = 0;}
+                catch { ValueF = "null"; dVal = 0;}
                 if (GattValue != null)
                 {
-                    var result = Convert.ToString(Math.Abs(doublevalue), CultureInfo.InvariantCulture).Split(new string[] { ".", " " }, StringSplitOptions.RemoveEmptyEntries);
-                    double maxvalue = 6 * Math.Pow(10, result[0].Length - 1);
-                    double currentValue = Math.Abs(doublevalue);
-                    if (maxvalue < currentValue )
-                        maxvalue *= 10;
-                    Meter.Value = currentValue * 100 / maxvalue;
+                    try
+                    {
+                        var result = Convert.ToString(Math.Abs(dVal), CultureInfo.InvariantCulture).Split(new string[] { ".", " " }, StringSplitOptions.RemoveEmptyEntries);
+                        double maxvalue = 6 * Math.Pow(10, result[0].Length - 1);
+                        double currentValue = Math.Abs(dVal);
+                        if (maxvalue < currentValue)
+                            maxvalue *= 10;
+
+                        while (maxvalue / 10 > currentValue)
+                            maxvalue /= 10;
+                        Meter.Value = currentValue * 100 / maxvalue;
+                    }
+                    catch { Meter.Value = 0 * 100 / 6000; }
                 }
                 MyGattCData.Foreground = arg.MyGattCDataHold ? Brushes.Red : Brushes.White;
             });
@@ -1359,8 +1376,13 @@ namespace BluetoothDMM
 
         private void Window_MouseDown(Object sender, MouseButtonEventArgs e)
         {
-            if (Draggable && e.LeftButton==MouseButtonState.Pressed)
+            if (Draggable && e.LeftButton == MouseButtonState.Pressed)
+            {
+                CommandsPopupLastState = CommandsPopup.IsOpen;
+                CommandsPopup.IsOpen = false;
+                Dragged = true;
                 this.DragMove();
+            }
         }
         
         private void HandleLinkClick(object sender, RoutedEventArgs e)
@@ -1559,6 +1581,12 @@ namespace BluetoothDMM
             CommandsPopup.PlacementTarget = sender as UIElement;
             CommandsPopup.IsOpen = !CommandsPopup.IsOpen;
             btnMode.Tag = CommandsPopup.IsOpen.ToString();
+        }
+
+        private void Window_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (Dragged)
+                CommandsPopup.IsOpen = CommandsPopupLastState;
         }
     }
 }
