@@ -43,6 +43,13 @@ Aneng ST207, BSIDE ZT-5BQ, ZOYI ZT-5BQ
 
 Aneng AN999S, ZOYI ZT-5566S, ZOYI ZT-5566SE
 
+|Brand|Small-DMM|Big-DMM|Clamp-DMM|Desk-DMM|
+|:--|:--|:--|:--|:--|
+|Aneng | V05B  | AN9002     | ST207  | AN999S |
+|BSIDE | ZT-5B | ZT-300AB | ZT-5BQ |        |
+| ZOYI | ZT-5B | ZT-300AB | ZT-5BQ |ZT-5566SE|
+|BABATools |   |AD900     |        |        |
+
 
 # Contributing
 
