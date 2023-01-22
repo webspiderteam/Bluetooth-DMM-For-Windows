@@ -1,6 +1,6 @@
 # Bluetooth DMM for Windows 
 
-Bluetooth DMM for Windows is an application for Bluetooth Dmm Multimeter devices to connect and get datas over Gatt. Project is builded over BluetootLE Explorer for connection ability and changed for Dmm devices to reading characteristic values by decoding. Application is not made for any financial think. Just for Personal NEEDS .
+Bluetooth DMM for Windows is an application for Bluetooth DMM Multimeter devices to connect and get datas over Gatt. Project is builded over BluetootLE Explorer for connection ability and changed for DMM devices to reading characteristic values by decoding. Application is not made for any financial think. Just for Personal NEEDS .
 
 I'm not a pro at C# but I have experience about Programming and I haven't found any app for windows that can communicate with my Aneng AN9002 Multimeter but thankfully i found [this source](https://github.com/ludwich66/Bluetooth-DMM/wiki/Bluetooth-DMM-11-Byte-Data-Protocol) and I tried to make it and I also found BluetoothLE Explorer Sources then I modified it and added some decoding codes. So here it is. 
 
