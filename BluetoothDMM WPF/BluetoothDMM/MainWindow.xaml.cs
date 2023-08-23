@@ -707,8 +707,14 @@ namespace BluetoothDMM
                             {
                                 Debug.WriteLine("Connecting  From Updated Event");
                                 var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
-                                if (connectResult.IsConnected)
+                                if (connectResult.IsConnected) { 
                                     Debug.WriteLine("Connected  From Updated Event");
+                                    await RunOnUiThread(() =>
+                                    {
+                                        if (this.WindowState == WindowState.Minimized)
+                                            Show_Click(null, null);
+                                    });
+                                }
                             }
                             else
                             {
@@ -742,7 +748,14 @@ namespace BluetoothDMM
                                 {
                                     var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
                                     if (connectResult.IsConnected)
+                                    {
                                         Debug.WriteLine("Connected From Updated Event");
+                                        await RunOnUiThread(() =>
+                                        {
+                                            if (this.WindowState == WindowState.Minimized)
+                                                Show_Click(null, null);
+                                        });
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
@@ -1432,8 +1445,6 @@ namespace BluetoothDMM
         {
             ResultDialog = ((System.Windows.FrameworkElement)sender).Name;
             CustomDialog.IsOpen = false;
-            if (this.WindowState == WindowState.Minimized && ResultDialog=="Button1")
-                Show_Click(null, null);
             Properties.Settings.Default.AskOnConnect = (bool)!DontAsk.IsChecked;
             Properties.Settings.Default.Save();
         }

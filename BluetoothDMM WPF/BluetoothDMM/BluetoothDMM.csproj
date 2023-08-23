@@ -59,10 +59,10 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>DF7CC3A7101539D266AABA8702FFB242FDA756B7</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6888F40556FF4093A9543521ABC0D5068E596F70</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>BluetoothDMM_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>BluetoothDMM_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -263,6 +263,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
     <EmbeddedResource Include="Properties\Resources.zh-TW.resx" />
+    <None Include="BluetoothDMM_1_TemporaryKey.pfx" />
     <None Include="BluetoothDMM_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

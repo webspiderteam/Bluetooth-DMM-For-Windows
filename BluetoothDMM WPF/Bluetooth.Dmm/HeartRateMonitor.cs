@@ -24,6 +24,8 @@ namespace HeartRateLE.Bluetooth
         private BluetoothAttribute _heartRateAttribute;
         private GattCharacteristic _heartRateMeasurementCharacteristic;
         private byte[] olddata = { 0 };
+        private Stopwatch threatTime;
+        private int maxTime;
 
         /// <summary>
         /// Occurs when [connection status changed].
@@ -305,9 +307,14 @@ namespace HeartRateLE.Bluetooth
 
         private void HeartRateValueChanged(GattCharacteristic sender, GattValueChangedEventArgs e)
         {
+#if DEBUG
+            threatTime = new Stopwatch();
+            threatTime.Start();
+#endif
             CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out byte[] data);
             if (!Enumerable.SequenceEqual(data, olddata))
             {
+  
                 var GattData = Utilities.ParseHeartRateValue(data, LogData);
                 if ((string)GattData[0] != "Error")
                 {
@@ -334,9 +341,17 @@ namespace HeartRateLE.Bluetooth
                     };
                     olddata = data;
                     OnRateChanged(args);
+
                 }
             }
-
+#if DEBUG
+            threatTime.Stop();
+            if (threatTime.ElapsedMilliseconds > 0)
+            {
+                maxTime = (int)threatTime.ElapsedMilliseconds > maxTime ? (int)threatTime.ElapsedMilliseconds : maxTime;
+                Console.WriteLine("Elapsed={0} ms Max={1}", threatTime.ElapsedMilliseconds, maxTime);
+            }
+#endif
         }
 
         /// <summary>
