@@ -6,6 +6,7 @@
         public static int BrokerPort { get; internal set; }
         public static bool isEncrypted { get; internal set; }
         public static bool addMac { get; internal set; }
+        public static bool UseSeperatedValues { get; internal set; }
         public static bool MQTTEnabled { get; internal set; }
         public static string ClientId { get; internal set; }
         public static bool UseLogin { get; internal set; }

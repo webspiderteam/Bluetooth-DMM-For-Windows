@@ -12,7 +12,7 @@ namespace BluetoothDMM.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.6.0.0")]
     internal sealed partial class MQTT : global::System.Configuration.ApplicationSettingsBase {
         
         private static MQTT defaultInstance = ((MQTT)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new MQTT())));
@@ -146,7 +146,7 @@ namespace BluetoothDMM.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
   <string>Time
 ""Time"":""</string>
   <string>Device
@@ -188,6 +188,18 @@ namespace BluetoothDMM.Properties {
             }
             set {
                 this["CleanWhitespace"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseSeperatedValues {
+            get {
+                return ((bool)(this["UseSeperatedValues"]));
+            }
+            set {
+                this["UseSeperatedValues"] = value;
             }
         }
     }

@@ -263,7 +263,7 @@ namespace BluetoothDMM
             {
                 Task task = Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}", $"{{ \"Status\": \"Connected\", " +
                     $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                    $"\"UseMAC\": \"{MQTTSetup.addMac}\"}}");
+                    $"\"UseMAC\": \"{MQTTSetup.addMac}\"}}",true);
             }
             //Subscribe(topic); For posterity
             return Task.CompletedTask;
@@ -276,16 +276,42 @@ namespace BluetoothDMM
                     .Build();
             client.SubscribeAsync(topicFilter);
         }
-        async Task Publish(string topic,string msg)
+        async Task Publish(string topic,string msg, bool statusMessage)
         {
-            var message = new MqttApplicationMessageBuilder()
-                .WithTopic(topic)
-                .WithPayload(msg)
-                .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
-                .Build();
-            if (client.IsConnected)
+            
+            if (MQTTSetup.UseSeperatedValues && !statusMessage)
             {
-                await client.PublishAsync(message);
+                msg = msg.Remove(msg.Length - 1,1).Remove(0,1);
+                msg = msg.Replace("\"", "");
+                msg = msg.Replace("[", "");
+                msg = msg.Replace("]", "");
+                string[] row = msg.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var item in row)
+                {
+                    string[] cols = item.Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
+                    var message = new MqttApplicationMessageBuilder()
+                        .WithTopic(topic + "/" + cols[0].Trim())
+                        .WithPayload(cols[1]??"True")
+                        .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
+                        .Build();
+                    if (client.IsConnected)
+                    {
+                        await client.PublishAsync(message);
+                        //Console.WriteLine(message.Topic + ": " + item);
+                    }
+                }
+
+            } else
+            {
+                var message = new MqttApplicationMessageBuilder()
+                    .WithTopic(topic)
+                    .WithPayload(msg)
+                    .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
+                    .Build();
+                if (client.IsConnected)
+                {
+                    await client.PublishAsync(message);
+                }
             }
         }
 
@@ -304,6 +330,7 @@ namespace BluetoothDMM
         {
             MQTTSetup.MQTTEnabled = Properties.MQTT.Default.MQTTEnabled;
             MQTTSetup.addMac = Properties.MQTT.Default.addMac;
+            MQTTSetup.UseSeperatedValues = Properties.MQTT.Default.UseSeperatedValues;
             MQTTSetup.BrokerAddress = Properties.MQTT.Default.BrokerAddress;
             MQTTSetup.BrokerPort = Properties.MQTT.Default.BrokerPort;
             MQTTSetup.ClientId = Properties.MQTT.Default.ClientId;
@@ -361,6 +388,7 @@ namespace BluetoothDMM
         MqttClientOptions options;
         private bool ReconnectMqtt;
         private bool Dragged = false;
+        private bool singleValueEachMQTT;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -562,7 +590,7 @@ namespace BluetoothDMM
                     string Mac = "";
                     if (MQTTSetup.addMac)
                         Mac = "/" + SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_");
-                    Task task = Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", Create_MQTTString());
+                    Task task = Publish($"{MQTTSetup.ClientId}{Mac}/{MQTTSetup.Topic}", Create_MQTTString(),false);
                 }
             }
             if (GotFirstData)
@@ -658,7 +686,7 @@ namespace BluetoothDMM
                         Task task = Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}",
                                             $"{{\"Status\": \"Connected\", " +
                                             $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\", " +
-                                            $"\"UseMAC\": \"{MQTTSetup.addMac}\" }}");
+                                            $"\"UseMAC\": \"{MQTTSetup.addMac}\" }}",true);
                     }
                 }
                 else
@@ -674,7 +702,7 @@ namespace BluetoothDMM
                     {
                         Task task = Publish($"{MQTTSetup.ClientId}/{MQTTSetup.Topic}",
                             $"{{\"Status\": \"Disconnected\", " +
-                            $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\"}}");
+                            $"\"MAC\": \"{SelectedDeviceId.Substring(SelectedDeviceId.Length - 17, 17).ToUpper().Replace(":", "_")}\"}}",true);
                     }
                 }
             });
