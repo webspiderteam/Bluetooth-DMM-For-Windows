@@ -42,6 +42,7 @@ Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  
 |BSIDE | ZT-5B | ZT-300AB | ZT-5BQ |        |
 | ZOYI | ZT-5B | ZT-300AB | ZT-5BQ |ZT-5566SE|
 |BABATools |   |AD900     |        |        |
+|HOKI |  | T-100 , M9 |  |  |
 
 
 # Contributing
