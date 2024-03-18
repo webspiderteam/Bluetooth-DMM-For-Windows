@@ -1145,7 +1145,10 @@ namespace HeartRateLE.Bluetooth
             //TODO: Merge with ANENG and Zoyi type actions
             if (isBDM || TestDevice > 4)
             {
-                owonPlusTypeDecode(data);
+                if (data.Length == 6)
+                    owonPlusTypeDecode(data);
+                else if (data.Length == 14)
+                    b35tDecodeOld(data);
                 if (LogData)
                 {
                     var dateValue = DateTime.Today.ToString("yyyy-MM-dd");
