@@ -388,7 +388,6 @@ namespace BluetoothDMM
         MqttClientOptions options;
         private bool ReconnectMqtt;
         private bool Dragged = false;
-        private bool singleValueEachMQTT;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -523,7 +522,7 @@ namespace BluetoothDMM
 #if DEBUG// In debug mode show MODE button
                 btnMode.Visibility = Visibility.Visible;
 #endif
-
+                Funct.Text = arg.MyGattCDataFunc;
 
 
                 if (arg.MyGattCDataType == 5)

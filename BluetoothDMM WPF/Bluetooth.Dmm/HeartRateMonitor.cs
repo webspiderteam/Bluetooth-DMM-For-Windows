@@ -314,8 +314,8 @@ namespace HeartRateLE.Bluetooth
             CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out byte[] data);
             if (!Enumerable.SequenceEqual(data, olddata))
             {
-  
-                var GattData = Utilities.ParseHeartRateValue(data, LogData);
+                var x = _heartRateDevice.Name == "BDM";
+                var GattData = Utilities.ParseHeartRateValue(data, LogData, x);
                 if ((string)GattData[0] != "Error")
                 {
                     var args = new Events.RateChangedEventArgs()
@@ -336,8 +336,8 @@ namespace HeartRateLE.Bluetooth
                         MyGattCDataBattery = (bool?)GattData[12],
                         MyGattCDataHV = (bool)GattData[13],
                         MyGattCDataRel = (bool)GattData[14],
-                        MyGattCDataType = (int)GattData[15]
-
+                        MyGattCDataType = (int)GattData[15],
+                        MyGattCDataFunc = (string)GattData[16]
                     };
                     olddata = data;
                     OnRateChanged(args);

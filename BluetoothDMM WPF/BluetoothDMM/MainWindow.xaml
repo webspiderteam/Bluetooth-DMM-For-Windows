@@ -570,6 +570,8 @@
                         <TextBlock d:Text="-1.000" x:Name="MyGattCData" Grid.Row="1" HorizontalAlignment="Center" Height="262" TextWrapping="WrapWithOverflow" Text="----" VerticalAlignment="Top" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
                     </Viewbox>
                     <TextBlock d:Visibility="Visible" x:Name="True_RMS" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="350,0,0,0" TextWrapping="Wrap" Text="{lex:LocText TrueRMS}" VerticalAlignment="Bottom" Width="250" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock d:Visibility="Visible" x:Name="Funct" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="750,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="auto" FontSize="40" FontWeight="Bold"/>
+
                     <TextBlock d:Visibility="Visible" x:Name="InRush" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="-300,70,0,0" TextWrapping="Wrap" Text="{lex:LocText InRush}" VerticalAlignment="Bottom" Width="200" FontSize="40" FontWeight="Bold"/>
                     <TextBlock d:Visibility="Visible" d:Text="DC" x:Name="MyGattCDataACDC" Grid.Row="1" HorizontalAlignment="Left" Height="70" Margin="80,175,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="85" FontSize="60" FontWeight="Bold" TextAlignment="Right"/>
                     <TextBlock d:Visibility="Visible" d:Opacity="0.3" x:Name="MyGattCDataMin" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="200,0,0,0" TextWrapping="Wrap" Text="{lex:LocText Min}" VerticalAlignment="Bottom" Width="329" FontSize="40" FontWeight="Bold"/>
