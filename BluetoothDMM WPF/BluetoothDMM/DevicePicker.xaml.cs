@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.IO;
 using System.Collections.Generic;
+using Windows;
 
 namespace BluetoothDMM
 {
@@ -17,7 +18,7 @@ namespace BluetoothDMM
     /// </summary>
     public partial class DevicePicker : Window
     {
-        public Dictionary<string, string> DeviceListC { get; }
+        public Dictionary<string, DeviceProps> DeviceListC { get; }
         public ObservableCollection<WatcherDevice> UnpairedCollection
         {
             get;
@@ -32,11 +33,12 @@ namespace BluetoothDMM
 
         public string SelectedDeviceId { get; set; }
         public string SelectedDeviceName { get; set; }
+        public int SelectedDeviceType { get; set; }
 
         private HeartRateLE.Bluetooth.HeartDeviceWatcher _unpairedWatcher;
         //private HeartRateLE.Bluetooth.HeartDeviceWatcher _pairedWatcher;
 
-        public DevicePicker(System.Collections.Generic.Dictionary<string, string> deviceListC)
+        public DevicePicker(System.Collections.Generic.Dictionary<string, DeviceProps> deviceListC)
         {
             InitializeComponent();
             this.Topmost = true;
@@ -57,6 +59,7 @@ namespace BluetoothDMM
             //_pairedWatcher.Start();
             SelectedDeviceId = string.Empty;
             SelectedDeviceName = string.Empty;
+            SelectedDeviceType = 0;
         }
 
         //private async void OnPaired_DeviceRemoved(object sender, HeartRateLE.Bluetooth.Events.DeviceRemovedEventArgs e)
@@ -153,6 +156,7 @@ namespace BluetoothDMM
             {
                 SelectedDeviceId = selectedItem.Id;
                 SelectedDeviceName = selectedItem.Name;
+                SelectedDeviceType = DevTypeCmb.SelectedIndex;
                 DialogResult = true;
             }
             else

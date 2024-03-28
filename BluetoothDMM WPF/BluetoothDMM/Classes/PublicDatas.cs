@@ -8,6 +8,15 @@ using System.Windows.Media.Imaging;
 
 namespace BluetoothDMM
 {
+    public class DeviceProps
+    {
+        public string Name { get; set; }
+        public int Type { get; set; }
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
     public class Updates
     {
         public static IReadOnlyList<Octokit.Release> Releases { get; set; }

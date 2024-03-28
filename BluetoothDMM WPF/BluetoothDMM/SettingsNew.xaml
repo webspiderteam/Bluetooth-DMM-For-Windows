@@ -379,13 +379,20 @@
                        Placement="Center"
                        VerticalOffset="-30"
                        HorizontalOffset="0"
-                       Height="60" Width="400"
+                       Height="102" Width="400"
                        PopupAnimation="Fade">
-            <Border CornerRadius="8" Background="Black" Height="60" Width="400">
+            <Border CornerRadius="8" Background="Black" Height="102" Width="340">
                 <Grid>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                         <TextBox  Margin="15,10,20,10" x:Name="EditBox" FontSize="18" Height="40" Width="300" Text="sdads" VerticalContentAlignment="Center"/>
-                        <Button Width="50" Height="30" Content="{lex:LocText Ok}" Click="btnOk_Click"/>
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox x:Name="EditDevTypeCmb" Width="240" Height="30" Margin="15,0,10,0">
+                                <ComboBoxItem Content="Aneng, B-Side, Zoyi Type" IsSelected="True"/>
+                                <ComboBoxItem Content="Owon Old Type (B35T e.g)"/>
+                                <ComboBoxItem Content="Owon Plus Type (B35t+, B41t+ e.g)"/>
+                            </ComboBox>
+                            <Button Width="50" Height="30" Content="{lex:LocText Ok}" Click="btnOk_Click"/>
+                        </StackPanel>
                         <TextBlock x:Name="Key"  Visibility="Collapsed"/>
                     </StackPanel>
                 </Grid>

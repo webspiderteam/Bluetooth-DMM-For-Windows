@@ -18,7 +18,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Windows.Media.Protection.PlayReady;
 using WPFLocalizeExtension.Deprecated.Extensions;
 using WPFLocalizeExtension.Engine;
 using Application = System.Windows.Application;
@@ -31,12 +30,12 @@ namespace BluetoothDMM
     /// </summary>
     public partial class SettingsNew : Window
     {
-        public Dictionary<string, string> DeviceListC { get; set; }
+        public Dictionary<string, DeviceProps> DeviceListC { get; set; }
 
         // The path to the key where Windows looks for startup applications
         readonly RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
         bool topmost;
-        public SettingsNew(System.Collections.Generic.Dictionary<string, string> deviceListC)
+        public SettingsNew(System.Collections.Generic.Dictionary<string, DeviceProps> deviceListC)
         {
             InitializeComponent();
             DeviceListC = deviceListC;
@@ -282,9 +281,11 @@ namespace BluetoothDMM
         {
             if (lstDevices.SelectedItems.Count > 0)
             {
-                var a = ((KeyValuePair<string, string>)lstDevices.SelectedValue).Value;
+                var a = ((KeyValuePair<string, DeviceProps>)lstDevices.SelectedValue).Value.Name;
                 EditBox.Text = a;
-                Key.Text = ((KeyValuePair<string, string>)lstDevices.SelectedValue).Key;
+                var b = ((KeyValuePair<string, DeviceProps>)lstDevices.SelectedValue).Value.Type;
+                EditDevTypeCmb.SelectedIndex = b;
+                Key.Text = ((KeyValuePair<string, DeviceProps>)lstDevices.SelectedValue).Key;
                 Renamer.IsOpen = true;
             }
         }
@@ -293,7 +294,8 @@ namespace BluetoothDMM
         {
             if (EditBox.Text.Length > 0)
             {
-                DeviceListC[Key.Text] = EditBox.Text;
+                DeviceListC[Key.Text].Name = EditBox.Text;
+                DeviceListC[Key.Text].Type = EditDevTypeCmb.SelectedIndex;
                 Key.Text = "";
                 lstDevices.Items.Refresh();
                 Renamer.IsOpen = false;
@@ -315,9 +317,9 @@ namespace BluetoothDMM
             if (Properties.Settings.Default.ConnectOn)
             {
                 Properties.Settings.Default.DeviceID.Clear();
-                foreach (KeyValuePair<string, string> items in DeviceListC)
+                foreach (KeyValuePair<string, DeviceProps> items in DeviceListC)
                 {
-                    Properties.Settings.Default.DeviceID.Add(items.Key + "\n" + items.Value);
+                    Properties.Settings.Default.DeviceID.Add(items.Key + "\n" + items.Value.Name + "|" + items.Value.Type.ToString());
                 }
             }
             Properties.MQTT.Default.Password = txtPassword.Password;

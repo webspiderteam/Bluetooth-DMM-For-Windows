@@ -39,8 +39,9 @@ namespace BluetoothDMM
         private HeartRateLE.Bluetooth.HeartRateMonitor _heartRateMonitor;
         public string SelectedDeviceId { get; private set; }
         public string SelectedDeviceName { get; private set; }
-        public static Dictionary<string, string> DeviceListC { get; set; }
-        public static Dictionary<string, string> iDeviceListC;
+        public int SelectedDeviceType { get; private set; }
+        public static Dictionary<string, DeviceProps> DeviceListC { get; set; }
+        public static Dictionary<string, DeviceProps> iDeviceListC;
         private string GattValue;
         private double doublevalue;
         private string ValueF;
@@ -186,7 +187,7 @@ namespace BluetoothDMM
             Connected = 1;
             //Properties.Settings.Default.DeviceID.Clear();
             //Properties.Settings.Default.Save();
-            DeviceListC = new Dictionary<string, string>();
+            DeviceListC = new Dictionary<string, DeviceProps>();
             if (Properties.Settings.Default.ConnectOn)
             {
                 Tg_Btn.IsChecked = true;
@@ -435,15 +436,16 @@ namespace BluetoothDMM
                 m_notifyIcon.Visible = show;
         }
 
-        private Dictionary<string, string> ConvertToDict(StringCollection deviceID)
+        private Dictionary<string, DeviceProps> ConvertToDict(StringCollection deviceID)
         {
-            Dictionary<string, string> Temp = new Dictionary<string, string>();
+            Dictionary<string, DeviceProps> Temp = new Dictionary<string, DeviceProps>();
             if (deviceID == null)
                 return Temp;
             foreach (string Device in deviceID)
             {
                 var Strings=Device.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-                Temp.Add(Strings[0], Strings[1]);
+                var Props = Strings[1].Split(new char[] { '|' });
+                Temp.Add(Strings[0], new DeviceProps { Name = Props[0], Type = int.Parse(Props.Length > 1 ? Props[1] : "0") });
             }
             return Temp;
         }
@@ -709,7 +711,7 @@ namespace BluetoothDMM
 
         private Task SearchDevices()
         {
-            iDeviceListC = new Dictionary<string, string>();
+            iDeviceListC = new Dictionary<string, DeviceProps>();
             try
             {
                 deviceWatcher.DeviceAdded += async (watcher, args) =>
@@ -722,7 +724,9 @@ namespace BluetoothDMM
                         if (DeviceListC.ContainsKey(args.Device.Id)  && args.Device.Properties.ContainsKey("System.Devices.Aep.Bluetooth.Le.IsConnectable") && (bool)args.Device.Properties["System.Devices.Aep.Bluetooth.Le.IsConnectable"])
                         {
                             SelectedDeviceId = args.Device.Id;
-                            SelectedDeviceName = DeviceListC[args.Device.Id];
+                            SelectedDeviceName = DeviceListC[args.Device.Id].Name;
+                            SelectedDeviceType = DeviceListC[args.Device.Id].Type;
+
                             //Debug.WriteLine($"Added {args.Device.Name} Connected : {args.Device.IsConnected}" + "IsConnectable");
                             Connected = 2;
                             string result;
@@ -733,7 +737,7 @@ namespace BluetoothDMM
                             if (result == "Button1")
                             {
                                 Debug.WriteLine("Connecting  From Updated Event");
-                                var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
+                                var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId, SelectedDeviceType);
                                 if (connectResult.IsConnected) { 
                                     Debug.WriteLine("Connected  From Updated Event");
                                     await RunOnUiThread(() =>
@@ -760,7 +764,8 @@ namespace BluetoothDMM
                         if (!iDeviceListC.ContainsKey(args.Device.Id) && DeviceListC.ContainsKey(args.Device.Id) && IsConnectable)
                         {
                             SelectedDeviceId = args.Device.Id;
-                            SelectedDeviceName = DeviceListC[args.Device.Id];
+                            SelectedDeviceName = DeviceListC[args.Device.Id].Name;
+                            SelectedDeviceType = DeviceListC[args.Device.Id].Type;
                             //Debug.WriteLine($"Added {args.Device.Name} Connected : {args.Device.IsConnected}" + "IsConnectable");
                             Connected = 2;
                             string result;
@@ -773,7 +778,7 @@ namespace BluetoothDMM
                                 Debug.WriteLine("Connecting From Updated Event");
                                 try
                                 {
-                                    var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
+                                    var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId, SelectedDeviceType);
                                     if (connectResult.IsConnected)
                                     {
                                         Debug.WriteLine("Connected From Updated Event");
@@ -867,9 +872,10 @@ namespace BluetoothDMM
                     if (result.Value)
                     {
                         SelectedDeviceId = devicePicker.SelectedDeviceId;
-                        SelectedDeviceName = !DeviceListC.ContainsKey(SelectedDeviceId) ? devicePicker.SelectedDeviceName : DeviceListC[key: SelectedDeviceId];
+                        SelectedDeviceName = !DeviceListC.ContainsKey(SelectedDeviceId) ? devicePicker.SelectedDeviceName : DeviceListC[key: SelectedDeviceId].Name;
+                        SelectedDeviceType = !DeviceListC.ContainsKey(SelectedDeviceId) ? devicePicker.SelectedDeviceType : DeviceListC[key: SelectedDeviceId].Type;
                         Connected = 2;
-                        var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId);
+                        var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId, SelectedDeviceType);
                         if (connectResult.IsConnected)
                         {
                             if (!DeviceListC.ContainsKey(SelectedDeviceId))
@@ -878,10 +884,10 @@ namespace BluetoothDMM
                                 {
                                     if (Properties.Settings.Default.DeviceID == null)
                                         Properties.Settings.Default.DeviceID = new StringCollection();
-                                    Properties.Settings.Default.DeviceID.Add(devicePicker.SelectedDeviceId + "\n" + devicePicker.SelectedDeviceName);
+                                    Properties.Settings.Default.DeviceID.Add(devicePicker.SelectedDeviceId + "\n" + devicePicker.SelectedDeviceName + "|" + devicePicker.SelectedDeviceType.ToString());
                                     Properties.Settings.Default.Save();
                                 }
-                                DeviceListC.Add(devicePicker.SelectedDeviceId, devicePicker.SelectedDeviceName);
+                                DeviceListC.Add(devicePicker.SelectedDeviceId, new DeviceProps { Name = devicePicker.SelectedDeviceName, Type = devicePicker.SelectedDeviceType });
                             }
                             if (DeviceListC.ContainsKey(SelectedDeviceId))
                                 iDeviceListC.Remove(SelectedDeviceId);
@@ -993,11 +999,12 @@ namespace BluetoothDMM
                 if (Properties.Settings.Default.ConnectOn)
                 {
                     if (DeviceListC == null)
-                        DeviceListC = new Dictionary<string, string>();
+                        DeviceListC = new Dictionary<string, DeviceProps>();
                     DeviceListC = ConvertToDict(Properties.Settings.Default.DeviceID);
                     if (SelectedDeviceId != null && DeviceListC.ContainsKey(SelectedDeviceId))
                     {
-                        SelectedDeviceName = DeviceListC[SelectedDeviceId];
+                        SelectedDeviceName = DeviceListC[SelectedDeviceId].Name;
+                        SelectedDeviceType = DeviceListC[SelectedDeviceId].Type;
                         textStatus.Text = SelectedDeviceName + " : ";
                     }
                 }

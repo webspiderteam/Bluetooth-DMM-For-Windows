@@ -60,7 +60,13 @@
                 </StackPanel>
             </Border>
         </StackPanel>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,15,15,1" Height="50">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,15,15,1" Height="30" Orientation="Horizontal">
+            <TextBlock Text="Device Type: " Margin="5"/>
+            <ComboBox x:Name="DevTypeCmb" Width="250" Height="30" Margin="10,0">
+                <ComboBoxItem Content="Aneng, B-Side, Zoyi Type" IsSelected="True"/>
+                <ComboBoxItem Content="Owon Old Type (B35T e.g)"/>
+                <ComboBoxItem Content="Owon Plus Type (B35t+, B41t+ e.g)"/>
+            </ComboBox>
             <Button x:Name="OkButton" Content="{lex:LocText Connect}"  Width="100" Click="OkButton_Click" />
         </StackPanel>
         <!-- Status Block for providing messages to the user.  Use the

@@ -3,6 +3,7 @@ using HeartRateLE.Bluetooth.Schema;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Devices.Bluetooth;
@@ -19,6 +20,7 @@ namespace HeartRateLE.Bluetooth
         private List<BluetoothAttribute> _serviceCollection = new List<BluetoothAttribute>();
 
         public bool LogData { get; set; }
+        public int DevType { get; set; }
 
         private BluetoothAttribute _heartRateMeasurementAttribute;
         private BluetoothAttribute _heartRateAttribute;
@@ -53,7 +55,7 @@ namespace HeartRateLE.Bluetooth
             RateChanged?.Invoke(this, e);
         }
 
-        public async Task<ConnectionResult> ConnectAsync(string deviceId)
+        public async Task<ConnectionResult> ConnectAsync(string deviceId, int devType)
         {
             if (_heartRateDevice != null)
             {
@@ -113,7 +115,7 @@ namespace HeartRateLE.Bluetooth
 
             // we could force propagation of event with connection status change, to run the callback for initial status
             //DeviceConnectionStatusChanged(_heartRateDevice, null);
-
+            DevType = devType;
             return new Schema.ConnectionResult()
             {
                 IsConnected = _heartRateDevice.ConnectionStatus == BluetoothConnectionStatus.Connected,
@@ -163,6 +165,17 @@ namespace HeartRateLE.Bluetooth
 
         private async Task<CharacteristicResult> SetupHeartRateCharacteristic()
         {
+            
+            foreach (var item in _serviceCollection)
+            {
+                File.AppendAllText("uuids.txt", "Service: " + item.service.Uuid.ToString() + System.Environment.NewLine);
+                var characteristicList = await GetServiceCharacteristicsAsync(item);
+                File.AppendAllText("uuids.txt", "    Characteristics" + System.Environment.NewLine);
+                foreach (var item1 in characteristicList)
+                {
+                    File.AppendAllText("uuids.txt", "    --->" + item1.characteristic.Uuid + "  Handle: " + item1.characteristic.AttributeHandle.ToString() + "  Props: " + item1.characteristic.CharacteristicProperties.ToString() + System.Environment.NewLine);
+                }
+            }
             _heartRateAttribute = _serviceCollection.Where(a => a.Name == "65520").FirstOrDefault();
             if (_heartRateAttribute == null)
             {
@@ -314,8 +327,8 @@ namespace HeartRateLE.Bluetooth
             CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out byte[] data);
             if (!Enumerable.SequenceEqual(data, olddata))
             {
-                var x = _heartRateDevice.Name == "BDM";
-                var GattData = Utilities.ParseHeartRateValue(data, LogData, x);
+                
+                var GattData = Utilities.ParseHeartRateValue(data, LogData, DevType);
                 if ((string)GattData[0] != "Error")
                 {
                     var args = new Events.RateChangedEventArgs()
