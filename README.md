@@ -46,7 +46,7 @@ Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  
 
 New and testing devices 
 Owon B35T, B35T+, B41T+, OW18E, CM2100B (please inform me in Discussions these devices are not tested only plus type devices had quick test) 
-
+You can find this only this release now. -> https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFReleaseBetaTest1.26
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
