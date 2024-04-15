@@ -12,6 +12,20 @@ Link to compiled Version [https://github.com/webspiderteam/Bluetooth-DMM-For-Win
 
 Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  CHANGE 22-NOV-2022
 
+# Supported Devices :
+
+|Brand|Small-DMM|Big-DMM|Clamp-DMM|Desk-DMM|
+|:--|:--|:--|:--|:--|
+|Aneng | V05B  | AN9002     | ST207  | AN999S |
+|BSIDE | ZT-5B | ZT-300AB | ZT-5BQ |        |
+| ZOYI | ZT-5B | ZT-300AB | ZT-5BQ |ZT-5566SE|
+|BABATools |   |AD900     |        |        |
+|HOKI |  | T-100 , M9 |  |  |
+
+New and testing devices 
+Owon B35T, B35T+, B41T+, OW18E, CM2100B (please inform me in Discussions these devices are not tested only plus type devices had quick test) 
+You can find this only this release now. -> [https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFReleaseBetaTest1.26](https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFReleaseBetaTest1.26b)
+
 # Screenshots :
 ![image](https://user-images.githubusercontent.com/12202733/213878342-bc5ebad9-2219-4b0c-a7c3-68234b268741.png)
 
@@ -33,20 +47,6 @@ Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  
 
 ![image](https://user-images.githubusercontent.com/12202733/213878862-7a2ce52c-acb5-4f39-8fda-16d92e261974.png)
 
-
-# Supported Devices :
-
-|Brand|Small-DMM|Big-DMM|Clamp-DMM|Desk-DMM|
-|:--|:--|:--|:--|:--|
-|Aneng | V05B  | AN9002     | ST207  | AN999S |
-|BSIDE | ZT-5B | ZT-300AB | ZT-5BQ |        |
-| ZOYI | ZT-5B | ZT-300AB | ZT-5BQ |ZT-5566SE|
-|BABATools |   |AD900     |        |        |
-|HOKI |  | T-100 , M9 |  |  |
-
-New and testing devices 
-Owon B35T, B35T+, B41T+, OW18E, CM2100B (please inform me in Discussions these devices are not tested only plus type devices had quick test) 
-You can find this only this release now. -> [https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFReleaseBetaTest1.26](https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFReleaseBetaTest1.26b)
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
