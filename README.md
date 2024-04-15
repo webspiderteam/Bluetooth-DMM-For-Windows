@@ -23,7 +23,7 @@ Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  
 |HOKI |  | T-100 , M9 |  |  |
 
 New and testing devices 
-Owon B35T, B35T+, B41T+, OW18E, CM2100B (please inform me in Discussions these devices are not tested only plus type devices had quick test) 
+Owon B35T, B35T+, B41T+, OW18E, CM2100B (please inform me in Discussions these devices are not tested only plus type devices(B35T+ Tested not known issues right now. OW18E also tested no issue reported yet.) had quick test) 
 You can find this only this release now. -> [https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFReleaseBetaTest1.26](https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFReleaseBetaTest1.26b)
 
 # Screenshots :
