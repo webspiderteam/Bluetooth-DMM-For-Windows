@@ -325,6 +325,14 @@ namespace HeartRateLE.Bluetooth
             threatTime.Start();
 #endif
             CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out byte[] data);
+            if (false)
+            {
+                var dateValue = DateTime.Today.ToString("yyyy-MM-dd");
+
+                    File.AppendAllText("log-" + dateValue + ".txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
+
+                //File.AppendAllText("logbinary.txt", newValue + System.Environment.NewLine);
+            }
             if (!Enumerable.SequenceEqual(data, olddata))
             {
                 
@@ -362,7 +370,7 @@ namespace HeartRateLE.Bluetooth
             if (threatTime.ElapsedMilliseconds > 0)
             {
                 maxTime = (int)threatTime.ElapsedMilliseconds > maxTime ? (int)threatTime.ElapsedMilliseconds : maxTime;
-                Console.WriteLine("Elapsed={0} ms Max={1}", threatTime.ElapsedMilliseconds, maxTime);
+                //Console.WriteLine("Elapsed={0} ms Max={1}", threatTime.ElapsedMilliseconds, maxTime);
             }
 #endif
         }
