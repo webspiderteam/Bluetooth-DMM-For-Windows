@@ -21,7 +21,11 @@ namespace HeartRateLE.Bluetooth
 
         public bool LogData { get; set; }
         public int DevType { get; set; }
-
+        private HeartRateDeviceUUIDs[] deviceUUIDs = { new HeartRateDeviceUUIDs() { ServiceUUID = 0xFFF0, NotifyUUID = 0XFFF4, WriteUUID = 0XFFF3 },
+                                                        new HeartRateDeviceUUIDs() {ServiceUUID = 0xFFF0, NotifyUUID = 0XFFF4, WriteUUID = 0XFFF3},
+                                                        new HeartRateDeviceUUIDs() {ServiceUUID = 0xFFF0, NotifyUUID = 0XFFF4, WriteUUID = 0XFFF3},
+                                                        new HeartRateDeviceUUIDs() {ServiceUUID = 0xFFB0, NotifyUUID = 0XFFB2, WriteUUID = 0XFFB1}
+        };
         private BluetoothAttribute _heartRateMeasurementAttribute;
         private BluetoothAttribute _heartRateAttribute;
         private GattCharacteristic _heartRateMeasurementCharacteristic;
@@ -57,6 +61,7 @@ namespace HeartRateLE.Bluetooth
 
         public async Task<ConnectionResult> ConnectAsync(string deviceId, int devType)
         {
+            DevType = devType;
             if (_heartRateDevice != null)
             {
                 await DisconnectAsync();
@@ -115,7 +120,7 @@ namespace HeartRateLE.Bluetooth
 
             // we could force propagation of event with connection status change, to run the callback for initial status
             //DeviceConnectionStatusChanged(_heartRateDevice, null);
-            DevType = devType;
+
             return new Schema.ConnectionResult()
             {
                 IsConnected = _heartRateDevice.ConnectionStatus == BluetoothConnectionStatus.Connected,
@@ -176,7 +181,7 @@ namespace HeartRateLE.Bluetooth
                     File.AppendAllText("uuids.txt", "    --->" + item1.characteristic.Uuid + "  Handle: " + item1.characteristic.AttributeHandle.ToString() + "  Props: " + item1.characteristic.CharacteristicProperties.ToString() + System.Environment.NewLine);
                 }
             }
-            _heartRateAttribute = _serviceCollection.Where(a => a.Name == "65520").FirstOrDefault();
+            _heartRateAttribute = _serviceCollection.Where(a => a.Name == deviceUUIDs[DevType].ServiceUUID.ToString()).FirstOrDefault();
             if (_heartRateAttribute == null)
             {
                 await DisconnectAsync();
@@ -188,7 +193,7 @@ namespace HeartRateLE.Bluetooth
             }
 
             var characteristics = await GetServiceCharacteristicsAsync(_heartRateAttribute);
-            _heartRateMeasurementAttribute = characteristics.Where(a => a.Name == "65524").FirstOrDefault();
+            _heartRateMeasurementAttribute = characteristics.Where(a => a.Name == deviceUUIDs[DevType].NotifyUUID.ToString()).FirstOrDefault();
             if (_heartRateMeasurementAttribute == null)
             {
                 await DisconnectAsync();

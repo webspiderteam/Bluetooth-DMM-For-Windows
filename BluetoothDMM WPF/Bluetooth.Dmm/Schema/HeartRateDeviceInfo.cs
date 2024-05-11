@@ -17,4 +17,11 @@ namespace HeartRateLE.Bluetooth.Schema
         public string ModelNumber { get; set; }
         public int BatteryPercent { get; set; }
     }
+    public class HeartRateDeviceUUIDs
+    {
+        public ushort ServiceUUID { get; set; }
+        public ushort NotifyUUID { get; set; }
+        public ushort WriteUUID { get; set; }
+
+    }
 }
