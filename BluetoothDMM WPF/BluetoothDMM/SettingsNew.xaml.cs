@@ -18,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using WPFLocalizeExtension.Deprecated.Extensions;
 using WPFLocalizeExtension.Engine;
 using Application = System.Windows.Application;
@@ -31,6 +32,7 @@ namespace BluetoothDMM
     public partial class SettingsNew : Window
     {
         public Dictionary<string, DeviceProps> DeviceListC { get; set; }
+        public IEnumerable<ColorInfo> color_query { get; set; }
 
         // The path to the key where Windows looks for startup applications
         readonly RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
@@ -40,6 +42,17 @@ namespace BluetoothDMM
             InitializeComponent();
             DeviceListC = deviceListC;
             lstDevices.DataContext = this;
+            color_query = from PropertyInfo property in typeof(Colors).GetProperties()
+                              orderby property.Name
+                              //orderby ((Color)property.GetValue(null, null)).ToString()
+                              select new ColorInfo(
+                                      property.Name,
+                                      (Color)property.GetValue(null, null));
+            cmbColors.DataContext = this;// (new System.Linq.SystemCore_EnumerableDebugView<BluetoothDMM.ColorInfo>(color_query).Items[12]).HexValue
+            //cmbColors.SelectedValue = color_query.FirstOrDefault( Properties.Settings.Default.ADisplayBarColor;
+            //cmbColors.ItemsSource = color_query;
+            //cmbColors.SelectedValue = Properties.Settings.Default.ADisplayBarColor;
+
             LocalizeDictionary.Instance.OutputMissingKeys = true;
             LocalizeDictionary.Instance.MissingKeyEvent += Instance_MissingKeyEvent;
             this.Closing += SettingsNew_Closing;
@@ -335,7 +348,30 @@ namespace BluetoothDMM
             datatypes.Topmost = this.Topmost;
             datatypes.ShowDialog();
         }
-        //-------//
-    }
 
+    }
+    public class ColorInfo
+    {
+        public string ColorName { get; set; }
+        public Color Color { get; set; }
+
+        public SolidColorBrush SampleBrush
+        {
+            get { return new SolidColorBrush(Color); }
+        }
+        public string HexValue
+        {
+            get { return Color.ToString(); }
+        }
+
+        public ColorInfo(string color_name, Color color)
+        {
+            ColorName = color_name;
+            Color = color;
+        }
+        public override string ToString()
+        {
+            return Color.ToString();
+        }
+    }
 }

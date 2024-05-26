@@ -2040,7 +2040,7 @@ namespace HeartRateLE.Bluetooth
             // Testing other device data
             var TestDevice = 0;
 #if DEBUG// In debug mode do not custom-handle the exception, let Visual Studio handle it
-            TestDevice = 7;
+            TestDevice = 0;
 #else
             TestDevice = 0;
 #endif

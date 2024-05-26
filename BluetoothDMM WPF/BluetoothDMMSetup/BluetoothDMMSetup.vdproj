@@ -47,7 +47,7 @@
         "Entry"
         {
         "MsmKey" = "8:_06AEA0B9691CAEE29D0B5AA88DAF5AC8"
-        "OwnerKey" = "8:_A2AF05C0FCE4493F1F87A7FF624D9407"
+        "OwnerKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -148,6 +148,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
+        "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
+        "OwnerKey" = "8:_C8F0B57960AF1791227059AEBA33909B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_26F75C40DABBCB97B3C6F0880A9D2171"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
@@ -167,7 +179,7 @@
         "Entry"
         {
         "MsmKey" = "8:_288F552BA9FC9F81323ABD8C12B2A4E5"
-        "OwnerKey" = "8:_A2AF05C0FCE4493F1F87A7FF624D9407"
+        "OwnerKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -425,7 +437,7 @@
         "Entry"
         {
         "MsmKey" = "8:_77F37AD55A7426F79BA8553F92495F24"
-        "OwnerKey" = "8:_A2AF05C0FCE4493F1F87A7FF624D9407"
+        "OwnerKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -568,18 +580,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A2AF05C0FCE4493F1F87A7FF624D9407"
-        "OwnerKey" = "8:_C8F0B57960AF1791227059AEBA33909B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A2AF05C0FCE4493F1F87A7FF624D9407"
-        "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A317CF6BCF05DF7688B5CAB752897CD0"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
@@ -587,7 +587,7 @@
         "Entry"
         {
         "MsmKey" = "8:_A56FCADFB40F5977175AB88B795CA234"
-        "OwnerKey" = "8:_A2AF05C0FCE4493F1F87A7FF624D9407"
+        "OwnerKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -653,7 +653,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B818F6298DA780B2B6E0939F68A23802"
-        "OwnerKey" = "8:_A2AF05C0FCE4493F1F87A7FF624D9407"
+        "OwnerKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -851,7 +851,7 @@
         "Entry"
         {
         "MsmKey" = "8:_FF600808F7BAE1CD11975D3C51CBBFF5"
-        "OwnerKey" = "8:_A2AF05C0FCE4493F1F87A7FF624D9407"
+        "OwnerKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -935,7 +935,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A2AF05C0FCE4493F1F87A7FF624D9407"
+        "OwnerKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2314,6 +2314,37 @@
                     }
                 }
             "SourcePath" = "8:System.Threading.Thread.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2558C9F4B1EA8F57C5409415B3067E63"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Windows, Version=255.255.255.255, Culture=neutral"
+                "ScatterAssemblies"
+                {
+                    "_2558C9F4B1EA8F57C5409415B3067E63"
+                    {
+                    "Name" = "8:Windows.winmd"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Windows.winmd"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
@@ -4315,37 +4346,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A2AF05C0FCE4493F1F87A7FF624D9407"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Windows, Version=255.255.255.255, Culture=neutral"
-                "ScatterAssemblies"
-                {
-                    "_A2AF05C0FCE4493F1F87A7FF624D9407"
-                    {
-                    "Name" = "8:Windows.winmd"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Windows.winmd"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A317CF6BCF05DF7688B5CAB752897CD0"
             {
             "AssemblyRegister" = "3:1"
@@ -5693,15 +5693,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:BluetoothDMM For Windows"
-        "ProductCode" = "8:{483C4B5C-C0B8-4853-90A6-25DDA272C291}"
-        "PackageCode" = "8:{543310B9-79DC-4854-9991-38DC43DA8356}"
+        "ProductCode" = "8:{02E0D7C8-47A9-4EDE-86AE-56CDDE41200F}"
+        "PackageCode" = "8:{56649FE2-CCD7-4732-95A0-D3074AC00037}"
         "UpgradeCode" = "8:{DB0CAFB1-E076-41B0-B7C2-DC4B12320C5B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.25"
+        "ProductVersion" = "8:1.26"
         "Manufacturer" = "8:WebSpiderTeam"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/webspiderteam/Bluetooth-DMM-For-Windows"
