@@ -8,7 +8,7 @@ As I said before I'm not pro and also most of BluetoothLe Explorer codes and sou
 
 For this reasons probably there will not any Update on this project but if there is succestions by you over this project I will try to make them. If you have issues with code I also tyr to fix but I'm not sure I can... and one last thing, as I said before I made this project with my Aneng AN9002 and Im not sure its compilable with other same type models. If its not I could try to integrate them by your helps.
 
-Link to compiled Version [https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases](https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/latest)
+Link to compiled Version [https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases](https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/latest) 
 
 Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  CHANGE 22-NOV-2022
 
@@ -24,7 +24,7 @@ Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  
 
 New and testing devices 
 Owon B35T, B35T+, B41T+, OW18E, CM2100B (please inform me in Discussions these devices are not tested only plus type devices(B35T+ Tested not known issues right now. OW18E also tested no issue reported yet.) had quick test) 
-You can find this only this release now. -> [https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFReleaseBetaTest1.26](https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/releases/tag/WPFReleaseBetaTest1.26b)
+AICare Multimeters which uses "Intellegent Clamp Meter" app (Not tested yet. Sample Data needed)
 
 # Screenshots :
 ![image](https://user-images.githubusercontent.com/12202733/213878342-bc5ebad9-2219-4b0c-a7c3-68234b268741.png)
