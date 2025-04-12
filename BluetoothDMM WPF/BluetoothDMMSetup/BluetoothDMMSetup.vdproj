@@ -155,7 +155,7 @@
         "Entry"
         {
         "MsmKey" = "8:_2558C9F4B1EA8F57C5409415B3067E63"
-        "OwnerKey" = "8:_C8F0B57960AF1791227059AEBA33909B"
+        "OwnerKey" = "8:_BF40EBB920335D3E429926CAC0AF05BC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -395,6 +395,12 @@
         "Entry"
         {
         "MsmKey" = "8:_6A05748B3356D86D2264B5B4F4231DB1"
+        "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6B509FC0A4453B276A56664F25347F80"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -670,6 +676,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BF40EBB920335D3E429926CAC0AF05BC"
+        "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C290E26B85E353BB78DDCD768A64A3D7"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
@@ -683,12 +695,6 @@
         "Entry"
         {
         "MsmKey" = "8:_C4A067A5C5E042D2D778AF996819B7DB"
-        "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C8F0B57960AF1791227059AEBA33909B"
         "OwnerKey" = "8:_636A1D2068FF4735A642592EDECE3D24"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -923,13 +929,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6B509FC0A4453B276A56664F25347F80"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6FD94FF8A655CB77ABB9ACDEF3340F1C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C8F0B57960AF1791227059AEBA33909B"
+        "OwnerKey" = "8:_BF40EBB920335D3E429926CAC0AF05BC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3447,6 +3459,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6B509FC0A4453B276A56664F25347F80"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:HidLibrary, Version=3.2.49.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_6B509FC0A4453B276A56664F25347F80"
+                    {
+                    "Name" = "8:HidLibrary.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:HidLibrary.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6E9D8119810A35575DA169449131B645"
             {
             "AssemblyRegister" = "3:1"
@@ -4780,6 +4823,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BF40EBB920335D3E429926CAC0AF05BC"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Bluetooth.Dmm, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_BF40EBB920335D3E429926CAC0AF05BC"
+                    {
+                    "Name" = "8:Bluetooth.Dmm.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Bluetooth.Dmm.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C290E26B85E353BB78DDCD768A64A3D7"
             {
             "AssemblyRegister" = "3:1"
@@ -4845,37 +4919,6 @@
                     }
                 }
             "SourcePath" = "8:System.Xml.XmlDocument.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C8F0B57960AF1791227059AEBA33909B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Bluetooth.Dmm, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C8F0B57960AF1791227059AEBA33909B"
-                    {
-                    "Name" = "8:Bluetooth.Dmm.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Bluetooth.Dmm.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CC99BD1F96094477A96E2C776860F8D0"
@@ -5693,15 +5736,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:BluetoothDMM For Windows"
-        "ProductCode" = "8:{02E0D7C8-47A9-4EDE-86AE-56CDDE41200F}"
-        "PackageCode" = "8:{56649FE2-CCD7-4732-95A0-D3074AC00037}"
+        "ProductCode" = "8:{59F513F5-6AB9-4337-8A00-6F15391953C3}"
+        "PackageCode" = "8:{C18C1182-272F-4BB0-B025-A98701428013}"
         "UpgradeCode" = "8:{DB0CAFB1-E076-41B0-B7C2-DC4B12320C5B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.26"
+        "ProductVersion" = "8:1.27"
         "Manufacturer" = "8:WebSpiderTeam"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/webspiderteam/Bluetooth-DMM-For-Windows"
