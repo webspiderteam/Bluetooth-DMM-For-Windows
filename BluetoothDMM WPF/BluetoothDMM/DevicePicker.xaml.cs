@@ -1,4 +1,4 @@
-﻿using HeartRateLE.Bluetooth.Schema;
+﻿using BluetoothDLL.Bluetooth.Schema;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -35,8 +35,8 @@ namespace BluetoothDMM
         public string SelectedDeviceName { get; set; }
         public int SelectedDeviceType { get; set; }
 
-        private HeartRateLE.Bluetooth.HeartDeviceWatcher _unpairedWatcher;
-        //private HeartRateLE.Bluetooth.HeartDeviceWatcher _pairedWatcher;
+        private BluetoothDLL.Bluetooth.DeviceWatcher _unpairedWatcher;
+        //private BluetoothDLL.Bluetooth.DeviceWatcher _pairedWatcher;
 
         public DevicePicker(System.Collections.Generic.Dictionary<string, DeviceProps> deviceListC)
         {
@@ -47,12 +47,12 @@ namespace BluetoothDMM
             //PairedCollection = new ObservableCollection<WatcherDevice>();
             this.DataContext = this;
 
-            _unpairedWatcher = new HeartRateLE.Bluetooth.HeartDeviceWatcher(DeviceSelector.BluetoothLe);
+            _unpairedWatcher = new BluetoothDLL.Bluetooth.DeviceWatcher(DeviceSelector.BluetoothLe);
             _unpairedWatcher.DeviceAdded += OnDeviceAdded;
             _unpairedWatcher.DeviceRemoved += OnDeviceRemoved;
             _unpairedWatcher.Start();
 
-            //_pairedWatcher = new HeartRateLE.Bluetooth.HeartDeviceWatcher(DeviceSelector.BluetoothLePairedOnly);
+            //_pairedWatcher = new BluetoothDLL.Bluetooth.DeviceWatcher(DeviceSelector.BluetoothLePairedOnly);
             //_pairedWatcher.DeviceAdded += OnPaired_DeviceAdded;
             //_pairedWatcher.DeviceRemoved += OnPaired_DeviceRemoved;
 
@@ -62,7 +62,7 @@ namespace BluetoothDMM
             SelectedDeviceType = 0;
         }
 
-        //private async void OnPaired_DeviceRemoved(object sender, HeartRateLE.Bluetooth.Events.DeviceRemovedEventArgs e)
+        //private async void OnPaired_DeviceRemoved(object sender, BluetoothDLL.Bluetooth.Events.DeviceRemovedEventArgs e)
         //{
         //    await RunOnUiThread(() =>
         //    {
@@ -73,7 +73,7 @@ namespace BluetoothDMM
         //    });
         //}
 
-        //private async void OnPaired_DeviceAdded(object sender, HeartRateLE.Bluetooth.Events.DeviceAddedEventArgs e)
+        //private async void OnPaired_DeviceAdded(object sender, BluetoothDLL.Bluetooth.Events.DeviceAddedEventArgs e)
         //{
         //    await RunOnUiThread(() =>
         //    {
@@ -82,7 +82,7 @@ namespace BluetoothDMM
         //    });
         //}
 
-        private async void OnDeviceRemoved(object sender, HeartRateLE.Bluetooth.Events.DeviceRemovedEventArgs e)
+        private async void OnDeviceRemoved(object sender, BluetoothDLL.Bluetooth.Events.DeviceRemovedEventArgs e)
         {
             await RunOnUiThread(() =>
             {
@@ -93,7 +93,7 @@ namespace BluetoothDMM
             });
         }
 
-        private async void OnDeviceAdded(object sender, HeartRateLE.Bluetooth.Events.DeviceAddedEventArgs e)
+        private async void OnDeviceAdded(object sender, BluetoothDLL.Bluetooth.Events.DeviceAddedEventArgs e)
         {
             await RunOnUiThread(() =>
             {

@@ -276,7 +276,7 @@ namespace BluetoothDMM
         {
             if (lstDevices.SelectedItems.Count > 0)
             {
-                DeviceListC.Remove(((KeyValuePair<string, string>)lstDevices.SelectedValue).Key);
+                DeviceListC.Remove(((KeyValuePair<string, DeviceProps>)lstDevices.SelectedValue).Key);
                 lstDevices.SelectedIndex = -1;
                 lstDevices.Items.Refresh();
             }

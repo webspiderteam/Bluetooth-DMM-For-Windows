@@ -1,4 +1,4 @@
-﻿namespace HeartRateLE.Bluetooth.Schema
+﻿namespace BluetoothDLL.Bluetooth.Schema
 {
     /// <summary>
     ///     This enum assists in finding a string representation of a BT SIG assigned value for Service UUIDS

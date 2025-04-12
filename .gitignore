@@ -362,3 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /BluetoothDMM WPF/BluetoothDMM/1.07
+/BluetoothDMM WPF/.idea/.idea.BluetoothDMMForWindows/.idea
+/BluetoothDMM WPF/Bluetooth.Dmm/Utilities.cs

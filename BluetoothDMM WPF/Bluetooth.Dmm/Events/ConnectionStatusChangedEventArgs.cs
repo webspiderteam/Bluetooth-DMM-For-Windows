@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HeartRateLE.Bluetooth.Events
+namespace BluetoothDLL.Bluetooth.Events
 {
     public class ConnectionStatusChangedEventArgs: EventArgs
     {

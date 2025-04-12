@@ -1,4 +1,4 @@
-﻿using HeartRateLE.Bluetooth.Events;
+﻿using BluetoothDLL.Bluetooth.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

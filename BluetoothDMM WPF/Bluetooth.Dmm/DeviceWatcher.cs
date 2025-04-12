@@ -6,9 +6,9 @@ using Windows.Devices.Bluetooth;
 using Windows.Devices.Enumeration;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace HeartRateLE.Bluetooth
+namespace BluetoothDLL.Bluetooth
 {
-    public class HeartDeviceWatcher
+    public class DeviceWatcher
     {
         // Additional properties we would like about the device.
         // Property strings are documented here https://msdn.microsoft.com/en-us/library/windows/desktop/ff521659(v=vs.85).aspx
@@ -23,7 +23,7 @@ namespace HeartRateLE.Bluetooth
             };
 
         //private static readonly string[] RequiredServices = new string[] { "180D", "180A", "180F" };
-        private DeviceWatcher _deviceWatcher;
+        private Windows.Devices.Enumeration.DeviceWatcher _deviceWatcher;
         private readonly List<string> _filters;
         public event EventHandler<Events.DeviceAddedEventArgs> DeviceAdded;
         protected virtual void OnDeviceAdded(Events.DeviceAddedEventArgs e)
@@ -55,7 +55,7 @@ namespace HeartRateLE.Bluetooth
             DeviceEnumerationStopped?.Invoke(this, obj);
         }
 
-        public HeartDeviceWatcher(Schema.DeviceSelector deviceSelector)
+        public DeviceWatcher(Schema.DeviceSelector deviceSelector)
         {
             _deviceWatcher = DeviceInformation.CreateWatcher(
                         GetSelector(deviceSelector),
@@ -69,7 +69,7 @@ namespace HeartRateLE.Bluetooth
             _deviceWatcher.Stopped += Stopped;
         }
 
-        public HeartDeviceWatcher(Schema.DeviceSelector deviceSelector, List<string> filters) : this(deviceSelector)
+        public DeviceWatcher(Schema.DeviceSelector deviceSelector, List<string> filters) : this(deviceSelector)
         {
             _filters = filters;
         }
@@ -87,12 +87,12 @@ namespace HeartRateLE.Bluetooth
             }
         }
 
-        private void Stopped(DeviceWatcher watcher, object obj)
+        private void Stopped(Windows.Devices.Enumeration.DeviceWatcher watcher, object obj)
         {
             OnDeviceEnumerationStopped(obj);
         }
 
-        private void EnumerationCompleted(DeviceWatcher sender, object obj)
+        private void EnumerationCompleted(Windows.Devices.Enumeration.DeviceWatcher sender, object obj)
         {
             // Protect against race condition if the task runs after the app stopped the deviceWatcher.
             if (sender == _deviceWatcher)
@@ -120,7 +120,7 @@ namespace HeartRateLE.Bluetooth
 
             return compatibleDevice;
         }
-        private async void Added(DeviceWatcher sender, DeviceInformation deviceInformation)
+        private async void Added(Windows.Devices.Enumeration.DeviceWatcher sender, DeviceInformation deviceInformation)
         {
             if (await IsDeviceCompatible(deviceInformation.Id))
             {
@@ -149,7 +149,7 @@ namespace HeartRateLE.Bluetooth
             }
         }
 
-        private async void Updated(DeviceWatcher sender, DeviceInformationUpdate deviceInformationUpdate)
+        private async void Updated(Windows.Devices.Enumeration.DeviceWatcher sender, DeviceInformationUpdate deviceInformationUpdate)
         {
             if (await IsDeviceCompatible(deviceInformationUpdate.Id))
             {
@@ -171,7 +171,7 @@ namespace HeartRateLE.Bluetooth
             }
         }
 
-        private async void Removed(DeviceWatcher sender, DeviceInformationUpdate deviceInformationUpdate)
+        private async void Removed(Windows.Devices.Enumeration.DeviceWatcher sender, DeviceInformationUpdate deviceInformationUpdate)
         {
             if (await IsDeviceCompatible(deviceInformationUpdate.Id))
             {

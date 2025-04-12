@@ -1,6 +1,6 @@
-﻿using HeartRateLE.Bluetooth;
-using HeartRateLE.Bluetooth.Events;
-using HeartRateLE.Bluetooth.Schema;
+﻿using BluetoothDLL.Bluetooth;
+using BluetoothDLL.Bluetooth.Events;
+using BluetoothDLL.Bluetooth.Schema;
 using Microsoft.Win32;
 using MQTTnet;
 using MQTTnet.Client;
@@ -36,7 +36,7 @@ namespace BluetoothDMM
     public partial class MainWindow : Window
     {
         private System.Windows.Forms.NotifyIcon m_notifyIcon;
-        private HeartRateLE.Bluetooth.HeartRateMonitor _heartRateMonitor;
+        private BluetoothDLL.Bluetooth.GattMonitor _dataMonitor;
         public string SelectedDeviceId { get; private set; }
         public string SelectedDeviceName { get; private set; }
         public int SelectedDeviceType { get; private set; }
@@ -63,7 +63,7 @@ namespace BluetoothDMM
         private int Connected;
         private bool GotFirstData = false;
         private bool CommandsPopupLastState = false;
-        private HeartDeviceWatcher deviceWatcher = new HeartRateLE.Bluetooth.HeartDeviceWatcher(DeviceSelector.BluetoothLe);
+        private DeviceWatcher deviceWatcher = new BluetoothDLL.Bluetooth.DeviceWatcher(DeviceSelector.BluetoothLe);
 
         public MainWindow()
         {
@@ -167,18 +167,17 @@ namespace BluetoothDMM
             wpfPlot1.Refresh();
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             DataContext = this;
-            _heartRateMonitor = new HeartRateLE.Bluetooth.HeartRateMonitor
+            _dataMonitor = new BluetoothDLL.Bluetooth.GattMonitor
             {
                 LogData = Properties.Settings.Default.LogData
             };
             // we should always monitor the connection status
-            _heartRateMonitor.ConnectionStatusChanged -= HrDeviceOnDeviceConnectionStatusChanged;
-            _heartRateMonitor.ConnectionStatusChanged += HrDeviceOnDeviceConnectionStatusChanged;
+            _dataMonitor.ConnectionStatusChanged -= DMMDeviceOnDeviceConnectionStatusChanged;
+            _dataMonitor.ConnectionStatusChanged += DMMDeviceOnDeviceConnectionStatusChanged;
             
             //// we can create value parser and listen for parsed values of given characteristic
-            //HrParser.ConnectWithCharacteristic(HrDevice.HeartRate.HeartRateMeasurement);
-            _heartRateMonitor.RateChanged -= HrParserOnValueChanged;
-            _heartRateMonitor.RateChanged += HrParserOnValueChanged;
+            _dataMonitor.RateChanged -= DMM_DataParserOnValueChanged;
+            _dataMonitor.RateChanged += DMM_DataParserOnValueChanged;
             if (Properties.Settings.Default.ADisplay)
             {
                 aDisplay.Visibility = Visibility.Collapsed;
@@ -472,9 +471,9 @@ namespace BluetoothDMM
         {
             base.OnClosing(e);
 
-            if (_heartRateMonitor.IsConnected)
+            if (_dataMonitor.IsConnected)
             {
-                await _heartRateMonitor.DisconnectAsync();
+                await _dataMonitor.DisconnectAsync();
             }
             if (Properties.Settings.Default.Remember)
             {
@@ -498,7 +497,7 @@ namespace BluetoothDMM
             if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private async void HrParserOnValueChanged(object sender, RateChangedEventArgs arg)
+        private async void DMM_DataParserOnValueChanged(object sender, DataChangedEventArgs arg)
         {
             await RunOnUiThread(() =>
             {
@@ -661,7 +660,7 @@ namespace BluetoothDMM
             return "{ " + string.Join(", ", Strings) + " }";
         }
 
-        private async void HrDeviceOnDeviceConnectionStatusChanged(object sender, ConnectionStatusChangedEventArgs args)
+        private async void DMMDeviceOnDeviceConnectionStatusChanged(object sender, ConnectionStatusChangedEventArgs args)
         {
             d("Current connection status is: " + args.IsConnected);
             
@@ -673,7 +672,7 @@ namespace BluetoothDMM
                 bool connected = args.IsConnected;
                 if (connected)
                 {
-                    //var device = await _heartRateMonitor.GetDeviceInfoAsync();
+                    //var device = await _dataMonitor.GetDeviceInfoAsync();
                     textDevicename.Text = SelectedDeviceName + " : ";
                     new WPFLocalizeExtension.Extensions.LocExtension("Connected").SetBinding(textStatus, Run.TextProperty);
                     //TxtBattery.Text = String.Format("battery level: {0}%", device.BatteryPercent);
@@ -737,7 +736,7 @@ namespace BluetoothDMM
                             if (result == "Button1")
                             {
                                 Debug.WriteLine("Connecting  From Updated Event");
-                                var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId, SelectedDeviceType);
+                                var connectResult = await _dataMonitor.ConnectAsync(SelectedDeviceId, SelectedDeviceType);
                                 if (connectResult.IsConnected) { 
                                     Debug.WriteLine("Connected  From Updated Event");
                                     await RunOnUiThread(() =>
@@ -778,7 +777,7 @@ namespace BluetoothDMM
                                 Debug.WriteLine("Connecting From Updated Event");
                                 try
                                 {
-                                    var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId, SelectedDeviceType);
+                                    var connectResult = await _dataMonitor.ConnectAsync(SelectedDeviceId, SelectedDeviceType);
                                     if (connectResult.IsConnected)
                                     {
                                         Debug.WriteLine("Connected From Updated Event");
@@ -831,7 +830,7 @@ namespace BluetoothDMM
 
         private async void BtnReadInfo_Click(object sender, RoutedEventArgs e)
         {
-            var deviceInfo = await _heartRateMonitor.GetDeviceInfoAsync();
+            var deviceInfo = await _dataMonitor.GetDeviceInfoAsync();
 
             d($" Manufacturer : {deviceInfo.Manufacturer}"); d("");
             d($"    Model : {deviceInfo.ModelNumber}"); d("");
@@ -875,7 +874,7 @@ namespace BluetoothDMM
                         SelectedDeviceName = !DeviceListC.ContainsKey(SelectedDeviceId) ? devicePicker.SelectedDeviceName : DeviceListC[key: SelectedDeviceId].Name;
                         SelectedDeviceType = !DeviceListC.ContainsKey(SelectedDeviceId) ? devicePicker.SelectedDeviceType : DeviceListC[key: SelectedDeviceId].Type;
                         Connected = 2;
-                        var connectResult = await _heartRateMonitor.ConnectAsync(SelectedDeviceId, SelectedDeviceType);
+                        var connectResult = await _dataMonitor.ConnectAsync(SelectedDeviceId, SelectedDeviceType);
                         if (connectResult.IsConnected)
                         {
                             if (!DeviceListC.ContainsKey(SelectedDeviceId))
@@ -1031,7 +1030,7 @@ namespace BluetoothDMM
                         }
                     });
                 }
-                _heartRateMonitor.LogData = Properties.Settings.Default.LogData;
+                _dataMonitor.LogData = Properties.Settings.Default.LogData;
             }
         }
 
@@ -1596,7 +1595,7 @@ namespace BluetoothDMM
                 GattSendData[byt] = (byte)value;
                 byt++;
             }
-            var deviceInfo = await _heartRateMonitor.WriteGattCommandAsync(GattSendData);
+            var deviceInfo = await _dataMonitor.WriteGattCommandAsync(GattSendData);
             Debug.WriteLine(deviceInfo.IsSuccess + " " + deviceInfo.Message);
             MessageBox.Show(deviceInfo.IsSuccess + " " + deviceInfo.Message);
 
@@ -1615,7 +1614,7 @@ namespace BluetoothDMM
                 GattSendData[byt] = (byte)value;
                 byt++;
             }
-            var deviceInfo = await _heartRateMonitor.WriteGattCommandAsync(GattSendData);
+            var deviceInfo = await _dataMonitor.WriteGattCommandAsync(GattSendData);
             Debug.WriteLine(deviceInfo.IsSuccess + " " + deviceInfo.Message);
             // MessageBox.Show(deviceInfo.IsSuccess + " " + deviceInfo.Message);
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 
-namespace HeartRateLE.Bluetooth.Schema
+namespace BluetoothDLL.Bluetooth.Schema
 {
     /// <summary>
     ///     Represents the display of an attribute - both characteristics and services.
@@ -42,7 +42,12 @@ namespace HeartRateLE.Bluetooth.Schema
                         }
                         else
                         {
-                            return "Custom Service: " + service.Uuid;
+                            //return service.Uuid.ToString();//"Custom Service: " + service.Uuid;
+                            GattNativeServiceUuid serviceName;
+                            if (Enum.TryParse(Utilities.ConvertUuidToShortId(service.Uuid).ToString(), out serviceName))
+                            {
+                                return serviceName.ToString();
+                            }
                         }
                         break;
                     case BluetoothAttributeType.Characteristic:
@@ -64,7 +69,13 @@ namespace HeartRateLE.Bluetooth.Schema
 
                             else
                             {
-                                return "Custom Characteristic: " + characteristic.Uuid;
+                                //return "Custom Characteristic: " + characteristic.Uuid;
+                                GattNativeCharacteristicUuid characteristicName;
+                                if (Enum.TryParse(Utilities.ConvertUuidToShortId(characteristic.Uuid).ToString(),
+                                    out characteristicName))
+                                {
+                                    return characteristicName.ToString();
+                                }
                             }
                         }
                         break;

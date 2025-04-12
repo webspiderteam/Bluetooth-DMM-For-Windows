@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HeartRateLE.Bluetooth
+namespace BluetoothDLL.Bluetooth
 {
     public static class Extensions
     {
