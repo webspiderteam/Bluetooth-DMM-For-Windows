@@ -360,27 +360,27 @@
                 <Border CornerRadius="8">
                     <Grid>
                         <WrapPanel Width="300">
-                            <Button x:Name="cmdAuto" Tag="EA EC 70 ED A2 C1 32 71 64 99" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdAuto" Tag="1" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <Viewbox Margin="-5,-17,0,0" Height="35" Width="35" Stretch="Fill" StretchDirection="Both">
                                     <Path Fill="Wheat" Data="m 172.74609,71.828125 c -4.89848,0.07276 -9.83122,1.833867 -13.38069,5.269269 -4.58189,4.361543 -6.94441,10.512901 -8.16263,16.602277 -1.39568,7.103479 -1.53717,14.401709 -1.09517,21.609169 0.51035,6.77715 1.71845,13.71026 5.12923,19.68226 2.52107,4.46574 6.61188,8.15437 11.58348,9.62023 4.54199,1.3305 9.52172,1.28972 14.00602,-0.25312 4.85158,-1.66757 8.69366,-5.50999 11.05117,-9.99162 3.22881,-6.08235 4.33429,-13.02835 4.77843,-19.82658 0.39435,-7.75769 0.18463,-15.635838 -1.66808,-23.212791 -1.43926,-5.790149 -4.1373,-11.553264 -8.89091,-15.345762 -3.73402,-3.028037 -8.59765,-4.30785 -13.35085,-4.153332 z M 36.865234,74.550781 c -5.976779,23.257273 -11.957104,46.513639 -17.93164,69.771489 4.548828,0 9.097656,0 13.646484,0 1.22195,-5.61907 2.449593,-11.2369 3.673828,-16.85547 4.752604,0 9.505209,0 14.257813,0 1.253493,5.61858 2.510793,11.23631 3.761719,16.85547 4.720703,0 9.441406,0 14.162109,0 -5.660465,-23.75728 -11.317573,-47.515352 -16.974609,-71.273442 -4.736329,0 -9.472657,0 -14.208985,0 -0.128906,0.500651 -0.257812,1.001302 -0.386719,1.501953 z m 31.806641,0.498047 c 0.0144,14.674009 -0.02888,29.348372 0.02177,44.022162 0.126156,4.88184 0.333603,9.85117 1.804403,14.54424 1.540248,4.5849 5.051616,8.56471 9.636417,10.25091 4.628639,1.80788 9.76845,2.05196 14.64232,1.27935 3.986576,-0.63892 7.789405,-2.51877 10.549425,-5.49199 2.60897,-2.65807 4.13365,-6.21268 4.67678,-9.86775 1.28489,-7.67409 0.84773,-15.48598 0.93256,-23.23106 0,-6.680992 0,-13.361982 0,-20.042971 4.37304,0 8.74609,0 13.11914,0 0,19.270181 0,38.540361 0,57.810551 4.63021,0 9.26041,0 13.89062,0 0,-19.27019 0,-38.54037 0,-57.810551 4.45183,0 8.90365,0 13.35547,0 0,-4.48763 0,-8.975261 0,-13.462891 -17.75,0 -35.5,0 -53.249998,0 -0.01449,15.303709 0.02918,30.607762 -0.02219,45.911252 -0.09714,2.93997 -0.07605,5.93382 -0.808452,8.80074 -0.587476,2.08246 -2.210138,4.00342 -4.436244,4.33615 -2.454152,0.439 -5.245646,0.40152 -7.358111,-1.09111 -1.94356,-1.46072 -2.571343,-3.96558 -2.747061,-6.27113 -0.141654,-1.29801 -0.215979,-2.68047 -0.259663,-3.87149 -0.146472,-6.35846 -0.03417,-12.72023 -0.06945,-19.08004 0,-9.578122 0,-19.156247 0,-28.734372 -4.559244,0 -9.118489,0 -13.677734,0 0,0.666667 0,1.333333 0,2 z m 105.261715,9.908203 c 2.18633,0.07106 4.13346,1.477585 5.14591,3.374845 1.67064,3.110035 2.3055,6.652746 2.79259,10.114672 0.10009,0.736523 0.16728,1.482487 0.23729,2.121812 0.14938,1.6773 0.24895,3.34862 0.2955,4.95287 0.0841,2.84091 0.0565,5.77282 -0.092,8.51688 -0.30004,4.7107 -0.8014,9.5209 -2.6477,13.91001 -0.91434,2.17746 -2.78178,4.1739 -5.25256,4.37744 -2.31408,0.32511 -4.86347,-0.46775 -6.24132,-2.43716 -1.75593,-2.428 -2.33871,-5.45491 -2.92513,-8.33419 -0.52574,-2.89139 -0.7776,-5.82551 -0.90634,-8.75929 -0.04,-1.018 -0.0736,-2.30173 -0.0772,-3.42459 0.003,-6.16487 0.27401,-12.445301 2.15959,-18.361555 0.76094,-2.40767 2.19358,-4.999679 4.77356,-5.766476 0.88222,-0.277821 1.81866,-0.338526 2.73776,-0.285268 z M 47.654297,114.69727 c -2.851563,0 -5.703125,0 -8.554688,0 1.420573,-6.49349 2.841146,-12.98698 4.261719,-19.480473 1.43099,6.493493 2.861979,12.986983 4.292969,19.480473 z" />
                                 </Viewbox>
                             </Button>
-                            <Button x:Name="cmdC" Tag="EA EC 70 E3 A2 C1 32 71 64 9B" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,1" Click="Commands_Click">
+                            <Button x:Name="cmdC" Tag="2" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,1" Click="Commands_Click">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="25" Width="25" HorizontalAlignment="Right">
                                     <TextBlock Text="°C" TextAlignment="Center" Width="30" Height="25" FontSize="18" FontWeight="Bold" Margin="-3,0,0,0"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="cmdF" Tag="EA EC 70 E2 A2 C1 32 71 64 98" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdF" Tag="3" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="25" Width="25" HorizontalAlignment="Right">
                                     <TextBlock Text="°F" TextAlignment="Center" Width="30" Height="25" FontSize="18" FontWeight="Bold" Margin="-3,0,0,0"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="cmdCap" Tag="EA EC 70 E5 A2 C1 32 71 64 81" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdCap" Tag="4" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <Viewbox Margin="-38,-67,0,0" Height="80" Width="100" Stretch="Uniform">
                                     <Path Fill="White" Data="m 78.462633 140.99995 v -5.82083 h -3.351389 -3.351389 v -2.11667 -2.11666 h 3.351389 3.351389 v -5.99723 -5.99722 h 2.293056 2.293056 v 13.93472 13.93473 h -2.293056 -2.293056 z m 11.28889 -8.11389 v -13.93472 h 2.469444 2.469445 v 5.99722 5.99723 h 3.175 3.174998 v 2.11666 2.11667 h -3.174998 -3.175 v 5.82083 5.82084 h -2.469445 -2.469444 z"/>
                                 </Viewbox>
                             </Button>
-                            <Button x:Name="cmdDiode" Tag="EA EC 70 E4 A2 C1 32 71 64 86" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdDiode" Tag="5" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <DockPanel Width="140" Height="140">
                                     <Viewbox Margin="0,-5,0,0" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top">
                                         <Path Fill="White" Stroke="White" StrokeThickness="8" Data="m 185.09961,79.863281 -0.26563,27.749999 -0.26562,27.75 -3.74219,0.3086 -3.74219,0.31054 -6.2207,-1.59375 -6.2207,-1.59375 -14.37696,-6.94336 -14.37695,-6.94531 -26.46875,-15.12891 -26.468748,-15.128902 -0.458984,0.457031 -0.458985,0.458984 -1.080078,22.398437 -1.080078,22.40039 -1.152344,0.73438 -1.152344,0.73437 -31.867187,0.0156 -31.867188,0.0156 0.716797,7.75 0.71875,7.75 0.34961,0.36524 0.349609,0.36718 29.800781,0.9336 29.798828,0.93359 2.148438,0.44336 2.146484,0.44336 0.632813,13.75586 0.632812,13.75781 0.71875,7.70899 0.720703,7.71093 15.5,-9.09375 15.500001,-9.0957 12.75195,-7.31836 12.75,-7.31641 8.67774,-4.06836 8.67773,-4.0664 5.7168,-1.48047 5.71484,-1.48047 h 8.60547 8.60547 v 26 26 h 9.5 9.5 v -26 -26 h 36.5 36.5 v -9 -9 h -34.91797 -34.91797 l -1.58203,-0.60742 -1.58203,-0.60742 V 107.25586 79.863281 h -9.48438 z"/>
@@ -411,26 +411,26 @@
                                     </Viewbox>
                                 </DockPanel>
                             </Button>
-                            <Button x:Name="cmdNCV" Tag="EA EC 70 E7 A2 C1 32 71 64 87" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdNCV" Tag="6" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <Viewbox Margin="-4,-10,0,0" Stretch="Fill" Width="34" Height="54" HorizontalAlignment="Center" VerticalAlignment="Top">
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="25" Width="25" HorizontalAlignment="Right">
                                         <TextBlock Text="NCV" TextAlignment="Center" Width="30" Height="25" FontSize="10" FontWeight="Bold" Margin="-1,5,0,0"/>
                                     </StackPanel>
                                 </Viewbox>
                             </Button>
-                            <Button x:Name="cmdHz" Tag="EA EC 70 E6 A2 C1 32 71 64 84" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdHz" Tag="7" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="25" Width="25" HorizontalAlignment="Right">
                                     <TextBlock Text="Hz" TextAlignment="Center" Width="30" Height="25" FontSize="18" FontWeight="Bold" Margin="-2,-2,0,0"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="cmdHold" Tag="EA EC 70 E1 A2 C1 32 71 64 85" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdHold" Tag="8" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <Viewbox Margin="0,-10,0,0" Stretch="Fill" Width="30" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="25" HorizontalAlignment="Right">
                                         <TextBlock Text="HOLD" TextAlignment="Center" Height="25" FontSize="14" FontWeight="Bold" Margin="-1,5,0,0"/>
                                     </StackPanel>
                                 </Viewbox>
                             </Button>
-                            <Button x:Name="cmdMinMax" Tag="EA EC 70 84 A2 C1 32 71 64 E6" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdMinMax" Tag="9" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <Viewbox Margin="-4,-8,0,0" Stretch="Fill" Width="34" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top">
                                     <StackPanel Orientation="Vertical" Margin="0,-5,0,0" Height="40" Width="25" HorizontalAlignment="Right">
                                         <TextBlock Text="MIN" TextAlignment="Center" Width="30" Height="25" FontSize="10" FontWeight="Bold" Margin="-1,10,0,0"/>
@@ -438,26 +438,26 @@
                                     </StackPanel>
                                 </Viewbox>
                             </Button>
-                            <Button x:Name="cmdMili" Tag="EA EC 70 93 A2 C1 32 71 64 EB" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdMili" Tag="10" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <Viewbox Margin="0,-3,0,0" Stretch="Fill" Width="30" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="40" HorizontalAlignment="Right">
                                         <TextBlock Text="mVHz" TextAlignment="Center" Height="25" FontSize="18" FontWeight="Bold" Margin="-1,0,0,0"/>
                                     </StackPanel>
                                 </Viewbox>
                             </Button>
-                            <Button x:Name="cmdOhm" Tag="EA EC 70 EB A2 C1 32 71 64 93" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdOhm" Tag="11" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="25" Width="25" HorizontalAlignment="Right">
                                     <TextBlock Text="Ω" TextAlignment="Center" Width="30" Height="25" FontSize="18" FontWeight="Bold" Margin="-2,-2,0,0"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="cmdAmA" Tag="EA EC 70 9C A2 C1 32 71 64 EE" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdAmA" Tag="12" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <Viewbox Margin="0,-3,0,0" Stretch="Fill" Width="30" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top">
                                     <StackPanel Orientation="Horizontal" Margin="5,0,0,0" Height="40" HorizontalAlignment="Right">
                                         <TextBlock Text="A/mA" TextAlignment="Center" Height="25" FontSize="18" FontWeight="Bold" Margin="-2,-2,0,0"/>
                                     </StackPanel>
                                 </Viewbox>
                             </Button>
-                            <Button x:Name="cmdAcDc" Tag="EA EC 70 91 A2 C1 32 71 64 95" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdAcDc" Tag="13" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <Viewbox Margin="0,-10,0,0" Stretch="Fill" Width="40" Height="55" HorizontalAlignment="Center" VerticalAlignment="Top">
                                     <StackPanel Orientation="Vertical" Margin="0,-5,0,0" Height="40" Width="20" HorizontalAlignment="Right">
                                         <TextBlock Text="AC" TextAlignment="Center" Height="25" FontSize="10" FontWeight="Bold" Margin="-1,10,0,0"/>
@@ -466,7 +466,7 @@
                                     </StackPanel>
                                 </Viewbox>
                             </Button>
-                            <Button x:Name="cmdZero" Tag="EA EC 70 E0 A2 C1 32 71 64 9A" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
+                            <Button x:Name="cmdZero" Tag="14" Height="40" Width="40" Background="#A0000000" Style="{StaticResource pb_style}" Margin="1,0" Click="Commands_Click">
                                 <Viewbox Margin="2,-8,0,0" Stretch="Fill" Width="40" Height="65" HorizontalAlignment="Center" VerticalAlignment="Top">
                                     <StackPanel Orientation="Vertical" Margin="0,-5,0,0" Height="40" Width="35" HorizontalAlignment="Right">
                                         <TextBlock Text="ZERO" TextAlignment="Center" Height="25" FontSize="10" FontWeight="Bold" Margin="-1,10,0,0"/>
@@ -572,7 +572,7 @@
                         <TextBlock d:Text="-1.000" x:Name="MyGattCData" Grid.Row="1" HorizontalAlignment="Center" Height="262" TextWrapping="WrapWithOverflow" Text="----" VerticalAlignment="Top" TextAlignment="Center" FontSize="210" FontWeight="Bold" FontFamily="Segoe UI"/>
                     </Viewbox>
                     <TextBlock d:Visibility="Visible" x:Name="True_RMS" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="350,0,0,0" TextWrapping="Wrap" Text="{lex:LocText TrueRMS}" VerticalAlignment="Bottom" Width="250" FontSize="40" FontWeight="Bold"/>
-                    <TextBlock d:Visibility="Visible" x:Name="Funct" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="750,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="auto" FontSize="40" FontWeight="Bold"/>
+                    <TextBlock d:Visibility="Visible" x:Name="Funct" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="750,0,0,0" TextWrapping="Wrap" Text="AC/DC" VerticalAlignment="Bottom" Width="auto" FontSize="40" FontWeight="Bold"/>
 
                     <TextBlock d:Visibility="Visible" x:Name="InRush" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" Height="73" Margin="-300,70,0,0" TextWrapping="Wrap" Text="{lex:LocText InRush}" VerticalAlignment="Bottom" Width="200" FontSize="40" FontWeight="Bold"/>
                     <TextBlock d:Visibility="Visible" d:Text="DC" x:Name="MyGattCDataACDC" Grid.Row="1" HorizontalAlignment="Left" Height="70" Margin="80,175,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="85" FontSize="60" FontWeight="Bold" TextAlignment="Right"/>

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Enumeration;
 
-namespace HeartRateLE.Bluetooth
+namespace BluetoothDLL.Bluetooth
 {
     public class PairingHelper
     {

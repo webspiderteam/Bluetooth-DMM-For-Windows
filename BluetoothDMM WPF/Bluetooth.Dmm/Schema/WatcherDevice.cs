@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Windows.Devices.Enumeration;
 
-namespace HeartRateLE.Bluetooth.Schema
+namespace BluetoothDLL.Bluetooth.Schema
 {
     public class WatcherDevice
     {

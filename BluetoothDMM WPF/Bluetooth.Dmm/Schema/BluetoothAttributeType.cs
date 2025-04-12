@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HeartRateLE.Bluetooth.Schema
+namespace BluetoothDLL.Bluetooth.Schema
 {
     public enum BluetoothAttributeType
     {

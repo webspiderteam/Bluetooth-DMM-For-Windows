@@ -411,6 +411,7 @@
                                 <ComboBoxItem Content="Owon Old Type (B35T e.g)"/>
                                 <ComboBoxItem Content="Owon Plus Type (B35t+, B41t+ e.g)"/>
                                 <ComboBoxItem Content="AICARE Devices (AP-570C-APP e.g Inteligent Clamp Meter app)"/>
+                                <ComboBoxItem Content="Uni-T Device With Bluetooth"/>
                             </ComboBox>
                             <Button Width="50" Height="30" Content="{lex:LocText Ok}" Click="btnOk_Click"/>
                         </StackPanel>
