@@ -27,6 +27,7 @@ Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  
 Owon B35T, B35T+, B41T+, OW18E, CM2100B (please inform me in Discussions these devices are not tested only plus type devices(B35T+ Tested not known issues right now. OW18E also tested no issue reported yet.) had quick test) 
 
 AICare Multimeters which uses "Intellegent Clamp Meter" app (Not tested yet. Sample Data needed)
+Uni-T multimeters with UT-D07A and UT-D07B Bluetooth Adaptor (UT61+ Series, UT161 Series, UT171 Series, and UT181A Only) and UT60BT digital multimeter and UT202BT clamp meter
 
 # Screenshots :
 ![image](https://user-images.githubusercontent.com/12202733/213878342-bc5ebad9-2219-4b0c-a7c3-68234b268741.png)
