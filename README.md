@@ -12,6 +12,8 @@ Link to compiled Version [https://github.com/webspiderteam/Bluetooth-DMM-For-Win
 
 Detailed Info: https://github.com/webspiderteam/Bluetooth-DMM-For-Windows/wiki  CHANGE 22-NOV-2022
 
+For support you can use [https://buymeacoffee.com/webspidertq](https://buymeacoffee.com/webspidertq) link.
+
 # Supported Devices :
 
 |Brand|Small-DMM|Big-DMM|Clamp-DMM|Desk-DMM|
