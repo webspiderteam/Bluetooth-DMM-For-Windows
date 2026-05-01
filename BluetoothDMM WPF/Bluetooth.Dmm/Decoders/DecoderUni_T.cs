@@ -262,6 +262,11 @@ namespace BluetoothDLL.Bluetooth
             {
                 return true;
             }
+
+            MyGattCDataSymbol = "";
+            MyGattCDataACDC = "";
+            MyGattCDataFunc = "";
+            MyGattCDataType = 8;
             if (data.Length == 19)
             {
 
@@ -286,10 +291,7 @@ namespace BluetoothDLL.Bluetooth
                 MyGattCDataBattery = (data[15] & 2) != 0;
                 MyGattCDataHV = (data[15] & 1) != 0;
                 //MyGattCDataACDC = (data[16] & 8) == 0 ? "DC" : "AC";
-                if ("AC/DC".Equals(function))
-                {
-                    MyGattCDataACDC = (data[16] & 8) == 0 ? "DC" : "AC";
-                }
+
                 if (function.Contains("AC") || function.StartsWith("LPF") || "LozV".Equals(function) || "INRUSH".Equals(function))
                 {
                     MyGattCDataACDC = "AC";
@@ -298,6 +300,10 @@ namespace BluetoothDLL.Bluetooth
                 if (function.Contains("DC"))
                 {
                     MyGattCDataACDC = "DC";
+                }
+                if ("AC/DC".Equals(function))
+                {
+                    MyGattCDataACDC = (data[16] & 8) == 0 ? "DC" : "AC";
                 }
                 if ("NCV".Equals(function) || "HFE".Equals(function) || function.StartsWith("LPF"))
                 {
@@ -365,9 +371,9 @@ namespace BluetoothDLL.Bluetooth
             //    curConnectModel = new TestDataModel();
             //    curConnectModel.TypeName = typeName;
             //}
-            MyGattCData = "----";
-            MyGattCDataSymbol = "V";
-            Debug.WriteLine($"BleManager: Starting data reading from Uni-T");
+            MyGattCData = "Error";
+            MyGattCDataSymbol = "TypeName";
+            Debug.WriteLine($"BleManager: Starting data reading from Uni-T {typeName}");
             //StartReadTestValue(curMac);
             Debug.WriteLine($"deviceType: {typeName}");
             return false;

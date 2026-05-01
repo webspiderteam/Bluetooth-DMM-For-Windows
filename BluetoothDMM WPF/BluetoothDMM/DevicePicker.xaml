@@ -68,6 +68,7 @@
                 <ComboBoxItem Content="Owon Plus Type (B35t+, B41t+ e.g)"/>
                 <ComboBoxItem Content="AICARE Devices (AP-570C-APP e.g Inteligent Clamp Meter app)"/>
                 <ComboBoxItem Content="Uni-T Device With Bluetooth"/>
+                <ComboBoxItem Content="Voltcraft VC800 and VC900 Series"/>
             </ComboBox>
             <Button x:Name="OkButton" Content="{lex:LocText Connect}"  Width="100" Click="OkButton_Click" />
         </StackPanel>

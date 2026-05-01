@@ -76,7 +76,10 @@ namespace BluetoothDMM
         void AppDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
 #if DEBUG// In debug mode do not custom-handle the exception, let Visual Studio handle it
-            e.Handled = false;
+            if (!Debugger.IsAttached) {
+                ShowUnhandledException(e);
+            } else 
+                e.Handled = false;
 #else
             ShowUnhandledException(e);
 #endif
@@ -85,6 +88,9 @@ namespace BluetoothDMM
 
         void ShowUnhandledException(DispatcherUnhandledExceptionEventArgs e)
         {
+
+            string time = DateTime.Now.ToString("dd-MM-yyyy_HH_mm_ss");
+            File.AppendAllText("crashlog_" + time + ".txt", "error catch Error: " + e.ToString() + System.Environment.NewLine);
             e.Handled = true;
             //e.Exception.StackTrace
             string errorMessage = string.Format("An application error occurred.\n" +
@@ -92,9 +98,8 @@ namespace BluetoothDMM
                 "If this error occurs again there seems to be a more serious malfunction in the application, and you better close it.\n\n" +
                 "Error: {0}\n\nDo you want to continue?\n" +
                 "(if you click Yes you will continue with your work, if you click No the application will close)",
-            e.Exception.Message + (e.Exception.InnerException != null ? "\n" +
-            e.Exception.InnerException.Message : null));
-            string time = DateTime.Now.ToString("dd-MM-yyyy_HH_mm_ss");
+            e.Exception.Message + (e.Exception.InnerException != null ? "\n" + 
+            e.Exception.InnerException.Message : null) + (e.Exception.StackTrace != null ? "\n" + "StacTrace: " + e.Exception.StackTrace + "\n" : null));
             File.AppendAllText("crashlog_" + time + ".txt", "error catch Error: " + e.ToString() + System.Environment.NewLine);
             File.AppendAllText("crashlog_" + time + ".txt", errorMessage + System.Environment.NewLine);
             if (MessageBox.Show(errorMessage, "Application Error", MessageBoxButton.YesNoCancel, MessageBoxImage.Error) == MessageBoxResult.No)

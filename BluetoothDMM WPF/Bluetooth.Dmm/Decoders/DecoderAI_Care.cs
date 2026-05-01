@@ -103,6 +103,7 @@ namespace BluetoothDLL.Bluetooth
                           (values[12] == '1' ? "." : string.Empty) + aiCareNumbers[values.Substring(13, 7)] +
                           (values[20] == '1' ? "." : string.Empty) + aiCareNumbers[values.Substring(21, 7)] +
                           (values[28] == '1' ? "." : string.Empty) + aiCareNumbers[values.Substring(29, 7)];
+            MyGattCDataType = 7;
             return true;
         }
     }

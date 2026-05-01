@@ -190,7 +190,7 @@ namespace BluetoothDMM
                 }
                 else
                     new WPFLocalizeExtension.Extensions.LocExtension("NoUpdatesAvail").SetBinding(txtLatest, TextBlock.TextProperty);
-                Console.WriteLine(releases);
+                Console.WriteLine(string.Join(Environment.NewLine, releases.Select(r => $"{r.TagName} - {r.Name}")));
             }
             catch (Exception ex)
             {
@@ -329,6 +329,9 @@ namespace BluetoothDMM
             }
             if (Properties.Settings.Default.ConnectOn)
             {
+
+                if (Properties.Settings.Default.DeviceID == null)
+                    Properties.Settings.Default.DeviceID = new System.Collections.Specialized.StringCollection();
                 Properties.Settings.Default.DeviceID.Clear();
                 foreach (KeyValuePair<string, DeviceProps> items in DeviceListC)
                 {

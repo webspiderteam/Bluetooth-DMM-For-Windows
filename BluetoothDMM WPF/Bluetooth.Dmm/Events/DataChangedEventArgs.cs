@@ -26,5 +26,7 @@ namespace BluetoothDLL.Bluetooth.Events
         public bool MyGattCDataHV { get; set; }
         public int MyGattCDataType { get; set; }
         public string MyGattCDataFunc { get; set; }
+        public string MyGattCDataSDisplay { get; set; }
+        public bool MyGattCDataHasSDisplay { get; set; }
     }
 }

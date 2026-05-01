@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -171,6 +172,7 @@ namespace BluetoothDMM
             {
                 LogData = Properties.Settings.Default.LogData
             };
+            _dataMonitor.AutoReconnect = Properties.Settings.Default.Reconnect;
             // we should always monitor the connection status
             _dataMonitor.ConnectionStatusChanged -= DMMDeviceOnDeviceConnectionStatusChanged;
             _dataMonitor.ConnectionStatusChanged += DMMDeviceOnDeviceConnectionStatusChanged;
@@ -388,6 +390,7 @@ namespace BluetoothDMM
         MqttClientOptions options;
         private bool ReconnectMqtt;
         private bool Dragged = false;
+        private int devDataType = -1;
 
         private void OnStateChanged(object sender, EventArgs args)
         {
@@ -508,6 +511,16 @@ namespace BluetoothDMM
                 MyGattCData.Text = arg.MyGattCData;
                 MyGattCDataSymbol.Text = arg.MyGattCDataSymbol;
                 MyGattCDataACDC.Text = arg.MyGattCDataACDC;
+                if (true || arg.MyGattCDataHasSDisplay)
+                {
+                    MyGattCDataContainer.Height=230;
+                    MyGattCDataSDisplay.Text = arg.MyGattCDataSDisplay;
+                }
+                else
+                {
+                    MyGattCDataContainer.Height = 262;
+                    MyGattCDataSDisplay.Text = "";
+                }
                 AutoRange.Visibility = Bool_to_Vis(arg.MyGattCDataAutoRange);
                 True_RMS.Visibility = Bool_to_Vis(arg.MyGattCDataTrue_RMS);
                 MyGattCDataMax.Visibility = Bool_to_Vis(arg.MyGattCDataMax);
@@ -519,9 +532,38 @@ namespace BluetoothDMM
                 Battery.IsChecked = arg.MyGattCDataBattery;
                 MyGattCDataHV.Visibility = Bool_to_Vis(arg.MyGattCDataHV);
                 MyGattCDataRel.Visibility = Bool_to_Vis(arg.MyGattCDataRel);
-                btnMode.Visibility = Bool_to_Vis(arg.MyGattCDataType!=3);
+
+                btnMode.Visibility = Bool_to_Vis((new int[] { 1, 2, 4 }).Contains(arg.MyGattCDataType));
+                if (devDataType != arg.MyGattCDataType) {
+                    if((new int[] { 1, 2, 4 }).Contains(arg.MyGattCDataType))
+                    {
+                        var _commandList = ((GattDeviceCommandDatas[])_dataMonitor.commandDatas[arg.MyGattCDataType - 1]);
+                        foreach (var item in pnlCmd.Children)
+                        {
+                            var _type = item.GetType();
+                            if (item != null && item.GetType() == typeof(Button))
+                            {
+                                var button = (Button)item;
+                                button.Visibility = Visibility.Collapsed;
+                                var _data = _commandList.FirstOrDefault(c => c.CommandID == Convert.ToInt32(button.Tag));
+                                
+                                if (_data != null)
+                                {
+                                    button.Visibility = Visibility.Visible;
+                                    d("Button Tag: " + button.Tag.ToString());
+                                }
+                                //if (_data.CommandID == (int)button.Tag)
+                                //{
+                                
+                                //}
+                            }
+
+                        }
+                    }
+                    devDataType = arg.MyGattCDataType; 
+                }
 #if DEBUG// In debug mode show MODE button
-                btnMode.Visibility = Visibility.Visible;
+                //btnMode.Visibility = Visibility.Visible;
 #endif
                 Funct.Text = arg.MyGattCDataFunc;
 
@@ -551,7 +593,7 @@ namespace BluetoothDMM
 
                         while (maxvalue / 10 > currentValue)
                             maxvalue /= 10;
-                        Meter.Value = currentValue * 100 / maxvalue;
+                        Meter.Value = maxvalue != 0 ? currentValue * 100 / maxvalue : 0;
                     }
                     catch { Meter.Value = 0 * 100 / 6000; }
                 }
@@ -1031,6 +1073,7 @@ namespace BluetoothDMM
                     });
                 }
                 _dataMonitor.LogData = Properties.Settings.Default.LogData;
+                _dataMonitor.AutoReconnect = Properties.Settings.Default.Reconnect;
             }
         }
 
@@ -1604,17 +1647,17 @@ namespace BluetoothDMM
         private async void Commands_Click(object sender, RoutedEventArgs e)
         {
             var uiElement = (Button)sender;
-            string[] hexValuesSplit = uiElement.Tag.ToString().Split(' ');
-            byte[] GattSendData = new byte[hexValuesSplit.Length];
-            var byt = 0;
-            foreach (string hex in hexValuesSplit)
-            {
-                // Convert the number expressed in base-16 to an integer.
-                int value = Convert.ToInt32(hex, 16);
-                GattSendData[byt] = (byte)value;
-                byt++;
-            }
-            var deviceInfo = await _dataMonitor.WriteGattCommandAsync(GattSendData);
+            //string[] hexValuesSplit = uiElement.Tag.ToString().Split(' ');
+            //byte[] GattSendData = new byte[hexValuesSplit.Length];
+            //var byt = 0;
+            //foreach (string hex in hexValuesSplit)
+            //{
+            //    // Convert the number expressed in base-16 to an integer.
+            //    int value = Convert.ToInt32(hex, 16);
+            //    GattSendData[byt] = (byte)value;
+            //    byt++;
+            //}
+            var deviceInfo = await _dataMonitor.WriteGattCommandAsync(((GattDeviceCommandDatas[])_dataMonitor.commandDatas[SelectedDeviceType])[(int)uiElement.Tag].CommandData);
             Debug.WriteLine(deviceInfo.IsSuccess + " " + deviceInfo.Message);
             // MessageBox.Show(deviceInfo.IsSuccess + " " + deviceInfo.Message);
 

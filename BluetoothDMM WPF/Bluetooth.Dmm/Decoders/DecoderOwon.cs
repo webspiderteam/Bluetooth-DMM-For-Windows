@@ -11,6 +11,9 @@ namespace BluetoothDLL.Bluetooth
         public static bool b35tDecodeOld(byte[] data)
         {
             /*
+             *  static BLEUUID serviceUUID("0000fff0-0000-1000-8000-00805f9b34fb");             // OWON service UUID
+                static BLEUUID charnotificationUUID("0000fff4-0000-1000-8000-00805f9b34fb");    // OWON notification characteristic UUID
+                static BLEUUID charwriteUUID("0000fff3-0000-1000-8000-00805f9b34fb");
              
             1:  + or - (dec 43 or 45)
                 BYTE 0
@@ -112,8 +115,12 @@ namespace BluetoothDLL.Bluetooth
             MyGattCData = "";
             if (data[0] == 45) MyGattCData = "-";
             int point = Convert.ToString(data[6] & 0x07, 2).PadLeft(4, '0').IndexOf('1');
+            if(point < 0) point = 0;
             string tempData = Encoding.ASCII.GetString(data, 1, 4);
-            MyGattCData += tempData.Insert(tempData.Length - point, ".");
+            if (tempData.StartsWith("?") && tempData.EndsWith("?"))
+                tempData = " OL ";
+            Debug.WriteLine(point);
+            MyGattCData += point != 0 ? tempData.Insert(tempData.Length - point, ".") : tempData;
             MyGattCDataHold = IsBitSet(data[7], 1);
             MyGattCDataRel = IsBitSet(data[7], 2);
             MyGattCDataACDC = (IsBitSet(data[7], 3) ? "AC" : String.Empty) +
@@ -139,6 +146,7 @@ namespace BluetoothDLL.Bluetooth
             MyGattCDataDiode = IsBitSet(data[9], 2);
             MyGattCDataContinuity = IsBitSet(data[9], 3);
             MyGattCDataBattery = IsBitSet(data[8], 3);
+            MyGattCDataType = 5;
             return true;
         }
         public static bool owonPlusTypeDecode(byte[] data)
@@ -256,6 +264,7 @@ namespace BluetoothDLL.Bluetooth
             MyGattCDataDiode = function == 10;
             MyGattCDataContinuity = function == 11;
             MyGattCDataBattery = mode[3].Equals("1");
+            MyGattCDataType = 6;
             if (function == 12)
                 MyGattCDataFunc = "hFE";
             else if (function == 13)

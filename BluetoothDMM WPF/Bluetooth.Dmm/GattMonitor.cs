@@ -17,31 +17,46 @@ using Windows.Storage.Streams;
 
 namespace BluetoothDLL.Bluetooth
 {
+    public static class CommandSpecial
+    {
+        public static readonly IBuffer GetDeviceTypeName =
+            new byte[] { 0xAB, 0xCD, 0x03, 0x5F, 0x01, 0xDA }.AsBuffer();
+
+        public static readonly IBuffer GetData =
+            new byte[] { 0xAB, 0xCD, 0x03, 0x5D, 0x01, 0xD8 }.AsBuffer();
+
+        public static readonly IBuffer GetBackLight =
+            new byte[] { 0xAB, 0xCD, 0x03, 0x4B, 0x01, 0xC6 }.AsBuffer();
+    }
+
     public class GattMonitor
     {
         private BluetoothLEDevice _targetDevice = null;
         private List<BluetoothAttribute> _serviceCollection = new List<BluetoothAttribute>();
 
         public bool LogData { get; set; }
+        public bool AutoReconnect { get; set; }
         public int DevType { get; set; }
-        private GattDeviceUUIDs[] deviceUUIDs = { new GattDeviceUUIDs() { ServiceUUID = 0xFFF0, NotifyUUID = 0XFFF4, WriteUUID = 0XFFF3 },
+        private readonly GattDeviceUUIDs[] deviceUUIDs = {
+                                                        new GattDeviceUUIDs() { ServiceUUID = 0xFFF0, NotifyUUID = 0XFFF4, WriteUUID = 0XFFF3},
                                                         new GattDeviceUUIDs() {ServiceUUID = 0xFFF0, NotifyUUID = 0XFFF4, WriteUUID = 0XFFF3},
                                                         new GattDeviceUUIDs() {ServiceUUID = 0xFFF0, NotifyUUID = 0XFFF4, WriteUUID = 0XFFF3},
                                                         new GattDeviceUUIDs() {ServiceUUID = 0xFFB0, NotifyUUID = 0XFFB2, WriteUUID = 0XFFB1},
-                                                        new GattDeviceUUIDs() {ServiceUUID = 0xFE7D, NotifyUUID = 0X1E4D, WriteUUID = 0x8841 , WriteUUID2 = 0X6DAA, UseSecondPart = true}
+                                                        new GattDeviceUUIDs() {ServiceUUID = 0xFE7D, NotifyUUID = 0X1E4D, WriteUUID = 0x8841 , WriteUUID2 = 0X6DAA, UseSecondPart = true},
+                                                        new GattDeviceUUIDs() {ServiceUUID = 0xFFF0, NotifyUUID = 0XFFF4, WriteUUID = 0XFFF3},
         };
         private static readonly byte[] SEQUENCE_GET_NAME = { 0xAB, 0xCD, 0x03, 0x5F, 0x01, 0xDA };
         private static readonly byte[] SEQUENCE_SEND_LAMP = { 0xAB, 0xCD, 0x03, 0x4B, 0x01, 0xC6 };
         private static readonly byte[] SEQUENCE_SEND_DATA2 = { 0xAB, 0xCD, 0x03, 0x5D, 0x01, 0xD8 };
         private static readonly byte[] SEQUENCE_SEND_DATA = { 0xAB, 0xCD, 0x03, 0x5E, 0x01, 0xD9 };
 
-        private GattDeviceCommandDatas[] commandSpecial = new GattDeviceCommandDatas[] {
-                    new GattDeviceCommandDatas() { CommandID = 1, CommandData = new byte[]{ 0xAB, 0xCD, 0x03, 0x5F, 0x01, 0xDA }, CommandDesc = "Get Device TypeName", IsAvailable = true},
-                    new GattDeviceCommandDatas() { CommandID = 2, CommandData = new byte[]{ 0xAB, 0xCD, 0x03, 0x5D, 0x01, 0xD8 }, CommandDesc = "Get Data", IsAvailable = true},
-                    new GattDeviceCommandDatas() { CommandID = 3, CommandData = new byte[]{ 0xAB, 0xCD, 0x03, 0x4B, 0x01, 0xC6 }, CommandDesc = "Get BackLight", IsAvailable = true}
-        };
+        //private GattDeviceCommandDatas[] commandSpecial = new GattDeviceCommandDatas[] {
+        //            new GattDeviceCommandDatas() { CommandID = 1, CommandData = new byte[]{ 0xAB, 0xCD, 0x03, 0x5F, 0x01, 0xDA }, CommandDesc = "Get Device TypeName", IsAvailable = true},
+        //            new GattDeviceCommandDatas() { CommandID = 2, CommandData = new byte[]{ 0xAB, 0xCD, 0x03, 0x5D, 0x01, 0xD8 }, CommandDesc = "Get Data", IsAvailable = true},
+        //            new GattDeviceCommandDatas() { CommandID = 3, CommandData = new byte[]{ 0xAB, 0xCD, 0x03, 0x4B, 0x01, 0xC6 }, CommandDesc = "Get BackLight", IsAvailable = true}
+        //};
 
-        private List<GattDeviceCommandDatas[]> commandDatas = new List<GattDeviceCommandDatas[]> {
+        public List<GattDeviceCommandDatas[]> commandDatas = new List<GattDeviceCommandDatas[]> {
             new GattDeviceCommandDatas[] {
                     new GattDeviceCommandDatas() { CommandID = 1, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XED, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X99 }, CommandDesc = "Auto Range", IsAvailable = true},
                     new GattDeviceCommandDatas() { CommandID = 2, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE3, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X9B }, CommandDesc = "C degree", IsAvailable = true},
@@ -74,6 +89,27 @@ namespace BluetoothDLL.Bluetooth
                     new GattDeviceCommandDatas() { CommandID = 13, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0X91, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X95 }, CommandDesc = "AC/DC", IsAvailable = true},
                     new GattDeviceCommandDatas() { CommandID = 14, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE0, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X9A }, CommandDesc = "ZERO", IsAvailable = true}
             },
+            new GattDeviceCommandDatas[] { },
+            new GattDeviceCommandDatas[] {
+                    new GattDeviceCommandDatas() { CommandID = 1, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XED, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X99 }, CommandDesc = "Auto Range", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 2, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE3, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X9B }, CommandDesc = "C degree", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 3, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE2, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X98 }, CommandDesc = "F degree", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 4, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE5, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X81 }, CommandDesc = "Capacitance", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 5, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE4, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X86 }, CommandDesc = "Diode", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 6, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE7, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X87 }, CommandDesc = "NCV", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 7, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE6, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X84 }, CommandDesc = "Hz", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 8, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE1, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X85 }, CommandDesc = "Hold", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 9, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0X84, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0XE6 }, CommandDesc = "Min/Max", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 10, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0X93, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0XEB }, CommandDesc = "mV", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 11, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XEB, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X93 }, CommandDesc = "OHM", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 12, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0X9C, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0XEE }, CommandDesc = "A/mA", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 13, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0X91, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X95 }, CommandDesc = "AC/DC", IsAvailable = true},
+                    new GattDeviceCommandDatas() { CommandID = 14, CommandData = new byte[]{ 0XEA, 0XEC, 0X70, 0XE0, 0XA2, 0XC1, 0X32, 0X71, 0X64, 0X9A }, CommandDesc = "ZERO", IsAvailable = true}
+            },
+            new GattDeviceCommandDatas[] { },
+            new GattDeviceCommandDatas[] { },
+            new GattDeviceCommandDatas[] { },
+            new GattDeviceCommandDatas[] { },
             new GattDeviceCommandDatas[] { },
             new GattDeviceCommandDatas[] { }
         };
@@ -144,7 +180,7 @@ namespace BluetoothDLL.Bluetooth
             // we should always monitor the connection status
             _targetDevice.ConnectionStatusChanged -= DeviceConnectionStatusChanged;
             _targetDevice.ConnectionStatusChanged += DeviceConnectionStatusChanged;
-
+            
             var isReachable = await GetDeviceServicesAsync();
             if (!isReachable)
             {
@@ -178,9 +214,15 @@ namespace BluetoothDLL.Bluetooth
             if (DevType == 4)
             {
                 if (_useNewWriteUuid)
-                    await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(commandSpecial[0].CommandData.AsBuffer(), GattWriteOption.WriteWithoutResponse);
+                    await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(CommandSpecial.GetDeviceTypeName, GattWriteOption.WriteWithoutResponse);
                 else
-                    await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(commandSpecial[0].CommandData.AsBuffer(), GattWriteOption.WriteWithResponse);
+                    await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(CommandSpecial.GetDeviceTypeName, GattWriteOption.WriteWithResponse);
+
+                await Task.Delay(200);
+                if (_useNewWriteUuid)
+                    await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithoutResponse);
+                else
+                    await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithResponse);
             }
             return new Schema.ConnectionResult()
             {
@@ -197,6 +239,11 @@ namespace BluetoothDLL.Bluetooth
             {
                 // Ensure we have access to the device.
                 var accessStatus = await gatt_attrib.service.RequestAccessAsync();
+
+                if (AutoReconnect)
+                {
+                    gatt_attrib.service.Session.MaintainConnection = true; // Keep the connection alive ********************************* auto reconnect 
+                }
                 if (accessStatus == DeviceAccessStatus.Allowed)
                 {
                     // BT_Code: Get all the child characteristics of a gatt_attrib. Use the cache mode to specify uncached characterstics only 
@@ -235,6 +282,7 @@ namespace BluetoothDLL.Bluetooth
             _gattAttribute = _serviceCollection.Where(a => a.Name == deviceUUIDs[DevType].ServiceUUID.ToString()).FirstOrDefault();
             //else
             //    _gattAttribute = _serviceCollection.Where(a => a.Name.Substring(9, 4).ToUpper() == deviceUUIDs[DevType].ServiceUUID.ToString()).FirstOrDefault();
+            var response = new CharacteristicResult() { IsSuccess = false, Message = "Unknown error" };
             if (_gattAttribute == null)
             {
                 await DisconnectAsync();
@@ -246,13 +294,16 @@ namespace BluetoothDLL.Bluetooth
             }
 
             var characteristics = await GetServiceCharacteristicsAsync(_gattAttribute);
-            gattMeasurementAttribute = characteristics.Where(a => a.Name == deviceUUIDs[DevType].NotifyUUID.ToString()).FirstOrDefault();
-            gattRemoteCommandTargetAttribute = characteristics.Where(a => a.Name == deviceUUIDs[DevType].WriteUUID.ToString()).FirstOrDefault();
-            if (gattRemoteCommandTargetAttribute == null && deviceUUIDs[DevType].WriteUUID2 != 0)
+            if (characteristics.Count == 0)
             {
-                _useNewWriteUuid = false;
-                gattRemoteCommandTargetAttribute = characteristics.Where(a => a.Name == deviceUUIDs[DevType].WriteUUID2.ToString()).FirstOrDefault();
+                await DisconnectAsync();
+                return new CharacteristicResult()
+                {
+                    IsSuccess = false,
+                    Message = "No characteristics found"
+                };
             }
+            gattMeasurementAttribute = characteristics.Where(a => a.Name == deviceUUIDs[DevType].NotifyUUID.ToString()).FirstOrDefault();
             if (gattMeasurementAttribute == null)
             {
                 await DisconnectAsync();
@@ -263,17 +314,6 @@ namespace BluetoothDLL.Bluetooth
                 };
             }
             _gattMeasurementCharacteristic = gattMeasurementAttribute.characteristic;
-
-            //if (gattRemoteCommandTargetAttribute == null)
-            //{
-            //    await DisconnectAsync();
-            //    return new CharacteristicResult()
-            //    {
-            //        IsSuccess = false,
-            //        Message = "Cannot find characteristic"
-            //    };
-            //}
-            //_gattRemoteCommandTargetCharacteristic = gattRemoteCommandTargetAttribute.characteristic;
 
             // Get all the child descriptors of a characteristics. Use the cache mode to specify uncached descriptors only 
             // and the new Async functions to get the descriptors of unpaired devices as well. 
@@ -293,10 +333,9 @@ namespace BluetoothDLL.Bluetooth
                 var status = await _gattMeasurementCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Notify);
                 if (status == GattCommunicationStatus.Success)
                     _gattMeasurementCharacteristic.ValueChanged += GattValueChanged;
-
-                return new CharacteristicResult()
+                response = new CharacteristicResult()
                 {
-                    IsSuccess = status == GattCommunicationStatus.Success,
+                    IsSuccess = true,//status == GattCommunicationStatus.Success,
                     Message = status.ToString()
                 };
             }
@@ -308,6 +347,29 @@ namespace BluetoothDLL.Bluetooth
                     Message = "Characteristic does not support notify"
                 };
             }
+
+            gattRemoteCommandTargetAttribute = characteristics.Where(a => a.Name == deviceUUIDs[DevType].WriteUUID.ToString()).FirstOrDefault();
+            if (gattRemoteCommandTargetAttribute == null && deviceUUIDs[DevType].WriteUUID2 != 0)
+            {
+                _useNewWriteUuid = false;
+                gattRemoteCommandTargetAttribute = characteristics.Where(a => a.Name == deviceUUIDs[DevType].WriteUUID2.ToString()).FirstOrDefault();
+            }
+            //Chec this if its creating issue
+            _gattRemoteCommandTargetCharacteristic = null;
+            if (gattRemoteCommandTargetAttribute != null)
+            {
+                _gattRemoteCommandTargetCharacteristic = gattRemoteCommandTargetAttribute.characteristic;
+                //await DisconnectAsync();
+                //return new CharacteristicResult()
+                //{
+                //    IsSuccess = false,
+                //    Message = "Cannot find command characteristic"
+                //};
+            }
+
+            
+            return response;
+
         }
 
         private async Task<bool> GetDeviceServicesAsync()
@@ -347,48 +409,37 @@ namespace BluetoothDLL.Bluetooth
         {
             if (_targetDevice != null)
             {
-                if (_gattMeasurementCharacteristic != null)
+                try
                 {
-                    try
+                    // Unsubscribe events
+                    if (_gattMeasurementCharacteristic != null)
                     {
-                        //NOTE: might want to do something here if the result is not successful
-                        //Debug.WriteLine("1st a");
-                        _gattMeasurementCharacteristic.ValueChanged -= GattValueChanged;
-                        //var result = await _gattMeasurementCharacteristic.WriteClientCharacteristicConfigurationDescriptorWithResultAsync(GattClientCharacteristicConfigurationDescriptorValue.None);
-                        if (_gattMeasurementCharacteristic.Service != null)
-                            _gattMeasurementCharacteristic.Service.Dispose();
+                        try { _gattMeasurementCharacteristic.ValueChanged -= GattValueChanged; } catch { }
                         _gattMeasurementCharacteristic = null;
                     }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine("exr" + ex);
-                    }
-                }
 
-                if (gattMeasurementAttribute != null)
-                {
-                    //Debug.WriteLine("1st b");
-                    if (gattMeasurementAttribute.service != null)
-                        gattMeasurementAttribute.service.Dispose();
+                    // Dispose services only, not characteristics
+                    try { gattMeasurementAttribute?.service?.Dispose(); } catch { }
                     gattMeasurementAttribute = null;
-                }
 
-                if (_gattAttribute != null)
-                {
-                    //Debug.WriteLine("1st c");
-                    if (_gattAttribute.service != null)
-                        _gattAttribute.service.Dispose();
+                    try { _gattAttribute?.service?.Dispose(); } catch { }
                     _gattAttribute = null;
+
+                    // Clear collection
+                    _serviceCollection?.Clear();
+                    _serviceCollection = new List<BluetoothAttribute>();
+
+                    // Device cleanup
+                    try { _targetDevice.ConnectionStatusChanged -= DeviceConnectionStatusChanged; } catch { }
+                    try { _targetDevice?.Dispose(); } catch { }
+                    _targetDevice = null;
                 }
-
-                _serviceCollection = new List<BluetoothAttribute>();
-                //Debug.WriteLine("4th");
-                _targetDevice.ConnectionStatusChanged -= DeviceConnectionStatusChanged;
-                _targetDevice.Dispose();
-                _targetDevice = null;
-
-                //DeviceConnectionStatusChanged(null, null);
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Disconnect error: " + ex);
+                }
             }
+
             return Task.CompletedTask;
         }
 
@@ -409,14 +460,16 @@ namespace BluetoothDLL.Bluetooth
             threatTime.Start();
 #endif
             CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out byte[] data);
-            //if (false)
-            //{
-            //    var dateValue = DateTime.Today.ToString("yyyy-MM-dd");
+#if DEBUG
+            if (LogData)
+            {
+                var dateValue = DateTime.Today.ToString("yyyy-MM-dd");
 
-            //    File.AppendAllText("log-" + dateValue + ".txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
+                File.AppendAllText("lograw-" + dateValue + ".txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
 
-            //    //File.AppendAllText("logbinary.txt", newValue + System.Environment.NewLine);
-            //}
+                //File.AppendAllText("logbinary.txt", newValue + System.Environment.NewLine);
+            }
+#endif
             if (!Enumerable.SequenceEqual(data, olddata))
             {
 
@@ -442,7 +495,9 @@ namespace BluetoothDLL.Bluetooth
                         MyGattCDataHV = (bool)GattData[13],
                         MyGattCDataRel = (bool)GattData[14],
                         MyGattCDataType = (int)GattData[15],
-                        MyGattCDataFunc = (string)GattData[16]
+                        MyGattCDataFunc = (string)GattData[16],
+                        MyGattCDataSDisplay = (string)GattData[17],
+                        MyGattCDataHasSDisplay = (bool)GattData[18]
                     };
                     olddata = data;
                     OnRateChanged(args);
@@ -450,19 +505,39 @@ namespace BluetoothDLL.Bluetooth
                 }
                 else
                 {
-                    if ((string)GattData[1] == "TypeRequest" && DevType == 4)
+
+                    if (DevType == 4)
                     {
-                        if (_useNewWriteUuid)
-                            await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(commandSpecial[0].CommandData.AsBuffer(),GattWriteOption.WriteWithoutResponse);
-                        else
-                            await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(commandSpecial[0].CommandData.AsBuffer(),GattWriteOption.WriteWithResponse);
+                        if ((string)GattData[1] == "TypeRequest")
+                        {
+                            if (_useNewWriteUuid)
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetDeviceTypeName, GattWriteOption.WriteWithoutResponse);
+                            else
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetDeviceTypeName, GattWriteOption.WriteWithResponse);
+                        }
+                        else if ((string)GattData[1] == "DataRequest")
+                        {
+                            if (_useNewWriteUuid)
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithoutResponse);
+                            else
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithResponse);
+                        }
+                        //else if ((string)GattData[1] == "TypeName") //lets force if no data request sent
+                        //{
+
+                        //    if (_useNewWriteUuid)
+                        //        await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithoutResponse);
+                        //    else
+                        //        await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithResponse);
+                        //}
                     }
-                    else if ((string)GattData[1] == "DataRequest" && DevType == 4)
+                    if (LogData)
                     {
-                        if (_useNewWriteUuid)
-                            await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(commandSpecial[1].CommandData.AsBuffer(), GattWriteOption.WriteWithoutResponse);
-                        else
-                            await gattRemoteCommandTargetAttribute.characteristic.WriteValueAsync(commandSpecial[1].CommandData.AsBuffer(), GattWriteOption.WriteWithResponse);
+                        var dateValue = DateTime.Today.ToString("yyyy-MM-dd");
+
+                        File.AppendAllText("logdecodeerror-" + dateValue + ".txt", "{" + string.Join(", ", data) + "}" + (string)GattData[0] + ", " + (string)GattData[1] + System.Environment.NewLine);
+
+                        //File.AppendAllText("logbinary.txt", newValue + System.Environment.NewLine);
                     }
                 }
             }
@@ -472,6 +547,173 @@ namespace BluetoothDLL.Bluetooth
             {
                 maxTime = (int)threatTime.ElapsedMilliseconds > maxTime ? (int)threatTime.ElapsedMilliseconds : maxTime;
                 //Console.WriteLine("Elapsed={0} ms Max={1}", threatTime.ElapsedMilliseconds, maxTime);
+            }
+#endif
+        }
+
+        // Add this debug logging to your GattValueChanged method in GattMonitor.cs
+        // Replace the duplicate filter and processing section:
+
+        private async void GattValueChangedwithdebug(GattCharacteristic sender, GattValueChangedEventArgs e)
+        {
+#if DEBUG
+            threatTime = new Stopwatch();
+            threatTime.Start();
+#endif
+            CryptographicBuffer.CopyToByteArray(e.CharacteristicValue, out byte[] data);
+
+            // Debug logging - log ALL incoming data
+            var dateValue = DateTime.Today.ToString("yyyy-MM-dd");
+            var timestamp = DateTime.Now.ToString("HH:mm:ss.fff");
+            File.AppendAllText($"debug-all-data-{dateValue}.txt",
+                $"[{timestamp}] UUID:{sender.Uuid} Length:{data.Length} {{" + string.Join(", ", data) + "}" +
+                $" IsDuplicate:{Enumerable.SequenceEqual(data, olddata)}" + Environment.NewLine);
+
+#if DEBUG
+            if (LogData)
+            {
+                File.AppendAllText("lograw-" + dateValue + ".txt", "{" + string.Join(", ", data) + "}" + System.Environment.NewLine);
+            }
+#endif
+
+            // Temporarily disable duplicate filtering OR log filtered data
+            bool isDuplicate = Enumerable.SequenceEqual(data, olddata);
+            if (isDuplicate)
+            {
+                File.AppendAllText($"debug-filtered-{dateValue}.txt",
+                    $"[{timestamp}] FILTERED DUPLICATE: {{" + string.Join(", ", data) + "}" + Environment.NewLine);
+                //return; // Keep the filter but log what's being filtered
+            }
+
+            // Log processing attempt
+            File.AppendAllText($"debug-processing-{dateValue}.txt",
+                $"[{timestamp}] PROCESSING: DevType={DevType} Data={{" + string.Join(", ", data) + "}" + Environment.NewLine);
+
+            var GattData = Utilities.ParseGattValue(data, LogData, DevType);
+
+            // Debug the ParseGattValue result
+            File.AppendAllText($"debug-parsing-{dateValue}.txt",
+                $"[{timestamp}] PARSE RESULT: GattData[0]='{(string)GattData[0]}' GattData[1]='{(string)GattData[1]}'" + Environment.NewLine);
+
+            if ((string)GattData[0] != "Error")
+            {
+                File.AppendAllText($"debug-success-{dateValue}.txt",
+                    $"[{timestamp}] SUCCESS: Value='{(string)GattData[0]}' Symbol='{(string)GattData[1]}'" + Environment.NewLine);
+
+                var args = new Events.DataChangedEventArgs()
+                {
+                    MyGattCData = (string)GattData[0],
+                    MyGattCDataSymbol = (string)GattData[1],
+                    MyGattCDataMax = (bool)GattData[2],
+                    MyGattCDataMin = (bool)GattData[3],
+                    MyGattCDataTrue_RMS = (bool)GattData[4],
+                    MyGattCDataAutoRange = (bool)GattData[5],
+                    MyGattCDataDiode = (bool)GattData[6],
+                    MyGattCDataContinuity = (bool)GattData[7],
+                    MyGattCDataHold = (bool)GattData[8],
+                    MyGattCDataInRush = (bool)GattData[9],
+                    MyGattCDataPeek = (bool)GattData[10],
+                    MyGattCDataACDC = (string)GattData[11],
+                    MyGattCDataBattery = (bool?)GattData[12],
+                    MyGattCDataHV = (bool)GattData[13],
+                    MyGattCDataRel = (bool)GattData[14],
+                    MyGattCDataType = (int)GattData[15],
+                    MyGattCDataFunc = (string)GattData[16]
+                };
+                olddata = data;
+                OnRateChanged(args);
+            }
+            else
+            {
+                File.AppendAllText($"debug-error-{dateValue}.txt",
+                    $"[{timestamp}] ERROR BRANCH: DevType={DevType} GattData[1]='{(string)GattData[1]}'" + Environment.NewLine);
+
+                if (DevType == 4)
+                {
+                    File.AppendAllText($"debug-commands-{dateValue}.txt",
+                        $"[{timestamp}] DevType4: _gattRemoteCommandTargetCharacteristic ==null:{_gattRemoteCommandTargetCharacteristic == null} _useNewWriteUuid:{_useNewWriteUuid}" + Environment.NewLine);
+
+                    if ((string)GattData[1] == "TypeRequest")
+                    {
+                        File.AppendAllText($"debug-commands-{dateValue}.txt",
+                            $"[{timestamp}] SENDING TypeRequest command (GET_NAME)" + Environment.NewLine);
+
+                        try
+                        {
+                            if (_useNewWriteUuid)
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetDeviceTypeName, GattWriteOption.WriteWithoutResponse);
+                            else
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetDeviceTypeName, GattWriteOption.WriteWithResponse);
+
+                            File.AppendAllText($"debug-commands-{dateValue}.txt",
+                                $"[{timestamp}] TypeRequest command sent successfully" + Environment.NewLine);
+                        }
+                        catch (Exception ex)
+                        {
+                            File.AppendAllText($"debug-commands-{dateValue}.txt",
+                                $"[{timestamp}] TypeRequest command FAILED: {ex.Message}" + Environment.NewLine);
+                        }
+                    }
+                    else if ((string)GattData[1] == "DataRequest")
+                    {
+                        File.AppendAllText($"debug-commands-{dateValue}.txt",
+                            $"[{timestamp}] SENDING DataRequest command (GET_DATA)" + Environment.NewLine);
+
+                        try
+                        {
+                            if (_useNewWriteUuid)
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithoutResponse);
+                            else
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithResponse);
+
+                            File.AppendAllText($"debug-commands-{dateValue}.txt",
+                                $"[{timestamp}] DataRequest command sent successfully" + Environment.NewLine);
+                        }
+                        catch (Exception ex)
+                        {
+                            File.AppendAllText($"debug-commands-{dateValue}.txt",
+                                $"[{timestamp}] DataRequest command FAILED: {ex.Message}" + Environment.NewLine);
+                        }
+                    }
+                    else if ((string)GattData[1] == "TypeName")
+                    {
+                        File.AppendAllText($"debug-commands-{dateValue}.txt",
+                            $"[{timestamp}] SENDING Forced DataRequest command (GET_DATA)" + Environment.NewLine);
+
+                        try
+                        {
+                            if (_useNewWriteUuid)
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithoutResponse);
+                            else
+                                await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(CommandSpecial.GetData, GattWriteOption.WriteWithResponse);
+
+                            File.AppendAllText($"debug-commands-{dateValue}.txt",
+                                $"[{timestamp}] Forced DataRequest command sent successfully" + Environment.NewLine);
+                        }
+                        catch (Exception ex)
+                        {
+                            File.AppendAllText($"debug-commands-{dateValue}.txt",
+                                $"[{timestamp}] Forced DataRequest command FAILED: {ex.Message}" + Environment.NewLine);
+                        }
+                    }
+                    else
+                    {
+                        File.AppendAllText($"debug-commands-{dateValue}.txt",
+                            $"[{timestamp}] Unknown GattData[1]: '{(string)GattData[1]}'" + Environment.NewLine);
+                    }
+                }
+
+                if (LogData)
+                {
+                    File.AppendAllText("logdecodeerror-" + dateValue + ".txt", "{" + string.Join(", ", data) + "}" + (string)GattData[0] + ", " + (string)GattData[1] + System.Environment.NewLine);
+                }
+            }
+
+#if DEBUG
+            threatTime.Stop();
+            if (threatTime.ElapsedMilliseconds > 0)
+            {
+                maxTime = (int)threatTime.ElapsedMilliseconds > maxTime ? (int)threatTime.ElapsedMilliseconds : maxTime;
             }
 #endif
         }
@@ -526,7 +768,7 @@ namespace BluetoothDLL.Bluetooth
         {
             if (_targetDevice != null && _targetDevice.ConnectionStatus == BluetoothConnectionStatus.Connected)
             {
-                if (_gattRemoteCommandTargetCharacteristic.CharacteristicProperties.HasFlag(GattCharacteristicProperties.WriteWithoutResponse))
+                if (_gattRemoteCommandTargetCharacteristic.CharacteristicProperties.HasFlag(GattCharacteristicProperties.WriteWithoutResponse) || _gattRemoteCommandTargetCharacteristic.CharacteristicProperties.HasFlag(GattCharacteristicProperties.Write))
                 {
                     IBuffer buffUTF8 = CryptographicBuffer.CreateFromByteArray(Data);
                     var status = await _gattRemoteCommandTargetCharacteristic.WriteValueAsync(buffUTF8);

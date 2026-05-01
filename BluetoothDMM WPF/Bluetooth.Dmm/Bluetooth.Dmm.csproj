@@ -53,10 +53,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Windows, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd</HintPath>
-      <Private>False</Private>
+    <Reference Include="Windows">
+      <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WPFLocalizeExtension, Version=3.9.4.0, Culture=neutral, PublicKeyToken=c726e0262981a1eb, processorArchitecture=MSIL">
@@ -68,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Decoders\DecoderBluetoothDMM.cs" />
+    <Compile Include="Decoders\DecoderVoltcraft.cs" />
     <Compile Include="Decoders\DecoderOwon.cs" />
     <Compile Include="Decoders\DecoderBrymen.cs" />
     <Compile Include="Decoders\DecoderUni_T.cs" />
